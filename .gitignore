@@ -1,6 +1,3 @@
-# Created by https://www.gitignore.io/api/c++
-
-### C++ ###
 # Compiled Object files
 *.slo
 *.lo
@@ -30,21 +27,65 @@
 *.out
 *.app
 
-# PDFs
-tp1/informe/informe.pdf
-tp2/informe/informe.pdf
-tp3/informe/informe.pdf
+## Core latex/pdflatex auxiliary files:
+*.pdf
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
 
-# Latex
-tp1/informe/informe.aux
-tp1/informe/informe.log
-tp1/informe/informe.synctex.gz
-tp1/informe/informe.toc
-tp2/informe/informe.aux
-tp2/informe/informe.log
-tp2/informe/informe.synctex.gz
-tp2/informe/informe.toc
-tp3/informe/informe.aux
-tp3/informe/informe.log
-tp3/informe/informe.synctex.gz
-tp3/informe/informe.toc
+## Intermediate documents:
+*.dvi
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.brf
+*.run.xml
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## Auxiliary and intermediate files from other packages:
+
+# algorithms
+*.alg
+*.loa
+
+# amsthm
+*.thm
+
+# beamer
+*.nav
+*.snm
+*.vrb
+
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+
+# hyperref
+*.brf
+
+# listings
+*.lol
+
+# makeidx
+*.idx
+*.ilg
+*.ind
+*.ist
+
+*main
