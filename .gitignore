@@ -1,0 +1,50 @@
+# Created by https://www.gitignore.io/api/c++
+
+### C++ ###
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# PDFs
+tp1/informe/informe.pdf
+tp2/informe/informe.pdf
+tp3/informe/informe.pdf
+
+# Latex
+tp1/informe/informe.aux
+tp1/informe/informe.log
+tp1/informe/informe.synctex.gz
+tp1/informe/informe.toc
+tp2/informe/informe.aux
+tp2/informe/informe.log
+tp2/informe/informe.synctex.gz
+tp2/informe/informe.toc
+tp3/informe/informe.aux
+tp3/informe/informe.log
+tp3/informe/informe.synctex.gz
+tp3/informe/informe.toc
