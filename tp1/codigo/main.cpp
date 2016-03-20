@@ -44,7 +44,8 @@ int main(int argc, char const *argv[]){
 
 	string method = argv[3];
 	if(method == "0"){
-		vector<pair<double, int> > res = eliminacionGaussiana(scores, b_vector);
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		eliminacionGaussiana(scores, b_vector, res);
 		ofstream output(argv[2]);
 		sort(res.begin(), res.end(), pairCompare);
 		printFile(res, output);

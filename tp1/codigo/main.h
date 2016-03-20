@@ -44,7 +44,7 @@ int find_max(const matrix<T>& mat, int actual){
 }
 
 template<typename T, typename Q>
-vector<pair<double, int> > eliminacionGaussiana(matrix<T>& mat, vector<Q>& vec){
+void make_upper_triangular(matrix<T>& mat, vector<Q>& vec){
 	for (int i = 0; i < mat.size(); ++i){
 		// busco fila con el mayor elemento
 		int i_max = find_max(mat, i);
@@ -64,13 +64,22 @@ vector<pair<double, int> > eliminacionGaussiana(matrix<T>& mat, vector<Q>& vec){
 			}
 		}
 	}
-	// resuelvo el sistema triangular superior
-	vector<pair<double, int> > res(mat.size());
+}
+
+template<typename T, typename Q>
+void solve_upper_triangular(matrix<T>& mat, vector<Q>& vec, vector<pair<double, int> >& res){
 	for (int i = mat.size()-1; i >= 0; --i){
 		double partial_sum = 0.;
 		for (int j = i+1; j < mat.size(); ++j)
 			partial_sum += mat[i][j] * res[j].first;
 		res[i] = pair<double, int>((vec[i].first - partial_sum) / mat[i][i], vec[i].second);
 	}
-	return res;
+}
+
+template<typename T, typename Q>
+void eliminacionGaussiana(matrix<T>& mat, vector<Q>& vec, vector<pair<double, int> >& res){
+	// armo el sistema triangular superior
+	make_upper_triangular(mat, vec);
+	// resuelvo el sistema triangular superior
+	solve_upper_triangular(mat, vec, res);
 }
