@@ -27,19 +27,14 @@ int main(int argc, char const *argv[]){
 			winAndLose[local].second += 1;
 			winAndLose[away].first += 1;
 		}
-		scores[local][away] += 1;
-		scores[away][local] += 1;
+		scores[local][away] -= 1;
+		scores[away][local] -= 1;
 	}
 	input.close();
 
 	// armo la C
 	for (int i = 0; i < n; ++i){
-		for (int j = 0; j < n; ++j){
-			if(j==i)
-				scores[i][j] += winAndLose[i].first + winAndLose[i].second + 2;
-			else
-				scores[i][j] *= -1;
-		}
+		scores[i][i] += winAndLose[i].first + winAndLose[i].second + 2;
 	}
 
 	// armo el b

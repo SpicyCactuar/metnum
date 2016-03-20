@@ -31,9 +31,7 @@ void printFile(const vector<pair<double, int> >& vec, ostream& os){
 template<typename T>
 void printMatrix(const matrix<T>& mat){
 	for (int i = 0; i < mat.size(); ++i)
-		for (int j = 0; j < mat[i].size(); ++j)
-			cout << mat[i][j] << " ";
-		cout << endl;
+		printVector(mat[i]);
 }
 
 template<typename T>
