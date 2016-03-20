@@ -11,7 +11,7 @@ ostream& operator<<(ostream& os, const pair<T, Q>& p ){
 }
 
 bool pairCompare(const pair<double, int>& first, const pair<double, int>& second) {
-	return first.first > second.first;
+	return first.second < second.second;
 }
 
 template<typename T>
@@ -23,8 +23,8 @@ void printVector(const vector<T>& vec){
 
 void printFile(const vector<pair<double, int> >& vec, ostream& os){
 	for (int i = 0; i < vec.size(); ++i){
-		os << vec[i].second << " " << vec[i].first;
-		os << endl;
+		// os << vec[i].second << " " << vec[i].first << endl;
+		os << vec[i].first << endl;
 	}
 }
 
