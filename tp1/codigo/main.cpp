@@ -45,15 +45,23 @@ int main(int argc, char const *argv[]){
 	string method = argv[3];
 	if(method == "0"){
 		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
-		eliminacionGaussiana(scores, b_vector, res);
+		gaussianElimination(scores, b_vector, res);
 		ofstream output(argv[2]);
 		sort(res.begin(), res.end(), pairCompare);
 		printFile(res, output);
 		output.close();
 	} else if(method == "1"){
-		cout << "CMM-CL" << endl;
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		choleskyFactorization(scores, b_vector, res);
+		ofstream output(argv[2]);
+		sort(res.begin(), res.end(), pairCompare);
+		printFile(res, output);
+		output.close();
 	} else	if(method == "2"){
-		cout << "WP" << endl;
+		ofstream output(argv[2]);
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		winningPercentage(winAndLose, res);
+		printFile(res, output);
 	} else {
 		cout << "Cualquiera" << endl;
 	}
