@@ -66,6 +66,23 @@ void make_upper_triangular(matrix<T>& mat, vector<Q>& vec){
 	}
 }
 
+template<typename T>
+void make_lower_triangular_cholesky(matrix<T>& mat){
+	for (int i = 0; i < mat.size(); ++i){
+		double partial_sum = 0.;
+		for (int j = 0; j < i; ++j)
+			partial_sum += pow(mat[i][j], 2);
+		mat[i][i] = sqrt(mat[i][i] - partial_sum);
+		for (int j = i+1; j < mat.size(); ++j){
+			partial_sum = 0.;
+			for (int k = 0; k < i; ++k)
+				partial_sum += mat[i][k] * mat[j][k];
+			mat[j][i] = (mat[j][i] - partial_sum) / mat[i][i];
+			mat[i][j] = mat[j][i];
+		}
+	}
+}
+
 template<typename T, typename Q>
 void back_substitution(matrix<T>& mat, vector<Q>& vec, vector<Q>& res){
 	for (int i = mat.size()-1; i >= 0; --i){
@@ -88,45 +105,26 @@ void forward_substitution(matrix<T>& mat, vector<Q>& vec, vector<Q>& res){
 
 template<typename T, typename Q>
 void gaussianElimination(matrix<T>& mat, vector<Q>& vec, vector<Q>& res){
-	// armo el sistema triangular superior
+	// armo la U
 	make_upper_triangular(mat, vec);
-	// resuelvo el sistema triangular superior
+	// resuelvo Ux = b
 	back_substitution(mat, vec, res);
-}
-
-template<typename T>
-void make_lower_triangular_cholesky(matrix<T>& mat, matrix<T>& low){
-	for (int i = 0; i < mat.size(); ++i){
-		double partial_sum = 0.;
-		for (int j = 0; j < i; ++j)
-			partial_sum += pow(low[i][j], 2);
-		low[i][i] = sqrt(mat[i][i] - partial_sum);
-		for (int j = i+1; j < mat.size(); ++j){
-			partial_sum = 0.;
-			for (int k = 0; k < i; ++k)
-				partial_sum += low[i][k] * low[j][k];
-			low[j][i] = (mat[j][i] - partial_sum) / low[i][i];
-			low[i][j] = low[j][i];
-		}
-	}
 }
 
 template<typename T, typename Q>
 void choleskyFactorization(matrix<T>& mat, vector<Q>& vec, vector<Q>& res){
-	// armo el sistema triangular inferior, simetrica para no tener que trasponer
-	matrix<T> mat_lower(mat.size(), vector<T>(mat.size()));
-	make_lower_triangular_cholesky(mat, mat_lower);
+	// armo el sistema LL^t
+	make_lower_triangular_cholesky(mat);
 	vector<Q> aux(mat.size());
 	// resuelvo L * z = b
-	forward_substitution(mat_lower, vec, aux);
+	forward_substitution(mat, vec, aux);
 	// resuelvo L^t * x = z
-	back_substitution(mat_lower, aux, res);
+	back_substitution(mat, aux, res);
 }
 
 template<typename T, typename Q>
 void winningPercentage(vector<T>& vec, vector<Q>& res){
-	for (int i = 0; i < vec.size(); ++i){
+	for (int i = 0; i < vec.size(); ++i)
 		res[i] = Q(vec[i].first / (vec[i].first + vec[i].second), i);
-	}
 }
 

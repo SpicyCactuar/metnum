@@ -58,8 +58,8 @@ int main(int argc, char const *argv[]){
 		printFile(res, output);
 		output.close();
 	} else	if(method == "2"){
-		ofstream output(argv[2]);
 		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		ofstream output(argv[2]);
 		winningPercentage(winAndLose, res);
 		printFile(res, output);
 	} else {
