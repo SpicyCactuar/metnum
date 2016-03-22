@@ -27,19 +27,14 @@ int main(int argc, char const *argv[]){
 			winAndLose[local].second += 1;
 			winAndLose[away].first += 1;
 		}
-		scores[local][away] += 1;
-		scores[away][local] += 1;
+		scores[local][away] -= 1;
+		scores[away][local] -= 1;
 	}
 	input.close();
 
 	// armo la C
 	for (int i = 0; i < n; ++i){
-		for (int j = 0; j < n; ++j){
-			if(j==i)
-				scores[i][j] += 2;
-			else
-				scores[i][j] *= -1;
-		}
+		scores[i][i] += winAndLose[i].first + winAndLose[i].second + 2;
 	}
 
 	// armo el b
@@ -49,15 +44,24 @@ int main(int argc, char const *argv[]){
 
 	string method = argv[3];
 	if(method == "0"){
-		vector<pair<double, int> > res = eliminacionGaussiana(scores, b_vector);
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		gaussianElimination(scores, b_vector, res);
 		ofstream output(argv[2]);
 		sort(res.begin(), res.end(), pairCompare);
 		printFile(res, output);
 		output.close();
 	} else if(method == "1"){
-		cout << "CMM-CL" << endl;
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		choleskyFactorization(scores, b_vector, res);
+		ofstream output(argv[2]);
+		sort(res.begin(), res.end(), pairCompare);
+		printFile(res, output);
+		output.close();
 	} else	if(method == "2"){
-		cout << "WP" << endl;
+		vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+		ofstream output(argv[2]);
+		winningPercentage(winAndLose, res);
+		printFile(res, output);
 	} else {
 		cout << "Cualquiera" << endl;
 	}
