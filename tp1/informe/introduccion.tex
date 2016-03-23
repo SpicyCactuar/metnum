@@ -6,16 +6,62 @@
 \item \textbf{Medici\'on:} Podr\'ia aportar m\'etricas internas para determinar c\'omo se encuentra la entidad/el jugador comparativamente con los dem\'as.
 \end{itemize}
 
-Proveer metodolog\'ias que incorporen aspectos varios y relevantes de los encuentros es esencial para que incremente su precisión. Dicho esto, el m\'etodo central que utilizaremos es el \textbf{\textit{Colley Matrix Method}}[1].
+Proveer metodolog\'ias que incorporen aspectos varios y relevantes de los encuentros es esencial para que incremente su precisión. Dicho esto, el m\'etodo que utilizaremos es el \textbf{\textit{Colley Matrix Method}} \textbf{[1]}.
 
 \subsection{Colley Matrix Method}
 
-Para explicar el m\'etodo, haremos uso de la notaci\'on introducida en el paper con su debida aclaraci\'on cuando creamos que sea necesaria.
+Este m\'etodo busca obtener las probabilidades de que cada equipo de una liga gane su pr\'oximo encuentro, teniendo en consideraci\'on el schedule que atraves\'o cada uno de ellos (jugar contra los mejores equipos al inicio no indica que vaya a perder contra los peores en los subsiguietntes partidos), sin importar la diferencia de la cantidad de partidos jugados por cada equipo y solo considerando si el equipo gan\'o o perdi\'o (no la diferencia en puntajes obtenidos en los mismos). Es necesario notar que s\'olo aplica a modelos de competencias que no admiten empate como un resultado posible.
+
+El paper \textbf{[1]} plantea que las probabilidades se obtienen como resultado de un sistema de ecuaciones lineales de la forma $Cr = b$. \\
+
+Donde: 
+$C{_i}{_j} =
+\left\{
+	\begin{array}{lcc}
+		-n{_i}{_j} & si & i \neq j \\
+		\\ 2 + n{_i} & si & i = j \\
+	\end{array}
+\right.$ \\
+
+$r{_i} = $probabilidad de que el equipo i gane su siguiente partido \\
+
+$b{_i} = 1 + (w{_i} - l{_i}) / 2 \\ $
+
+Con:
+$w{_i} = $\#victorias del equipo i \\
+
+$l{_i} = $\#derrotas del equipo i \\
+
+$n{_i} = w{_i} + l{_i}$ \\
+
+$n{_i}{_j} = $\#victorias del equipo i contra el equipo j \\
+
+C se denomina la matrix de Colley, en particular es sim\'etrica ($A = A{^t}$) y definida positiva (\textcolor{red}{DEFINITION HERE}).
+
+Para resolver este sistema, usaremos dos algoritmos distintos para obtener sistemas de f\'acil resoluci\'on por \textit{back-substitution} y \textit{forward-substitution}. \textit{Eliminaci\'on Gaussiana} y \textit{Factorizaci\'on de Cholesky}.
 
 \subsubsection{Eliminaci\'on Gaussiana}
+
+La eliminaci\'on gaussiana es un algoritmo que transforma un sistema de ecuaciones en un sistema equivalente, con la caracter\'istica de que este nuevo sistema es triangular superior. Luego se resuelve por back-substitution y obtenemos el resultado deseado.
+
+El sistema $Ax = b$ se transforma en uno equivalente $Ux = b'$, con U una matriz triangular superior.
+
+En este trabajo podemos asegurar que la eliminaci\'on encuentra la U y m\'as a\'un, el sistema tiene soluci\'on \'unica porque la matriz de Colley es, como se mencion\'o anteriormente, sim\'etica y definida positiva.
 
 \textcolor{red}{\textbf{TODO: Escribir, no olvidar de mencionar por qu\'e y para que se utiliza.}}
 
 \subsubsection{Factorizacio\'on de Cholesky}
+
+La factorizaci\'on de Cholesky es un caso particular de una factorizaci\'on LU, con L matriz triangular inferior y U matriz triangular superior. Bajo la hip\'otesis de este trabajo sobre las caracter\'isticas de la matriz de Colley, podemos afirmar que existe una factorizaci\'on de la forma LU de C, tal que $U = L{^t}$. \\
+
+$LL{^t}{_i}{_j} =
+\left\{
+	\begin{array}{lcc}
+		\sqrt{C{_i}{_i} - \sum\limits_{k=1}^{i-1} L{_i}{_k}^2} & si & i = j \\
+		\\ \frac{1}{L{_i}{_i}}(C{_i}{_j} - \sum\limits_{k=1}^{i-1} L{_i}{_k}L{^t}{_j}{_k}) & si & i \neq j \\
+	\end{array}
+\right.$ \\
+
+Luego, el sistema equivalente ser\'a $LL{^t}x = b$, entonces puedo resolver $Ly = b$ por forward-substitution y luego $L{^t}x = y$ para obtener el resultado deseado por back-substitution.
 
 \textcolor{red}{\textbf{TODO: Escribir, no olvidar de mencionar por qu\'e y para que se utiliza.}}
