@@ -9,23 +9,25 @@
 using namespace std;
 
 // --- Input arguments ---
-//   -(f: output file)
+//   -(f: output directory)
 //   -(n: teams qty)
 //   -(k: games qty)
 
 int main(int argc, char const *argv[]){
     if(argc != 4){ cout << "Parameters should be: (f: output file), (n: teams qty), (k: games qty)" << endl; return 0; }
 
-    // Read input
-    string ouputFile = argv[1]; // Date identifier. Currently not used.
+    // Input params
     int n;                      // Teams quantity
     int k;                      // Games quantity
     int maxScore = 100;
 
+    // Read input
     sscanf(argv[2], "%d", &n);
     sscanf(argv[3], "%d", &k);
 
-    // Write output file
+    //Generate output path
+    string ouputFile = argv[1];
+    ouputFile = ouputFile + "test" + to_string(n) + "_" + to_string(k) + ".in"; // Eg: test20_100.in
     ofstream output(ouputFile);
 
     output << n << " " << k << endl;

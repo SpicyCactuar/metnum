@@ -1,8 +1,10 @@
 //Compile: g++ -o main main.cpp -std=c++11
 
-#include "Algorithms.h"
-#include "Tests.h"
-#include "Types.h"
+#include "../Algorithms/Algorithms.h"
+#include "../Algorithms/Tests.h"
+#include "../Algorithms/Types.h"
+
+
 
 int main(int argc, char const *argv[]){
     // si no me pasan los 4 parametros (argc es implicito) esta todo mal
