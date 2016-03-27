@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]){
     } else if(method == "1"){
         choleskyFactorization(colleyMatrix, b_vector, res);
     } else	if(method == "2"){
-        ofstream output(argv[2]);
+        winningPercentage(teamsMatchesRecords, res);
     } else {
         cout << "Method " + method + " not supported" << endl;
     }

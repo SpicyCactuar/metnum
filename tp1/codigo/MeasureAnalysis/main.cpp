@@ -3,79 +3,93 @@
 #include "../Algorithms/Algorithms.h"
 #include "../Algorithms/Tests.h"
 #include "../Algorithms/Types.h"
+#include "../Algorithms/InputProcessor.h"
 
+#include <iomanip>
+#include <ctime>
+
+// --- Input arguments ---
+//   -(n: iterations)
+//   -(o: output file)
+//   -[(i: input file)]
 
 
 int main(int argc, char const *argv[]){
-    // si no me pasan los 4 parametros (argc es implicito) esta todo mal
-    if(argc != 4){
-        cout << "Falta algun parametro, son: input file, output file, algoritmo (0: CMM-EG, 1: CMM-CL, 2:WP)" << endl;
-        return 0;
-    }
 
-    // leo el archivo de entrada
-    ifstream input(argv[1]);
+    // Input parameters
+    int iterations;
+    sscanf(argv[1], "%d", &iterations);
+    ofstream output(argv[2]);
+    int inputFilesArgIndex = 3;
+    int inputFilesQty = argc - inputFilesArgIndex;
+    vector<string> files(inputFilesQty, "");
+    for (int i = 0; i < inputFilesQty; i++) { files[i] = argv[inputFilesArgIndex + i]; }
 
-    int n; // Teams quantity
-    int k;  // Games quantity
-    int local, local_score, away, away_score; // Teams and colleyMatrix
-    string temp; // Date identifier. Currently not used.
 
-    input >> n >> k;
+    //Execute test for each input file
+    for (int i = 0; i < inputFilesQty; i++) {
+        ifstream input(argv[inputFilesArgIndex + i]);
 
-    vector<MatchesRecord> teamsMatchesRecords(n, MatchesRecord());
-    matrix colleyMatrix(n, vector<double>(n, 0.0));
+        int n;  // Teams quantity
+        int k;  // Games quantity
 
-    for(int i = 0; i < k; i++){
-        input >> temp >> local >> local_score >> away >> away_score;
-        local -= 1;
-        away -= 1;
-        if(local_score > away_score){
-            teamsMatchesRecords[local].addWon();
-            teamsMatchesRecords[away].addLost();
-        } else {
-            teamsMatchesRecords[local].addLost();
-            teamsMatchesRecords[away].addWon();
+        input >> n >> k;
+
+        vector<MatchesRecord> teamsMatchesRecords(n, MatchesRecord());      // Teams Matches Records
+        matrix colleyMatrix(n, vector<double>(n, 0.0));                     // Colley Matrix
+        vector<TeamRating> b_vector(n);                                     // b vector
+        vector<TeamRating> res(n, 0.0);                                     // results vector
+
+        populateDataWithInput(input, teamsMatchesRecords, colleyMatrix, k);
+
+        input.close();
+
+        create_b_vector(b_vector, teamsMatchesRecords);
+
+
+        clock_t totalTicksGE = 0.0;
+        clock_t totalTicksCF = 0.0;
+
+        for (int iteration = 0; iteration < iterations; iteration++) {
+
+            //Copy matrix models to process each iteration
+
+            vector<MatchesRecord> teamsMatchesRecordsGE(teamsMatchesRecords);
+            vector<MatchesRecord> teamsMatchesRecordsCF(teamsMatchesRecords);
+
+            matrix colleyMatrixGE(colleyMatrix);
+            matrix colleyMatrixCF(colleyMatrix);
+
+            vector<TeamRating> b_vectorGE(b_vector);
+            vector<TeamRating> b_vectorCF(b_vector);
+
+            vector<TeamRating> resGE(res);
+            vector<TeamRating> resCF(res);
+
+            clock_t tickGE = clock();
+            gaussianElimination(colleyMatrixGE, b_vectorGE, resGE);
+            totalTicksGE += clock() - tickGE;
+
+            clock_t tickCF = clock();
+            choleskyFactorization(colleyMatrixCF, b_vectorCF, resCF);
+            totalTicksCF += clock() - tickCF;
+
+            cout << "file " << i + 1 << " of " << inputFilesQty << ". Iteration: " << iteration + 1 << "." << endl;
         }
-        colleyMatrix[local][away] -= 1; // If i != j
-        colleyMatrix[away][local] -= 1;
-    }
-    input.close();
 
-    // If i == j
-    for (int i = 0; i < n; ++i){
-        colleyMatrix[i][i] += teamsMatchesRecords[i].totalPlayed() + 2;
-    }
+        clock_t avgTicksGE = totalTicksGE / iterations;
+        clock_t avgTicksCF = totalTicksCF / iterations;
 
-    // armo el b
-    vector<TeamRating>b_vector(n);
-    for (int i = 0; i < n; ++i) {
-        b_vector[i] = 1 + (teamsMatchesRecords[i].won - teamsMatchesRecords[i].lost) / 2;
+        //Write results in output file
+        output << "teams qty: " << n << endl;
+        output << "games qty: " << k << endl;
+        output << "GE average ticks: " << avgTicksGE << endl;
+        output << "CF average ticks: " << avgTicksCF << endl;
+        output << "----------" << endl;
+
     }
 
-    string method = argv[3];
-    if(method == "0"){
-        vector<TeamRating> res(n, 0.0);
-        gaussianElimination(colleyMatrix, b_vector, res);
-        ofstream output(argv[2]);
-        printRatings(res, output);
-        output.close();
-    } else if(method == "1"){
-        vector<TeamRating> res(n, 0.0);
-        choleskyFactorization(colleyMatrix, b_vector, res);
-        ofstream output(argv[2]);
-        printRatings(res, output);
-        output.close();
-    } else	if(method == "2"){
-        vector<TeamRating> res(n, 0.0);
-        ofstream output(argv[2]);
-        winningPercentage(teamsMatchesRecords, res);
-        printRatings(res, output);
-    } else if(method == "test"){
-        runTests();
-    } else {
-        cout << "Método " + method + "no soportado actualmente" << endl;
-    }
+    output.close();
 
     return 0;
 }
