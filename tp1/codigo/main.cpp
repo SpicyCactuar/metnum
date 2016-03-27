@@ -1,5 +1,8 @@
-//COMPILAR! g++ -o main main.cpp -std=c++11
-#include "main.h"
+//Compile: g++ -o main main.cpp -std=c++11
+
+#include "Algorithms.h"
+#include "Tests.h"
+#include "Types.h"
 
 int main(int argc, char const *argv[]){
     // si no me pasan los 4 parametros (argc es implicito) esta todo mal
@@ -10,60 +13,67 @@ int main(int argc, char const *argv[]){
 
     // leo el archivo de entrada
     ifstream input(argv[1]);
-    int n, k, local, local_score, away, away_score;
-    string temp;
+
+    int n; // Teams quantity
+    int k;  // Games quantity
+    int local, local_score, away, away_score; // Teams and colleyMatrix
+    string temp; // Date identifier. Currently not used.
+
     input >> n >> k;
-    // ganados perdidos
-    vector<pair<double, double> > winAndLose(n, pair<double, double>(0., 0.));
-    matrix<double> scores(n, vector<double>(n, 0.));
+
+    vector<MatchesRecord> teamsMatchesRecords(n, MatchesRecord());
+    matrix colleyMatrix(n, vector<double>(n, 0.0));
+
     for(int i = 0; i < k; i++){
         input >> temp >> local >> local_score >> away >> away_score;
         local -= 1;
         away -= 1;
         if(local_score > away_score){
-            winAndLose[local].first += 1;
-            winAndLose[away].second += 1;
+            teamsMatchesRecords[local].addWon();
+            teamsMatchesRecords[away].addLost();
         } else {
-            winAndLose[local].second += 1;
-            winAndLose[away].first += 1;
+            teamsMatchesRecords[local].addLost();
+            teamsMatchesRecords[away].addWon();
         }
-        scores[local][away] -= 1;
-        scores[away][local] -= 1;
+        colleyMatrix[local][away] -= 1; // If i != j
+        colleyMatrix[away][local] -= 1;
     }
     input.close();
 
-    // armo la C
+    // If i == j
     for (int i = 0; i < n; ++i){
-        scores[i][i] += winAndLose[i].first + winAndLose[i].second + 2;
+        colleyMatrix[i][i] += teamsMatchesRecords[i].totalPlayed() + 2;
     }
 
     // armo el b
-    vector<pair<double, int> >b_vector(n);
-    for (int i = 0; i < n; ++i)
-        b_vector[i] = pair<double, int>(1 + (winAndLose[i].first - winAndLose[i].second) / 2, i);
+    vector<TeamRating>b_vector(n);
+    for (int i = 0; i < n; ++i) {
+        b_vector[i] = 1 + (teamsMatchesRecords[i].won - teamsMatchesRecords[i].lost) / 2;
+    }
 
     string method = argv[3];
     if(method == "0"){
-        vector<pair<double, int> > res(n, pair<double, int>(0., 0));
-        gaussianElimination(scores, b_vector, res);
+        vector<TeamRating> res(n, 0.0);
+        gaussianElimination(colleyMatrix, b_vector, res);
         ofstream output(argv[2]);
-        sort(res.begin(), res.end(), pairCompare);
-        printFile(res, output);
+        printRatings(res, output);
         output.close();
     } else if(method == "1"){
-        vector<pair<double, int> > res(n, pair<double, int>(0., 0));
-        choleskyFactorization(scores, b_vector, res);
+        vector<TeamRating> res(n, 0.0);
+        choleskyFactorization(colleyMatrix, b_vector, res);
         ofstream output(argv[2]);
-        sort(res.begin(), res.end(), pairCompare);
-        printFile(res, output);
+        printRatings(res, output);
         output.close();
     } else	if(method == "2"){
-        vector<pair<double, int> > res(n, pair<double, int>(0., 0));
+        vector<TeamRating> res(n, 0.0);
         ofstream output(argv[2]);
-        winningPercentage(winAndLose, res);
-        printFile(res, output);
+        winningPercentage(teamsMatchesRecords, res);
+        printRatings(res, output);
+    } else if(method == "test"){
+        runTests();
     } else {
-        cout << "Cualquiera" << endl;
+        cout << "Método " + method + "no soportado actualmente" << endl;
     }
+
     return 0;
 }
