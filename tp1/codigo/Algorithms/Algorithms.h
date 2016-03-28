@@ -12,6 +12,7 @@ void makeUpperTriangular(matrix& mat, b_vector& b_vec);
 void backSubstitution(matrix& mat, b_vector& b_vec, vector<TeamRating>& res);
 void makeLowerTriangularCholesky(matrix& mat);
 void forwardSubstitution(matrix& mat, b_vector& b_vec, vector<TeamRating>& res);
+void solveLLtMatrix(matrix& lltMatrix, b_vector& b_vec, vector<TeamRating>& res);
 
 // ---- Winning Percentage ----
 
@@ -34,11 +35,17 @@ void gaussianElimination(matrix& mat, b_vector& b_vec, vector<TeamRating>& res){
 void choleskyFactorization(matrix& mat, b_vector& b_vec, vector<TeamRating>& res){
     // armo el sistema LL^t
     makeLowerTriangularCholesky(mat);
-    vector<TeamRating> aux(mat.size());
+    //Solve matrix
+    solveLLtMatrix(mat, b_vec, res);
+}
+
+///pre: matrix 'A' has the form A = LLt, where L is lower trianglular and Lt is the transpose
+void solveLLtMatrix(matrix& lltMatrix, b_vector& b_vec, vector<TeamRating>& res) {
+    vector<TeamRating> aux(lltMatrix.size());
     // resuelvo L * z = b
-    forwardSubstitution(mat, b_vec, aux);
+    forwardSubstitution(lltMatrix, b_vec, aux);
     // resuelvo L^t * x = z
-    backSubstitution(mat, aux, res);
+    backSubstitution(lltMatrix, aux, res);
 }
 
 // ---- Matrix helpers ----
