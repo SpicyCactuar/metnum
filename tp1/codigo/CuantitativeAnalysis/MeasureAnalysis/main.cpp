@@ -1,9 +1,9 @@
 //Compile: g++ -o main main.cpp -std=c++11
 
-#include "../Algorithms/Algorithms.h"
-#include "../Algorithms/Tests.h"
-#include "../Algorithms/Types.h"
-#include "../Algorithms/InputProcessor.h"
+#include "../../Algorithms/Algorithms.h"
+#include "../../Algorithms/Tests.h"
+#include "../../Algorithms/Types.h"
+#include "../../Algorithms/InputProcessor.h"
 
 #include <iomanip>
 #include <ctime>
