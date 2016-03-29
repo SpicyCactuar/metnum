@@ -11,24 +11,20 @@
 // --- Input arguments ---
 //   -(n: iterations)
 //   -(o: output file)
-//   -[(i: input file)]
+//   -(i: input's input file)
 
 
 int main(int argc, char const *argv[]){
-
     // Input parameters
-    int iterations;
+    int iterations, filesProcessed = 0;
     sscanf(argv[1], "%d", &iterations);
     ofstream output(argv[2]);
-    int inputFilesArgIndex = 3;
-    int inputFilesQty = argc - inputFilesArgIndex;
-    vector<string> files(inputFilesQty, "");
-    for (int i = 0; i < inputFilesQty; i++) { files[i] = argv[inputFilesArgIndex + i]; }
-
+    ifstream inputs(argv[3]);
+    string testFile;
 
     //Execute test for each input file
-    for (int i = 0; i < inputFilesQty; i++) {
-        ifstream input(argv[inputFilesArgIndex + i]);
+    while(getline(inputs, testFile)){
+        ifstream input(testFile);
 
         int n;  // Teams quantity
         int k;  // Games quantity
@@ -74,7 +70,7 @@ int main(int argc, char const *argv[]){
             choleskyFactorization(colleyMatrixCF, b_vectorCF, resCF);
             totalTicksCF += clock() - tickCF;
 
-            cout << "file " << i + 1 << " of " << inputFilesQty << ". Iteration: " << iteration + 1 << "." << endl;
+            cout << "file " << ++filesProcessed << ". Iteration: " << iteration + 1 << "." << endl;
         }
 
         clock_t avgTicksGE = totalTicksGE / iterations;

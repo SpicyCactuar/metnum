@@ -28,14 +28,14 @@
 *.app
 
 ## Core latex/pdflatex auxiliary files:
-*.pdf
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.out
-*.toc
+*/informe/*.pdf
+*/informe/*.aux
+*/informe/*.lof
+*/informe/*.log
+*/informe/*.lot
+*/informe/*.fls
+*/informe/*.out
+*/informe/*.toc
 
 ## Intermediate documents:
 *.dvi
