@@ -31,7 +31,7 @@ $C \in R^{T \times T}, C{_i}{_j} =
 
 Por lo tanto, lo que se busca despejar son los elementos del vector $r$.
 
-$C$ se denomina la \textbf{matriz de Colley} que particularmente, por lo demostrado en \textbf{[1]}, es \textbf{sim\'etrica} ($A = A{^t}$) y \textbf{definida positiva} (\textcolor{red}{DEFINITION HERE}).
+$C$ se denomina la \textbf{matriz de Colley} que particularmente, por lo demostrado en \textbf{[1]}, es \textbf{sim\'etrica} ($A = A{^t}$) y \textbf{definida positiva} ($\forall x \neq 0, x^{t}Ax > 0$).
 
 Para resolver este sistema, usaremos dos algoritmos distintos para obtener sistemas de f\'acil resoluci\'on por \textit{back-substitution} y \textit{forward-substitution}. \textit{Eliminaci\'on Gaussiana} y \textit{Factorizaci\'on de Cholesky}.
 
@@ -57,9 +57,11 @@ Se puede observar que si $\exists \, i \in \{1, ..., n\} / a_{ii} = 0$ entonces 
 
 Dentro del contexto de uso del \textbf{CMM}, utilizamos la Eliminaci\'on Gaussiana para obtener los $r_i$.
 
-\subsubsection{Factorizaci\'on de Cholesky}
+\subsubsection{Factorizaci\'on de Cholesky} \label{intro_cholesky}
 
-La factorizaci\'on de Cholesky es un caso particular de una factorizaci\'on LU, con L matriz triangular inferior y U matriz triangular superior. Bajo la hip\'otesis de este trabajo sobre las caracter\'isticas de la matriz de Colley, podemos afirmar que existe una factorizaci\'on de la forma LU de C, tal que $U = L{^t}$. \\
+La factorizaci\'on de Cholesky es un caso particular de una factorizaci\'on LU, con L matriz triangular inferior y U matriz triangular superior. Bajo la hip\'otesis de este trabajo sobre las caracter\'isticas de la matriz de Colley, podemos afirmar que existe una factorizaci\'on de la forma LU de C, tal que $U = L{^t}$.
+
+Donde, particularmente, la matriz $A = LL^{t}$ se forma bajo las siguientes ecuaciones: \\
 
 $LL{^t}{_i}{_j} =
 \left\{
@@ -69,6 +71,4 @@ $LL{^t}{_i}{_j} =
 	\end{array}
 \right.$ \\
 
-Luego, el sistema equivalente ser\'a $LL{^t}x = b$, entonces puedo resolver $Ly = b$ por forward-substitution y luego $L{^t}x = y$ para obtener el resultado deseado por back-substitution.
-
-\textcolor{red}{\textbf{TODO: Escribir, no olvidar de mencionar por qu\'e y para que se utiliza.}}
+Luego, el sistema equivalente ser\'a $LL{^t}x = b$, entonces podemos resolver $Ly = b$ por forward-substitution y luego $L{^t}x = y$ para obtener el resultado deseado por back-substitution.
