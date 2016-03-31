@@ -3,6 +3,8 @@
 #include "../../Algorithms/Algorithms.h"
 #include "../../Algorithms/Tests.h"
 #include "../../Algorithms/Types.h"
+#include "../../Algorithms/Print.h"
+#include "../../Algorithms/Equalty.h"
 #include "../../Algorithms/InputProcessor.h"
 
 #include <iomanip>
@@ -43,7 +45,6 @@ int main(int argc, char const *argv[]){
     vector<TeamRating> b_vectorCF(b_vector);
     vector<TeamRating> resCF(res);
     makeLowerTriangularCholesky(colleyMatrixCF);
-
     //Execute test for each b without the default first
     while(getline(b_data, bInputs)){
         //Copy matrix models to process each iteration
@@ -69,6 +70,10 @@ int main(int argc, char const *argv[]){
         solveLLtMatrix(colleyMatrixCF, b_vectorCF, resCF);
         totalTicksCF += clock() - tickCF;
 
+        if (!equalVector(resGE, resCF)){
+            cout << "Something bad happens!" << endl;
+            return 0;
+        }
         cout << "file " << ++bsProcessed << endl;
     }
     clock_t avgTicksGE = totalTicksGE / bsProcessed;
