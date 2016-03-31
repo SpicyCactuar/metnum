@@ -1,0 +1,17 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\'on Te\'orica}{3}
+\contentsline {subsection}{\numberline {1.1}Colley Matrix Method}{3}
+\contentsline {subsubsection}{\numberline {1.1.1}Eliminaci\'on Gaussiana}{3}
+\contentsline {subsubsection}{\numberline {1.1.2}Factorizaci\'on de Cholesky}{4}
+\contentsline {section}{\numberline {2}Desarrollo}{5}
+\contentsline {subsection}{\numberline {2.1}Eliminaci\'on Gaussiana}{5}
+\contentsline {subsection}{\numberline {2.2}Factorizaci\'on de Cholesky}{5}
+\contentsline {subsection}{\numberline {2.3}Forward-substitution y Back-substitution}{5}
+\contentsline {section}{\numberline {3}Resultados y Discusi\'on}{6}
+\contentsline {subsection}{\numberline {3.1}An\'alisis Cuantitativo}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (complejidad algor\'timica)}{6}
+\contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{6}
+\contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{8}
+\contentsline {section}{\numberline {4}Conclusiones}{9}
+\contentsline {section}{\numberline {5}Referencias}{10}
+\contentsline {section}{\numberline {6}Apendice}{11}
