@@ -74,23 +74,18 @@ int findMaxUpper(const matrix& mat, int actual) {
 /// Makes matrix upper triangular as described above.
 /// Used for Gaussian elimination.
 void makeUpperTriangular(matrix& mat, b_vector& b_vec) {
-    for (int i = 0; i < mat.size(); ++i){
+    for (int i = 0; i < mat.size() - 1; ++i){
         // Get the highest number int the column to minimize rounding errors.
         int i_max = findMaxUpper(mat, i);
-        if(mat[i_max][i] != 0){
-            //Swap matrix rows with the one with the highest number
-            swap(mat[i_max], mat[i]);
-            swap(b_vec[i_max], b_vec[i]);
-            for (int j = i+1; j < mat.size(); ++j){
-                double c = mat[j][i]/mat[i][i]; // the Quotient to make each row 0.
-                mat[j][i] = 0.0;
-                for (int k = i+1; k < mat.size(); ++k)
-                    mat[j][k] -= c * mat[i][k];
-                b_vec[j] -= c * b_vec[i];
-            }
-        } else {
-            // The max value cannot be 0
-            throw 20;
+        //Swap matrix rows with the one with the highest number
+        swap(mat[i_max], mat[i]);
+        swap(b_vec[i_max], b_vec[i]);
+        for (int j = i+1; j < mat.size(); ++j){
+            double c = mat[j][i]/mat[i][i]; // the Quotient to make each row 0.
+            mat[j][i] = 0.0;
+            for (int k = i+1; k < mat.size(); ++k)
+                mat[j][k] -= c * mat[i][k];
+            b_vec[j] -= c * b_vec[i];
         }
     }
 }
