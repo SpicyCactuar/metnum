@@ -12,6 +12,9 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (complejidad algor\'timica)}{6}
 \contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{6}
 \contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{8}
+\contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{8}
+\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{8}
+\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{8}
 \contentsline {section}{\numberline {4}Conclusiones}{9}
 \contentsline {section}{\numberline {5}Referencias}{10}
 \contentsline {section}{\numberline {6}Apendice}{11}
