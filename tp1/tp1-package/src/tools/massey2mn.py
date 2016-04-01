@@ -1,8 +1,8 @@
 import csv
 from sets import Set
 
-input_path = '../../data/nba_2016_scores.csv'
-output_path = '../../data/nba_2016_scores.dat'
+input_path = '../../data/nba_2015_scores.csv'
+output_path = '../../data/nba_2015_scores.dat'
 
 with open(input_path,'rb') as csvfile,open(output_path,'w') as outfile:
 	score_reader = csv.reader(csvfile,delimiter=',',skipinitialspace=True)
