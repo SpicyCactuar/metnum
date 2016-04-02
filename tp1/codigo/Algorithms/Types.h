@@ -17,6 +17,10 @@ struct MatchesRecord {
 
     void addLost() { lost += 1.0; }
 
+    void subsWon() { won -= 1.0; }
+
+    void subsLost() { lost -= 1.0; }
+
     double totalPlayed() { return won + lost; }
 };
 
