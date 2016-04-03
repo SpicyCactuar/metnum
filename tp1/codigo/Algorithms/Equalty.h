@@ -1,7 +1,7 @@
 #ifndef Equalty_h
 #define Equalty_h
 
-bool equalDouble(double a, double b, double tolerance = 0.00001) {
+bool equalDouble(double a, double b, double tolerance = 0.000001) {
     return abs(a - b) < tolerance;
 }
 

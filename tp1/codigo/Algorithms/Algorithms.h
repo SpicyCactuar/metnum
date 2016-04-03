@@ -3,6 +3,7 @@
 
 #include "Imports.h"
 #include "Types.h"
+#include "Equalty.h"
 
 using namespace std;
 
@@ -17,8 +18,12 @@ void solveLLtMatrix(matrix& lltMatrix, b_vector& b_vec, vector<TeamRating>& res)
 // ---- Winning Percentage ----
 
 void winningPercentage(vector<MatchesRecord>& matchesRecords, vector<TeamRating>& res){
-    for (int i = 0; i < matchesRecords.size(); ++i)
-        res[i] = matchesRecords[i].won / matchesRecords[i].totalPlayed();
+    for (int i = 0; i < matchesRecords.size(); ++i){
+        if(!equalDouble(0.0, matchesRecords[i].totalPlayed()))
+            res[i] = matchesRecords[i].won / matchesRecords[i].totalPlayed();
+        else
+            res[i] = 0.0;
+    }
 }
 
 // ---- Gaussian Elimination ----
