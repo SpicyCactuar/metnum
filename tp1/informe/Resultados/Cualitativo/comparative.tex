@@ -1,0 +1,24 @@
+Teniendo en una mano el \textit{CMM} y en la otra el \textit{Winning-Percentage}, uno estar\'ia tentado a atinar una respuesta a la pregunta "¿C\'omo se comparan?". En esta secci\'on vamos a presentar resultados a partir de los cu\'ales se puedan observar diferencias o similitudes.
+
+Veamos qu\'e ocurre cuando ponemos a prueba ambos m\'etodos en la NBA con la condicion de que todos los equipos disputaron \textit{aproximadamente} 41 encuentros, que es la mitad de una temporada regular. Los resultados que obtuvimos fueron los siguientes: \\
+
+\textcolor{red}{\textbf{INSERTAR IM\'AGENES CON GR\'AFICOS}} \\
+
+Se puede observar claramente que no hay diferencias substanciales y esto tiene que ver con que observamos un caso \textit{"promedio"}. Una explicaci\'on m\'as matem\'atica yace en lo planteado en \textbf{[1]}, en el estimador de $r_{i}$, obtenido a partir de la \textbf{Regla de sucesi\'on de Laplace [2]}. Ocurre que $r_{i} = \frac{1 + w_{i}}{2 + n_{i}} \approx \frac{w_{i}}{n_{i}} \approx \frac{w_{i}}{k}$ donde este \'ultimo termino es el valor exacto que se obtiene de plantear el \textit{Winning-Percentage} sobre el equipo $i$, para este escenario. Por ende, tiene sentido este parecido.
+
+Pero esto ocurre en un caso real, y la realidad tiende a comportarse en parecido al promedio. Contrastemos esto con casos particulares. \\
+
+Hipotesis: El m\'etodo CMM previene ``sobre-dimensionar'' a un equipo venciendo reiteradamente a un equipo con bajo ranking, en contra posici\'on al WP. En otras palabras, esto quiere decir que no deber\'ia implicar el mismo aumento de rating vencer a a otro participante con elevado rating que uno con rating pobre. \\
+
+Para este experimento, lo plantedo fue un conjunto de participantes $\Gamma = \{1,2,...,6\}$, donde se pone al equipo $1$ en dos situaciones:
+
+\begin{enumerate}
+\item El equipo 1 vence 2 veces a los equipos $\{2,...,6\}$, por ende obteniendo en total 10 victorias tambi\'en.
+\item El equipo 1 vence 10 veces al equipo 2.
+\end{enumerate}
+
+Y los resultados fueron: \\
+
+\textcolor{red}{\textbf{INSERTAR IM\'AGENES CON GR\'AFICOS}} \\
+
+Para ambos casos, el algoritmo WP asigna $r_1 = 1$ y $r_i = 0, i = 2, ..., 6$. \footnote{Esto refuerza el hecho de haber usado \textbf{[2]} en el CMM: no s\'olo posiciona a $1$ como ``semi-dios'', sino que el resto de los equipos tiene el mismo rating habiendo el equipo $2$ perdido 10 encuentros y el resto tener el historial limpio.} En cuanto a ratings respecta, el equipo $2$ es efectivamente el \'ultimo y por ende ocurre lo observado. \\
