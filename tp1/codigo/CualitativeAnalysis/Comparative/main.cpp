@@ -9,12 +9,11 @@
 #include "./Experiments.h"
 
 // --- Input arguments ---
-// e: Experiment number (currently supported: 1 to -)
+// e: Experiment number (currently supported: 1 to 2)
 
 int main(int argc, char const *argv[]){
    if (argc < 2) {
         cout << "First parameter should be Experiment Number" << endl << endl;
-        cout << "Check README or Experiments.h file for information on input/output of each experiment" << endl;
         return 1;
     }
 

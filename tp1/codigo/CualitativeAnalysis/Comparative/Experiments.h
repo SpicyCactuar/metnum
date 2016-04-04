@@ -121,6 +121,7 @@ int runExperiment_2() {
     output << "===========" << endl << endl;
     runWPAndOutput(output, teamsMatchesRecords_non_distributed, resWP_non_distributed);
 
+    // Cheap way to "discard" the first line, 'n' and 'k' are the same for both files
     input_distributed >> n >> k;
 
     populateDataWithInput(input_distributed, teamsMatchesRecords_distributed, colleyMatrix_distributed, k);
