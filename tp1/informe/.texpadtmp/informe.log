@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  1 APR 2016 02:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  4 APR 2016 01:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -335,7 +335,16 @@ LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 
 
+LaTeX Warning: Label `bChange' multiply defined.
+
+
+LaTeX Warning: Label `bChange' multiply defined.
+
+
 LaTeX Warning: Label `bChangeSmoothed' multiply defined.
+
+
+LaTeX Warning: Label `bChange' multiply defined.
 
 
 LaTeX Warning: Label `bChange' multiply defined.
@@ -536,44 +545,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--17
 )
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
- [5] (./Resultados/Cuantitativo/cuantitativo-resultados.tex (./Resultados/Cuantitativo/complejidad.tex) (./Resultados/Cuantitativo/bVector.tex
+ [5] (./Resultados/Cuantitativo/cuantitativoResultados.tex (./Resultados/Cuantitativo/Complejidad.tex <imagenes/cuantitative/default/default1.png, id=39, 488.82625pt x 365.365pt>
+File: imagenes/cuantitative/default/default1.png Graphic file (type png)
+ <use imagenes/cuantitative/default/default1.png>
+Package pdftex.def Info: imagenes/cuantitative/default/default1.png used on input line 5.
+(pdftex.def)             Requested size: 244.41252pt x 182.68205pt.
+ <imagenes/cuantitative/default/default2.png, id=41, 490.83376pt x 392.46625pt>
+File: imagenes/cuantitative/default/default2.png Graphic file (type png)
+ <use imagenes/cuantitative/default/default2.png>
+Package pdftex.def Info: imagenes/cuantitative/default/default2.png used on input line 13.
+(pdftex.def)             Requested size: 245.41628pt x 196.23264pt.
+) (./Resultados/Cuantitativo/bVector.tex
 Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
-<imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=39, 794.97pt x 505.89pt>
+LaTeX Info: Redefining \. on input line 5.
+LaTeX Info: Redefining \% on input line 5.
+[6 <./imagenes/cuantitative/default/default1.png> <./imagenes/cuantitative/default/default2.png>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=47, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png used on input line 14.
 (pdftex.def)             Requested size: 397.48402pt x 252.94437pt.
- <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=40, 794.97pt x 505.89pt>
+ <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=48, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png used on input line 26.
 (pdftex.def)             Requested size: 397.48402pt x 252.94437pt.
-LaTeX Info: Redefining \. on input line 30.
-LaTeX Info: Redefining \% on input line 30.
- [6 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 LaTeX Info: Redefining \. on input line 34.
 LaTeX Info: Redefining \% on input line 34.
- [7 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=48, 794.97pt x 505.89pt>
+[7 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=53, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png used on input line 38.
 (pdftex.def)             Requested size: 397.48402pt x 252.94437pt.
-)) (./Resultados/Cualitativo/cualtitaivo-resultados.tex (./Resultados/Cualitativo/comparative.tex) (./Resultados/Cualitativo/fairness.tex <imagenes/cualitative/fairness/fairness1.png, id=49, 264.99pt x 187.70125pt>
+)) (./Resultados/Cualitativo/cualtitaivoResultados.tex (./Resultados/Cualitativo/comparative.tex) (./Resultados/Cualitativo/fairness.tex
+LaTeX Info: Redefining \. on input line 2.
+LaTeX Info: Redefining \% on input line 2.
+ [8 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png (PNG copy)> <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png (PNG copy)>] <imagenes/cualitative/fairness/fairness1.png, id=57, 264.99pt x 187.70125pt>
 File: imagenes/cualitative/fairness/fairness1.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness1.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness1.png used on input line 9.
 (pdftex.def)             Requested size: 132.49467pt x 93.85039pt.
-LaTeX Info: Redefining \. on input line 16.
-LaTeX Info: Redefining \% on input line 16.
- [8 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png (PNG copy)> <./imagenes/cualitative/fairness/fairness1.png>] <imagenes/cualitative/fairness/fairness2.png, id=55, 607.26875pt x 289.08pt>
+ <imagenes/cualitative/fairness/fairness2.png, id=58, 607.26875pt x 289.08pt>
 File: imagenes/cualitative/fairness/fairness2.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness2.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness2.png used on input line 19.
 (pdftex.def)             Requested size: 303.63364pt x 144.53964pt.
- <imagenes/cualitative/fairness/fairness3.png, id=56, 992.70876pt x 404.51125pt>
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+ [9 <./imagenes/cualitative/fairness/fairness1.png> <./imagenes/cualitative/fairness/fairness2.png>] <imagenes/cualitative/fairness/fairness3.png, id=64, 992.70876pt x 404.51125pt>
 File: imagenes/cualitative/fairness/fairness3.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness3.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness3.png used on input line 34.
@@ -583,22 +608,26 @@ Overfull \hbox (41.10909pt too wide) in paragraph at lines 34--35
  [] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./Resultados/Cualitativo/greedy.tex))
+<imagenes/cualitative/fairness/fairness4.png, id=65, 817.0525pt x 309.155pt>
+File: imagenes/cualitative/fairness/fairness4.png Graphic file (type png)
+ <use imagenes/cualitative/fairness/fairness4.png>
+Package pdftex.def Info: imagenes/cualitative/fairness/fairness4.png used on input line 44.
+(pdftex.def)             Requested size: 408.52525pt x 154.57712pt.
+LaTeX Info: Redefining \. on input line 51.
+LaTeX Info: Redefining \% on input line 51.
+ [10 <./imagenes/cualitative/fairness/fairness3.png> <./imagenes/cualitative/fairness/fairness4.png>]) (./Resultados/Cualitativo/greedy.tex))
 LaTeX Info: Redefining \. on input line 79.
 LaTeX Info: Redefining \% on input line 79.
- [9 <./imagenes/cualitative/fairness/fairness2.png>] (./conclusiones.tex)
+ [11] (./conclusiones.tex)
 LaTeX Info: Redefining \. on input line 82.
 LaTeX Info: Redefining \% on input line 82.
- [10 <./imagenes/cualitative/fairness/fairness3.png>] (./referencias.tex)
+ [12] (./referencias.tex)
 LaTeX Info: Redefining \. on input line 85.
 LaTeX Info: Redefining \% on input line 85.
- [11] (./apendice.tex)
+ [13] (./apendice.tex)
 LaTeX Info: Redefining \. on input line 112.
 LaTeX Info: Redefining \% on input line 112.
- [12] (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.aux
+ [14] (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.aux
 LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 )
@@ -610,18 +639,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3357 strings out of 493117
- 47015 string characters out of 6135433
+ 3373 strings out of 493117
+ 47641 string characters out of 6135433
  117870 words of memory out of 5000000
- 6672 multiletter control sequences out of 15000+600000
+ 6684 multiletter control sequences out of 15000+600000
  33408 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,12n,43p,845b,429s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,43p,844b,429s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (12 pages, 923556 bytes).
+Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (14 pages, 1130168 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

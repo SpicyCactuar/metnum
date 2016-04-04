@@ -37,5 +37,15 @@ Tambi\'en analizando los n\'umeros m\'as en detalle pudimos observar que la juga
   \end{center}
 \end{figure}
 
-Conclusiones: Aunque creemos que el CMM aporta mucho valor al lograr que ganarle a un equipo que gana mucho aumente m\'as el rating que ganarle a un equipo que gana poco, notamos comportamientos que no son quiz\'as tan intuitivos para establecer los resultados del juego. El hecho de que 4 le gane a 2 no luce tan claramente como justificaci\'on para que los equipos 7 y 8 (quienes nunca le ganaron a 4) aumenten su rating. De todos modos creemos que es una muy buena aproximaci\'on para un manejo m\'as real de los resultados de una competencia.
+Por \'ultimo analizamos un caso particular donde el resultado de un partido indir\'ectamente puede alterar el ranking de otros equipos que no participaron de ese partido. En el ejemplo de la figura siguiente, el equipo 1 tiene muchos partidos ganados mientras que el 2 no tanto. Sin embargo si el equipo 2 le gana un partido al 1, los equipos 4 y 6 intercambian su posici\'on en el ranking. Esto es un comportamiento muy poco esperado o poco intuitivo ya que por ejemplo podr\'ian darse casos donde un equipo tiene la capacidad de decidir perder para afectar a otro equipo.
+
+\begin{figure}[h!]
+  \begin{center}
+	\includegraphics[scale=0.50]{imagenes/cualitative/fairness/fairness4.png}
+	\caption{Modificaci\'on de rankings en base al resultado de un partido}
+	\label{bChange}
+  \end{center}
+\end{figure}
+
+Conclusiones: Aunque creemos que el CMM aporta mucho valor al lograr que ganarle a un equipo que gana mucho aumente m\'as el rating que ganarle a un equipo que gana poco, notamos comportamientos que no son quiz\'as tan intuitivos para establecer los resultados del juego. Algunos ejemplos de esto son los mencionados anteriormente como que no queda tan claro por qu\'e a veces suben los ratings de unos equipos al ganar otros, o el hecho de que el resultado de un partido pueda alterar el ranking de otros que no participaron en ese partido. De todos modos creemos que es una muy buena aproximaci\'on para un manejo m\'as real de los resultados de una competencia.
 
