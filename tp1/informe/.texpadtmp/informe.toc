@@ -10,11 +10,11 @@
 \contentsline {section}{\numberline {3}Resultados y Discusi\'on}{6}
 \contentsline {subsection}{\numberline {3.1}An\'alisis Cuantitativo}{6}
 \contentsline {subsubsection}{\numberline {3.1.1}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (complejidad algor\'timica)}{6}
-\contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{6}
-\contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{9}
-\contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{9}
-\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{9}
-\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{11}
-\contentsline {section}{\numberline {4}Conclusiones}{12}
-\contentsline {section}{\numberline {5}Referencias}{13}
-\contentsline {section}{\numberline {6}Apendice}{14}
+\contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{8}
+\contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{10}
+\contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{10}
+\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{10}
+\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{12}
+\contentsline {section}{\numberline {4}Conclusiones}{13}
+\contentsline {section}{\numberline {5}Referencias}{14}
+\contentsline {section}{\numberline {6}Apendice}{15}

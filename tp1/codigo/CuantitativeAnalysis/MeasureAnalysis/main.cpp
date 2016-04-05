@@ -13,7 +13,6 @@
 //   -(o: output file)
 //   -(i: input's input file)
 
-
 int main(int argc, char const *argv[]){
     // Input parameters
     int iterations, filesProcessed = 0;
