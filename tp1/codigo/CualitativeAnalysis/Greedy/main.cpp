@@ -3,6 +3,7 @@
 #include "../../Algorithms/Algorithms.h"
 #include "../../Algorithms/Tests.h"
 #include "../../Algorithms/Types.h"
+#include "../../Algorithms/Equalty.h"
 #include <algorithm>
 
 // --- Input arguments ---
@@ -109,6 +110,13 @@ int main(int argc, char const *argv[]){
         posMax = findMaxIndexMutable(res);
         if(posMax == -1){
             output << "No looses left" << endl;
+            double bestScore = res[teamToClimb];
+            vector<TeamRating> temp = res;
+            sort(temp.begin(), temp.end());
+            int i = res.size() - 1;
+            while(!equalDouble(bestScore, temp[i]))
+                i--;
+            output << "Best position possible: " << res.size() - i << endl;
             break;
         }
         else{
@@ -123,7 +131,6 @@ int main(int argc, char const *argv[]){
         }
     }
     output << "Minimun games to win " << i << endl;
-    printRatings(res, output);
     output.close();
     return 0;
 }
