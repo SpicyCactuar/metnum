@@ -1,0 +1,17 @@
+Este apartado surge de la idea de analizar si es posible que un equipo alcance la cima del ranking, si los resultados hubieran sido distintos. Es decir, contamos con un schedule fijo, seleccionamos un equipo participante y tenemos la posibilidad de modificar los partidos perdidos del mismo a ganados. Interesa minimizar la cantidad de modificaciones de este estilo tal que el equipo seleccionado quede en primera posici\'on.
+
+La estrategia que planteamos es la siguiente:
+
+Sea EQUIPO* el equipo que interesa analizar
+
+Calculamos los rankings con la entrada original.
+
+Si ranking(EQUIPO*) es el m\'aximo retornamos la cantidad de iteraciones.
+
+Si no, buscamos el equipo con m\'aximo ranking tal que EQUIPO* tenga alg\'un partido perdido que pueda ser modificado.
+
+Se invierte el resultado y recalculamos los rankings con este cambio.
+
+En caso de que sea imposible modificar un partido (ya se modificaron todos los posibles), lo destacamos.
+
+\textbf{Hip\'otesis:} 

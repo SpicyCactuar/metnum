@@ -108,7 +108,7 @@ int main(int argc, char const *argv[]){
     while(findMaxIndexUnmutable(res) != teamToClimb){
         posMax = findMaxIndexMutable(res);
         if(posMax == -1){
-            cout << "Impossible to reach the top ranking with this schedule" << endl;
+            output << "No looses left" << endl;
             break;
         }
         else{
