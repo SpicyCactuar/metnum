@@ -10,12 +10,13 @@
 //   -(o: output file)
 //   -(t: team to climb)
 
-void populateDataWithInput(istream& input, vector<MatchesRecord>& teamsMatchesRecords, matrix& colleyMatrix, int gamesQty) {
+vector<int> looses;
+
+void populateDataWithInput(istream& input, vector<MatchesRecord>& teamsMatchesRecords, matrix& colleyMatrix, int gamesQty, int teamToClimb) {
 
     int n = int(teamsMatchesRecords.size());
     int local, local_score, away, away_score; // Teams and colleyMatrix
     string temp; // Date identifier. Currently not used.
-
     for(int i = 0; i < gamesQty; i++){
         input >> temp >> local >> local_score >> away >> away_score;
         local -= 1;
@@ -23,9 +24,13 @@ void populateDataWithInput(istream& input, vector<MatchesRecord>& teamsMatchesRe
         if(local_score > away_score){
             teamsMatchesRecords[local].addWon();
             teamsMatchesRecords[away].addLost();
+            if(away == teamToClimb)
+                looses[local]++;
         } else {
             teamsMatchesRecords[local].addLost();
             teamsMatchesRecords[away].addWon();
+            if(local == teamToClimb)
+                looses[away]++;
         }
         colleyMatrix[local][away] -= 1; // If i != j
         colleyMatrix[away][local] -= 1;
@@ -43,10 +48,26 @@ void create_b_vector(vector<TeamRating>& b_vector, vector<MatchesRecord>& teamsM
     }
 }
 
-int findMaxIndex(vector<double>& vec) {
+int findMaxIndexMutable(vector<double>& vec) {
     int index = 0;
-    double max = vec[0];
-    for (int i = 1; i < vec.size(); ++i){
+    while(index < vec.size() && looses[index] == 0)
+        index++;
+    if(index == vec.size())
+        return -1;
+    double max = vec[index];
+    for (int i = index + 1; i < vec.size(); ++i){
+        if((vec[i] > max) && (looses[i] > 0)){
+            max = vec[i];
+            index = i;
+        }
+    }
+    return index;
+}
+
+int findMaxIndexUnmutable(vector<double>& vec) {
+    int index = 0;
+    double max = vec[index];
+    for (int i = index + 1; i < vec.size(); ++i){
         if(vec[i] > max){
             max = vec[i];
             index = i;
@@ -70,12 +91,13 @@ int main(int argc, char const *argv[]){
     int teamToClimb = atoi(argv[3]) - 1;
     input >> n >> k;
 
+    looses = vector<int>(n, 0);
     vector<MatchesRecord> teamsMatchesRecords(n, MatchesRecord());      // Teams Matches Records
     matrix colleyMatrix(n, vector<double>(n, 0.0));                     // Colley Matrix
     vector<TeamRating> b_vector(n);                                     // b vector
     vector<TeamRating> res(n, 0.0);                                     // results vector
 
-    populateDataWithInput(input, teamsMatchesRecords, colleyMatrix, k);
+    populateDataWithInput(input, teamsMatchesRecords, colleyMatrix, k, teamToClimb);
 
     input.close();
 
@@ -83,14 +105,22 @@ int main(int argc, char const *argv[]){
     choleskyFactorization(colleyMatrix, b_vector, res);
     int posMax, i = 0;
     //making the last team id become the first
-    while((posMax = findMaxIndex(res)) != teamToClimb){
-        teamsMatchesRecords[posMax].subsWon();
-        teamsMatchesRecords[posMax].addLost();
-        teamsMatchesRecords[teamToClimb].addWon();
-        teamsMatchesRecords[teamToClimb].subsLost();
-        create_b_vector(b_vector, teamsMatchesRecords);
-        solveLLtMatrix(colleyMatrix, b_vector, res);
-        i++;
+    while(findMaxIndexUnmutable(res) != teamToClimb){
+        posMax = findMaxIndexMutable(res);
+        if(posMax == -1){
+            cout << "Impossible to reach the top ranking with this schedule" << endl;
+            break;
+        }
+        else{
+            teamsMatchesRecords[posMax].subsWon();
+            teamsMatchesRecords[posMax].addLost();
+            teamsMatchesRecords[teamToClimb].addWon();
+            teamsMatchesRecords[teamToClimb].subsLost();
+            looses[posMax]--;
+            create_b_vector(b_vector, teamsMatchesRecords);
+            solveLLtMatrix(colleyMatrix, b_vector, res);
+            i++;
+        }
     }
     output << "Minimun games to win " << i << endl;
     printRatings(res, output);
