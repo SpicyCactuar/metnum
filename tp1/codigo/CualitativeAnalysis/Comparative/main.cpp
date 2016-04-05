@@ -9,7 +9,7 @@
 #include "./Experiments.h"
 
 // --- Input arguments ---
-// e: Experiment number (currently supported: 1 to 2)
+// e: Experiment number (currently supported: 1 to 3)
 
 int main(int argc, char const *argv[]){
    if (argc < 2) {
@@ -24,9 +24,11 @@ int main(int argc, char const *argv[]){
             return runExperiment_1();
         case 2:
             return runExperiment_2();
+        case 3:
+            return runExperiment_3();
         default:
             cout << "Invalid experiment number" << endl;
-            cout << "Currently supported are: 1 to 2" << endl << endl;
+            cout << "Currently supported are: 1 to 3" << endl << endl;
             return 1;
     }
 }
