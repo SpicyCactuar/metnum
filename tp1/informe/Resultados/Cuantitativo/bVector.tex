@@ -19,15 +19,17 @@ Una vez que determinada la igualdad de las soluciones, procedemos a analizar el 
 
 Este gr\'afico tiene la curva de la Eliminaci\'on Gaussiana escalada para poder visualizarlo en conjunto con la otra.
 
-Puede apreciarse que el m\'etodo de Gauss tiene una curva mucho m\'as pronunciada que la factorizaci\'on y se parecen a las de las complejidaded esperadas. No obstante no podemos discernir si es la misma curva multiplicada por una constante, de modo que el p\'roximo paso es suavizar las curvas.
+Puede apreciarse que el m\'etodo de Gauss tiene una curva mucho m\'as pronunciada que la factorizaci\'on y se parecen a las de las complejidaded esperadas. No obstante no podemos discernir si son la misma pero multiplicadas por una constante, de modo que el p\'roximo paso es suavizarlas.
 
 \begin{figure}[h!]
   \begin{center}
 	\includegraphics[scale=0.50]{imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png}
 	\caption{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}
-	\label{bChangeSmoothed}
+	\label{bChangeMoreSmoothed}
   \end{center}
 \end{figure}
+
+\newpage
 
 La curva de Gauss fue dividida por el cuadrado del tama\~no de la entrada, mientras que Cholesky fue dividivo por el tama\~no de la entrada. Ambas se ven lineales, de modo que podr\'iamos pensar que la hip\'otesis es correcta. No obstante, vamos a dividir nuevamente a cada curva por el tama\~no de la entrada y ver si la resultante se parece a una funci\'on constante.
 
@@ -41,4 +43,4 @@ La curva de Gauss fue dividida por el cuadrado del tama\~no de la entrada, mient
   \end{center}
 \end{figure}
 
-Efectivamente, a partir de muestras de tama\~no 250 se aprecia que ambos algoritmos tienden a una constante. Las muestras m\'as peque\~nas difieren de la constante, pero esta no es demasiado grande (es menor que 0.01 ticks) y puede deberse a que la muestra es demasiado chica.
+Efectivamente, a partir de muestras de tama\~no 250 se aprecia que ambos algoritmos tienden a una constante. Las instancias de n peque\~nos tienen una cantidad de ticks levemente mayor pero, esto es atribuible a motivos de cach\'e del procesador y procesos paralelos.

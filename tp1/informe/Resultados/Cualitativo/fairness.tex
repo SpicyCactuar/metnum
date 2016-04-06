@@ -1,4 +1,4 @@
-Hip\'otesis: El algoritmo genera el raiting de cada equipo en base a los raitings de los equipos contra los que jug\'o. Si un equipo no jug\'o contra nadie su rating es 1/2. Cuando el equipo A gana un juego, todos los dem\'as equipos a los que le gan\'o van a tener un mayor rating ya que A ahora gan\'o m\'as partidos y es m\'as valioso. Si un equipo B no jug\'o nunca contra ning\'un equipo que haya jugado con A, el resultado de un nuevo partido de A no debe afectar a B.
+\textbf{Hip\'otesis:} El algoritmo genera el raiting de cada equipo en base a los raitings de los equipos contra los que jug\'o. Si un equipo no jug\'o contra nadie su rating es 1/2. Cuando el equipo A gana un juego, todos los dem\'as equipos a los que le gan\'o van a tener un mayor rating ya que A ahora gan\'o m\'as partidos y es m\'as valioso. Si un equipo B no jug\'o nunca contra ning\'un equipo que haya jugado con A, el resultado de un nuevo partido de A no debe afectar a B.
 
 Para graficar y analizar la situaci\'on vamos a graficar a los equipos como nodos de un grafo, y cada partido ganado es una arista dirigida con sentido al equipo que perdi\'o.
 
@@ -8,7 +8,7 @@ Adem\'as, vamos a dividir a la hip\'otesis en partes. Primero analizamos que pas
   \begin{center}
 	\includegraphics[scale=0.50]{imagenes/cualitative/fairness/fairness1.png}
 	\caption{Equipos que no juegan nunca entre s\'i}
-	\label{bChange}
+%	\label{bChange}
   \end{center}
 \end{figure}
 
@@ -18,7 +18,7 @@ Luego tomamos un grafo no conexo como el de la figura siguiente. Usando el CMM v
   \begin{center}
 	\includegraphics[scale=0.50]{imagenes/cualitative/fairness/fairness2.png}
 	\caption{Modificaci\'on de resultado de partidos en subconjunto no conexo}
-	\label{bChange}
+%	\label{bChange}
   \end{center}
 \end{figure}
 
@@ -33,7 +33,7 @@ Tambi\'en analizando los n\'umeros m\'as en detalle pudimos observar que la juga
   \begin{center}
 	\includegraphics[scale=0.50]{imagenes/cualitative/fairness/fairness3.png}
 	\caption{Modificaci\'on de raitings en base al resultado de un partido}
-	\label{bChange}
+%	\label{bChange}
   \end{center}
 \end{figure}
 
@@ -43,7 +43,7 @@ Por \'ultimo analizamos un caso particular donde el resultado de un partido indi
   \begin{center}
 	\includegraphics[scale=0.50]{imagenes/cualitative/fairness/fairness4.png}
 	\caption{Modificaci\'on de rankings en base al resultado de un partido}
-	\label{bChange}
+%	\label{bChange}
   \end{center}
 \end{figure}
 

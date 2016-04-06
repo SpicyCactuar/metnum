@@ -10,7 +10,7 @@ Proveer metodolog\'ias que incorporen aspectos varios y relevantes de los encuen
 
 \subsection{Colley Matrix Method}
 
-Este m\'etodo busca categorizar en un \textit{ranking} de \textit{ratings} a los equipos participantes, teniendo en consideraci\'on el schedule que a traves\'o cada uno de ellos (jugar contra los mejores equipos al inicio no indica que vaya a perder contra los peores en los subsiguietntes partidos), sin importar la diferencia de la cantidad de partidos jugados por cada equipo y solo considerando si el equipo gan\'o o perdi\'o (no la diferencia en puntajes obtenidos en los mismos). Es necesario notar que s\'olo aplica a modelos de competencias que no admiten empate como un resultado posible. \\
+Este m\'etodo busca categorizar en un \textit{ranking} de \textit{ratings} a los equipos participantes, teniendo en consideraci\'on el schedule que atraves\'o cada uno de ellos (perder contra los mejores equipos al inicio no indica que vaya a perder contra los peores en los subsiguietntes partidos), sin importar la diferencia de la cantidad de partidos jugados por cada equipo y solo considerando si el equipo gan\'o o perdi\'o (no la diferencia en puntajes obtenidos en los mismos). Es necesario notar que s\'olo aplica a modelos de competencias que no admiten empate como un resultado posible. \\
 
 Definamos primero el modelo utilizado para el problema. Sea $\Gamma = \{1,2,...,T\}$ el conjunto de participantes de la competencia. Luego, para cada equipo \bm{$i \in \Gamma$} denominamos \bm{$n{_i}$} al n\'umero total de partidos jugados por el equipo $i$, \bm{$w{_i}$} al n\'umero de partidos ganados por el equipo $i$ y, an\'alogamente, \bm{$l{_i}$} a la cantidad de encuentros por el equipo $i$. Por \'ultimo, dados $i, j \in \Gamma$, $i \neq j$, \bm{$n{_i}{_j}$} al n\'umero de enfrentamientos entre $i$ y $j$. Una vez definido esto, a través de una serie de postulados y argumentos matemáticos, el paper \textbf{[1]} plantea que las probabilidades se obtienen como resultado de un sistema de ecuaciones lineales de la forma \bm{$Cr = b$}. \\
 
@@ -57,13 +57,13 @@ $x{_i} = (b'{_i} - \sum\limits_{j = i + 1}^n u_{ij}x_{i}) / u_{ii}$, que es la t
 
 Se puede observar que si $\exists \, i \in \{1, ..., n\} / a_{ii} = 0$ entonces no se puede realizar este procedimiento. De todas formas, para las matrices \textit{sim\'etricas} y \textit{definidas positivas} se puede probar que se puede realizar la eliminaci\'on sin pivoteos y obtener la $U$ sin problemas.
 
-La combinaci\'on de la Elimnaci\'on Gaussiana y el proceso de \textit{back-substitution} nos deja una complejidad temporal de $O(n^{3})$, ya que es $O(n^{3})$ por parte de la Eliminaci\'on y $O(n^{2})$ en el siguiente y \'ultimo procedimiento. Hay que considerar tambi\'en la cantidad de operaciones en punto flotante que se hacen debido a la aritm\'etica que conlleva. M\'as sobre esto en posteriormente.
+La combinaci\'on de la Eliminaci\'on Gaussiana y el proceso de \textit{back-substitution} nos deja una complejidad temporal de $O(n^{3})$, ya que es $O(n^{3})$ por parte de la Eliminaci\'on y $O(n^{2})$ en el siguiente y \'ultimo procedimiento. Hay que considerar tambi\'en la cantidad de operaciones en punto flotante que se hacen debido a la aritm\'etica que conlleva. M\'as sobre esto posteriormente.
 
 \subsubsection{Factorizaci\'on de Cholesky} \label{intro_cholesky}
 
 La factorizaci\'on de Cholesky es un caso particular de una factorizaci\'on LU, con L matriz triangular inferior y U matriz triangular superior. Siendo $C \in R^{n \times n}$, $n$ natural, bajo la hip\'otesis de que $A$ sea \textit{sim\'etrica} y \textit{definida positiva}, podemos afirmar que existe una factorizaci\'on de la forma LU de C, tal que $U = L{^t}$ y tal que vale que $\displaystyle\mathop{\forall}_{1 < i < n}$ $L_{ii} > 0$.
 
-Donde, particularmente, la matriz $A = LL^{t}$ se forma bajo las siguientes ecuaciones: \\
+Donde, la matriz $A = LL^{t}$ se forma bajo las siguientes ecuaciones: \\
 
 $LL{^t}{_i}{_j} =
 \left\{

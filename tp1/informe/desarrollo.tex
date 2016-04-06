@@ -16,7 +16,7 @@ C
 b
 \Big)$ \\
 
-El algoritmo de formulado por Gauss itera por cada fila de la matriz buscando dejar en 0 todas posiciones por debajo de la diagonal.
+El algoritmo formulado por Gauss itera por cada fila de la matriz buscando dejar en 0 todas las posiciones por debajo de la diagonal.
 
 Para esto, en la primer iteraci\'on, realiza el siguiente c\'alculo: \\
 
@@ -32,9 +32,7 @@ Poniendo en $0$ las posiciones $A_{ik}$ con $i > k$
 
 Luego, en la iteraci\'on $n-1$ se obtiene una matriz U triangular superior.
 
-Es necesario destacar que la matriz tiene dimensi\'on $\rm I\!R^{n \times n+1}$, porque se le incluye el vector b.
-
-Nuestra implementaci\'on, adem\'as, realiza pivoteo parcial. En la iteraci\'on k, antes de realizar las operaciones anteriores, busca la fila que tenga el valor absoluto m\'as grande en la posici\'on k y la intercambia con la fila k. Esto se realiza con el fin de minimizar errores de redondeo que se puedan dar por la representaci\'on de los n\'umeros en la m\'aquina.
+Nuestra implementaci\'on, adem\'as, realiza pivoteo parcial. En la iteraci\'on k, antes de realizar las operaciones anteriores, busca la fila que tenga el valor absoluto m\'as grande en la posici\'on k y la intercambia con la fila k. Esto se realiza con el fin de minimizar errores de redondeo que se puedan dar por trabajar con aritm\'etica finita.
 
 Cabe destacar que el m\'etodo no falla pues el sistema tiene soluci\'on y ning\'un paso intermedio puede dejar un 0 en la diagonal.
 

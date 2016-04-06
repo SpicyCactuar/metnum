@@ -14,13 +14,14 @@ Se invierte el resultado y recalculamos los rankings con este cambio.
 
 En caso de que sea imposible modificar un partido (ya se modificaron todos los posibles), retornamos la posicion final.
 
-\textbf{Hip\'otesis:} Los equipos con m\'as derrotas deber\'an modificar m\'as resultados que los que tienen menos. Se espera que la cantidad de partidos ganados por el equipo modificado se aproxime a los que necesit\'o el primero para estar en esa posici\'on. 
+\textbf{Hip\'otesis:} Los equipos con m\'as derrotas deber\'an modificar m\'as resultados que los que tienen menos.
 
 Estos fueron los standings finales de la temporada 2014-2015 de la NBA. A la derecha figura la cantidad de partidos que cada equipo deber\'ia ganar en vez de perder para quedar en la primera posici\'on seg\'un nuestro m\'etodo. \\
 
+{\centering
 \begin{tabular}{|c|c|c|c|}
 \hline
-Posici\'on & Equipo & Record & Ranking\\
+Posici\'on & Equipo & Record & M\'inimo\\
 \hline
 1 & Golden State & 67-15 & 0 \\
 \hline
@@ -78,16 +79,37 @@ Posici\'on & Equipo & Record & Ranking\\
 \hline
 28 & Philadelphia & 18-64 & 48 \\
 \hline
-29 & New_York & 17-65 & 50 \\
+29 & New York & 17-65 & 50 \\
 \hline
 30 & Minnesota & 16-66 & 47 \\
 \hline
-\end{tabular} \\
+\end{tabular} \\ }
 
-Golden State qued\'o en primera posici\'on y por lo tanto requiere 0 partidos para tener el mejor ranking. No es algo sorprendente, pues adem\'as ganaron los Play-Off. Para los dem\'as equipos, la estrategia les pide alcanzar una cantidad de partidos similar a la obtenida por Golden State.
+Golden State qued\'o en primera posici\'on y por lo tanto requiere 0 partidos para tener el mejor ranking. No es algo sorprendente, pues adem\'as ganaron los Play-Off.
 
-Hay un caso interesante entre Portland, Chicago y Dallas, donde Chicago tiene el mismo record que Dallas, pero necesita 5 partidos m\'as que los otros dos equipos. Esto se debe al schedule de cada uno. Seguramente Chicago jug\'o pocos partidos frente a los equipos por encima de \'el, y probablemente haya ganado algunos. Mientras que Portland y Dallas deben haber jugado m\'as veces contras los mejor rankeados y perdido en varias oportunidades, con lo que una modifici\'on en esos partidos, les significa un salto mayor en la trepada por el ranking.
+Para los dem\'as equipos, la estrategia indica que deben cambiar de perdidos a ganados, una cantidad de partidos tales que consigan una score final similar al que qued\'o en primera posici\'on.
 
-Probamos tambi\'en qu\'e sucede en el caso en que por ejemplo Golden State, ganara absolutamente todos los partidos. ¿Cu\'antos encuentros deber\'an ganar los dem\'as equipos para tener un ranking mejor?
+Hay un caso interesante entre Portland, Chicago y Dallas, donde Chicago tiene el mismo record que Dallas, pero necesita 5 partidos m\'as que los otros dos equipos. Esto se debe al schedule de cada uno. Seguramente Chicago jug\'o pocos partidos frente a los equipos por encima de \'el, y probablemente haya ganado algunos. Mientras que Portland y Dallas deben haber jugado m\'as veces contras los mejor rankeados y perdido en la mayor\'ia de las oportunidades, con lo que una modificaci\'on en esos partidos, les significa un salto mayor en la escalada por el ranking.
 
-Los resultados refuerzan, como se present\'o anteriormente, las hip\'otesis planteadas, pidi\'endole a cada equipo que ganara cerca de 80 partidos sobre 82 totales (ganar en vez de perder con Golden State para disminuir su ranking y ganarle a casi todos los dem\'as pues ellos lo hab\'ian hecho).
+Dada la observaci\'on sobre alcanzar el score del que finaliz\'o primero, probamos tambi\'en qu\'e sucede en el caso en que por ejemplo Golden State, ganara absolutamente todos los partidos. ¿Cu\'antos encuentros deber\'an ganar los dem\'as equipos para tener un ranking mejor?
+
+Corrimos el algoritmo con este nuevo schedule y observamos que efectivamente
+los resultados refuerzan las observaci\'on, pidi\'endole a cada equipo que ganara cerca de 80 partidos sobre 82 totales (ganar en vez de perder con Golden State para disminuir su ranking y ganarle a casi todos los dem\'as pues Golden State lo hab\'ia hecho).
+
+Con respecto a la hip\'otesis planteada, podemos decir que a peor score, mayor cantidad de partidos necesarios que intercambiar, aunque est\'a intimamente ligado al schedule de cada equipo, especificamente a la cantidad de partidos jugados frente a los equipos mejor posicionados. Esto se ve porque la progresi\'on de scores es lineal (\ref{finalScores}), pero la de ratings zigzaguea, tendiendo a una parecerse a una funci\'on lineal con bajas repentinas (\ref{minimum})
+
+\begin{figure}[h!]
+  \begin{center}
+	\includegraphics[scale=0.50]{imagenes/cualitative/greedy/scores.png}
+	\caption{Scores finales}
+	\label{finalScores}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{center}
+	\includegraphics[scale=0.50]{imagenes/cualitative/greedy/minimum.png}
+	\caption{N\'umero m\'inimo de partidos a modificar para alcanzar el primer puesto}
+	\label{minimum}
+  \end{center}
+\end{figure}
