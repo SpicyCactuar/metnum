@@ -4,7 +4,7 @@ Dada la participaci\'on del m\'etodo CMM en este trabajo, utilizamos los algorit
 
 Consideremos $\Gamma = \{1,2,...,T\}$ el conjunto de equipos/jugadores junto con su \textit{schedule}, $C \in R^{T \times T}$ la matriz de Colley y $b$ que se generan en consecuencia.
 
-Como sabemos que $C$, por lo explicado en \textbf{[1]}, es \textit{sim\'etrica definida positiva}, podemos utilizar la Eliminaci\'on Gaussiana o la factorizaci\'on de Cholesky para resolverlo sin problemas: \\
+Como sabemos que $C$, por lo explicado en \textbf{[1]}, es \textit{sim\'etrica definida positiva}, podemos utilizar la Eliminaci\'on Gaussiana o la factorizaci\'on de Cholesky para resolverlo sin problemas:
 
 Ataquemos el primero. Notar que vamos a tener en cuenta la siguiente matriz $A \in R^{T \times T+1}$: \\
 
@@ -13,36 +13,36 @@ $A = \Big(
 C
 \end{matrix}
 \vert
+\begin{matrix}
 b
+\end{matrix}
 \Big)$ \\
 
-El algoritmo formulado por Gauss itera por cada fila de la matriz buscando dejar en 0 todas las posiciones por debajo de la diagonal.
+El procedimiento consiste en iterar por cada fila de la matriz buscando dejar en 0 todas las posiciones por debajo de la diagonal.
 
-Para esto, en la primer iteraci\'on, realiza el siguiente c\'alculo: \\
+Sea $A^{k}$ la matriz luego de sufrir $k$ pasos del procedimiento. En la primer iteraci\'on, realiza el siguiente c\'alculo: \\
 
-$Fila_{i} - A_{i1} . Fila_{1} / A_{11}$ \\
+$Fila_{i} = Fila_{i} - \frac{a_{i1}}{a_{11}} . Fila_{1}$ \\
 
-De esta manera logra poner en $0$ a todas las posiciones $A_{i1}$ con $i > 1$
+De esta manera logra poner en $0$ a todas las posiciones $A_{i1}$ con $i > 1$. Luego, en la iteraci\'on k: \\
 
-Luego, en la iteraci\'on k: \\
+$Fila_{i}^{k} - \frac{a_{ik}^{k}}{a_{kk}^{k}} . Fila_{k}^{k}$ \\
 
-$Fila_{i} - A_{ik} . Fila_{k} / A_{kk}$ \\
+Poniendo en $0$ las posiciones $a_{ik}$ con $i > k$. Luego, en la iteraci\'on $n-1$ se obtiene una matriz U triangular superior.
 
-Poniendo en $0$ las posiciones $A_{ik}$ con $i > k$
+Recordemos que este algoritmo tiene un caso borde que ocurre cuando alg\'un elemento $a_{ii} = 0$, pero ese caso es salvado por el hecho de que la matriz es \textit{sim\'etrica definida positiva}. Aunque se menciono que sirve para casos \textit{sin} pivoteo, se puede extender su complemento tambi\'en: los elementos de la diagonal de $A^{1}$ son positivos, por ser \textit{definida positiva}, y por ende $a_{11}$ lo es, en consecuencia los valores que obtengo en la diagonal de $A^{2}$ son positivos puesto que es el resultado de divisi\'on de positivos. Esto se extiende a todas las iteraciones de manera inductiva.
 
-Luego, en la iteraci\'on $n-1$ se obtiene una matriz U triangular superior.
+A causa de las divisiones, sumamos pivoteo parcial. En la iteraci\'on $k$, antes de realizar las operaciones anteriores, busca la fila que tenga el valor absoluto m\'as grande $a_{ik}$, $\forall i = k, ..., T$, y la intercambia con la fila $k$. Esto se realiza con el fin de minimizar errores de redondeo que se puedan dar por trabajar con aritm\'etica finita. Al dividir por un valor más alto, generamos un número más cercano al $0$, d\'onde la densidad de valores, en punto flotante, es m\'as elevada en la representaci\'on \textit{IEEE}. \\
 
-Nuestra implementaci\'on, adem\'as, realiza pivoteo parcial. En la iteraci\'on k, antes de realizar las operaciones anteriores, busca la fila que tenga el valor absoluto m\'as grande en la posici\'on k y la intercambia con la fila k. Esto se realiza con el fin de minimizar errores de redondeo que se puedan dar por trabajar con aritm\'etica finita.
+Vayamos ahora a la Factorizaci\'on de Cholesky. Se puede utilizar en este contexto dada la naturaleza de la matriz de Colley de ser \textit{sim\'etrica definida positiva}, lo cual asegura la existencia de una factorizaci\'on LU particular (explicado en la secci\'on \ref{intro_cholesky}).
 
-Cabe destacar que el m\'etodo no falla pues el sistema tiene soluci\'on y ning\'un paso intermedio puede dejar un 0 en la diagonal.
-
-La Factorizaci\'on de Cholesky se puede utilizar en este contexto porque la matriz de Colley es sim\'etrica y definida positiva, lo cual asegura la existencia de una factorizaci\'on LU particular (explicado en la secci\'on \ref{intro_cholesky}).
-
-La implementaci\'on hace las cuentas que se comentan en la misma, pero adem\'as cuando calcula el nuevo valor de la posici\'on $A_{ij}$, la escribe en la $A_{ji}$ para facilitar la resoluci\'on posterior del sistema equivalente.
+Una \'ultima pequeña optimizaci\'on agregada fue a la hora de calcular el nuevo valor de la posici\'on $A_{ij}$, se escribe en la $A_{ji}$ para facilitar la resoluci\'on posterior del sistema equivalente, puesto que de antemano sabemos de la simetr\'ia de la matriz de Colley.
 
 \subsection{Forward-substitution y Back-substitution}
 Forward-substitution resuelve un sistema triangular inferior, mientras que Back-substitution, uno triangular superior.
 
 Estos sistemas son f\'aciles de resolver, pues las n ecuaciones tienen de 1 a n inc\'ognitas, donde resolver la de i inc\'ognitas, permite resolver la de i+1.
+
+\subsection{Metodolog\'ia de medici\'on}
 
 \textcolor{red}{EXPLICAR COMO FUERON PLANTEADAS Y REALIZADAS LAS MEDICIONES EXPERIMENTALES}
