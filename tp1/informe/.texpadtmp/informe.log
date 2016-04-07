@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  6 APR 2016 17:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  7 APR 2016 18:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -655,32 +655,32 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 38.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 38.
-LaTeX Info: Redefining \. on input line 48.
-LaTeX Info: Redefining \% on input line 48.
+LaTeX Info: Redefining \. on input line 51.
+LaTeX Info: Redefining \% on input line 51.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 48.
+(babel)             in language  on input line 51.
 [3]
 Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
@@ -772,27 +772,22 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--18
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
+Underfull \hbox (badness 10000) in paragraph at lines 11--20
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
@@ -806,18 +801,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+
+ []
+
+LaTeX Info: Redefining \. on input line 42.
+LaTeX Info: Redefining \% on input line 42.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 43.
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 42.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 42.
+[5]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 45.
+LaTeX Font Info:    Try loading font information for OML+bch on input line 47.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlbch.fd
+File: omlbch.fd 
+)
+LaTeX Font Info:    Font shape `OML/bch/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 47.
 )
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
@@ -845,7 +888,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 75.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 75.
- [5]
+ [6]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 76.
 Package babel Info: Redefining spanish shorthand >>
@@ -890,12 +933,12 @@ Package hyperref Warning: Composite letter `\textacute+t'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textacute' on input line 1.
 
-<imagenes/cuantitative/default/default1.png, id=139, 488.82625pt x 365.365pt>
+<imagenes/cuantitative/default/default1.png, id=144, 488.82625pt x 365.365pt>
 File: imagenes/cuantitative/default/default1.png Graphic file (type png)
  <use imagenes/cuantitative/default/default1.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default1.png used on input line 13.
 (pdftex.def)             Requested size: 244.41252pt x 182.68205pt.
- <imagenes/cuantitative/default/default2.png, id=141, 454.69875pt x 342.27875pt>
+ <imagenes/cuantitative/default/default2.png, id=146, 454.69875pt x 342.27875pt>
 File: imagenes/cuantitative/default/default2.png Graphic file (type png)
  <use imagenes/cuantitative/default/default2.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default2.png used on input line 23.
@@ -930,7 +973,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 28.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 28.
-[6 <./imagenes/cuantitative/default/default1.png>] <imagenes/cuantitative/default/default3.png, id=148, 473.77pt x 327.2225pt>
+[7 <./imagenes/cuantitative/default/default1.png>] <imagenes/cuantitative/default/default3.png, id=154, 473.77pt x 327.2225pt>
 File: imagenes/cuantitative/default/default3.png Graphic file (type png)
  <use imagenes/cuantitative/default/default3.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default3.png used on input line 34.
@@ -961,7 +1004,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 39.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 39.
- [7 <./imagenes/cuantitative/default/default2.png> <./imagenes/cuantitative/default/default3.png>]) (./Resultados/Cuantitativo/bVector.tex
+ [8 <./imagenes/cuantitative/default/default2.png> <./imagenes/cuantitative/default/default3.png>]) (./Resultados/Cuantitativo/bVector.tex
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand >>
@@ -979,12 +1022,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
-<imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=158, 794.97pt x 505.89pt>
+<imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=163, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png used on input line 14.
 (pdftex.def)             Requested size: 397.48402pt x 252.94437pt.
- <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=159, 794.97pt x 505.89pt>
+ <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=164, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png used on input line 26.
@@ -1019,7 +1062,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 32.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 32.
-[8 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>]
+[9 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>]
 LaTeX Info: Redefining \. on input line 36.
 LaTeX Info: Redefining \% on input line 36.
 Package babel Info: Redefining spanish shorthand <<
@@ -1046,7 +1089,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 36.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 36.
- [9 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=171, 794.97pt x 505.89pt>
+ [10 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=176, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png used on input line 40.
@@ -1081,90 +1124,134 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--13
-
- []
+<imagenes/cualitative/comparative/nba2014.png, id=177, 683.55376pt x 395.4775pt>
+File: imagenes/cualitative/comparative/nba2014.png Graphic file (type png)
+ <use imagenes/cualitative/comparative/nba2014.png>
+Package pdftex.def Info: imagenes/cualitative/comparative/nba2014.png used on input line 7.
+(pdftex.def)             Requested size: 341.77605pt x 197.73827pt.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- []
+<imagenes/cualitative/comparative/nba2015.png, id=178, 682.55pt x 393.47pt>
+File: imagenes/cualitative/comparative/nba2015.png Graphic file (type png)
+ <use imagenes/cualitative/comparative/nba2015.png>
+Package pdftex.def Info: imagenes/cualitative/comparative/nba2015.png used on input line 15.
+(pdftex.def)             Requested size: 341.27417pt x 196.73451pt.
 
-LaTeX Info: Redefining \. on input line 19.
-LaTeX Info: Redefining \% on input line 19.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 19.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 19.
-[10 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<imagenes/cualitative/comparative/nba2016.png, id=179, 699.61375pt x 382.42876pt>
+File: imagenes/cualitative/comparative/nba2016.png Graphic file (type png)
+ <use imagenes/cualitative/comparative/nba2016.png>
+Package pdftex.def Info: imagenes/cualitative/comparative/nba2016.png used on input line 23.
+(pdftex.def)             Requested size: 349.80602pt x 191.2139pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
+
+<imagenes/cualitative/comparative/comparative2.png, id=180, 790.955pt x 323.2075pt>
+File: imagenes/cualitative/comparative/comparative2.png Graphic file (type png)
+ <use imagenes/cualitative/comparative/comparative2.png>
+Package pdftex.def Info: imagenes/cualitative/comparative/comparative2.png used on input line 43.
+(pdftex.def)             Requested size: 395.47653pt x 161.60335pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 24.
+(Font)              <8> on input line 49.
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+
+ []
+
+LaTeX Info: Redefining \. on input line 50.
+LaTeX Info: Redefining \% on input line 50.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 50.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 50.
+[11 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
-
- []
-
-)
+<imagenes/cualitative/comparative/comparative3.png, id=187, 786.94pt x 325.215pt>
+File: imagenes/cualitative/comparative/comparative3.png Graphic file (type png)
+ <use imagenes/cualitative/comparative/comparative3.png>
+Package pdftex.def Info: imagenes/cualitative/comparative/comparative3.png used on input line 59.
+(pdftex.def)             Requested size: 393.46904pt x 162.6071pt.
+LaTeX Info: Redefining \. on input line 63.
+LaTeX Info: Redefining \% on input line 63.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 63.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 63.
+ [12 <./imagenes/cualitative/comparative/nba2014.png> <./imagenes/cualitative/comparative/nba2015.png>])
+LaTeX Info: Redefining \. on input line 4.
+LaTeX Info: Redefining \% on input line 4.
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 4.
 Package babel Info: Redefining spanish shorthand >>
@@ -1177,24 +1264,41 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 4.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 4.
- (./Resultados/Cualitativo/fairness.tex <imagenes/cualitative/fairness/fairness1.png, id=178, 264.99pt x 187.70125pt>
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 4.
+ [13 <./imagenes/cualitative/comparative/nba2016.png> <./imagenes/cualitative/comparative/comparative2.png> <./imagenes/cualitative/comparative/comparative3.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 4.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 4.
+ (./Resultados/Cualitativo/fairness.tex <imagenes/cualitative/fairness/fairness1.png, id=208, 264.99pt x 187.70125pt>
 File: imagenes/cualitative/fairness/fairness1.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness1.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness1.png used on input line 9.
 (pdftex.def)             Requested size: 132.49467pt x 93.85039pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<imagenes/cualitative/fairness/fairness2.png, id=179, 607.26875pt x 289.08pt>
+ <imagenes/cualitative/fairness/fairness2.png, id=209, 607.26875pt x 289.08pt>
 File: imagenes/cualitative/fairness/fairness2.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness2.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness2.png used on input line 19.
 (pdftex.def)             Requested size: 303.63364pt x 144.53964pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 LaTeX Info: Redefining \. on input line 29.
 LaTeX Info: Redefining \% on input line 29.
 Package babel Info: Redefining spanish shorthand <<
@@ -1221,7 +1325,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 29.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 29.
-[11]
+ [14 <./imagenes/cualitative/fairness/fairness1.png> <./imagenes/cualitative/fairness/fairness2.png>]
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
 Package babel Info: Redefining spanish shorthand <<
@@ -1248,7 +1352,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 31.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 31.
- [12 <./imagenes/cualitative/fairness/fairness1.png> <./imagenes/cualitative/fairness/fairness2.png>] <imagenes/cualitative/fairness/fairness3.png, id=193, 992.70876pt x 404.51125pt>
+ [15] <imagenes/cualitative/fairness/fairness3.png, id=222, 992.70876pt x 404.51125pt>
 File: imagenes/cualitative/fairness/fairness3.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness3.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness3.png used on input line 34.
@@ -1258,7 +1362,7 @@ Overfull \hbox (41.10909pt too wide) in paragraph at lines 34--35
  [] 
  []
 
-<imagenes/cualitative/fairness/fairness4.png, id=194, 817.0525pt x 309.155pt>
+<imagenes/cualitative/fairness/fairness4.png, id=223, 817.0525pt x 309.155pt>
 File: imagenes/cualitative/fairness/fairness4.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness4.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness4.png used on input line 44.
@@ -1303,7 +1407,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 2.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 2.
- [13 <./imagenes/cualitative/fairness/fairness3.png> <./imagenes/cualitative/fairness/fairness4.png>]
+ [16 <./imagenes/cualitative/fairness/fairness3.png> <./imagenes/cualitative/fairness/fairness4.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
@@ -1334,12 +1438,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 93.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 93.
-[14] <imagenes/cualitative/greedy/scores.png, id=208, 654.94687pt x 255.95625pt>
+[17] <imagenes/cualitative/greedy/scores.png, id=236, 654.94687pt x 255.95625pt>
 File: imagenes/cualitative/greedy/scores.png Graphic file (type png)
  <use imagenes/cualitative/greedy/scores.png>
 Package pdftex.def Info: imagenes/cualitative/greedy/scores.png used on input line 103.
 (pdftex.def)             Requested size: 327.47264pt x 127.9778pt.
- <imagenes/cualitative/greedy/minimum.png, id=209, 658.71094pt x 255.95625pt>
+ <imagenes/cualitative/greedy/minimum.png, id=237, 658.71094pt x 255.95625pt>
 File: imagenes/cualitative/greedy/minimum.png Graphic file (type png)
  <use imagenes/cualitative/greedy/minimum.png>
 Package pdftex.def Info: imagenes/cualitative/greedy/minimum.png used on input line 111.
@@ -1371,7 +1475,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 79.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 79.
- [15 <./imagenes/cualitative/greedy/scores.png (PNG copy)> <./imagenes/cualitative/greedy/minimum.png (PNG copy)>]
+ [18 <./imagenes/cualitative/greedy/scores.png (PNG copy)> <./imagenes/cualitative/greedy/minimum.png (PNG copy)>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand >>
@@ -1411,7 +1515,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 82.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 82.
- [16]
+ [19]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 83.
 Package babel Info: Redefining spanish shorthand >>
@@ -1466,7 +1570,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 85.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 85.
- [17]
+ [20]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 86.
 Package babel Info: Redefining spanish shorthand >>
@@ -1507,7 +1611,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 112.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 112.
- [18]
+ [21]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
  (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.aux
 LaTeX Info: Redefining \. on input line 24.
@@ -1524,18 +1628,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  ) 
 Here is how much of TeX's memory you used:
- 6950 strings out of 493117
- 102533 string characters out of 6135433
- 200354 words of memory out of 5000000
- 10177 multiletter control sequences out of 15000+600000
+ 7000 strings out of 493117
+ 103993 string characters out of 6135433
+ 200355 words of memory out of 5000000
+ 10210 multiletter control sequences out of 15000+600000
  40637 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 31i,12n,43p,844b,469s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (18 pages, 1208264 bytes).
+ 30i,12n,43p,844b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (21 pages, 2024829 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 245 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 339 PDF objects out of 1000 (max. 8388607)
+ 264 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 240 words of extra memory for PDF output out of 10000 (max. 10000000)
 

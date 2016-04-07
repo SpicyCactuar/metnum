@@ -32,32 +32,37 @@
 \newlabel{intro_cholesky}{{1.1.2}{4}{Factorizaci\'on de Cholesky}{subsubsection.1.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Desarrollo}{5}{section.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Roles de algoritmos utilizados}{5}{subsection.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Forward-substitution y Back-substitution}{5}{subsection.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Resultados y Discusi\'on}{6}{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}An\'alisis Cuantitativo}{6}{subsection.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (complejidad algor\'timica)}{6}{subsubsection.3.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky}}{6}{figure.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky (base c\'ubica)}}{7}{figure.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky (base c\'ubica)}}{7}{figure.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{8}{subsubsection.3.1.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on}}{8}{figure.4}}
-\newlabel{bChange}{{4}{8}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}}{9}{figure.5}}
-\newlabel{bChangeMoreSmoothed}{{5}{9}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}}{10}{figure.6}}
-\newlabel{bChangeSmoothed}{{6}{10}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{10}{subsection.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{10}{subsubsection.3.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{11}{subsubsection.3.2.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Equipos que no juegan nunca entre s\'i}}{12}{figure.7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Modificaci\'on de resultado de partidos en subconjunto no conexo}}{12}{figure.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Modificaci\'on de raitings en base al resultado de un partido}}{13}{figure.9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Modificaci\'on de rankings en base al resultado de un partido}}{13}{figure.10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{13}{subsubsection.3.2.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Scores finales}}{15}{figure.11}}
-\newlabel{finalScores}{{11}{15}{Scores finales}{figure.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces N\'umero m\'inimo de partidos a modificar para alcanzar el primer puesto}}{15}{figure.12}}
-\newlabel{minimum}{{12}{15}{N\'umero m\'inimo de partidos a modificar para alcanzar el primer puesto}{figure.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusiones}{16}{section.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Referencias}{17}{section.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Apendice}{18}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Detalles Implementativos}{6}{subsection.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Resultados y Discusi\'on}{7}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}An\'alisis Cuantitativo}{7}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (complejidad algor\'timica)}{7}{subsubsection.3.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky}}{7}{figure.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky (base c\'ubica)}}{8}{figure.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Eliminaci\'on gaussiana vs Factorizaci\'on de Cholesky (base c\'ubica)}}{8}{figure.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{9}{subsubsection.3.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on}}{9}{figure.4}}
+\newlabel{bChange}{{4}{9}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}}{10}{figure.5}}
+\newlabel{bChangeMoreSmoothed}{{5}{10}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}}{11}{figure.6}}
+\newlabel{bChangeSmoothed}{{6}{11}{Comparaci\'on de complejidad temporal modificando el b en cada iteraci\'on suavizado}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{11}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{11}{subsubsection.3.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Season 2014}}{12}{figure.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Season 2015}}{12}{figure.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Season 2016}}{13}{figure.9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Experimento}}{13}{figure.10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Experimento}}{13}{figure.11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{14}{subsubsection.3.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Equipos que no juegan nunca entre s\'i}}{14}{figure.12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Modificaci\'on de resultado de partidos en subconjunto no conexo}}{14}{figure.13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Modificaci\'on de raitings en base al resultado de un partido}}{16}{figure.14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Modificaci\'on de rankings en base al resultado de un partido}}{16}{figure.15}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{16}{subsubsection.3.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Scores finales}}{18}{figure.16}}
+\newlabel{finalScores}{{16}{18}{Scores finales}{figure.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces N\'umero m\'inimo de partidos a modificar para alcanzar el primer puesto}}{18}{figure.17}}
+\newlabel{minimum}{{17}{18}{N\'umero m\'inimo de partidos a modificar para alcanzar el primer puesto}{figure.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusiones}{19}{section.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Referencias}{20}{section.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Apendice}{21}{section.6}}
