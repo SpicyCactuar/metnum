@@ -6,11 +6,11 @@
 \item \textbf{Medici\'on:} Podr\'ia aportar m\'etricas internas para determinar c\'omo se encuentra la entidad/el jugador comparativamente con los dem\'as.
 \end{itemize}
 
-Proveer metodolog\'ias que incorporen aspectos varios y relevantes de los encuentros es esencial para que incremente su precisión. Dicho esto, el m\'etodo que utilizaremos es el \textbf{\textit{Colley Matrix Method}} \textbf{[1]}.
+Proveer metodolog\'ias que incorporen aspectos varios y relevantes de los encuentros es esencial para que incremente su precisión. Dicho esto, el m\'etodo que analizaremos es el \textbf{\textit{Colley Matrix Method}} \textbf{[1]}.
 
 \subsection{Colley Matrix Method}
 
-Este m\'etodo busca categorizar en un \textit{ranking} de \textit{ratings} a los equipos participantes, teniendo en consideraci\'on el schedule que atraves\'o cada uno de ellos (perder contra los mejores equipos al inicio no indica que vaya a perder contra los peores en los subsiguietntes partidos), sin importar la diferencia de la cantidad de partidos jugados por cada equipo y solo considerando si el equipo gan\'o o perdi\'o (no la diferencia en puntajes obtenidos en los mismos). Es necesario notar que s\'olo aplica a modelos de competencias que no admiten empate como un resultado posible. \\
+Este m\'etodo busca categorizar en un \textit{ranking} de \textit{ratings} a los equipos participantes, teniendo en consideraci\'on el schedule que atraves\'o cada uno de ellos, sin importar la diferencia de la cantidad de partidos jugados por cada equipo y solo considerando si el equipo gan\'o o perdi\'o  y no la diferencia en puntajes obtenidos en los mismos. Es necesario notar que s\'olo aplica a modelos de competencias que no admiten empate como un resultado posible. \\
 
 Definamos primero el modelo utilizado para el problema. Sea $\Gamma = \{1,2,...,T\}$ el conjunto de participantes de la competencia. Luego, para cada equipo \bm{$i \in \Gamma$} denominamos \bm{$n{_i}$} al n\'umero total de partidos jugados por el equipo $i$, \bm{$w{_i}$} al n\'umero de partidos ganados por el equipo $i$ y, an\'alogamente, \bm{$l{_i}$} a la cantidad de encuentros por el equipo $i$. Por \'ultimo, dados $i, j \in \Gamma$, $i \neq j$, \bm{$n{_i}{_j}$} al n\'umero de enfrentamientos entre $i$ y $j$. Una vez definido esto, a través de una serie de postulados y argumentos matemáticos, el paper \textbf{[1]} plantea que las probabilidades se obtienen como resultado de un sistema de ecuaciones lineales de la forma \bm{$Cr = b$}. \\
 
