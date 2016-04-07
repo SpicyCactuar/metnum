@@ -1,6 +1,9 @@
 Para compilar este archivo: g++ -o main main.cpp -std=c++11
 
-Para simular los experimento:
+Para simular los experimentos:
+-(i: input file)
+-(o: output file)
+-(t: team to climb)
 
 ./main io/nba_2015_scores.in io/nba_2015_scores_1.out 1;
 ./main io/nba_2015_scores.in io/nba_2015_scores_2.out 2;
