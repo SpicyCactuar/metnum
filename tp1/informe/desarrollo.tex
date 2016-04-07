@@ -44,7 +44,7 @@ En el trabajo no se provee m\'as que una explicaci\'on detallada de los algoritm
 
 \subsection{Detalles Implementativos}
 
-Toda la algoritmia y los experimentos fueron desarrollados en C++. La estructura que elegimos para modelar las matrices fue std::vector\textless std::vector\textless double\textgreater\textgreater. Los aspectos fundamentales que nos llevaron a tomar esta determinaci\'on fueron:
+Toda la algoritmia y los experimentos fueron desarrollados en C++. La estructura que elegimos para modelar las matrices fue \textit{std::vector\textless std::vector\textless double\textgreater\textgreater}. Los aspectos fundamentales que nos llevaron a tomar esta determinaci\'on fueron:
 
 \begin{itemize}
 \item Gran cantidad de los calculos involucran accesos no contiguos a elementos, y la estructura elegida cual permite accesos aleatorios en tiempo constante.
