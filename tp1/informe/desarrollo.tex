@@ -36,13 +36,20 @@ A causa de las divisiones, sumamos pivoteo parcial. En la iteraci\'on $k$, antes
 
 Vayamos ahora a la Factorizaci\'on de Cholesky. Se puede utilizar en este contexto dada la naturaleza de la matriz de Colley de ser \textit{sim\'etrica definida positiva}, lo cual asegura la existencia de una factorizaci\'on LU particular (explicado en la secci\'on \ref{intro_cholesky}).
 
-Una \'ultima pequeña optimizaci\'on agregada fue a la hora de calcular el nuevo valor de la posici\'on $A_{ij}$, se escribe en la $A_{ji}$ para facilitar la resoluci\'on posterior del sistema equivalente, puesto que de antemano sabemos de la simetr\'ia de la matriz de Colley.
+El c\'alculo de la factorizaci\'on no es demasiado complejo y est\'a expl\'cito en la secci\'on de introducci\'on. Lo que vale destacar es que aprovechamos el hecho de que la infomaci\'on esencial de la descomposici\'on se puede almacenar en la parte inferior de una matriz, en otras palabras la matriz triangular inferior $L$. Por ende, la parte superior puede rellenarse con los valores traspuestos de si misma y operar con los procedimientos de resoluci\'on de sistemas triangulares $in-place$. Esto implica una reducci\'on importante almacenamiento que si bien sigue siendo $O(n^2)$, en la pr\'actica implica un ahorro de una matriz entera en memoria. \\
 
-\subsection{Forward-substitution y Back-substitution}
-Forward-substitution resuelve un sistema triangular inferior, mientras que Back-substitution, uno triangular superior.
+Sea cual sea el m\'etodo elegido, una vez realizado utilizamos \textit{backward o forward substitution}, seg\'un correspondiese para obtener los $r_{i}$. \textit{Forward-substitution} resuelve un sistema triangular inferior, mientras que \textit{Backward-substitution}, uno triangular superior. \\
 
-Estos sistemas son f\'aciles de resolver, pues las n ecuaciones tienen de 1 a n inc\'ognitas, donde resolver la de i inc\'ognitas, permite resolver la de i+1.
+En el trabajo no se provee m\'as que una explicaci\'on detallada de los algoritmos utilizados, pero pseudo-c\'odigos y profundizaci\'on acerca de ellos puede ser encontrada en \textbf{[2]}.
 
-\subsection{Metodolog\'ia de medici\'on}
+\subsection{Detalles Implementativos}
 
-\textcolor{red}{EXPLICAR COMO FUERON PLANTEADAS Y REALIZADAS LAS MEDICIONES EXPERIMENTALES}
+Toda la algoritmia y los experimentos fueron desarrollados en C++. La estructura que elegimos para modelar las matrices fue std::vector\textless std::vector\textless double\textgreater\textgreater. Los aspectos fundamentales que nos llevaron a tomar esta determinaci\'on fueron:
+
+\begin{itemize}
+\item Gran cantidad de los calculos involucran accesos no contiguos a elementos, y la estructura elegida cual permite accesos aleatorios en tiempo constante.
+\item Utilizar \textit{precisi\'on doble} asegura menos error de redondeo. La densidad de valores representables aumenta considerablemente en contraposici\'on a su par de \textit{precisi\'on simple}.
+\item En el caso particular del m\'etodo de Cholesky, permiti\'o almacenar en un s\'olo contenedor toda la informaci\'on relevante y poder solventar el costo en memoria.
+\end{itemize}
+
+En cu\'anto a la metodolog\'ia llevada adelante en los experimentos: cada uno cuenta con su explicaci\'on escrita y, dependiendo del caso, diagramada.
