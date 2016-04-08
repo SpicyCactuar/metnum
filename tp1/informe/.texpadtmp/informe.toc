@@ -12,8 +12,8 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Eliminaci\'on Gaussiana vs Factorizaci\'on de Cholesky (modificaci\'on del t\'ermino independiente)}{9}{subsubsection.3.1.2}
 \contentsline {subsection}{\numberline {3.2}An\'alisis Cualitativo}{11}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Caracter\'isticas distintivas de los m\'etodos}{11}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{14}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{16}{subsubsection.3.2.3}
-\contentsline {section}{\numberline {4}Conclusiones}{19}{section.4}
-\contentsline {section}{\numberline {5}Referencias}{20}{section.5}
-\contentsline {section}{\numberline {6}Apendice}{21}{section.6}
+\contentsline {subsubsection}{\numberline {3.2.2}El m\'etodo es justo?}{13}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{15}{subsubsection.3.2.3}
+\contentsline {section}{\numberline {4}Conclusiones}{18}{section.4}
+\contentsline {section}{\numberline {5}Referencias}{19}{section.5}
+\contentsline {section}{\numberline {6}Apendice}{20}{section.6}
