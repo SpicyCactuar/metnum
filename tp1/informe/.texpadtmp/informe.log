@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  7 APR 2016 20:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  7 APR 2016 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -496,7 +496,7 @@ LaTeX Info: Redefining \nameref on input line 45.
 \@outlinefile=\write4
 \openout4 = `informe.out'.
 
- <imagenes/logodc.jpg, id=76, 215.6055pt x 83.5923pt>
+ <imagenes/logodc.jpg, id=72, 215.6055pt x 83.5923pt>
 File: imagenes/logodc.jpg Graphic file (type jpg)
  <use imagenes/logodc.jpg>
 Package pdftex.def Info: imagenes/logodc.jpg used on input line 57.
@@ -505,7 +505,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 57.
- <imagenes/logouba.jpg, id=77, 225.4824pt x 231.7458pt>
+ <imagenes/logouba.jpg, id=73, 225.4824pt x 231.7458pt>
 File: imagenes/logouba.jpg Graphic file (type jpg)
  <use imagenes/logouba.jpg>
 Package pdftex.def Info: imagenes/logouba.jpg used on input line 57.
@@ -553,26 +553,26 @@ Package babel Info: Redefining spanish shorthand "?
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./imagenes/logodc.jpg> <./imagenes/logouba.jpg>] (./resumen.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 9.
+(Font)              <9> on input line 8.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 9.
+(Font)              <6> on input line 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--13
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--13
+Underfull \hbox (badness 10000) in paragraph at lines 2--12
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--13
+Underfull \hbox (badness 10000) in paragraph at lines 2--12
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--13
+Underfull \hbox (badness 10000) in paragraph at lines 2--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--12
 
  []
 
@@ -933,12 +933,12 @@ Package hyperref Warning: Composite letter `\textacute+t'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textacute' on input line 1.
 
-<imagenes/cuantitative/default/default1.png, id=144, 488.82625pt x 365.365pt>
+<imagenes/cuantitative/default/default1.png, id=139, 488.82625pt x 365.365pt>
 File: imagenes/cuantitative/default/default1.png Graphic file (type png)
  <use imagenes/cuantitative/default/default1.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default1.png used on input line 13.
 (pdftex.def)             Requested size: 342.17603pt x 255.75375pt.
- <imagenes/cuantitative/default/default2.png, id=146, 454.69875pt x 342.27875pt>
+ <imagenes/cuantitative/default/default2.png, id=141, 454.69875pt x 342.27875pt>
 File: imagenes/cuantitative/default/default2.png Graphic file (type png)
  <use imagenes/cuantitative/default/default2.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default2.png used on input line 23.
@@ -973,7 +973,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 28.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 28.
-[7 <./imagenes/cuantitative/default/default1.png>] <imagenes/cuantitative/default/default3.png, id=154, 473.77pt x 327.2225pt>
+[7 <./imagenes/cuantitative/default/default1.png>] <imagenes/cuantitative/default/default3.png, id=149, 473.77pt x 327.2225pt>
 File: imagenes/cuantitative/default/default3.png Graphic file (type png)
  <use imagenes/cuantitative/default/default3.png>
 Package pdftex.def Info: imagenes/cuantitative/default/default3.png used on input line 34.
@@ -1022,12 +1022,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
-<imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=163, 794.97pt x 505.89pt>
+<imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png, id=158, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png used on input line 14.
 (pdftex.def)             Requested size: 397.48402pt x 252.94437pt.
- <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=164, 794.97pt x 505.89pt>
+ <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png, id=159, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisSmoothed.png used on input line 26.
@@ -1062,7 +1062,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 32.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 32.
-[9 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=171, 794.97pt x 505.89pt>
+[9 <./imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysis.png (PNG copy)>] <imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png, id=165, 794.97pt x 505.89pt>
 File: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png Graphic file (type png)
  <use imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png>
 Package pdftex.def Info: imagenes/cuantitative/bChange/ColleyMatrixCuantitativeBChangeAnalysisConstant.png used on input line 38.
@@ -1124,12 +1124,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-<imagenes/cualitative/comparative/nba2014.png, id=178, 683.55376pt x 395.4775pt>
+<imagenes/cualitative/comparative/nba2014.png, id=173, 683.55376pt x 395.4775pt>
 File: imagenes/cualitative/comparative/nba2014.png Graphic file (type png)
  <use imagenes/cualitative/comparative/nba2014.png>
 Package pdftex.def Info: imagenes/cualitative/comparative/nba2014.png used on input line 7.
 (pdftex.def)             Requested size: 341.77605pt x 197.73827pt.
- <imagenes/cualitative/comparative/nba2015.png, id=179, 682.55pt x 393.47pt>
+ <imagenes/cualitative/comparative/nba2015.png, id=174, 682.55pt x 393.47pt>
 File: imagenes/cualitative/comparative/nba2015.png Graphic file (type png)
  <use imagenes/cualitative/comparative/nba2015.png>
 Package pdftex.def Info: imagenes/cualitative/comparative/nba2015.png used on input line 15.
@@ -1160,7 +1160,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 21.
- [11 <./imagenes/cualitative/comparative/nba2014.png> <./imagenes/cualitative/comparative/nba2015.png>] <imagenes/cualitative/comparative/nba2016.png, id=188, 699.61375pt x 382.42876pt>
+ [11 <./imagenes/cualitative/comparative/nba2014.png> <./imagenes/cualitative/comparative/nba2015.png>] <imagenes/cualitative/comparative/nba2016.png, id=183, 699.61375pt x 382.42876pt>
 File: imagenes/cualitative/comparative/nba2016.png Graphic file (type png)
  <use imagenes/cualitative/comparative/nba2016.png>
 Package pdftex.def Info: imagenes/cualitative/comparative/nba2016.png used on input line 25.
@@ -1175,7 +1175,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
-<imagenes/cualitative/comparative/comparative2.png, id=189, 790.955pt x 323.2075pt>
+<imagenes/cualitative/comparative/comparative2.png, id=184, 790.955pt x 323.2075pt>
 File: imagenes/cualitative/comparative/comparative2.png Graphic file (type png)
  <use imagenes/cualitative/comparative/comparative2.png>
 Package pdftex.def Info: imagenes/cualitative/comparative/comparative2.png used on input line 45.
@@ -1228,7 +1228,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
 
-<imagenes/cualitative/comparative/comparative3.png, id=200, 786.94pt x 325.215pt>
+<imagenes/cualitative/comparative/comparative3.png, id=195, 786.94pt x 325.215pt>
 File: imagenes/cualitative/comparative/comparative3.png Graphic file (type png)
  <use imagenes/cualitative/comparative/comparative3.png>
 Package pdftex.def Info: imagenes/cualitative/comparative/comparative3.png used on input line 61.
@@ -1273,12 +1273,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 7.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 7.
- [13 <./imagenes/cualitative/comparative/comparative3.png>] <imagenes/cualitative/fairness/fairness1.png, id=208, 264.99pt x 187.70125pt>
+ [13 <./imagenes/cualitative/comparative/comparative3.png>] <imagenes/cualitative/fairness/fairness1.png, id=203, 264.99pt x 187.70125pt>
 File: imagenes/cualitative/fairness/fairness1.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness1.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness1.png used on input line 11.
 (pdftex.def)             Requested size: 132.49467pt x 93.85039pt.
- <imagenes/cualitative/fairness/fairness2.png, id=209, 607.26875pt x 289.08pt>
+ <imagenes/cualitative/fairness/fairness2.png, id=204, 607.26875pt x 289.08pt>
 File: imagenes/cualitative/fairness/fairness2.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness2.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness2.png used on input line 21.
@@ -1309,7 +1309,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 34.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 34.
- [14 <./imagenes/cualitative/fairness/fairness1.png> <./imagenes/cualitative/fairness/fairness2.png>] <imagenes/cualitative/fairness/fairness3.png, id=218, 992.70876pt x 404.51125pt>
+ [14 <./imagenes/cualitative/fairness/fairness1.png> <./imagenes/cualitative/fairness/fairness2.png>] <imagenes/cualitative/fairness/fairness3.png, id=213, 992.70876pt x 404.51125pt>
 File: imagenes/cualitative/fairness/fairness3.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness3.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness3.png used on input line 38.
@@ -1319,7 +1319,7 @@ Overfull \hbox (41.10909pt too wide) in paragraph at lines 38--39
  [] 
  []
 
-<imagenes/cualitative/fairness/fairness4.png, id=219, 817.0525pt x 309.155pt>
+<imagenes/cualitative/fairness/fairness4.png, id=214, 817.0525pt x 309.155pt>
 File: imagenes/cualitative/fairness/fairness4.png Graphic file (type png)
  <use imagenes/cualitative/fairness/fairness4.png>
 Package pdftex.def Info: imagenes/cualitative/fairness/fairness4.png used on input line 48.
@@ -1395,12 +1395,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 93.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 93.
-[16] <imagenes/cualitative/greedy/scores.png, id=232, 654.94687pt x 255.95625pt>
+[16] <imagenes/cualitative/greedy/scores.png, id=227, 654.94687pt x 255.95625pt>
 File: imagenes/cualitative/greedy/scores.png Graphic file (type png)
  <use imagenes/cualitative/greedy/scores.png>
 Package pdftex.def Info: imagenes/cualitative/greedy/scores.png used on input line 103.
 (pdftex.def)             Requested size: 327.47264pt x 127.9778pt.
- <imagenes/cualitative/greedy/minimum.png, id=233, 658.71094pt x 255.95625pt>
+ <imagenes/cualitative/greedy/minimum.png, id=228, 658.71094pt x 255.95625pt>
 File: imagenes/cualitative/greedy/minimum.png Graphic file (type png)
  <use imagenes/cualitative/greedy/minimum.png>
 Package pdftex.def Info: imagenes/cualitative/greedy/minimum.png used on input line 111.
@@ -1501,102 +1501,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--6
  []
 
 )
-LaTeX Info: Redefining \. on input line 85.
-LaTeX Info: Redefining \% on input line 85.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
+LaTeX Info: Redefining \. on input line 109.
+LaTeX Info: Redefining \% on input line 109.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 85.
+(babel)             in language  on input line 109.
  [19]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 86.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 86.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 86.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 86.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 86.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 86.
- (./apendice.tex)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
-LaTeX Info: Redefining \. on input line 112.
-LaTeX Info: Redefining \% on input line 112.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 112.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 112.
- [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
  (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.aux
 LaTeX Info: Redefining \. on input line 24.
 LaTeX Info: Redefining \% on input line 24.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 109.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
 Package rerunfilecheck Info: File `informe.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 6999 strings out of 493117
- 103987 string characters out of 6135433
+ 6993 strings out of 493117
+ 103926 string characters out of 6135433
  200356 words of memory out of 5000000
- 10210 multiletter control sequences out of 15000+600000
+ 10209 multiletter control sequences out of 15000+600000
  40637 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,12n,43p,844b,415s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (20 pages, 2025136 bytes).
+Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp1/informe/.texpadtmp/informe.pdf (19 pages, 2026112 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
- 240 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 253 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 232 words of extra memory for PDF output out of 10000 (max. 10000000)
 

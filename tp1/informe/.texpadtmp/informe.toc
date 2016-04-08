@@ -16,4 +16,3 @@
 \contentsline {subsubsection}{\numberline {3.2.3}Mejor estrategia}{15}{subsubsection.3.2.3}
 \contentsline {section}{\numberline {4}Conclusiones}{18}{section.4}
 \contentsline {section}{\numberline {5}Referencias}{19}{section.5}
-\contentsline {section}{\numberline {6}Apendice}{20}{section.6}
