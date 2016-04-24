@@ -16,7 +16,17 @@
 // TODO: Fill with input args and description
 
 int main(int argc, char const *argv[]){
-    // TODO: Code
+    DigitImage image;
+	ifstream input("input.txt");
+
+	// Skip First Line
+    while(input.get() != '\n');
+
+    populateDigitImage(input, image);
+
+    image.prettyPrint(cout);
+
+    input.close();
 
     return 0;
 }
