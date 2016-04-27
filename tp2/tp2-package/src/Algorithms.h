@@ -5,7 +5,19 @@
 #include "Types.h"
 #include "Print.h"
 #include "Equalty.h"
-using namespace std;
+
+double dotProduct(vector<double> &vec1, vector<double> &vec2);
+
+struct TC {
+    Matrix transformation;
+
+    void init(Matrix &eigenVectors, vector<DigitImage> &images){
+        transformation = Matrix(images.size(), vector<double>(eigenVectors.size()));
+        for (int i = 0; i < images.size(); ++i)
+            for (int j = 0; j < eigenVectors.size(); ++j)
+                transformation[i][j] = dotProduct(eigenVectors[j], images[i].pixels);
+    }
+};
 
 //returns the selected digit for the DigitImage passed, should have only one image
 // int knn(DigitImages &train, DigitImages &test, int k){
@@ -66,14 +78,15 @@ void deflatePCA(Matrix &covariances, Matrix &deflater){
             covariances[i][j] -= deflater[i][j];
 }
 
-void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter){
-    Matrix deflater(covariances.size(), vector<double>(covariances.size(), 0));
+void PCA(DigitImagesHelper &imagesHelper, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter, TC &tc){
+    Matrix deflater(imagesHelper.covariances.size(), vector<double>(imagesHelper.covariances.size(), 0));
     for (int i = 0; i < alpha; ++i){
         randomVectorInitialize(eigenVectors[i]);
-        eigenValues[i] = powerMethod(covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
+        eigenValues[i] = powerMethod(imagesHelper.covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
         productColRow(eigenVectors[i], deflater, eigenValues[i]);
-        deflatePCA(covariances, deflater);
+        deflatePCA(imagesHelper.covariances, deflater);
     }
+    tc.init(eigenVectors, imagesHelper.images);
 }
 
 #endif

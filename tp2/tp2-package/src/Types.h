@@ -2,10 +2,7 @@
 #define Types_h
 
 #include "Imports.h"
-
 const int DEFAULT_IMAGE_SIDE_SIZE = 28;
-// TODO: Check this value
-const int DEFAULT_IMAGES_AMOUNT = 2;
 
 using Matrix = vector<vector<double> >;
 using Pixels = vector<double>;
@@ -40,7 +37,6 @@ struct DigitImagesHelper {
         img_size = DEFAULT_IMAGE_SIDE_SIZE;
         img_size_sqr = img_size * img_size;
         medians = vector<int>(img_size_sqr, 0);
-        labels = vector<int>(img_size_sqr, 0);
     }
 
     // -------- Covariance --------

@@ -11,7 +11,7 @@ void populateDigitImageWithExtras(DigitImagesHelper&, DigitImage&, istream&, int
 
 void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDir) {
 
-	/* DigitImagesHelper sizes initialization */
+    /* DigitImagesHelper sizes initialization */
     imagesHelper.init();
 
     /* Input file fetching */
@@ -26,23 +26,23 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDi
     int k = 0;
     while(getline(input, line)){
         stringstream lineStream(line);
-
         /* Particular Digit Image Population */
         DigitImage image;
-    	image.pixels = Pixels(imagesHelper.img_size_sqr, 0.0);
+        image.pixels = Pixels(imagesHelper.img_size_sqr, 0.0);
 
-    	populateDigitImageWithExtras(imagesHelper, image, lineStream, k);
+        populateDigitImageWithExtras(imagesHelper, image, lineStream, k);
 
-    	// Advance iterator to next image
-    	k++;
+        // Advance iterator to next image
+        k++;
 
         imagesHelper.correlation.push_back(image.pixels);
+        imagesHelper.images.push_back(image);
     }
     imagesHelper.samples = k;
     input.close();
 
     /* Median calculation */
-	for (int i = 0; i < imagesHelper.img_size_sqr; ++i) {
+    for (int i = 0; i < imagesHelper.img_size_sqr; ++i) {
         imagesHelper.medians[i] /= imagesHelper.samples;
     }
 
@@ -55,15 +55,13 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDi
 }
 
 void populateDigitImageWithExtras(DigitImagesHelper &imagesHelper, DigitImage &image, istream &input, int currentImage) {
-
-	/* Label */
-    string label;
+    /* Label */
+    string label, pixelStr;
     getline(input, label, ',');
-    imagesHelper.labels[currentImage] = stoi(label);
+    imagesHelper.labels.push_back(stoi(label));
 
     /* Pixel fetching and median sum */
     int i = 0;
-    string pixelStr;
     while(getline(input, pixelStr, ',')){
         int pixel = stoi(pixelStr);
         image.pixels[i] = pixel;

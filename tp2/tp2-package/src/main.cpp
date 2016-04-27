@@ -1,5 +1,5 @@
 //Compile: g++ -o main main.cpp -std=c++11
-//Run con tests provistos ./main ../../tests/test1.in .......
+//Run con tests provistos ./main ../tests/test1.in .......
 #include "Algorithms.h"
 #include "Tests.h"
 #include "Types.h"
@@ -33,8 +33,9 @@ int main(int argc, char const *argv[]){
     if(method == "1"){
         imagesHelper.calculateCovariances();
         Matrix eigenVectors(alpha, vector<double>(imagesHelper.img_size_sqr));
-        vector<double> eigenValues(imagesHelper.img_size_sqr);
-        PCA(imagesHelper.covariances, eigenVectors, eigenValues, alpha, 5);
+        vector<double> eigenValues(alpha);
+        TC tc;
+        PCA(imagesHelper, eigenVectors, eigenValues, alpha, 5, tc);
         // imagesHelper.prettyPrint(cout, "covariance");
     }
     if(method == "2"){
@@ -52,7 +53,8 @@ int main(int argc, char const *argv[]){
     asd.covariances = {{66.2134, 27.1263}, {27.1263, 12.5491}};
     Matrix eigenVectors(2, vector<double>(2));
     vector<double> eigenValues(2);
-    PCA(asd.covariances, eigenVectors, eigenValues, 2, 5);
+    TC tc;
+    PCA(asd, eigenVectors, eigenValues, 2, 5, tc);
     printVector(eigenValues);
     printMatrix(eigenVectors);
 */
