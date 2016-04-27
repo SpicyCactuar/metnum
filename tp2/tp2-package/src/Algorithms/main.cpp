@@ -18,30 +18,30 @@ int main(int argc, char const *argv[]){
     }
 
     ifstream input(argv[1]);
-    // ofstream output(argv[2]);
+    //ofstream output(argv[2]);
     string method = argv[3];
 
     string inFileDir;
     int kMinus, alpha, gamma, kMayus;
 
     input >> inFileDir >> kMinus >> alpha >> gamma >> kMayus;
-    DigitImages images;
-    images.populateDigitImages(inFileDir);
+    DigitImagesHelper imagesHelper;
+    populateDigitImagesHelper(imagesHelper, inFileDir);
     if(method == "0"){
         // TODO kNN
     }
     if(method == "1"){
-        images.calculateCovariances();
-        Matrix eigenVectors(images.img_size_sqr, vector<double>(images.img_size_sqr));
-        vector<double> eigenValues(images.img_size_sqr);
-        PCA(images.covariances, eigenVectors, eigenValues, 5);
-        // images.prettyPrint(cout, "covariance");
+        imagesHelper.calculateCovariances();
+        Matrix eigenVectors(imagesHelper.img_size_sqr, vector<double>(imagesHelper.img_size_sqr));
+        vector<double> eigenValues(imagesHelper.img_size_sqr);
+        PCA(imagesHelper.covariances, eigenVectors, eigenValues, 5);
+        // imagesHelper.prettyPrint(cout, "covariance");
     }
     if(method == "2"){
         // TODO PLS-DA + kNN
     }
 
-    // images.prettyPrint(cout, "correlation");
+    imagesHelper.prettyPrint(cout, "correlation");
     input.close();
     // output.close();
     return 0;
