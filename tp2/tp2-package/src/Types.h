@@ -17,13 +17,14 @@ double dotProduct(vector<double> &vec1, vector<double> &vec2){
 
 /** Class representing one manuscript digit image **/
 struct DigitImage {
+    //faltaria poner label por defecto = -1
     int label;
     Pixels pixels;
 };
 /** Class representing a smart container of DigitImage(s) **/
 
-struct DigitImagesHelper {
-    int samples, img_size, img_size_sqr;
+struct DigitImages {
+    int imgSizeSqr;
     vector<int> medians;
     vector<DigitImage> images;
     Matrix correlation; // X
@@ -31,33 +32,41 @@ struct DigitImagesHelper {
 
     // -------- Initialization --------
     void init() {
-        img_size = DEFAULT_IMAGE_SIDE_SIZE;
-        img_size_sqr = img_size * img_size;
-        medians = vector<int>(img_size_sqr, 0);
+        imgSizeSqr = DEFAULT_IMAGE_SIDE_SIZE * DEFAULT_IMAGE_SIDE_SIZE;
+        medians = vector<int>(imgSizeSqr, 0);
     }
-    // -------- Covariance --------
 
+    void calculateCorrelation(){
+        for (int i = 0; i < medians.size(); ++i)
+            medians[i] /= images.size();
+        for (int i = 0; i < images.size(); ++i)
+            for (int j = 0; j < medians.size(); ++j)
+                correlation[i][j] = (correlation[i][j] - medians[j]) / sqrt(images.size() - 1);
+    }
+
+    // -------- Covariance --------
     void calculateCovariances(){
-        covariances = Matrix(img_size_sqr, vector<double>(img_size_sqr, 0.0));
-        for (int i = 0; i < img_size_sqr; ++i){
-            for (int j = 0; j < img_size_sqr; ++j){
-                int sum = 0;
-                for (int k = 0; k < samples; ++k){
+        covariances = Matrix(imgSizeSqr, vector<double>(imgSizeSqr));
+        for (int i = 0; i < imgSizeSqr; ++i){
+            for (int j = i; j < imgSizeSqr; ++j){
+                double sum = 0;
+                for (int k = 0; k < images.size(); ++k){
                     sum += correlation[k][i] * correlation[k][j];
                 }
                 covariances[i][j] = sum;
+                covariances[j][i] = sum;
             }
         }
     }
-    // -------- Printers --------
 
+    // -------- Printers --------
     void printCorrelation(ostream &output, int index) {
         int i = 0, j = 0;
-        for (int k = 0; k < img_size_sqr; ++k) {
+        for (int k = 0; k < imgSizeSqr; ++k) {
             if(j == 0)
                 output << '[';
             output << correlation[index][k];
-            if(j == img_size - 1){
+            if(j == DEFAULT_IMAGE_SIDE_SIZE - 1){
                 j = 0;
                 i++;
                 output << ']' << endl;
@@ -70,12 +79,12 @@ struct DigitImagesHelper {
     }
 
     void printCovariance(ostream &output) {
-        for (int i = 0; i < img_size_sqr; ++i) {
-            for (int j = 0; j < img_size_sqr; ++j) {
+        for (int i = 0; i < imgSizeSqr; ++i) {
+            for (int j = 0; j < imgSizeSqr; ++j) {
                 if(j == 0)
                     output << '[';
                 output << covariances[i][j];
-                if(j == img_size_sqr - 1)
+                if(j == imgSizeSqr - 1)
                     output << ']' << endl;
                 else
                     output << ',';
@@ -85,7 +94,7 @@ struct DigitImagesHelper {
 
     void prettyPrint(ostream &output, string type) {
         if(type == "correlation"){
-            for (int i = 0; i < samples; ++i){
+            for (int i = 0; i < images.size(); ++i){
                 output << endl << "LABEL" << endl << "=====" << endl << endl;
                 output << images[i].label << endl << endl;
                 output << "PIXELS" << endl << "======" << endl << endl;
@@ -102,11 +111,11 @@ struct DigitImagesHelper {
 struct TC {
     Matrix transformation;
 
-    void init(Matrix &eigenVectors, vector<DigitImage> &images){
-        transformation = Matrix(images.size(), vector<double>(eigenVectors.size()));
-        for (int i = 0; i < images.size(); ++i)
+    void init(Matrix &eigenVectors, Matrix &correlation){
+        transformation = Matrix(correlation.size(), vector<double>(eigenVectors.size()));
+        for (int i = 0; i < correlation.size(); ++i)
             for (int j = 0; j < eigenVectors.size(); ++j)
-                transformation[i][j] = dotProduct(eigenVectors[j], images[i].pixels);
+                transformation[i][j] = dotProduct(eigenVectors[j], correlation[i]);
     }
 };
 

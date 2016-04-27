@@ -30,37 +30,39 @@ int main(int argc, char const *argv[]){
     for (int i = 0; i < kMayus; ++i){
         getline(input, line);
         stringstream lineStream(line);
-        DigitImagesHelper imagesHelperTrain, imagesHelperTest;
-        populateDigitImagesHelper(imagesHelperTrain, imagesHelperTest, inFileDir, lineStream);
+        DigitImages imagesTrain, imagesTest;
+        populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
         if(method == "0"){
             // TODO kNN
         }
         if(method == "1"){
-            imagesHelperTrain.calculateCovariances();
-            Matrix eigenVectors(alpha, vector<double>(imagesHelperTrain.img_size_sqr));
+            imagesTrain.calculateCorrelation();
+            imagesTrain.calculateCovariances();
+            Matrix eigenVectors(alpha, vector<double>(imagesTrain.imgSizeSqr));
             vector<double> eigenValues(alpha);
             TC tcTrain, tcTest;
-            PCA(imagesHelperTrain, eigenVectors, eigenValues, alpha, 5, tcTrain);
-            testToTC(imagesHelperTrain, imagesHelperTest, eigenVectors, tcTest);
+            PCA(imagesTrain, eigenVectors, eigenValues, alpha, 5, tcTrain);
+            testToTC(imagesTrain, imagesTest, eigenVectors, tcTest);
             for (int j = 0; j < tcTest.transformation.size(); ++j){
-                int digito = kNN(tcTest.transformation[j], tcTrain.transformation, kMinus, imagesHelperTrain);
-                cout << "la imagen: " << j << " del kNN: " << digito << " del label " << imagesHelperTest.images[j].label << endl;
+                int digito = kNN(tcTest.transformation[j], tcTrain.transformation, kMinus, imagesTrain);
+                cout << "la imagen: " << j << " del kNN: " << digito << " del label: " << imagesTest.images[j].label << endl;
             }
-            // imagesHelperTrain.prettyPrint(cout, "covariance");
+            // imagesTrain.prettyPrint(cout, "covariance");
         }
         if(method == "2"){
             // TODO PLS-DA + kNN
         }
+        cout << endl;
     }
 
-    // imagesHelper.prettyPrint(cout, "correlation");
+    // images.prettyPrint(cout, "correlation");
     input.close();
     // output.close();
 
 /*
     //TEST DE LA DIAPO!!
-    DigitImagesHelper asd;
-    asd.img_size_sqr = 2;
+    DigitImages asd;
+    asd.imgSizeSqr = 2;
     asd.covariances = {{66.2134, 27.1263}, {27.1263, 12.5491}};
     Matrix eigenVectors(2, vector<double>(2));
     vector<double> eigenValues(2);

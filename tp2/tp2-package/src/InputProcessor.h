@@ -3,15 +3,7 @@
 
 #include "Types.h"
 
-void medianAndCorrelationCalc(DigitImagesHelper &imagesHelper){
-    for (int i = 0; i < imagesHelper.img_size_sqr; ++i)
-        imagesHelper.medians[i] /= imagesHelper.samples;
-    for (int i = 0; i < imagesHelper.samples; ++i)
-        for (int j = 0; j < imagesHelper.img_size_sqr; ++j)
-            imagesHelper.correlation[i][j] = (imagesHelper.correlation[i][j] - imagesHelper.medians[j]) / sqrt(imagesHelper.samples - 1);
-}
-
-void populateDigitImageWithExtras(DigitImagesHelper &imagesHelper, DigitImage &image, istream &input, int currentImage) {
+void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istream &input) {
     /* Label */
     string label, pixelStr;
     getline(input, label, ',');
@@ -22,15 +14,15 @@ void populateDigitImageWithExtras(DigitImagesHelper &imagesHelper, DigitImage &i
     while(getline(input, pixelStr, ',')){
         int pixel = stoi(pixelStr);
         image.pixels[i] = pixel;
-        imagesHelper.medians[i] += pixel;
+        images.medians[i] += pixel;
         i++;
     }
 }
 
-void populateDigitImagesHelper(DigitImagesHelper &imagesHelperTrain, DigitImagesHelper &imagesHelperTest, string &inFileDir, istream &inputStream) {
-    /* DigitImagesHelper sizes initialization */
-    imagesHelperTrain.init();
-    imagesHelperTest.init();
+void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, string &inFileDir, istream &inputStream) {
+    /* DigitImages sizes initialization */
+    imagesTrain.init();
+    imagesTest.init();
 
     /* Input file fetching */
     string nameInFile = inFileDir + "train.csv";
@@ -40,8 +32,7 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelperTrain, DigitImages
     string line, isTrain;
     getline(input, line);
 
-    /* Digit Images Helper population */
-    int kTrain = 0, kTest = 0;
+    /* Digit Images  population */
     while(getline(input, line)){
         getline(inputStream, isTrain, ' ');
         stringstream lineStream(line);
@@ -49,26 +40,19 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelperTrain, DigitImages
         DigitImage image;
         // si es de train, la proceso a full, sino, solo me interesa la imagen
         if(isTrain == "1"){
-            image.pixels = Pixels(imagesHelperTrain.img_size_sqr, 0.0);
-            populateDigitImageWithExtras(imagesHelperTrain, image, lineStream, kTrain);
+            image.pixels = Pixels(imagesTrain.imgSizeSqr);
+            populateDigitImageWithExtras(imagesTrain, image, lineStream);
             // Advance iterator to next image
-            kTrain++;
-            imagesHelperTrain.correlation.push_back(image.pixels);
-            imagesHelperTrain.images.push_back(image);
+            imagesTrain.correlation.push_back(image.pixels);
+            imagesTrain.images.push_back(image);
         } else{
-            image.pixels = Pixels(imagesHelperTest.img_size_sqr, 0.0);
-            populateDigitImageWithExtras(imagesHelperTest, image, lineStream, kTest);
+            image.pixels = Pixels(imagesTest.imgSizeSqr);
+            populateDigitImageWithExtras(imagesTest, image, lineStream);
             // Advance iterator to next image
-            kTest++;
-            imagesHelperTest.images.push_back(image);
+            imagesTest.images.push_back(image);
         }
     }
-    cout << kTrain << " " << kTest << endl;
-    imagesHelperTrain.samples = kTrain;
-    imagesHelperTest.samples = kTest;
     input.close();
-
-    medianAndCorrelationCalc(imagesHelperTrain);
 }
 
 #endif

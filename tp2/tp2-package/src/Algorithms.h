@@ -7,17 +7,19 @@
 #include "Equalty.h"
 
 const int LABELS_QTY = 10;
-int kNN(vector<double> &test, Matrix &train, int k, DigitImagesHelper &digitImagesTrain){
+int kNN(vector<double> &test, Matrix &train, int k, DigitImages &digitImagesTrain){
+    // distance, index
     vector<pair<double, int> > distances(train.size());
     vector<int> labels(LABELS_QTY, 0);
     for (int i = 0; i < train.size(); ++i){
         distances[i].first = dotProduct(train[i], test);
         distances[i].second = i;
     }
-    sort(distances.rbegin(), distances.rend()); //hack to order in descend order
+    sort(distances.begin(), distances.end());
     for (int i = 0; i < k; ++i)
         labels[digitImagesTrain.images[distances[i].second].label]++;
     int max = labels[0], label = 0;
+    // TODO: extract to function
     for (int i = 1; i < labels.size(); ++i){
         if (labels[i] > max){
             max = labels[i];
@@ -48,7 +50,7 @@ void productColRow(vector<double> &vec, Matrix &mat, double lambda = 1){
 void randomVectorInitialize(vector<double>& vec){
     for (int i = 0; i < vec.size(); ++i){
         srand((unsigned) time(NULL));
-        vec[i] = rand() + 1;
+        vec[i] = rand() + 1; // ver que valor tiene que ir aca, tengo entendido que un cero rompe
     }
 }
 
@@ -71,22 +73,23 @@ void deflatePCA(Matrix &covariances, Matrix &deflater){
             covariances[i][j] -= deflater[i][j];
 }
 
-void PCA(DigitImagesHelper &imagesHelper, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter, TC &tc){
-    Matrix deflater(imagesHelper.covariances.size(), vector<double>(imagesHelper.covariances.size(), 0));
+void PCA(DigitImages &images, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter, TC &tc){
+    Matrix deflater(images.covariances.size(), vector<double>(images.covariances.size(), 0));
     for (int i = 0; i < alpha; ++i){
         randomVectorInitialize(eigenVectors[i]);
-        eigenValues[i] = powerMethod(imagesHelper.covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
+        eigenValues[i] = powerMethod(images.covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
         productColRow(eigenVectors[i], deflater, eigenValues[i]);
-        deflatePCA(imagesHelper.covariances, deflater);
+        deflatePCA(images.covariances, deflater);
     }
-    tc.init(eigenVectors, imagesHelper.images);
+    tc.init(eigenVectors, images.correlation);
 }
 
-void testToTC(DigitImagesHelper &imagesHelperTrain, DigitImagesHelper &imagesHelperTest, Matrix &eigenVectors, TC &tc){
-    // for (int i = 0; i < imagesHelperTest.images.size(); ++i)
-    //     for (int j = 0; j < imagesHelperTest.images[i].pixels.size(); ++j)
-    //         imagesHelperTest.images[i].pixels[j] = (imagesHelperTest.images[i].pixels[j] - imagesHelperTrain.medians[j]) / sqrt(imagesHelperTrain.samples - 1);
-    tc.init(eigenVectors, imagesHelperTest.images);
+void testToTC(DigitImages &imagesTrain, DigitImages &imagesTest, Matrix &eigenVectors, TC &tc){
+    imagesTest.correlation = Matrix(imagesTest.images.size(), vector<double>(imagesTest.imgSizeSqr));
+    for (int i = 0; i < imagesTest.images.size(); ++i)
+        for (int j = 0; j < imagesTest.images[i].pixels.size(); ++j)
+            imagesTest.correlation[i][j] = (imagesTest.images[i].pixels[j] - imagesTrain.medians[j]) / sqrt(imagesTrain.images.size() - 1);
+    tc.init(eigenVectors, imagesTest.correlation);
 }
 
 #endif
