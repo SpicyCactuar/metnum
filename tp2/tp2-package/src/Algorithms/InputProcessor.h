@@ -9,10 +9,10 @@ void populateDigitImageWithExtras(DigitImagesHelper&, DigitImage&, istream&, int
 
 // -------- Input population --------
 
-void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDir, int size = DEFAULT_IMAGE_SIDE_SIZE, int amount = DEFAULT_IMAGES_AMOUNT) {
+void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDir) {
 
 	/* DigitImagesHelper sizes initialization */
-    imagesHelper.init(size, amount);
+    imagesHelper.init();
 
     /* Input file fetching */
     string nameInFile = inFileDir + "train.csv";
@@ -24,7 +24,7 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDi
 
     /* Digit Images Helper population */
     int k = 0;
-    while(getline(input, line) && k < amount){        
+    while(getline(input, line)){
         stringstream lineStream(line);
 
         /* Particular Digit Image Population */
@@ -34,10 +34,11 @@ void populateDigitImagesHelper(DigitImagesHelper &imagesHelper, string &inFileDi
     	populateDigitImageWithExtras(imagesHelper, image, lineStream, k);
 
     	// Advance iterator to next image
-    	k++; 
-        
+    	k++;
+
         imagesHelper.correlation.push_back(image.pixels);
     }
+    imagesHelper.samples = k;
     input.close();
 
     /* Median calculation */
@@ -59,7 +60,7 @@ void populateDigitImageWithExtras(DigitImagesHelper &imagesHelper, DigitImage &i
     string label;
     getline(input, label, ',');
     imagesHelper.labels[currentImage] = stoi(label);
-    
+
     /* Pixel fetching and median sum */
     int i = 0;
     string pixelStr;
@@ -68,7 +69,7 @@ void populateDigitImageWithExtras(DigitImagesHelper &imagesHelper, DigitImage &i
         image.pixels[i] = pixel;
         imagesHelper.medians[i] += pixel;
         i++;
-    }	
+    }
 }
 
 #endif

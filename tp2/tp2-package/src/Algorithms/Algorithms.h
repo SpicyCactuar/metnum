@@ -66,9 +66,9 @@ void deflatePCA(Matrix &covariances, Matrix &deflater){
             covariances[i][j] -= deflater[i][j];
 }
 
-void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues, int niter){
+void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter){
     Matrix deflater(covariances.size(), vector<double>(covariances.size(), 0));
-    for (int i = 0; i < covariances.size(); ++i){
+    for (int i = 0; i < alpha; ++i){
         randomVectorInitialize(eigenVectors[i]);
         eigenValues[i] = powerMethod(covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
         productColRow(eigenVectors[i], deflater, eigenValues[i]);

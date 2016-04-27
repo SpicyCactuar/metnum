@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]){
     }
 
     ifstream input(argv[1]);
-    //ofstream output(argv[2]);
+    // ofstream output(argv[2]);
     string method = argv[3];
 
     string inFileDir;
@@ -32,17 +32,29 @@ int main(int argc, char const *argv[]){
     }
     if(method == "1"){
         imagesHelper.calculateCovariances();
-        Matrix eigenVectors(imagesHelper.img_size_sqr, vector<double>(imagesHelper.img_size_sqr));
+        Matrix eigenVectors(alpha, vector<double>(imagesHelper.img_size_sqr));
         vector<double> eigenValues(imagesHelper.img_size_sqr);
-        PCA(imagesHelper.covariances, eigenVectors, eigenValues, 5);
+        PCA(imagesHelper.covariances, eigenVectors, eigenValues, alpha, 5);
         // imagesHelper.prettyPrint(cout, "covariance");
     }
     if(method == "2"){
         // TODO PLS-DA + kNN
     }
 
-    imagesHelper.prettyPrint(cout, "correlation");
+    // imagesHelper.prettyPrint(cout, "correlation");
     input.close();
     // output.close();
+
+/*
+    //TEST DE LA DIAPO!!
+    DigitImagesHelper asd;
+    asd.img_size_sqr = 2;
+    asd.covariances = {{66.2134, 27.1263}, {27.1263, 12.5491}};
+    Matrix eigenVectors(2, vector<double>(2));
+    vector<double> eigenValues(2);
+    PCA(asd.covariances, eigenVectors, eigenValues, 2, 5);
+    printVector(eigenValues);
+    printMatrix(eigenVectors);
+*/
     return 0;
 }

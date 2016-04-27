@@ -27,64 +27,21 @@ struct DigitImage {
 /** Class representing a smart container of DigitImage(s) **/
 
 struct DigitImagesHelper {
-    
+
     int samples, img_size, img_size_sqr;
     vector<int> medians, labels;
     vector<DigitImage> images;
     Matrix correlation; // X
     Matrix covariances; // M = X^tX
 
-    /* // -------- Input population --------
-
-    void populateDigitImages(string &inFileDir, int size = DEFAULT_IMAGE_SIDE_SIZE) {
-        img_size = size;
-        img_size_sqr = img_size * img_size;
-        medians = vector<int>(img_size_sqr, 0);
-        labels = vector<int>(img_size_sqr, 0);
-        string nameInFile = inFileDir + "train.csv";
-        ifstream input(nameInFile);
-        // First line is not needed
-        string line;
-        int k = 0;
-        getline(input, line);
-        while(getline(input, line)){
-            vector<double> image(img_size_sqr, 0);
-            stringstream lineStream(line);
-            int i = 0;
-            string pixel;
-            getline(lineStream, pixel, ',');
-            labels[k] = stoi(pixel);
-            k++;
-            while(getline(lineStream, pixel, ',')){
-                int iPixel = stoi(pixel);
-                image[i] = iPixel;
-                medians[i] += iPixel;
-                i++;
-            }
-            correlation.push_back(image);
-        }
-        input.close();
-        samples = correlation.size();
-        for (int i = 0; i < img_size_sqr; ++i){
-            medians[i] /= samples;
-        }
-        for (int i = 0; i < samples; ++i){
-            for (int j = 0; j < img_size_sqr; ++j){
-                correlation[i][j] = (correlation[i][j] - medians[j]) / sqrt(samples - 1);
-            }
-        }
-    } */
-
     // -------- Initialization --------
 
-    void init(int size, int amount) {
-        img_size = size;
+    void init() {
+        img_size = DEFAULT_IMAGE_SIDE_SIZE;
         img_size_sqr = img_size * img_size;
         medians = vector<int>(img_size_sqr, 0);
         labels = vector<int>(img_size_sqr, 0);
-
-        samples = amount;
-    }    
+    }
 
     // -------- Covariance --------
 
@@ -100,7 +57,7 @@ struct DigitImagesHelper {
             }
         }
     }
-    
+
 
     // -------- Printers --------
 
