@@ -10,6 +10,7 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 

@@ -6,25 +6,26 @@
 #include "Print.h"
 #include "Equalty.h"
 
-double dotProduct(vector<double> &vec1, vector<double> &vec2);
-
-struct TC {
-    Matrix transformation;
-
-    void init(Matrix &eigenVectors, vector<DigitImage> &images){
-        transformation = Matrix(images.size(), vector<double>(eigenVectors.size()));
-        for (int i = 0; i < images.size(); ++i)
-            for (int j = 0; j < eigenVectors.size(); ++j)
-                transformation[i][j] = dotProduct(eigenVectors[j], images[i].pixels);
+const int LABELS_QTY = 10;
+int kNN(vector<double> &test, Matrix &train, int k, DigitImagesHelper &digitImagesTrain){
+    vector<pair<double, int> > distances(train.size());
+    vector<int> labels(LABELS_QTY, 0);
+    for (int i = 0; i < train.size(); ++i){
+        distances[i].first = dotProduct(train[i], test);
+        distances[i].second = i;
     }
-};
-
-//returns the selected digit for the DigitImage passed, should have only one image
-// int knn(DigitImages &train, DigitImages &test, int k){
-//     for (int i = 0; i < train.size(); ++i){
-//         sqrt(dotProduct(train[i], vec));
-//     }
-// }
+    sort(distances.rbegin(), distances.rend()); //hack to order in descend order
+    for (int i = 0; i < k; ++i)
+        labels[digitImagesTrain.images[distances[i].second].label]++;
+    int max = labels[0], label = 0;
+    for (int i = 1; i < labels.size(); ++i){
+        if (labels[i] > max){
+            max = labels[i];
+            label = i;
+        }
+    }
+    return label;
+}
 
 //Ax = y product
 void productMatrixVector(Matrix &mat, vector<double> &vecIn, vector<double> &vecOut){
@@ -42,14 +43,6 @@ void productColRow(vector<double> &vec, Matrix &mat, double lambda = 1){
         for (int j = 0; j < vec.size(); ++j)
             mat[i][j] = vec[i] * vec[j] * lambda;
     }
-}
-
-//x^ty = # product
-double dotProduct(vector<double> &vec1, vector<double> &vec2){
-    double sum = 0;
-    for (int i = 0; i < vec1.size(); ++i)
-        sum += vec1[i] * vec2[i];
-    return sum;
 }
 
 void randomVectorInitialize(vector<double>& vec){
@@ -87,6 +80,13 @@ void PCA(DigitImagesHelper &imagesHelper, Matrix &eigenVectors, vector<double> &
         deflatePCA(imagesHelper.covariances, deflater);
     }
     tc.init(eigenVectors, imagesHelper.images);
+}
+
+void testToTC(DigitImagesHelper &imagesHelperTrain, DigitImagesHelper &imagesHelperTest, Matrix &eigenVectors, TC &tc){
+    // for (int i = 0; i < imagesHelperTest.images.size(); ++i)
+    //     for (int j = 0; j < imagesHelperTest.images[i].pixels.size(); ++j)
+    //         imagesHelperTest.images[i].pixels[j] = (imagesHelperTest.images[i].pixels[j] - imagesHelperTrain.medians[j]) / sqrt(imagesHelperTrain.samples - 1);
+    tc.init(eigenVectors, imagesHelperTest.images);
 }
 
 #endif

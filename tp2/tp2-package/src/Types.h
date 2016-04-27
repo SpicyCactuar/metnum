@@ -7,38 +7,34 @@ const int DEFAULT_IMAGE_SIDE_SIZE = 28;
 using Matrix = vector<vector<double> >;
 using Pixels = vector<double>;
 
+//x^ty = # product
+double dotProduct(vector<double> &vec1, vector<double> &vec2){
+    double sum = 0;
+    for (int i = 0; i < vec1.size(); ++i)
+        sum += vec1[i] * vec2[i];
+    return sum;
+}
+
 /** Class representing one manuscript digit image **/
-
 struct DigitImage {
-
+    int label;
     Pixels pixels;
-
-    // -------- Distance --------
-
-    int distanceTo(DigitImage &image) {
-        return 0;
-    }
-
 };
-
 /** Class representing a smart container of DigitImage(s) **/
 
 struct DigitImagesHelper {
-
     int samples, img_size, img_size_sqr;
-    vector<int> medians, labels;
+    vector<int> medians;
     vector<DigitImage> images;
     Matrix correlation; // X
     Matrix covariances; // M = X^tX
 
     // -------- Initialization --------
-
     void init() {
         img_size = DEFAULT_IMAGE_SIDE_SIZE;
         img_size_sqr = img_size * img_size;
         medians = vector<int>(img_size_sqr, 0);
     }
-
     // -------- Covariance --------
 
     void calculateCovariances(){
@@ -53,8 +49,6 @@ struct DigitImagesHelper {
             }
         }
     }
-
-
     // -------- Printers --------
 
     void printCorrelation(ostream &output, int index) {
@@ -93,7 +87,7 @@ struct DigitImagesHelper {
         if(type == "correlation"){
             for (int i = 0; i < samples; ++i){
                 output << endl << "LABEL" << endl << "=====" << endl << endl;
-                output << labels[i] << endl << endl;
+                output << images[i].label << endl << endl;
                 output << "PIXELS" << endl << "======" << endl << endl;
                 printCorrelation(output, i);
             }
@@ -101,6 +95,18 @@ struct DigitImagesHelper {
         else if(type == "covariance"){
             printCovariance(output);
         }
+    }
+};
+
+/** Class representing one manuscript digit image **/
+struct TC {
+    Matrix transformation;
+
+    void init(Matrix &eigenVectors, vector<DigitImage> &images){
+        transformation = Matrix(images.size(), vector<double>(eigenVectors.size()));
+        for (int i = 0; i < images.size(); ++i)
+            for (int j = 0; j < eigenVectors.size(); ++j)
+                transformation[i][j] = dotProduct(eigenVectors[j], images[i].pixels);
     }
 };
 

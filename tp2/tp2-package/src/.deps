@@ -1,27 +1,20 @@
 {
     ".deps_version": 2, 
-    "g++ -O2 -c ./Algorithms/main.cpp -o ./Algorithms/main.o -std=c++11": {
-        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
-        "Algorithms/Algorithms.h": "input-844351f38f2398a408f4b3ed8fabd832", 
-        "Algorithms/Equalty.h": "input-b3b07635bb31694ccc6ce993f29aec03", 
-        "Algorithms/Imports.h": "input-cb15de6905b5b896924e8c53d52d70ec", 
-        "Algorithms/InputProcessor.h": "input-5af1aecdf64f5718f075db056891ceef", 
-        "Algorithms/Print.h": "input-0276915a3cd1691c470a0b61f9fa7f32", 
-        "Algorithms/Tests.h": "input-b79312f7efe69a7a70cb9e30113437d9", 
-        "Algorithms/Types.h": "input-5c6047cdb8077b2b14c9e8ff20659bae", 
-        "Algorithms/main.cpp": "input-cc8ec9b14dd160948849f308261116ba", 
-        "Algorithms/main.o": "output-30f9e85a0b8cebb46723b86509625eda"
-    }, 
     "g++ -O2 -c ./main.cpp -o ./main.o -std=c++11": {
         ".": "input-5058f1af8388633f609cadb75a75dc9d", 
-        "Algorithms.h": "input-844351f38f2398a408f4b3ed8fabd832", 
+        "Algorithms.h": "input-a5265e8587f5e391185b9b43d863be23", 
         "Equalty.h": "input-b3b07635bb31694ccc6ce993f29aec03", 
-        "Imports.h": "input-cb15de6905b5b896924e8c53d52d70ec", 
-        "InputProcessor.h": "input-5af1aecdf64f5718f075db056891ceef", 
+        "Imports.h": "input-83940fbe41cc4edc8ca605a6f426b103", 
+        "InputProcessor.h": "input-171298e44280228068b86b00f5230e4e", 
         "Print.h": "input-0276915a3cd1691c470a0b61f9fa7f32", 
         "Tests.h": "input-b79312f7efe69a7a70cb9e30113437d9", 
-        "Types.h": "input-d9c8d26cc69c7d25bde311ec12800f0e", 
-        "main.cpp": "input-cc8ec9b14dd160948849f308261116ba", 
-        "main.o": "output-30f9e85a0b8cebb46723b86509625eda"
+        "Types.h": "input-0b5a4cff787676368868649dde6872ce", 
+        "main.cpp": "input-8f22d28cfc50481a35163ca81a310a37", 
+        "main.o": "output-42423770869120dc781795b5848ca5b6"
+    }, 
+    "g++ -o ./tp ./main.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "main.o": "input-42423770869120dc781795b5848ca5b6", 
+        "tp": "output-32437e4302929593a44fe8cc227046d5"
     }
 }

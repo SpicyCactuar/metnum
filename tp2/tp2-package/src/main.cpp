@@ -1,5 +1,5 @@
-//Compile: g++ -o main main.cpp -std=c++11
-//Run con tests provistos ./main ../tests/test1.in .......
+//Compile: g++ -o tp main.cpp -std=c++11
+//Run con tests provistos ./tp tests/test1.in .......
 #include "Algorithms.h"
 #include "Tests.h"
 #include "Types.h"
@@ -21,25 +21,36 @@ int main(int argc, char const *argv[]){
     // ofstream output(argv[2]);
     string method = argv[3];
 
-    string inFileDir;
+    string inFileDir, line;
     int kMinus, alpha, gamma, kMayus;
 
     input >> inFileDir >> kMinus >> alpha >> gamma >> kMayus;
-    DigitImagesHelper imagesHelper;
-    populateDigitImagesHelper(imagesHelper, inFileDir);
-    if(method == "0"){
-        // TODO kNN
-    }
-    if(method == "1"){
-        imagesHelper.calculateCovariances();
-        Matrix eigenVectors(alpha, vector<double>(imagesHelper.img_size_sqr));
-        vector<double> eigenValues(alpha);
-        TC tc;
-        PCA(imagesHelper, eigenVectors, eigenValues, alpha, 5, tc);
-        // imagesHelper.prettyPrint(cout, "covariance");
-    }
-    if(method == "2"){
-        // TODO PLS-DA + kNN
+    // skip the rest of the first line
+    getline(input, line);
+    for (int i = 0; i < kMayus; ++i){
+        getline(input, line);
+        stringstream lineStream(line);
+        DigitImagesHelper imagesHelperTrain, imagesHelperTest;
+        populateDigitImagesHelper(imagesHelperTrain, imagesHelperTest, inFileDir, lineStream);
+        if(method == "0"){
+            // TODO kNN
+        }
+        if(method == "1"){
+            imagesHelperTrain.calculateCovariances();
+            Matrix eigenVectors(alpha, vector<double>(imagesHelperTrain.img_size_sqr));
+            vector<double> eigenValues(alpha);
+            TC tcTrain, tcTest;
+            PCA(imagesHelperTrain, eigenVectors, eigenValues, alpha, 5, tcTrain);
+            testToTC(imagesHelperTrain, imagesHelperTest, eigenVectors, tcTest);
+            for (int j = 0; j < tcTest.transformation.size(); ++j){
+                int digito = kNN(tcTest.transformation[j], tcTrain.transformation, kMinus, imagesHelperTrain);
+                cout << "la imagen: " << j << " del kNN: " << digito << " del label " << imagesHelperTest.images[j].label << endl;
+            }
+            // imagesHelperTrain.prettyPrint(cout, "covariance");
+        }
+        if(method == "2"){
+            // TODO PLS-DA + kNN
+        }
     }
 
     // imagesHelper.prettyPrint(cout, "correlation");
