@@ -7,12 +7,20 @@
 #include "Equalty.h"
 
 const int LABELS_QTY = 10;
+
+void substractVecVec(vector<double> &vec1, vector<double> &vec2, vector<double> &res){
+    for (int i = 0; i < res.size(); ++i)
+        res[i] = vec1[i] - vec2[i];
+}
+
 int kNN(vector<double> &test, Matrix &train, int k, DigitImages &digitImagesTrain){
     // distance, index
     vector<pair<double, int> > distances(train.size());
     vector<int> labels(LABELS_QTY, 0);
+    vector<double> diff(test.size());
     for (int i = 0; i < train.size(); ++i){
-        distances[i].first = dotProduct(train[i], test);
+        substractVecVec(test, train[i], diff);
+        distances[i].first = dotProduct(diff, diff);
         distances[i].second = i;
     }
     sort(distances.begin(), distances.end());
