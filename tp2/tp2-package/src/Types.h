@@ -3,6 +3,7 @@
 
 #include "Imports.h"
 const int DEFAULT_IMAGE_SIDE_SIZE = 28;
+const int LABELS_QTY = 10;
 
 using Matrix = vector<vector<double> >;
 using Pixels = vector<double>;
@@ -25,17 +26,22 @@ struct DigitImage {
 
 struct DigitImages {
     int imgSizeSqr;
-    vector<int> medians;
+    vector<int> labels;
+    vector<double> medians, labelYMedians;
     vector<DigitImage> images;
     Matrix correlation; // X
+    Matrix correlationPLSDA; // X
     Matrix covariances; // M = X^tX
+    Matrix labelY;
 
     // -------- Initialization --------
     void init() {
         imgSizeSqr = DEFAULT_IMAGE_SIDE_SIZE * DEFAULT_IMAGE_SIDE_SIZE;
-        medians = vector<int>(imgSizeSqr, 0);
+        medians = vector<double>(imgSizeSqr, 0);
+        labelYMedians = vector<double>(LABELS_QTY, 0);
     }
 
+    // -------- Correlation --------
     void calculateCorrelation(){
         for (int i = 0; i < medians.size(); ++i)
             medians[i] /= images.size();
@@ -57,6 +63,15 @@ struct DigitImages {
                 covariances[j][i] = sum;
             }
         }
+    }
+
+    // -------- MedianLabels --------
+    void calculateMedianLabels(){
+        for (int i = 0; i < labelYMedians.size(); ++i)
+            labelYMedians[i] /= labelY.size();
+        for (int i = 0; i < labelY.size(); ++i)
+            for (int j = 0; j < labelYMedians.size(); ++j)
+                labelY[i][j] = (labelY[i][j] - labelYMedians[j]) / sqrt(labelYMedians.size() - 1);
     }
 
     // -------- Printers --------

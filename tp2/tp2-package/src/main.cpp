@@ -32,17 +32,21 @@ int main(int argc, char const *argv[]){
         stringstream lineStream(line);
         DigitImages imagesTrain, imagesTest;
         populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
+        imagesTrain.calculateCorrelation();
         if(method == "0"){
             // TODO kNN
         }
         if(method == "1"){
-            imagesTrain.calculateCorrelation();
             imagesTrain.calculateCovariances();
-            Matrix eigenVectors(alpha, vector<double>(imagesTrain.imgSizeSqr));
+            Matrix eigenVectors(alpha, vector<double>(imagesTrain.covariances.size()));
             vector<double> eigenValues(alpha);
             TC tcTrain, tcTest;
-            PCA(imagesTrain, eigenVectors, eigenValues, alpha, 5, tcTrain);
-            testToTC(imagesTrain, imagesTest, eigenVectors, tcTest);
+            PCA(imagesTrain.covariances, eigenVectors, eigenValues, alpha, 500);
+            tcTrain.init(eigenVectors, imagesTrain.correlation);
+            testToTC(imagesTrain, imagesTest);
+            tcTest.init(eigenVectors, imagesTest.correlation);
+            // for (int j = 0; j < alpha; ++j)
+            //     cout << scientific << eigenValues[j] << endl;
             for (int j = 0; j < tcTest.transformation.size(); ++j){
                 int digito = kNN(tcTest.transformation[j], tcTrain.transformation, kMinus, imagesTrain);
                 cout << "la imagen: " << j << " del kNN: " << digito << " del label: " << imagesTest.images[j].label << endl;
@@ -50,9 +54,21 @@ int main(int argc, char const *argv[]){
             // imagesTrain.prettyPrint(cout, "covariance");
         }
         if(method == "2"){
-            // TODO PLS-DA + kNN
+            imagesTrain.calculateMedianLabels();
+            Matrix eigenVectors(gamma, vector<double>(imagesTrain.imgSizeSqr));
+            vector<double> eigenValues(gamma);
+            TC tcTrain, tcTest;
+            PLSDA(imagesTrain, eigenVectors, eigenValues, gamma, 500);
+            tcTrain.init(eigenVectors, imagesTrain.correlation);
+            testToTC(imagesTrain, imagesTest);
+            tcTest.init(eigenVectors, imagesTest.correlation);
+            for (int j = 0; j < gamma; ++j)
+                cout << scientific << eigenValues[j] << endl;
+            for (int j = 0; j < tcTest.transformation.size(); ++j){
+                int digito = kNN(tcTest.transformation[j], tcTrain.transformation, kMinus, imagesTrain);
+                cout << "la imagen: " << j << " del kNN: " << digito << " del label: " << imagesTest.images[j].label << endl;
+            }
         }
-        cout << endl;
     }
 
     // images.prettyPrint(cout, "correlation");

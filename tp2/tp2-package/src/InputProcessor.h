@@ -7,7 +7,16 @@ void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istrea
     /* Label */
     string label, pixelStr;
     getline(input, label, ',');
-    image.label = stoi(label);
+    int l = stoi(label);
+    vector<double> labelY(images.labelYMedians.size(), -1);
+    images.labels.push_back(l);
+    image.label = l;
+    //PLSDA purposes
+    labelY[l] = 1;
+    images.labelY.push_back(labelY);
+    for (int i = 0; i < images.labelYMedians.size(); ++i){
+        images.labelYMedians[i] += labelY[i];
+    }
 
     /* Pixel fetching and median sum */
     int i = 0;
@@ -44,6 +53,7 @@ void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, stri
             populateDigitImageWithExtras(imagesTrain, image, lineStream);
             // Advance iterator to next image
             imagesTrain.correlation.push_back(image.pixels);
+            imagesTrain.correlationPLSDA.push_back(image.pixels);
             imagesTrain.images.push_back(image);
         } else{
             image.pixels = Pixels(imagesTest.imgSizeSqr);
