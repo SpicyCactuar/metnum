@@ -8,15 +8,14 @@ void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istrea
     string label, pixelStr;
     getline(input, label, ',');
     int l = stoi(label);
-    vector<double> labelY(images.labelYMedians.size(), -1);
     images.labels.push_back(l);
     image.label = l;
     //PLSDA purposes
+    vector<double> labelY(images.labelYMedians.size(), -1);
     labelY[l] = 1;
     images.labelY.push_back(labelY);
-    for (int i = 0; i < images.labelYMedians.size(); ++i){
+    for (int i = 0; i < images.labelYMedians.size(); ++i)
         images.labelYMedians[i] += labelY[i];
-    }
 
     /* Pixel fetching and median sum */
     int i = 0;

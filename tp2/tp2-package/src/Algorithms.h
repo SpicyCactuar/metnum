@@ -45,6 +45,17 @@ void productMatrixVector(Matrix &mat, vector<double> &vecIn, vector<double> &vec
     }
 }
 
+//xA = y product
+//REQUIERE *** NON EMPTY MATRIX ***
+void productVectorMatrix(vector<double> &vecIn, Matrix &mat, vector<double> &vecOut){
+    for (int i = 0; i < mat[0].size(); ++i){
+        double sum = 0;
+        for (int j = 0; j < mat.size(); ++j)
+            sum += mat[j][i] * vecIn[j];
+        vecOut[i] = sum;
+    }
+}
+
 //xy^t = A product
 void productColRow(vector<double> &vec1, vector<double> &vec2, Matrix &mat, double lambda = 1){
     for (int i = 0; i < vec1.size(); ++i){
@@ -78,6 +89,20 @@ void productMatMat(Matrix &mat1, Matrix &mat2, Matrix &matOut, bool mat1Traspose
                 }
                 matOut[i][j] = sum * lambda;
             }
+        }
+    }
+}
+
+//XXt = Y
+void productMatMatSimetric(Matrix &matIn, Matrix &matOut, double lambda = 1){
+    for (int i = 0; i < matIn.size(); ++i){
+        for (int j = i; j < matIn.size(); ++j){
+            double sum = 0;
+            for (int k = 0; k < matIn[i].size(); ++k){
+                sum += matIn[i][k] * matIn[j][k];
+            }
+            matOut[i][j] = sum;
+            matOut[j][i] = sum;
         }
     }
 }
@@ -119,29 +144,29 @@ void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues,
 }
 
 void PLSDA(DigitImages &images, Matrix &eigenVectors, vector<double> &eigenValues, int gamma, int niter){
-    Matrix XtY(images.imgSizeSqr, vector<double>(LABELS_QTY));
-    Matrix YtX(LABELS_QTY, vector<double>(images.imgSizeSqr));
+    Matrix XtY(images.imgSizeSqr, vector<double>(LABELS_QTY)); // XtY = (YtX)t
     Matrix Mi(images.imgSizeSqr, vector<double>(images.imgSizeSqr));
+    Matrix TiTitA(images.correlationPLSDA.size(), vector<double>(images.imgSizeSqr));
     vector<double> Ti(images.correlationPLSDA.size());
-    Matrix TiTit(Ti.size(), vector<double>(Ti.size()));
-    Matrix TiTitX(Ti.size(), vector<double>(images.imgSizeSqr));
-    Matrix TiTitY(Ti.size(), vector<double>(LABELS_QTY));
+    vector<double> TitX(images.imgSizeSqr);
+    vector<double> TitY(LABELS_QTY);
     for (int i = 0; i < gamma; ++i){
         productMatMat(images.correlationPLSDA, images.labelY, XtY, true);
-        productMatMat(images.labelY, images.correlationPLSDA, YtX, true);
-        productMatMat(XtY, YtX, Mi);
+        productMatMatSimetric(XtY, Mi); // XtY * (XtY)t
         randomVectorInitialize(eigenVectors[i]);
         eigenValues[i] = powerMethod(Mi, eigenVectors[i], niter); // CRITERIO DE PARADA
         productMatrixVector(images.correlationPLSDA, eigenVectors[i], Ti);
         double norma = sqrt(dotProduct(Ti, Ti));
+        cout << "norma " << norma << endl;
         for (int j = 0; j < Ti.size(); ++j){
             Ti[i] /= norma;
         }
-        productColRow(Ti, Ti, TiTit);
-        productMatMat(TiTit, images.correlation, TiTitX);
-        productMatMat(TiTit, images.labelY, TiTitY);
-        substractMatMat(images.correlationPLSDA, TiTitX);
-        substractMatMat(images.labelY, TiTitY);
+        productVectorMatrix(Ti, images.correlationPLSDA, TitX);
+        productColRow(Ti, TitX, TiTitA);
+        substractMatMat(images.correlationPLSDA, TiTitA);
+        productVectorMatrix(Ti, images.labelY, TitY);
+        productColRow(Ti, TitY, TiTitA);
+        substractMatMat(images.labelY, TiTitA);
     }
 }
 

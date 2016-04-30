@@ -46,11 +46,14 @@ struct DigitImages {
         for (int i = 0; i < medians.size(); ++i)
             medians[i] /= images.size();
         for (int i = 0; i < images.size(); ++i)
-            for (int j = 0; j < medians.size(); ++j)
+            for (int j = 0; j < medians.size(); ++j){
                 correlation[i][j] = (correlation[i][j] - medians[j]) / sqrt(images.size() - 1);
+                correlationPLSDA[i][j] = (correlationPLSDA[i][j] - medians[j]) / sqrt(images.size() - 1);
+            }
     }
 
     // -------- Covariance --------
+    //XtX = M
     void calculateCovariances(){
         covariances = Matrix(imgSizeSqr, vector<double>(imgSizeSqr));
         for (int i = 0; i < imgSizeSqr; ++i){
@@ -71,7 +74,7 @@ struct DigitImages {
             labelYMedians[i] /= labelY.size();
         for (int i = 0; i < labelY.size(); ++i)
             for (int j = 0; j < labelYMedians.size(); ++j)
-                labelY[i][j] = (labelY[i][j] - labelYMedians[j]) / sqrt(labelYMedians.size() - 1);
+                labelY[i][j] = (labelY[i][j] - labelYMedians[j]) / sqrt(labelY.size() - 1);
     }
 
     // -------- Printers --------
