@@ -6,6 +6,7 @@
 #include "Print.h"
 #include "Equalty.h"
 
+//x - y = z
 void substractVecVec(vector<double> &vec1, vector<double> &vec2, vector<double> &res){
     for (int i = 0; i < res.size(); ++i)
         res[i] = vec1[i] - vec2[i];
@@ -32,6 +33,7 @@ int kNN(vector<double> &test, Matrix &train, int k, DigitImages &digitImagesTrai
             label = i;
         }
     }
+    // in case of draw, lower digit wins
     return label;
 }
 
@@ -67,7 +69,9 @@ void productColRow(vector<double> &vec1, vector<double> &vec2, Matrix &mat, doub
 //AB = C product
 //REQUIERE *** NON EMPTY MATRIX ***
 void productMatMat(Matrix &mat1, Matrix &mat2, Matrix &matOut, bool mat1Traspose = false, bool mat2Traspose = false, double lambda = 1){
+    //AtBt = C
     if(mat1Traspose && mat2Traspose){/* Not needed for now */}
+    //AtB = C
     else if(mat1Traspose){
         for (int i = 0; i < mat1[0].size(); ++i){
             for (int j = 0; j < mat2[0].size(); ++j){
@@ -79,7 +83,9 @@ void productMatMat(Matrix &mat1, Matrix &mat2, Matrix &matOut, bool mat1Traspose
             }
         }
     }
+    //ABt = C
     else if(mat2Traspose){/* Not needed for now */}
+    //AB = C
     else{
         for (int i = 0; i < mat1.size(); ++i){
             for (int j = 0; j < mat2[0].size(); ++j){
@@ -127,10 +133,10 @@ double powerMethod(Matrix &mat, vector<double> &res, int niter){
     return dotProduct(res, aux);
 }
 
-void substractMatMat(Matrix &mat1, Matrix &mat2){
-    for (int i = 0; i < mat1.size(); ++i)
-        for (int j = 0; j < mat1[i].size(); ++j)
-            mat1[i][j] -= mat2[i][j];
+void substractMatMat(Matrix &mat1, Matrix &mat2, Matrix &matOut){
+    for (int i = 0; i < matOut.size(); ++i)
+        for (int j = 0; j < matOut[i].size(); ++j)
+            matOut[i][j] = mat1[i][j] - mat2[i][j];
 }
 
 void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues, int alpha, int niter){
@@ -139,42 +145,41 @@ void PCA(Matrix &covariances, Matrix &eigenVectors, vector<double> &eigenValues,
         randomVectorInitialize(eigenVectors[i]);
         eigenValues[i] = powerMethod(covariances, eigenVectors[i], niter); // CRITERIO DE PARADA
         productColRow(eigenVectors[i], eigenVectors[i], deflater, eigenValues[i]);
-        substractMatMat(covariances, deflater);
+        substractMatMat(covariances, deflater, covariances);
     }
 }
 
 void PLSDA(DigitImages &images, Matrix &eigenVectors, vector<double> &eigenValues, int gamma, int niter){
     Matrix XtY(images.imgSizeSqr, vector<double>(LABELS_QTY)); // XtY = (YtX)t
     Matrix Mi(images.imgSizeSqr, vector<double>(images.imgSizeSqr));
-    Matrix TiTitA(images.correlationPLSDA.size(), vector<double>(images.imgSizeSqr));
-    vector<double> Ti(images.correlationPLSDA.size());
+    Matrix TiTitX(images.centralizedPLSDA.size(), vector<double>(images.imgSizeSqr));
+    Matrix TiTitY(images.labelY.size(), vector<double>(LABELS_QTY));
+    vector<double> Ti(images.centralizedPLSDA.size());
     vector<double> TitX(images.imgSizeSqr);
     vector<double> TitY(LABELS_QTY);
     for (int i = 0; i < gamma; ++i){
-        productMatMat(images.correlationPLSDA, images.labelY, XtY, true);
+        productMatMat(images.centralizedPLSDA, images.labelY, XtY, true);
         productMatMatSimetric(XtY, Mi); // XtY * (XtY)t
         randomVectorInitialize(eigenVectors[i]);
         eigenValues[i] = powerMethod(Mi, eigenVectors[i], niter); // CRITERIO DE PARADA
-        productMatrixVector(images.correlationPLSDA, eigenVectors[i], Ti);
+        productMatrixVector(images.centralizedPLSDA, eigenVectors[i], Ti);
         double norma = sqrt(dotProduct(Ti, Ti));
-        cout << "norma " << norma << endl;
-        for (int j = 0; j < Ti.size(); ++j){
-            Ti[i] /= norma;
-        }
-        productVectorMatrix(Ti, images.correlationPLSDA, TitX);
-        productColRow(Ti, TitX, TiTitA);
-        substractMatMat(images.correlationPLSDA, TiTitA);
+        for (int j = 0; j < Ti.size(); ++j)
+            Ti[j] /= norma;
+        productVectorMatrix(Ti, images.centralizedPLSDA, TitX);
+        productColRow(Ti, TitX, TiTitX);
+        substractMatMat(images.centralizedPLSDA, TiTitX, images.centralizedPLSDA);
         productVectorMatrix(Ti, images.labelY, TitY);
-        productColRow(Ti, TitY, TiTitA);
-        substractMatMat(images.labelY, TiTitA);
+        productColRow(Ti, TitY, TiTitY);
+        substractMatMat(images.labelY, TiTitY, images.labelY);
     }
 }
 
 void testToTC(DigitImages &imagesTrain, DigitImages &imagesTest){
-    imagesTest.correlation = Matrix(imagesTest.images.size(), vector<double>(imagesTest.imgSizeSqr));
+    imagesTest.centralized = Matrix(imagesTest.images.size(), vector<double>(imagesTest.imgSizeSqr));
     for (int i = 0; i < imagesTest.images.size(); ++i)
         for (int j = 0; j < imagesTest.images[i].pixels.size(); ++j)
-            imagesTest.correlation[i][j] = (imagesTest.images[i].pixels[j] - imagesTrain.medians[j]) / sqrt(imagesTrain.images.size() - 1);
+            imagesTest.centralized[i][j] = (imagesTest.images[i].pixels[j] - imagesTrain.medians[j]) / sqrt(imagesTrain.images.size() - 1);
 }
 
 #endif

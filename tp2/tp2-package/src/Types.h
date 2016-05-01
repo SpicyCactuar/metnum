@@ -29,8 +29,8 @@ struct DigitImages {
     vector<int> labels;
     vector<double> medians, labelYMedians;
     vector<DigitImage> images;
-    Matrix correlation; // X
-    Matrix correlationPLSDA; // X
+    Matrix centralized; // X
+    Matrix centralizedPLSDA; // X
     Matrix covariances; // M = X^tX
     Matrix labelY;
 
@@ -42,13 +42,13 @@ struct DigitImages {
     }
 
     // -------- Correlation --------
-    void calculateCorrelation(){
+    void calculateCentralized(){
         for (int i = 0; i < medians.size(); ++i)
             medians[i] /= images.size();
         for (int i = 0; i < images.size(); ++i)
             for (int j = 0; j < medians.size(); ++j){
-                correlation[i][j] = (correlation[i][j] - medians[j]) / sqrt(images.size() - 1);
-                correlationPLSDA[i][j] = (correlationPLSDA[i][j] - medians[j]) / sqrt(images.size() - 1);
+                centralized[i][j] = (centralized[i][j] - medians[j]) / sqrt(images.size() - 1);
+                centralizedPLSDA[i][j] = (centralizedPLSDA[i][j] - medians[j]) / sqrt(images.size() - 1);
             }
     }
 
@@ -60,7 +60,7 @@ struct DigitImages {
             for (int j = i; j < imgSizeSqr; ++j){
                 double sum = 0;
                 for (int k = 0; k < images.size(); ++k){
-                    sum += correlation[k][i] * correlation[k][j];
+                    sum += centralized[k][i] * centralized[k][j];
                 }
                 covariances[i][j] = sum;
                 covariances[j][i] = sum;
@@ -83,7 +83,7 @@ struct DigitImages {
         for (int k = 0; k < imgSizeSqr; ++k) {
             if(j == 0)
                 output << '[';
-            output << correlation[index][k];
+            output << centralized[index][k];
             if(j == DEFAULT_IMAGE_SIDE_SIZE - 1){
                 j = 0;
                 i++;
@@ -111,7 +111,7 @@ struct DigitImages {
     }
 
     void prettyPrint(ostream &output, string type) {
-        if(type == "correlation"){
+        if(type == "centralized"){
             for (int i = 0; i < images.size(); ++i){
                 output << endl << "LABEL" << endl << "=====" << endl << endl;
                 output << images[i].label << endl << endl;
@@ -129,11 +129,11 @@ struct DigitImages {
 struct TC {
     Matrix transformation;
 
-    void init(Matrix &eigenVectors, Matrix &correlation){
-        transformation = Matrix(correlation.size(), vector<double>(eigenVectors.size()));
-        for (int i = 0; i < correlation.size(); ++i)
+    void init(Matrix &eigenVectors, Matrix &centralized){
+        transformation = Matrix(centralized.size(), vector<double>(eigenVectors.size()));
+        for (int i = 0; i < centralized.size(); ++i)
             for (int j = 0; j < eigenVectors.size(); ++j)
-                transformation[i][j] = dotProduct(eigenVectors[j], correlation[i]);
+                transformation[i][j] = dotProduct(eigenVectors[j], centralized[i]);
     }
 };
 

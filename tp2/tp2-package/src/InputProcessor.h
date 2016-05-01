@@ -46,19 +46,18 @@ void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, stri
         stringstream lineStream(line);
         /* Particular Digit Image Population */
         DigitImage image;
-        // si es de train, la proceso a full, sino, solo me interesa la imagen
         if(isTrain == "1"){
             image.pixels = Pixels(imagesTrain.imgSizeSqr);
             populateDigitImageWithExtras(imagesTrain, image, lineStream);
-            // Advance iterator to next image
-            imagesTrain.correlation.push_back(image.pixels);
-            imagesTrain.correlationPLSDA.push_back(image.pixels);
+            imagesTrain.centralized.push_back(image.pixels);
+            imagesTrain.centralizedPLSDA.push_back(image.pixels);
             imagesTrain.images.push_back(image);
         } else{
             image.pixels = Pixels(imagesTest.imgSizeSqr);
             populateDigitImageWithExtras(imagesTest, image, lineStream);
-            // Advance iterator to next image
             imagesTest.images.push_back(image);
+            imagesTest.centralized.push_back(image.pixels);
+            imagesTest.centralizedPLSDA.push_back(image.pixels);
         }
     }
     input.close();
