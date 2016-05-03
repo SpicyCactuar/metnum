@@ -6,6 +6,7 @@
 #include "InputProcessor.h"
 #include "Print.h"
 #include "MatrixAlgorithms.h"
+#include "Stats.h"
 
 // --- Input arguments ---
 //   -(i: input file)
@@ -34,18 +35,20 @@ int main(int argc, char const *argv[]){
         getline(input, line);
         stringstream lineStream(line);
         DigitImages imagesTrain, imagesTest;
-        populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
-        imagesTrain.getMeans();
-        imagesTrain.calculateCentralized();
-        imagesTrain.calculateCovariances();
-        imagesTrain.calculateMeansLabels();
-        imagesTest.calculateCentralizedTest(imagesTrain.means, imagesTrain.images.size());
         Matrix eigenVectorsPCA(alpha, vector<double>(DEFAULT_IMAGE_SIZE));
         Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
         vector<double> eigenValuesPCA(alpha);
         vector<double> eigenValuesPLSDA(gamma);
         int niterPCA = 1000;
         int niterPLSDA = 1000;
+
+        populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
+        imagesTrain.getMeans();
+        imagesTrain.calculateCentralized();
+        imagesTrain.calculateCovariances();
+        imagesTrain.calculateMeansLabels();
+        imagesTest.calculateCentralizedTest(imagesTrain.means, imagesTrain.images.size());
+
         //stores eigen vector and values with niter power method iterations
         PCA(imagesTrain.covariances, eigenVectorsPCA, eigenValuesPCA, alpha, niterPCA);
         for (int i = 0; i < alpha; ++i){
@@ -56,28 +59,65 @@ int main(int argc, char const *argv[]){
         for (int i = 0; i < gamma; ++i)
             output << scientific << eigenValuesPLSDA[i] << endl;
 
-        if(method == "0"){
-            for (int i = 0; i < imagesTest.centralized.size(); ++i){
-                int digito = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
-                cout << "la imagen: " << i << " del kNN: " << digito << " del label: " << imagesTest.images[i].label << endl;
+        vector<int> knnValues(imagesTest.centralized.size());
+        vector<int> trueValues(imagesTest.centralized.size());
+        switch(stoi(method)){
+            case 0:{
+                for (int i = 0; i < imagesTest.centralized.size(); ++i){
+                    knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                    getStats(knnValues, trueValues, "KNN");
+                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
+                }
+                break;
             }
-        }
-        if(method == "1"){
-            TC tcTrain, tcTest;
-            tcTrain.init(eigenVectorsPCA, imagesTrain.centralized);
-            tcTest.init(eigenVectorsPCA, imagesTest.centralized);
-            for (int i = 0; i < tcTest.transformation.size(); ++i){
-                int digito = kNN(tcTest.transformation[i], tcTrain.transformation, kMinus, imagesTrain);
-                cout << "la imagen: " << i << " del kNN: " << digito << " del label: " << imagesTest.images[i].label << endl;
+            case 1:{
+                TC tcTrainPCA, tcTestPCA;
+                tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
+                tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
+                for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
+                    knnValues[i] = kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                    getStats(knnValues, trueValues, "PCA");
+                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
+                }
+                break;
             }
-        }
-        if(method == "2"){
-            TC tcTrain, tcTest;
-            tcTrain.init(eigenVectorsPLSDA, imagesTrain.centralized);
-            tcTest.init(eigenVectorsPLSDA, imagesTest.centralized);
-            for (int i = 0; i < tcTest.transformation.size(); ++i){
-                int digito = kNN(tcTest.transformation[i], tcTrain.transformation, kMinus, imagesTrain);
-                cout << "la imagen: " << i << " del kNN: " << digito << " del label: " << imagesTest.images[i].label << endl;
+            case 2:{
+                TC tcTrainPLSDA, tcTestPLSDA;
+                tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
+                tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
+                for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
+                    knnValues[i] = kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                    getStats(knnValues, trueValues, "PLS");
+                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
+                }
+                break;
+            }
+            case 3:{
+                for (int i = 0; i < imagesTest.centralized.size(); ++i){
+                    knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                }
+                getStats(knnValues, trueValues, "KNN");
+                TC tcTrainPCA, tcTestPCA;
+                tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
+                tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
+                for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
+                    knnValues[i] = kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                }
+                getStats(knnValues, trueValues, "PCA");
+                TC tcTrainPLSDA, tcTestPLSDA;
+                tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
+                tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
+                for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
+                    knnValues[i] = kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMinus, imagesTrain);
+                    trueValues[i] = imagesTest.images[i].label;
+                }
+                getStats(knnValues, trueValues, "PLS");
+                break;
             }
         }
     }

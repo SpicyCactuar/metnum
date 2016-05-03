@@ -8,14 +8,15 @@
         "InputProcessor.h": "input-4fe43713423b3610b9f175c1ee67cdba", 
         "MatrixAlgorithms.h": "input-3113136d5326354f6c53305b4c3fffb9", 
         "Print.h": "input-0276915a3cd1691c470a0b61f9fa7f32", 
+        "Stats.h": "input-2e4857400f56edd23e1b729321318abf", 
         "Tests.h": "input-b79312f7efe69a7a70cb9e30113437d9", 
         "Types.h": "input-c6a397ac3406f3c9b877b79eadd825d2", 
-        "main.cpp": "input-fa6ca28c42abc08a78db8acce7f2960c", 
-        "main.o": "output-8e3ad03eb102d04f0761683cb2d4e0b7"
+        "main.cpp": "input-5b886939e2fe9226436ee508f20d6f7b", 
+        "main.o": "output-32d850916145735043a2ac3e6272141e"
     }, 
     "g++ -o ./tp ./main.o": {
         ".": "input-5058f1af8388633f609cadb75a75dc9d", 
-        "main.o": "input-8e3ad03eb102d04f0761683cb2d4e0b7", 
-        "tp": "output-c2ddf05815a4b848e070b0ef7ff45ceb"
+        "main.o": "input-32d850916145735043a2ac3e6272141e", 
+        "tp": "output-4de5b53d95216533b94d2de4ede492f4"
     }
 }
