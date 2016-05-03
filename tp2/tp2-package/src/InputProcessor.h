@@ -11,18 +11,18 @@ void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istrea
     images.labels.push_back(l);
     image.label = l;
     //PLSDA purposes
-    vector<double> labelY(images.labelYMedians.size(), -1);
+    vector<double> labelY(LABELS_QTY, -1);
     labelY[l] = 1;
     images.labelY.push_back(labelY);
-    for (int i = 0; i < images.labelYMedians.size(); ++i)
-        images.labelYMedians[i] += labelY[i];
+    for (int i = 0; i < LABELS_QTY; ++i)
+        images.labelYMeans[i] += labelY[i];
 
-    /* Pixel fetching and median sum */
+    /* Pixel fetching and mean sum */
     int i = 0;
     while(getline(input, pixelStr, ',')){
         int pixel = stoi(pixelStr);
         image.pixels[i] = pixel;
-        images.medians[i] += pixel;
+        images.means[i] += pixel;
         i++;
     }
 }
@@ -47,13 +47,13 @@ void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, stri
         /* Particular Digit Image Population */
         DigitImage image;
         if(isTrain == "1"){
-            image.pixels = Pixels(imagesTrain.imgSizeSqr);
+            image.pixels = vector<double>(DEFAULT_IMAGE_SIZE);
             populateDigitImageWithExtras(imagesTrain, image, lineStream);
             imagesTrain.centralized.push_back(image.pixels);
             imagesTrain.centralizedPLSDA.push_back(image.pixels);
             imagesTrain.images.push_back(image);
         } else{
-            image.pixels = Pixels(imagesTest.imgSizeSqr);
+            image.pixels = vector<double>(DEFAULT_IMAGE_SIZE);
             populateDigitImageWithExtras(imagesTest, image, lineStream);
             imagesTest.images.push_back(image);
             imagesTest.centralized.push_back(image.pixels);

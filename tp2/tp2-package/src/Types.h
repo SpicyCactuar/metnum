@@ -2,32 +2,23 @@
 #define Types_h
 
 #include "Imports.h"
+#include "MatrixAlgorithms.h"
+
 const int DEFAULT_IMAGE_SIDE_SIZE = 28;
+const int DEFAULT_IMAGE_SIZE = DEFAULT_IMAGE_SIDE_SIZE * DEFAULT_IMAGE_SIDE_SIZE;
 const int LABELS_QTY = 10;
-
-using Matrix = vector<vector<double> >;
-using Pixels = vector<double>;
-
-//x^ty = # product
-double dotProduct(vector<double> &vec1, vector<double> &vec2){
-    double sum = 0;
-    for (int i = 0; i < vec1.size(); ++i)
-        sum += vec1[i] * vec2[i];
-    return sum;
-}
 
 /** Class representing one manuscript digit image **/
 struct DigitImage {
     //faltaria poner label por defecto = -1
     int label;
-    Pixels pixels;
+    vector<double> pixels;
 };
-/** Class representing a smart container of DigitImage(s) **/
 
+/** Class representing a smart container of DigitImage(s) **/
 struct DigitImages {
-    int imgSizeSqr;
     vector<int> labels;
-    vector<double> medians, labelYMedians;
+    vector<double> means, labelYMeans;
     vector<DigitImage> images;
     Matrix centralized; // X
     Matrix centralizedPLSDA; // X
@@ -36,28 +27,41 @@ struct DigitImages {
 
     // -------- Initialization --------
     void init() {
-        imgSizeSqr = DEFAULT_IMAGE_SIDE_SIZE * DEFAULT_IMAGE_SIDE_SIZE;
-        medians = vector<double>(imgSizeSqr, 0);
-        labelYMedians = vector<double>(LABELS_QTY, 0);
+        means = vector<double>(DEFAULT_IMAGE_SIZE, 0);
+        labelYMeans = vector<double>(LABELS_QTY, 0);
+    }
+
+    // -------- Means --------
+    void getMeans(){
+        for (int i = 0; i < DEFAULT_IMAGE_SIZE; ++i)
+            means[i] /= images.size();
+        for (int i = 0; i < LABELS_QTY; ++i)
+            labelYMeans[i] /= labelY.size();
     }
 
     // -------- Correlation --------
     void calculateCentralized(){
-        for (int i = 0; i < medians.size(); ++i)
-            medians[i] /= images.size();
         for (int i = 0; i < images.size(); ++i)
-            for (int j = 0; j < medians.size(); ++j){
-                centralized[i][j] = (centralized[i][j] - medians[j]) / sqrt(images.size() - 1);
-                centralizedPLSDA[i][j] = (centralizedPLSDA[i][j] - medians[j]) / sqrt(images.size() - 1);
+            for (int j = 0; j < DEFAULT_IMAGE_SIZE; ++j){
+                centralized[i][j] = (centralized[i][j] - means[j]) / sqrt(images.size() - 1);
+                centralizedPLSDA[i][j] = (centralizedPLSDA[i][j] - means[j]) / sqrt(images.size() - 1);
             }
+    }
+
+    // -------- CorrelationTEST --------
+    void calculateCentralizedTest(vector<double> &means, int samples){
+        centralized = Matrix(images.size(), vector<double>(DEFAULT_IMAGE_SIZE));
+        for (int i = 0; i < images.size(); ++i)
+            for (int j = 0; j < DEFAULT_IMAGE_SIZE; ++j)
+                centralized[i][j] = (images[i].pixels[j] - means[j]) / sqrt(samples - 1);
     }
 
     // -------- Covariance --------
     //XtX = M
     void calculateCovariances(){
-        covariances = Matrix(imgSizeSqr, vector<double>(imgSizeSqr));
-        for (int i = 0; i < imgSizeSqr; ++i){
-            for (int j = i; j < imgSizeSqr; ++j){
+        covariances = Matrix(DEFAULT_IMAGE_SIZE, vector<double>(DEFAULT_IMAGE_SIZE));
+        for (int i = 0; i < DEFAULT_IMAGE_SIZE; ++i){
+            for (int j = i; j < DEFAULT_IMAGE_SIZE; ++j){
                 double sum = 0;
                 for (int k = 0; k < images.size(); ++k){
                     sum += centralized[k][i] * centralized[k][j];
@@ -68,60 +72,11 @@ struct DigitImages {
         }
     }
 
-    // -------- MedianLabels --------
-    void calculateMedianLabels(){
-        for (int i = 0; i < labelYMedians.size(); ++i)
-            labelYMedians[i] /= labelY.size();
+    // -------- MeansLabels --------
+    void calculateMeansLabels(){
         for (int i = 0; i < labelY.size(); ++i)
-            for (int j = 0; j < labelYMedians.size(); ++j)
-                labelY[i][j] = (labelY[i][j] - labelYMedians[j]) / sqrt(labelY.size() - 1);
-    }
-
-    // -------- Printers --------
-    void printCorrelation(ostream &output, int index) {
-        int i = 0, j = 0;
-        for (int k = 0; k < imgSizeSqr; ++k) {
-            if(j == 0)
-                output << '[';
-            output << centralized[index][k];
-            if(j == DEFAULT_IMAGE_SIDE_SIZE - 1){
-                j = 0;
-                i++;
-                output << ']' << endl;
-            }
-            else{
-                j++;
-                output << ',';
-            }
-        }
-    }
-
-    void printCovariance(ostream &output) {
-        for (int i = 0; i < imgSizeSqr; ++i) {
-            for (int j = 0; j < imgSizeSqr; ++j) {
-                if(j == 0)
-                    output << '[';
-                output << covariances[i][j];
-                if(j == imgSizeSqr - 1)
-                    output << ']' << endl;
-                else
-                    output << ',';
-            }
-        }
-    }
-
-    void prettyPrint(ostream &output, string type) {
-        if(type == "centralized"){
-            for (int i = 0; i < images.size(); ++i){
-                output << endl << "LABEL" << endl << "=====" << endl << endl;
-                output << images[i].label << endl << endl;
-                output << "PIXELS" << endl << "======" << endl << endl;
-                printCorrelation(output, i);
-            }
-        }
-        else if(type == "covariance"){
-            printCovariance(output);
-        }
+            for (int j = 0; j < LABELS_QTY; ++j)
+                labelY[i][j] = (labelY[i][j] - labelYMeans[j]) / sqrt(labelY.size() - 1);
     }
 };
 
