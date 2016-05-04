@@ -2,7 +2,7 @@ El problema de reconocer e identificar im\'agenes es uno que, a simple vista, un
 
 Lo interesante de las problem\'aticas es que uno puede \textit{encararlas} de una u otra manera que puede abrir el camino para resolverlo. En el caso de asociaci\'on de im\'agenes, uno puede pensarlo como \textit{reconocer} o, en contraposici\'on, \textit{diferenciar} una ilustraci\'on. En este trabajo vamos a atacar el problema (no este sino uno m\'as \textit{acotado}), por ambos caminos para poder arribar a una conclusi\'on.
 
-Dicho esto, poder decidir para cualquier \textit{cualquier} tipo de im'agen, sin ning\'un contexto, a qu\'e objeto o concepto est\'a asociado sigue siendo de dificultad elevada. El an\'alisis del contexto es esencial para cualquier tipo de problema y este no es la excepci\'on.
+Dicho esto, poder decidir para \textit{cualquier} tipo de im\'agen, sin ning\'un contexto, a qu\'e objeto o concepto est\'a asociado sigue siendo de dificultad elevada. El an\'alisis del contexto es esencial para cualquier tipo de problema y este no es la excepci\'on.
 
 La situaci\'on concreta a ser abarcada en este trabajo es la de reconocer d\'igitos en im\'agenes con n\'umeros manuscritos con un formato particular:
 
@@ -22,17 +22,17 @@ Uno podr\'ia argumentar que es un formato acotado, pero si uno digitaliza un tex
 
 Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'ericos} que servir\'an de base para el desarrollo de este trabajo. Ambos se categorizan por buscar la informaci\'on m\'as relevante, las variables que representen mejor cada im\'agen para poder clasificarla, por ende entran en la categor\'ia de algoritmos de \textit{reducci\'on de la dimensi\'on}. Los m\'etodos son el \textbf{An\'alisis por Componentes Principales (\textit{PCA})}, por sus siglas en ingl\'es, y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}.
 
-Vamos a considerar las im\'agenes, siendo $n \in I\!N$ la cantidad, como $x_{i} \in I\!R^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x_{i}^{(j)} \in \{0, ..., 255\}$, d\'onde $x_{i}^{(j)}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255.
+Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x_{i} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x_{i}^{(j)} \in \{0, ..., 255\}$, d\'onde $x_{i}^{(j)}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255.
 
 \subsection{An\'alisis por Componentes Principales (\textit{PCA})}
 
-Sean $x_{i} \in I\!R^{m}$, $i = 1, ..., n$, muestras de $m$ variables aleatorias, con $\mu = (x_{i} + ... + x_{i}) / n \in I\!R^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x_{i}^{1} + ... + x_{i}^{n}) / n$, el promedio de las muestras de $x_{i}$.
+Sean $x_{i} \in \mathbb{R}^{m}$, $i = 1, ..., n$, muestras de $m$ variables aleatorias, con $\mu = (x_{i} + ... + x_{i}) / n \in \mathbb{R}^{m}$ \textcolor{red}{NO ENTIENDO} la media entre las mismas. Notar que $\mu_{i} = (x_{i}^{1} + ... + x_{i}^{n}) / n$, el promedio de las muestras de $x_{i}$.
 
-En la b\'usqueda de las variables que m\'as informaci\'on almacenen, buscamos simultaneamente las que posean la mayor varianza minimizando la covarianza. Para ello, comenzamos calculando la matriz de covarianzas $M_{X}$. Una manera de hacerlo es matricialmente generando una matriz $X \in I\!R^{n \times m}$ con $n$ columnas consistiendo de $(x_{i} - \mu_{i}) / \sqrt{n - 1}$ y consiguiendo el resultado deseado de la forma $M_{X} = X^{t}X$. Verificar que $M_{X}$ es la matriz de covarianzas es ver que en la posici\'on $(j, k)$ obtengo $\sigma_{jk}$, la covarianza entre $x_{j}$ y $x_{k}$: \\
+En la b\'usqueda de las variables que m\'as informaci\'on almacenen, buscamos simultaneamente las que posean la mayor varianza minimizando la covarianza. Para ello, comenzamos calculando la matriz de covarianzas $M_{X}$. Una manera de hacerlo es matricialmente, generando una matriz $X \in \mathbb{R}^{n \times m}$ con $n$ columnas consistiendo de $(x_{i} - \mu_{i}) / \sqrt{n - 1}$ y consiguiendo el resultado deseado de la forma $M_{X} = X^{t}X$. Verificar que $M_{X}$ es la matriz de covarianzas es ver que en la posici\'on $(j, k)$ obtengo $\sigma_{jk}$, la covarianza entre $x_{j}$ y $x_{k}$: \\
 
 $M_{X}^{(j,k)} = (x_{j} - \mu_{j})^t(x_{k} - \mu_{k}) / \sqrt{n - 1}\sqrt{n - 1} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})(x_{k}^{(i)} - \mu_{k}) / (n - 1) = \sigma_{jk}$.
 
-Observamos adem\'as que $\sigma_{jj} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})^{2} / (n - 1) = \sigma_{j}^{2}$. Dejamos en las manos del lector verificar que $M_{X}^{(j,k)} = M_{X}^{(k,j)}$. Con lo cu\'al obtuvimos una matriz que contiene a las varianzas de las variables en la diagonal y las covarianzas en el resto de las posiciones, y que es sim\'etrica. Esta \'ultima observaci\'on va a ser fundamental para pr\'oximos pasos del procedimiento.
+Observamos adem\'as que $\sigma_{jj} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})^{2} / (n - 1) = \sigma_{j}^{2}$. Dejamos en manos del lector verificar que $M_{X}^{(j,k)} = M_{X}^{(k,j)}$. Con lo cu\'al obtuvimos una matriz que contiene a las varianzas de las variables en la diagonal y las covarianzas en el resto de las posiciones, y que es sim\'etrica. Esta \'ultima observaci\'on va a ser fundamental para los pr\'oximos pasos del procedimiento.
 
 \subsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}
 
