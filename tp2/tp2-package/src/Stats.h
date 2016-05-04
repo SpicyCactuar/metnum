@@ -33,7 +33,7 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
         output << precision << ", ";
         output << recall << endl;
     }
-    double hitRate = sumPrecision / knnValues.size();
+    double hitRate = sumHitRate / knnValues.size();
     output << "HitRate, " << hitRate << endl;
     double precisionAVG = sumPrecision / LABELS_QTY;
     output << "PrecisionAVG, " << precisionAVG << endl;

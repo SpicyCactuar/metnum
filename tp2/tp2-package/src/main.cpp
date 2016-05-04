@@ -102,13 +102,13 @@ int main(int argc, char const *argv[]){
                 break;
             }
             case 3:{
-                for (int i = 0; i < imagesTest.centralized.size(); ++i){
-                    knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
-                    trueValues[i] = imagesTest.images[i].label;
-                }
-                string knnOut = argv[2];
-                knnOut += "KNN";
-                getStats(knnValues, trueValues, knnOut);
+                // for (int i = 0; i < imagesTest.centralized.size(); ++i){
+                //     knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
+                //     trueValues[i] = imagesTest.images[i].label;
+                // }
+                // string knnOut = argv[2];
+                // knnOut += "KNN";
+                // getStats(knnValues, trueValues, knnOut);
                 TC tcTrainPCA, tcTestPCA;
                 tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
                 tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
