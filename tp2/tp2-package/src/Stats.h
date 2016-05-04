@@ -4,7 +4,7 @@
 #include "Imports.h"
 #include "Types.h"
 
-void getStats(vector<int> &knnValues, vector<int> &trueValues, string algorithm){
+void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm){
     string outputFile = algorithm + ".csv";
     ofstream output(outputFile, ios_base::app | ios_base::out);
     output << ", Precision, Recall" << endl;
@@ -20,18 +20,21 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string algorithm)
             falseNegatives[trueValues[i]]++;
         }
     }
-    double sumPrecision = 0, sumRecall = 0;
+    double sumHitRate = 0, sumPrecision = 0, sumRecall = 0;
     for (int i = 0; i < LABELS_QTY; ++i){
         double totalPrecision = truePositives[i] + falsePositives[i];
         double totalRecall = truePositives[i] + falseNegatives[i];
         double precision = truePositives[i] / totalPrecision;
         double recall = truePositives[i] / totalRecall;
+        sumHitRate += truePositives[i];
         sumPrecision += precision;
         sumRecall += recall;
         output << i << ", ";
         output << precision << ", ";
         output << recall << endl;
     }
+    double hitRate = sumPrecision / knnValues.size();
+    output << "HitRate, " << hitRate << endl;
     double precisionAVG = sumPrecision / LABELS_QTY;
     output << "PrecisionAVG, " << precisionAVG << endl;
     double recallAVG = sumRecall / LABELS_QTY;

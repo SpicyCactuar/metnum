@@ -66,7 +66,9 @@ int main(int argc, char const *argv[]){
                 for (int i = 0; i < imagesTest.centralized.size(); ++i){
                     knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
-                    getStats(knnValues, trueValues, "KNN");
+                    string knnOut = argv[2];
+                    knnOut += "KNN";
+                    getStats(knnValues, trueValues, knnOut);
                     // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
                 break;
@@ -78,7 +80,9 @@ int main(int argc, char const *argv[]){
                 for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
                     knnValues[i] = kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
-                    getStats(knnValues, trueValues, "PCA");
+                    string pcaOut = argv[2];
+                    pcaOut += "PCA";
+                    getStats(knnValues, trueValues, pcaOut);
                     // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
                 break;
@@ -90,7 +94,9 @@ int main(int argc, char const *argv[]){
                 for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
                     knnValues[i] = kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
-                    getStats(knnValues, trueValues, "PLS");
+                    string plsOut = argv[2];
+                    plsOut += "PLS";
+                    getStats(knnValues, trueValues, plsOut);
                     // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
                 break;
@@ -100,7 +106,9 @@ int main(int argc, char const *argv[]){
                     knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
                 }
-                getStats(knnValues, trueValues, "KNN");
+                string knnOut = argv[2];
+                knnOut += "KNN";
+                getStats(knnValues, trueValues, knnOut);
                 TC tcTrainPCA, tcTestPCA;
                 tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
                 tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
@@ -108,7 +116,9 @@ int main(int argc, char const *argv[]){
                     knnValues[i] = kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
                 }
-                getStats(knnValues, trueValues, "PCA");
+                string pcaOut = argv[2];
+                pcaOut += "PCA";
+                getStats(knnValues, trueValues, pcaOut);
                 TC tcTrainPLSDA, tcTestPLSDA;
                 tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
                 tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
@@ -116,7 +126,9 @@ int main(int argc, char const *argv[]){
                     knnValues[i] = kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMinus, imagesTrain);
                     trueValues[i] = imagesTest.images[i].label;
                 }
-                getStats(knnValues, trueValues, "PLS");
+                string plsOut = argv[2];
+                plsOut += "PLS";
+                getStats(knnValues, trueValues, plsOut);
                 break;
             }
         }
