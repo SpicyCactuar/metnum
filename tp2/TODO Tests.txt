@@ -1,0 +1,32 @@
+Obligatorios
+============
+
+* Tests que contemplen cómo afecta el tamaño de las imágenes en el tiempo de ejecución
+
+* Tests que contemplen cómo afecta el cambio de los parámetros en la cálidad del resultado:
+	- k, la cantidad de vecinos del kNN
+	- sigma, la cantidad de componentes en el PCA
+	- gamma, la cantidad de dimensiones en el PLS-DA
+	- K, la cantidad de particiones para el cross-validation (al menos 2 distintos y justificar la elección)
+
+	Para medir la calidad del resultado, hay que implementar al menos 2 de las siguientes 4 métricas:
+
+		° Precision
+		° Recall
+		° F1-Score
+		° Kappa de Cohen
+
+* Determinar, en base al test anterior, los parámetros óptimos para uso práctico
+
+
+Opcionales
+==========
+
+* Mostrar que si tenemos la descomposición M = UΣV t, V es la misma matriz que obtenemos al diagonalizar la matriz de covarianzas (SUGERIDO)
+
+* Realizar experimentos utilizando d´ıgitos manuscritos creados por el grupo, manteniendo el formato propuesto. Reportar resultados y diﬁcultades encontradas. (SUGERIDO)
+
+* Proponer e implementar mejoras al algoritmo del kNN (SUGERIDO):
+	- Criterio de distancia (?)
+
+* Generar intersecciones de las imágenes por clases (ej: intersecciones de todas las imágenes de dígito 5) y comparar contra esas para determinar
