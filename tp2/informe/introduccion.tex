@@ -20,15 +20,31 @@ Uno podr\'ia argumentar que es un formato acotado, pero si uno digitaliza un tex
 \item Reconocimiento de caligraf\'ia
 \end{itemize}
 
-Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'ericos} que servir\'an de base para el desarrollo de este trabajo. Ambos se categorizan por buscar la informaci\'on m\'as relevante, las variables que representen mejor cada im\'agen para poder clasificarla, por ende entran en la categor\'ia de algoritmos de \textit{reducci\'on de la dimensi\'on}. Los m\'etodos son el \textbf{An\'alisis por Componentes Principales (\textit{PCA})}, por sus siglas en ingl\'es, y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}.
-
 Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x_{i} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x_{i}^{(j)} \in \{0, ..., 255\}$, d\'onde $x_{i}^{(j)}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255.
+
+Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'ericos} que servir\'an de base para el desarrollo de este trabajo.
+
+\subsection{k Vecinos M\'as Cercanos \textit{(kNN)}}
+
+Un primer \textit{approach} planteado es el de \textit{\textbf{k-Nearest-Neighbours}}. Como modelos tenemos: $C$ un conjunto de clases, $Y = \{y_{1}, ..., y_{n}\}$ y $Z = \{z_{1}, ..., z_{n}\}$, $y_{i}$, $z_{i} \in \mathbb{R}^m$, dos conjuntos de elementos que pueden ser clasificados o \textit{taggeados} como elementos de $C$ con la particularidad de que conocemos la clasificaci\'on de elemento del conjunto $Z$. Por lo tanto, el problema va a ser \textit{taggear} el conjunto $Y$ en base a los de $Z$. El algoritmo es simple:
+
+Consideramos $y \in Y$, y una funci\'on $d : Y \times Z \mapsto \mathbb{R}_{> 0}$ que denominaremos \textbf{funci\'on de distancia}, que \textit{a priori} no es ninguna en particular. Esta funci\'on toma un elemento de $Y$ y otro de $Z$, y devuelve un valor que \textit{resume} las diferencias entre un par\'ametro y el restante a un valor. Utilizaremos la misma para calcular las ``distancias'' de $y$ contra todos los elementos $z \in Z$, quedandonos s\'olo con los $k$ de menor valor. Estos ser\'an los que m\'as se \textit{parezcan} a $y$, llamamos a este conjunto $K$.
+
+Una vez realizado esto, sea $f : C \times Z' \subset Z \mapsto \mathbb{N}$ una funci\'on que nos la cantidad de veces que se encuentra un \textit{tag} dentro de un sub-conjunto de $Z$, tomamos $c = argmax_{c \in C} f(c, K)$. De esta forma, ``asignamos'' la clase $c$ a $y$.
+
+Este algoritmo efectivamente realiza una \textbf{clasificaci\'on supervisada}, aprendiendo de una base de ``entrenamiento'' para categorizar los elementos restantes.
+
+De todas formas, lo simple del algoritmo tiene su contrapeso en la variable tiempo de ejecuci\'on. Uno debe aplicar $d$ sobre todos los elementos de $Z$, con lo cu\'al si el conjunto es grande, estamos a la merced de la complejidad temporal la funci\'on de distancia. La clave de este procedimiento es elegir una funci\'on que resuma las diferencias entre elementos m\'as precisamente minimizando el computo, lo cu\'al no es una tarea f\'acil ya que, en general, funciones de distancia livianas representan menor calidad de resultados.
+
+En respuesta a esa problem\'atica, planteamos 2 m\'etodos denominados \textbf{An\'alisis por Componentes Principales} (\textbf{PCA}, por sus siglas en ingl\'es) y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales} (\textbf{PLS-DA}). Conceptualmente, consisten en ponderar la informaci\'on para decidir qu\'e \textit{variables} almacenan m\'as informaci\'on y reducir el an\'alisis a comparar esas variables entre los distintos elementos. La diferenciaci\'on entre las mismas va a perimitir categorizar nuestros elementos de entrada con mayor eficiencia.
 
 \subsection{An\'alisis por Componentes Principales (\textit{PCA})}
 
-Sean $x_{i} \in \mathbb{R}^{m}$, $i = 1, ..., n$, muestras de $m$ variables aleatorias, con $\mu = (x_{i} + ... + x_{i}) / n \in \mathbb{R}^{m}$ \textcolor{red}{NO ENTIENDO} la media entre las mismas. Notar que $\mu_{i} = (x_{i}^{1} + ... + x_{i}^{n}) / n$, el promedio de las muestras de $x_{i}$.
+Sean $x_{i} \in \mathbb{R}^{m}$ con $i = 1, ..., n$, muestras de $m$ variables aleatorias, con $\mu = (x_{1} + ... + x_{n}) / n \in \mathbb{R}^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x_{1}^{(i)} + ... + x_{n}^{(i)}) / n$ es el promedio de la variable aleatoria $i$.
 
-En la b\'usqueda de las variables que m\'as informaci\'on almacenen, buscamos simultaneamente las que posean la mayor varianza minimizando la covarianza. Para ello, comenzamos calculando la matriz de covarianzas $M_{X}$. Una manera de hacerlo es matricialmente, generando una matriz $X \in \mathbb{R}^{n \times m}$ con $n$ columnas consistiendo de $(x_{i} - \mu_{i}) / \sqrt{n - 1}$ y consiguiendo el resultado deseado de la forma $M_{X} = X^{t}X$. Verificar que $M_{X}$ es la matriz de covarianzas es ver que en la posici\'on $(j, k)$ obtengo $\sigma_{jk}$, la covarianza entre $x_{j}$ y $x_{k}$: \\
+En la b\'usqueda de las variables que m\'as informaci\'on almacenen, buscamos simultaneamente las que posean la mayor varianza minimizando la covarianza. Para ello, comenzamos calculando la matriz de covarianzas $M_{X}$. Una manera de hacerlo es matricialmente, generando una matriz $X \in \mathbb{R}^{n \times m}$ con $n$ filas consistiendo de $(x_{i} - \mu)^t / \sqrt{n - 1}$ y consiguiendo el resultado deseado de la forma $M_{X} = X^{t}X$. Verificar que $M_{X}$ es la matriz de covarianzas es ver que en la posici\'on $(j, k)$ obtengo $\sigma_{jk}$, la covarianza entre $x_{j}$ y $x_{k}$: \\
+
+\textbf{\textcolor{red}{// TODO: Chequear esta cuenta}}
 
 $M_{X}^{(j,k)} = (x_{j} - \mu_{j})^t(x_{k} - \mu_{k}) / \sqrt{n - 1}\sqrt{n - 1} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})(x_{k}^{(i)} - \mu_{k}) / (n - 1) = \sigma_{jk}$.
 
