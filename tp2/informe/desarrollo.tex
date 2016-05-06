@@ -1,0 +1,85 @@
+Ahora que definimos que algoritmos vamos a utilizar para reconocer d\'igitos manuscritos, procederemos a indicar como utilizaremos cada uno.
+
+\subsection{Roles de algoritmos utilizados}
+
+En primera instancia buscamos poder decidir a qu\'e d\'igito pertenece cada imagen. Para esto usamos el algoritmo clasificador \textbf{kNN} mencionado en la secci\'on anterior.
+
+Una vez obtenido el conjunto K, clasificar es f\'acil, se cuentan las etiquetas de cada uno de los k $\in$ K puntos y la que m\'as se repita, se le asgina a \textit{p} \footnote{En caso de empate, nos quedamos con el d\'igito m\'as chico}.
+
+Como se mencion\'o en la secci\'on anterior, las im\'agenes tienen 784 pixels, es decir, cada punto a considerar tiene 784 componentes. Calcular la distancia de un punto de esta dimensi\'on, contra \textit{n} de la misma dimensi\'on, suena a mucho trabajo. Entonces cobran valor los algoritmos de \textbf{PCA} y \textbf{PLS-DA}.
+
+Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo un pedazo del mismo (reducir las dimensiones a considerar al aplicar kNN), con un bajo costo de p\'erdida de informaci\'on.
+
+Para esto, se buscan los autovalores de determinadas matrices, y la matriz de cambio de base ser\'a la formada por los autovectores de m\'odulo 1 asociados a los mismos.
+
+Un primera necesidad entonces es calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\STATE {$v \leftarrow x_{0}$}
+\WHILE {No se cumpla la condici\'on de finalizaci\'on)}
+\STATE {$v \leftarrow Bv$}
+\STATE {Normalizar $v$}
+\ENDWHILE
+\STATE {$\lambda \leftarrow v^{t}Bv$}
+\RETURN {$\lambda, v$}
+\end{algorithmic}
+\caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
+\end{algorithm}
+
+Este m\'etodo busca un autovector $\in \mathbb{R}^{m}$ de norma 2 igual a 1 aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\in \mathbb{R}$ de m\'odulo m\'aximo. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Otra es que tenga todos los autovalores reales \textcolor{red}{REVISAR} (analizaremos que esto sucede m\'as adelante).
+
+Resultar\'ia conveniente poder reutilizar este m\'etodo para conseguir todos los autovectores y autovalores, pero s\'olo podemos conseguir el de m\'odulo m\'aximo, entonces consideramos el proceso de deflaci\'on que consiste en generar un matriz $DEFL$ tal que los autovalores de $B$ sean los mismos que $B - DEFL$ excepto por el mayor que debe ser cero.
+
+Ahora podemos repetir el proceso y obtener una base ortonormal de autovectores de la matriz original, que servir\'a para hacer el cambio de base que busc\'abamos.
+
+\subsubsection{PCA}
+
+Este algoritmo busca los primeros $\alpha$ autovalores y autovectores de la matriz de covarianzas $M_{x}$. Para esto aplica el M\'etodo de la Potencia y para la deflaci\'on, considera la matriz generada por $\lambda_{i}v_{i}v_{i}^{t}$ donde $\lambda_{i}$ es el autovalor obtenido en la iteraci\'on $i$ y $v_{i}$ es su autovector de norma 2 igual a 1 asociado.
+
+Veamos que la matriz resultante de la primera deflaci\'on modifica el autovalor m\'aximo a 0 y mantiene los dem\'as iguales:
+
+$(B - \lambda_{1}v_{1}v_{1}^{t})v_{1} = Bv_{1} - \lambda_{1}v_{1}(v_{1}^{t}v_{1}) = \lambda_{1}v_{1} - \lambda_{1}v_{1} = 0v_{1}$
+
+$(B - \lambda_{1}v_{1}v_{1}^{t})v_{i} = Bv_{i} - \lambda_{1}v_{1}(v_{1}^{t}v_{i}) = \lambda_{i}v_{i}$
+
+\subsubsection{PLS-DA}
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\FOR {$i \leftarrow [1..\gamma]$}
+\STATE {$M_{i} \leftarrow X^{t}YY^{t}X$}
+\STATE {$w_{i} \leftarrow$ autovector asociado al mayor autovalor de $M_{i}$} \COMMENT {Deber\'ia estar normalizado, si no, normalizar}
+\STATE {$t_{i} \leftarrow Xw_{i}$}
+\STATE {Normalizar $t_{i}$}
+\STATE {$X \leftarrow X - t_{i}t_{i}^{t}X$}
+\STATE {$Y \leftarrow Y - t_{i}t_{i}^{t}Y$}
+\ENDFOR
+\RETURN {$w_{i}$ para cada $i \leftarrow [1..\gamma]$}
+\end{algorithmic}
+\caption{PLS($X, Y, \gamma$)}
+\end{algorithm}
+
+El pseudoc\'odigo anterior recibe X la matriz de imagenes centralizadas e Y un vector con las etiquetas correspondientes. Con esos par\'ametros, el algoritmo se llama PLS, para agregarle DA, basta con tomar la Y como una matriz que centraliza, como a X, a una matriz que tiene un 1 en la posici\'on $(i, j)$ si la imagen $i$ tiene etiqueta $j-1$ \footnote{Indexando desde 1} o -1 en caso contrario.
+
+Ahora que tenemos estos dos algoritmos, nos preguntamos de qu\'e nos sirven si seguimos teniendo que aplicar kNN sobre puntos de dimensiones muy grandes.
+
+La respuesta es que estos m\'etodos nos permiten tomar una fracci\'on de los datos, es decir, los primeros $\alpha$ autovectores \footnote{Reducci\'on de la dimensi\'on: $\bar{V} = [v_{1} v_{2} ... v_{\alpha}]$} obtenidos por PCA o los primeros $\gamma$ extra\'idos en PLS-DA. Estos forman lo que se denomina una \textbf{Transformaci\'on Caracter\'istica} \footnote{Aplicar el cambio de base a cada muestra $x^{(i)}$, definimos $tc(x^{(i)} = \bar{V}^{t}x^{(i)} = (v_{1}^{t}x^{(1)}, ..., v_{\alpha}^{t}x^{(1)})$}.
+
+Luego, cuando llega una imagen nueva $x^{*} \in \mathbb{R}^{m}$ para catalogar, definimos $\bar{x}^{*} = (x^{*} - \mu)/\sqrt{n-1}$, le aplicamos $tc(\bar{x}^{*}$ y la clasificamos de alguna manera, en nuestro caso, con kNN.
+
+Finalmente, se desarrollaron algunas m\'etricas para medir qu\'e tan buenas son las decisiones tomadas por el clasificador:
+
+\textbf{Precision:} Es una medida de cu\'antos aciertos relativos tiene un clasificador dentro de una clase particular. Es decir, dada una clase i, la precision de dicha clase es $tp_{i} / (tp_{i} + fp_{i})$.
+
+En la anterior f\'ormula, $tp_{i}$ son los verdaderos positivos de la clase i. Es decir, muestras que realmente pertenec\'ian a la clase $i$ y fueron exitosamente identificadas como tales. En contraposici\'on, $fp_{i}$ son los falsos positivos de la clase $i$. Son aquellas muestras que fueron identificadas como pertenecientes a la clase $i$ cuando realmente no lo eran.
+
+Luego, la precision en el caso de un clasificador de muchas clases, se define como el promedio de las precision para cada una de las clases.
+
+\textbf{Recall:} Es una medida de que tan bueno es un clasificador para, dada una clase particular, identificar correctamente a los pertenecientes a esa clase. Es decir, dada una clase i, el recall de dicha clase es $tp_{i} / (tp_{i} + fn_{i})$.
+
+En la anterior f\'ormula, $fn_{i}$ son los falsos negativos de la clase i. Es decir, muestras que pertenec\'ian a la clase $i$ pero que fueron identificadas con otra clase.
+
+Luego, el recall en el caso de un clasificador de muchas clases, se define como el promedio del recall para cada una de las clases.
+
+\textbf{F1-Score:} Dado que precision y recall son dos medidas importantes que no necesariamente tienen la misma calidad para un mismo clasificador, se define esta m\'etrica para medir un compromiso entre ambas. Se define como $2 * precision * recall / (precision + recall)$
