@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]){
         imagesTrain.calculateCentralized();
         imagesTrain.calculateCovariances();
         imagesTrain.calculateMeansLabels();
-        imagesTest.calculateCentralizedTest(imagesTrain.means, imagesTrain.images.size());
+        imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
         //stores eigen vector and values with niter power method iterations
         PCA(imagesTrain.covariances, eigenVectorsPCA, eigenValuesPCA, alpha, niterPCA);
