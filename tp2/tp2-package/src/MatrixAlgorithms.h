@@ -2,6 +2,7 @@
 #define MatrixAlgorithms_h
 
 using Matrix = vector<vector<double> >;
+using TimeEvent = pair<string, int>;
 
 void randomVectorInitialize(vector<double> &vec){
     for (int i = 0; i < vec.size(); ++i){
