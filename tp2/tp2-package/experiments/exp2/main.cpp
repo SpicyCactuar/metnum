@@ -11,17 +11,22 @@
 // --- Input arguments ---
 //   -(i: input file)
 //   -(o: output file)
+//   -(a: alpha)
+//   -(g: gamma)
 
 using namespace chrono;
 
 int main(int argc, char const *argv[]){
-    if(argc != 3){
-        cout << "Parameters should be: (i: input file), (o: output file)" << endl;
+    if(argc != 5){
+        cout << "Parameters should be: (i: input file), (o: output file), (k: k minus), (a: alpha), (g: gamma)" << endl;
         return 0;
     }
 
     ifstream input(argv[1]);
     ofstream output(argv[2]);
+
+    int alpha = stoi(argv[3]);
+    int gamma = stoi(argv[4]);
 
     string inFileDir, line;
     int kMayus;
@@ -64,7 +69,7 @@ int main(int argc, char const *argv[]){
             timeTracker.push_back(TimeEvent("KNN", duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count()));
             string knnOut = argv[2];
             knnOut += "KNNTest";
-            getStats(knnValues, trueValues, knnOut, timeTracker, kMinusIter, 0, 0, kMayus);
+            getStats(knnValues, trueValues, knnOut, timeTracker, kMinusIter, alpha, gamma, kMayus);
             timeTracker.pop_back();
         }
 
