@@ -41,34 +41,42 @@ int main(int argc, char const *argv[]){
         populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
         imagesTrain.getMeans();
         imagesTrain.calculateCentralized();
+        imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
         high_resolution_clock::time_point timeDefaultProcessEnded = high_resolution_clock::now();
 
         timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
 
-        vector<int> knnValues(imagesTest.centralized.size());
+        ///// knn /////
+
+        vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
+        vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
-        /////
-
-        vector<int> kInstances = vector<int>({1, 10, 25, 50});
-        for (int it = 0; it < kInstances.size() ; it++) {
-            int kMinusIter = kInstances[it];
+        double timeAcumulator = 0;
+        for (int i = 0; i < imagesTest.centralized.size(); ++i){
             high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-            for (int i = 0; i < imagesTest.centralized.size(); ++i){
-                knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinusIter, imagesTrain);
-                trueValues[i] = imagesTest.images[i].label;
-                // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
-            }
+            kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
             high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
-            timeTracker.push_back(TimeEvent("KNN", duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count()));
-            string knnOut = argv[2];
-            knnOut += "KNNTest";
-            getStats(knnValues, trueValues, knnOut, timeTracker, kMinusIter, 0, 0, kMayus);
-            timeTracker.pop_back();
+            timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
+
+            trueValues[i] = imagesTest.images[i].label;
+            for (int it = 0; it < labelRes.size(); it++) {
+                knnValues[it][i] = labelRes[it];
+            }
+
         }
 
-        /////
+        timeTracker.push_back(TimeEvent("KNN total", timeAcumulator));
+        timeTracker.push_back(TimeEvent("KNN per image", timeAcumulator/imagesTest.centralized.size()));
+
+        string knnOut = argv[2];
+        knnOut += "KNNTest";
+        for (int i = 0; i < kMin.size(); i++) {
+            getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus);
+        }
+
+        ///// end knn /////
 
     }
     input.close();
