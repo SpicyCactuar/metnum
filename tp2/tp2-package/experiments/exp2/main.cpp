@@ -67,15 +67,26 @@ int main(int argc, char const *argv[]){
             PLSDA(imagesTrain, eigenVectorsPLSDA, eigenValuesPLSDA, gamma, niterPLSDA);
             high_resolution_clock::time_point timePLSEnded = high_resolution_clock::now();
 
+            timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
+            timeTracker.push_back(TimeEvent("PCA", duration_cast<milliseconds>( timePCAEnded - timePCAStarted ).count()));
+            timeTracker.push_back(TimeEvent("PLS", duration_cast<milliseconds>( timePLSEnded - timePCAEnded ).count()));
+
             ///// knn PCA /////
             vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
             vector<vector<int> > knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPCA(imagesTest.centralized.size());
 
+            high_resolution_clock::time_point timeTC_PCA_start = high_resolution_clock::now();
+            TC tcTrainPCA, tcTestPCA;
+            tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
+            tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
+            high_resolution_clock::time_point timeTC_PCA_end = high_resolution_clock::now();
+            timeTracker.push_back(TimeEvent("TC PCA", duration_cast<milliseconds>( timeTC_PCA_end - timeTC_PCA_start ).count()));
+
             double timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+                kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
                 timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
@@ -86,9 +97,6 @@ int main(int argc, char const *argv[]){
 
             }
 
-            timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
-            timeTracker.push_back(TimeEvent("PCA", duration_cast<milliseconds>( timePCAEnded - timePCAStarted ).count()));
-            timeTracker.push_back(TimeEvent("PLS", duration_cast<milliseconds>( timePLSEnded - timePCAEnded ).count()));
             timeTracker.push_back(TimeEvent("KNN PCA total", timeAcumulator));
             timeTracker.push_back(TimeEvent("KNN PCA per image", timeAcumulator/imagesTest.centralized.size()));
 
@@ -107,10 +115,17 @@ int main(int argc, char const *argv[]){
             vector<vector<int> > knnValuesPLS(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPLS(imagesTest.centralized.size());
 
+            high_resolution_clock::time_point timeTC_PLS_start = high_resolution_clock::now();
+            TC tcTrainPLSDA, tcTestPLSDA;
+            tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
+            tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
+            high_resolution_clock::time_point timeTC_PLS_end = high_resolution_clock::now();
+            timeTracker.push_back(TimeEvent("TC PLS", duration_cast<milliseconds>( timeTC_PLS_end - timeTC_PLS_start ).count()));
+
             timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+                kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
                 timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
@@ -127,7 +142,7 @@ int main(int argc, char const *argv[]){
             knnOut = argv[2];
             knnOut += "KNN-PLS-Test";
             for (int i = 0; i < kMin.size(); i++) {
-                getStats(knnValuesPCA[i], trueValuesPCA, knnOut, timeTracker, kMin[i], alpha, gamma, kMayus);
+                getStats(knnValuesPLS[i], trueValuesPLS, knnOut, timeTracker, kMin[i], alpha, gamma, kMayus);
             }
             
             ///// end knn PLS /////

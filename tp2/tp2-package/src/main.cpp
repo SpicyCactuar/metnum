@@ -81,7 +81,7 @@ int main(int argc, char const *argv[]){
                 tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
                 for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
                     vector<int> kMin = {kMinus}, labelRes;
-                    kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+                    kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain);
                     knnValues[i] = labelRes[0];
                     trueValues[i] = imagesTest.images[i].label;
                 }
@@ -96,7 +96,7 @@ int main(int argc, char const *argv[]){
                 tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
                 for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
                     vector<int> kMin = {kMinus}, labelRes;
-                    kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+                    kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
                     knnValues[i] = labelRes[0];
                     trueValues[i] = imagesTest.images[i].label;
                 }
