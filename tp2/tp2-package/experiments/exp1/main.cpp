@@ -42,17 +42,10 @@ int main(int argc, char const *argv[]){
         getline(input, line);
         stringstream lineStream(line);
         DigitImages imagesTrain, imagesTest;
-        Matrix eigenVectorsPCA(alpha, vector<double>(DEFAULT_IMAGE_SIZE));
-        Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
-        vector<double> eigenValuesPCA(alpha);
-        vector<double> eigenValuesPLSDA(gamma);
 
         populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
         imagesTrain.getMeans();
         imagesTrain.calculateCentralized();
-        imagesTrain.calculateCovariances();
-        imagesTrain.calculateMeansLabels();
-        imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
         high_resolution_clock::time_point timeDefaultProcessEnded = high_resolution_clock::now();
 
@@ -63,8 +56,8 @@ int main(int argc, char const *argv[]){
 
         /////
 
-        vector<int> kInstances = vector<int>({1, 10, 20});
-        for (int it = 0; it <= kInstances.size() ; it++) {
+        vector<int> kInstances = vector<int>({1, 10, 25, 50});
+        for (int it = 0; it < kInstances.size() ; it++) {
             int kMinusIter = kInstances[it];
             high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
