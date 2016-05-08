@@ -69,11 +69,10 @@ int main(int argc, char const *argv[]){
                     kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
                     knnValues[i] = labelRes[0];
                     trueValues[i] = imagesTest.images[i].label;
-                    string knnOut = argv[2];
-                    knnOut += "KNN";
-                    getStats(knnValues, trueValues, knnOut, timeTracker, kMinus, alpha, gamma, kMayus);
-                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
+                string knnOut = argv[2];
+                knnOut += "KNN";
+                getStats(knnValues, trueValues, knnOut, timeTracker, kMinus, alpha, gamma, kMayus);
                 break;
             }
             case 1:{
@@ -85,11 +84,10 @@ int main(int argc, char const *argv[]){
                     kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
                     knnValues[i] = labelRes[0];
                     trueValues[i] = imagesTest.images[i].label;
-                    string pcaOut = argv[2];
-                    pcaOut += "PCA";
-                    getStats(knnValues, trueValues, pcaOut, timeTracker, kMinus, alpha, gamma, kMayus);
-                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
+                string pcaOut = argv[2];
+                pcaOut += "PCA";
+                getStats(knnValues, trueValues, pcaOut, timeTracker, kMinus, alpha, gamma, kMayus);
                 break;
             }
             case 2:{
@@ -101,11 +99,10 @@ int main(int argc, char const *argv[]){
                     kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
                     knnValues[i] = labelRes[0];
                     trueValues[i] = imagesTest.images[i].label;
-                    string plsOut = argv[2];
-                    plsOut += "PLS";
-                    getStats(knnValues, trueValues, plsOut, timeTracker, kMinus, alpha, gamma, kMayus);
-                    // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
                 }
+                string plsOut = argv[2];
+                plsOut += "PLS";
+                getStats(knnValues, trueValues, plsOut, timeTracker, kMinus, alpha, gamma, kMayus);
                 break;
             }
         }
