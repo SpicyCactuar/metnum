@@ -20,7 +20,7 @@ Uno podr\'ia argumentar que es un formato acotado, pero si uno digitaliza un tex
 \item Reconocimiento de caligraf\'ia
 \end{itemize}
 
-Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x_{i} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x_{i}^{(j)} \in \{0, ..., 255\}$, d\'onde $x_{i}^{(j)}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255.
+Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x^{i} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x^{(i)}_{j} \in \{0, ..., 255\}$, d\'onde $x^{(i)}_{j}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255.
 
 Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'ericos} que servir\'an de base para el desarrollo de este trabajo.
 
@@ -36,19 +36,47 @@ Este algoritmo efectivamente realiza una \textbf{clasificaci\'on supervisada}, a
 
 De todas formas, lo simple del algoritmo tiene su contraparte en la variable tiempo de ejecuci\'on. Uno debe aplicar $d$ sobre todos los elementos de $Z$, con lo cu\'al si el conjunto es grande, dependemos de la complejidad temporal la funci\'on de distancia. La clave de este procedimiento es elegir una funci\'on que resuma las diferencias entre elementos m\'as precisamente, minimizando el computo, lo cu\'al no es una tarea f\'acil ya que, en general, funciones de distancia livianas representan menor calidad de resultados.
 
-En respuesta a esa problem\'atica, planteamos 2 m\'etodos denominados \textbf{An\'alisis por Componentes Principales} (\textbf{PCA}, por sus siglas en ingl\'es) y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales} (\textbf{PLS-DA}). \textcolor{red}{DESDE ACA NO ENTENDI NADA JAJAJA} Conceptualmente, consisten en ponderar la informaci\'on para decidir qu\'e \textit{variables} almacenan m\'as informaci\'on y reducir el an\'alisis a comparar esas variables entre los distintos elementos. La diferenciaci\'on entre las mismas va a perimitir categorizar nuestros elementos de entrada con mayor eficiencia.
+En respuesta a esa problem\'atica, planteamos 2 m\'etodos denominados \textbf{An\'alisis por Componentes Principales} (\textbf{PCA}, por sus siglas en ingl\'es) y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales} (\textbf{PLS-DA}). Conceptualmente, consisten en ponderar la informaci\'on para decidir qu\'e \textit{variables} almacenan m\'as informaci\'on, y usarlas para reducir el an\'alisis a ese conjunto de variables de manera tal que se mejore dram\'aticamente el tiempo de c\'omputo.
+
+\subsection{Consideraciones previas a \textit{PCA} y \textit{PLS-DA}}
+
+Tanto \textit{PCA} y \textit{PLS-DA} tienen como pilar realizar un \textit{cambio de base} conveniente. En cada m\'etodo var\'ia \textit{cu\'al} se busca. 
+
+Nos abstraemos del modelo y consideramos $x_{i}$, $i = 1, ..., m$, como $m$ variables aleatorias, y $x^{j} \in \mathbb{R}^m$, $j = 1, ..., n$, como $n$ muestras de las mismas. Adem\'as, $\mu = (x^{(1)} + ... + x^{(n)}) / n \in \mathbb{R}^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x^{(1)}_{i} + ... + x^{(n)}_{i}) / n$ es el promedio de la variable aleatoria $i$ y con la cu\'al podemos reescribir $\mu$ como $\mu = (\mu_{1}, ..., \mu_{n})$.
+
+Planteamos la transformaci\'on sobre la matriz $X$, la cu\'al cuenta con $n$ filas de la forma $(x^{(i)} - \mu)^t$, $i = 1, ..., n$. Esta la matriz de datos efectivamente centra la media de las variables en $0$, lo cu\'al es simple (y se lo dejamos al lector) de verificar realizando el c\'alculo de la media sobre cada columna de $X$. Adem\'as, facilita los pasos aritm\'eticos y algebr\'aicos que se deben llevar a cabo en los m\'etodos.
+
+La transformaci\'on la caracterizaremos como $P$ y la buscamos tal que $\hat{X} = XP^{t}$, donde $\hat{X}$ \textit{vive} en un universo de mayor conveniencia para el an\'alisis. Adicionalmente, queremos que $P$ sea ortogonal por el comportamiento que posee de no alterar el largo de los vectores a los que multiplica, para que no modifique el comportamiento de los datos.
+
+\textcolor{red}{// TODO: Agregar reducci\'on de dimensi\'on a $\hat{X}$}
 
 \subsection{An\'alisis por Componentes Principales (\textit{PCA})}
 
-Sean $x_{i} \in \mathbb{R}^{m}$ con $i = 1, ..., n$, muestras de $m$ variables aleatorias, con $\mu = (x_{1} + ... + x_{n}) / n \in \mathbb{R}^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x_{1}^{(i)} + ... + x_{n}^{(i)}) / n$ es el promedio de la variable aleatoria $i$.
+En este primer caso, planteamos una transformaci\'on que simult\'aneamente maximice las varianzas y minimice las covarianzas entre las variables aleatorias. Lo que logramos con esto es reducir las dependencias, para poder analizar una variable sin considerar qu\'e ocurre con las dem\'as, y extraer la mayor cantidad de informaci\'on de cada una.
 
-En la b\'usqueda de las variables que m\'as informaci\'on almacenen, buscamos simult\'aneamente las que posean la mayor varianza y covarianza nula. Para ello, comenzamos calculando la matriz de covarianzas $M_{X}$. Una manera de hacerlo es matricialmente, generando una matriz $X \in \mathbb{R}^{n \times m}$ con $n$ filas consistiendo de $(x_{i} - \mu)^t / \sqrt{n - 1}$ y consiguiendo el resultado deseado de la forma $M_{X} = X^{t}X$. Verificar que $M_{X}$ es la matriz de covarianzas es ver que en la posici\'on $(j, k)$ obtengo $\sigma_{jk}$, la covarianza entre $x_{j}$ y $x_{k}$: \\
+Una forma es pensarlo matricialmente. Llamamos la matriz $M_{X}$ como la matriz de covarianzas, que posee en la posici\'on $(j, k)$ la covarianza entre las \textit{VA} $x_{j}$ y $x_{k}$, que denominamos $\sigma_{x_{j}x_{k}}$. Dicha matriz se puede obtener haciendo $M_{X} = \frac{1}{n - 1}X^{t}X$. Para verificarlo desarrollamos  $M_{X}^{(j,k)}$, con $j,k \in {1, ..., n}$: \\
 
-\textbf{\textcolor{red}{// TODO: Chequear esta cuenta}}
+$M_{X}^{(j,k)} = \frac{1}{n - 1}fila_{j}(X^t)col_{k}(X)$ \\
 
-$M_{X}^{(j,k)} = (x_{j} - \mu_{j})^t(x_{k} - \mu_{k}) / \sqrt{n - 1}\sqrt{n - 1} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})(x_{k}^{(i)} - \mu_{k}) / (n - 1) = \sigma_{jk}$.
+$\Bigg\{
+\begin{array}{@{}ll@{}}
+	fila_{j}(X^t) = (x^{(1)}_{j} - \mu_{j}, ..., x^{(n)}_{j} - \mu_{j})^t = ((x^{(1)}_{j}, ..., x^{(n)}_{j}) - \mu_{j}v)^{t} = (x_{j} - \mu_{j}v)^{t} \\
+	col_{k}(X) = (x^{(1)}_{k} - \mu_{k}, ..., x^{(n)}_{k} - \mu_{k}) = ((x^{(1)}_{k}, ..., x^{(n)}_{k}) - \mu_{k}v) = (x_{k} - \mu_{k}v)
+\end{array}$ \\
 
-Observamos adem\'as que $\sigma_{jj} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})^{2} / (n - 1) = \sigma_{j}^{2}$. Dejamos en manos del lector verificar que $M_{X}^{(j,k)} = M_{X}^{(k,j)}$. Con lo cu\'al obtuvimos una matriz que contiene a las varianzas de las variables en la diagonal y las covarianzas en el resto de las posiciones, y que es sim\'etrica. Esta \'ultima observaci\'on va a ser fundamental para los pr\'oximos pasos del procedimiento.
+D\'onde $v = (1, ..., 1) \in \mathbb{R}^{n}$. \\
+
+Por lo tanto,
+
+$M_{X}^{(j,k)} = \frac{1}{n - 1}fila_{j}(X^t)col_{k}(X) = (x_{j} - \mu_{j}v)^{t}(x_{k} - \mu_{k}v) / (n - 1) = \sum\limits_{i = 1}^{n}(x^{i}_{j} - \mu_{j})(x^{i}_{k} - \mu_{k}) / (n - 1) = \sigma_{x_{j}x_{k}}$.
+
+Observamos adem\'as que $\sigma_{jj} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})^{2} / (n - 1) = \sigma_{j}^{2}$. Dejamos en manos del lector verificar que $M_{X}^{(j,k)} = M_{X}^{(k,j)}$. Con lo cu\'al obtuvimos una matriz que contiene a las varianzas de las variables en la diagonal y las covarianzas en el resto de las posiciones, y que es sim\'etrica. Esta \'ultima observaci\'on va a ser fundamental para los pr\'oximos pasos del procedimiento. \\
+
+Retomemos el cambio de base y la b\'usqueda de la transformaci\'on $P$. Veamos como podemos obtenerla a partir de $M_{\hat{X}}$, la matriz de covarianzas de $\hat{X}$.
+
+$M_{\hat{X}} = \frac{1}{n - 1}\hat{X}^{t}\hat{X} = \frac{1}{n - 1}(PX^{t})(XP^{t}) = P\frac{X^{t}X}{n - 1}P^{t} = PM_{X}P^{t}$.
+
+Sabiendo que $M_{X}$ es sim\'etrica sabemos que existen $V$ ortogonal, cuyas columnas son sus autovectores, y $D$ diagonal tal que $M_{X} = VDV^{t}$ que sabemos que existen \textcolor{red}{// TODO: Insertar link a demo}. Proponemos $P = V^{t}$, y arribamos a que $M_{\hat{X}} = V^{t}M_{X}V = (V^{t}V)D(VV^{t}) = D$, ya que $V$ es ortogonal.
 
 \subsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}
 
