@@ -7,29 +7,32 @@
 #include "Equalty.h"
 #include "MatrixAlgorithms.h"
 
-int kNN(vector<double> &test, Matrix &train, int k, DigitImages &digitImagesTrain){
+void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labelRes, DigitImages &digitImagesTrain){
     // distance, index
     vector<pair<double, int> > distances(train.size());
     vector<int> labels(LABELS_QTY, 0);
     vector<double> diff(test.size());
+    labelRes = vector<int>(ks.size());
     for (int i = 0; i < train.size(); ++i){
         substractVecVec(test, train[i], diff);
         distances[i].first = dotProduct(diff, diff);
         distances[i].second = i;
     }
     sort(distances.begin(), distances.end());
-    for (int i = 0; i < k; ++i)
-        labels[digitImagesTrain.images[distances[i].second].label]++;
-    int max = labels[0], label = 0;
-    // TODO: extract to function
-    for (int i = 1; i < labels.size(); ++i){
-        if (labels[i] > max){
-            max = labels[i];
-            label = i;
+    for (int iter = 0; iter < ks.size(); ++iter){
+        for (int i = 0; i < ks[iter]; ++i)
+            labels[digitImagesTrain.images[distances[i].second].label]++;
+        int max = labels[0], label = 0;
+        // TODO: extract to function
+        for (int i = 1; i < labels.size(); ++i){
+            if (labels[i] > max){
+                max = labels[i];
+                label = i;
+            }
         }
+        labelRes[iter] = label;
+        // in case of draw, lower digit wins
     }
-    // in case of draw, lower digit wins
-    return label;
 }
 
 double powerMethod(Matrix &mat, vector<double> &vec, int niter){
