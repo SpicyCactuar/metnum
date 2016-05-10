@@ -30,8 +30,10 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
+    vector<vector<AwesomeStatistic>> kMayusStats;
+
     for (int iter = 0; iter < kMayus; ++iter){
-        vector<TimeEvent> timeTracker;
+        map<string, int> timeTracker;
         high_resolution_clock::time_point timeIterationStart = high_resolution_clock::now();
         //train or test input
         getline(input, line);
@@ -45,11 +47,12 @@ int main(int argc, char const *argv[]){
 
         high_resolution_clock::time_point timeDefaultProcessEnded = high_resolution_clock::now();
 
-        timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
+        timeTracker[DEFAULT_PROCESS_TIME] = (int)duration_cast<milliseconds>(timeDefaultProcessEnded - timeIterationStart).count();
 
         ///// knn /////
 
-        vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
+        vector<int> kMin = {1, 2}, labelRes;
+//        vector<int> kMin = {1, 2, 3, 5, 10, 25, 50, 100, 200}, labelRes;
         vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
@@ -67,18 +70,23 @@ int main(int argc, char const *argv[]){
 
         }
 
-        timeTracker.push_back(TimeEvent("KNN total", timeAcumulator));
-        timeTracker.push_back(TimeEvent("KNN per image", timeAcumulator/imagesTest.centralized.size()));
+        timeTracker[KNN_TOTAL_TIME] = timeAcumulator;
+        timeTracker[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
         string knnOut = argv[2];
         knnOut += "KNNTest";
+        vector<AwesomeStatistic> kMinusStats(kMin.size());
         for (int i = 0; i < kMin.size(); i++) {
-            getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus);
+            getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus, iter, kMinusStats[i]);
         }
 
         ///// end knn /////
 
+        kMayusStats.push_back(kMinusStats);
     }
+
+    processStatsAnalysis(kMayusStats, 0, 0, "KNN");
+
     input.close();
     output.close();
     return 0;

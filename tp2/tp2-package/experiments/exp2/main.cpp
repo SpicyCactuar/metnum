@@ -29,6 +29,9 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
+    vector<vector<AwesomeStatistic>> kMayusStatsPCA;
+    vector<vector<AwesomeStatistic>> kMayusStatsPLS;
+
     for (int iter = 0; iter < kMayus; ++iter){
         //train or test input
         getline(input, line);
@@ -42,7 +45,8 @@ int main(int argc, char const *argv[]){
             int alpha = alphaValues[alphaIt];
             int gamma = alphaValues[alphaIt];
 
-            vector<TimeEvent> timeTracker;
+            map<string, int> timeTrackerPCA;
+            map<string, int> timeTrackerPLS;
 
             high_resolution_clock::time_point timeIterationStart = high_resolution_clock::now();
             DigitImages imagesTrain, imagesTest;
@@ -67,9 +71,11 @@ int main(int argc, char const *argv[]){
             PLSDA(imagesTrain, eigenVectorsPLSDA, eigenValuesPLSDA, gamma, niterPLSDA);
             high_resolution_clock::time_point timePLSEnded = high_resolution_clock::now();
 
-            timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
-            timeTracker.push_back(TimeEvent("PCA", duration_cast<milliseconds>( timePCAEnded - timePCAStarted ).count()));
-            timeTracker.push_back(TimeEvent("PLS", duration_cast<milliseconds>( timePLSEnded - timePCAEnded ).count()));
+            timeTrackerPCA[DEFAULT_PROCESS_TIME] = (int)duration_cast<milliseconds>(timeDefaultProcessEnded - timeIterationStart).count();
+            timeTrackerPCA[PREPROCESS_DIMENSION_TIME] = (int)duration_cast<milliseconds>(timePCAEnded - timePCAStarted).count();
+
+            timeTrackerPLS[DEFAULT_PROCESS_TIME] = (int)duration_cast<milliseconds>(timeDefaultProcessEnded - timeIterationStart).count();
+            timeTrackerPLS[PREPROCESS_DIMENSION_TIME] = (int)duration_cast<milliseconds>(timePLSEnded - timePCAEnded).count();
 
             ///// knn PCA /////
             vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
@@ -81,7 +87,7 @@ int main(int argc, char const *argv[]){
             tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
             tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
             high_resolution_clock::time_point timeTC_PCA_end = high_resolution_clock::now();
-            timeTracker.push_back(TimeEvent("TC PCA", duration_cast<milliseconds>( timeTC_PCA_end - timeTC_PCA_start ).count()));
+            timeTrackerPCA[TC_TIME] = (int)duration_cast<milliseconds>( timeTC_PCA_end - timeTC_PCA_start ).count();
 
             double timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
@@ -97,16 +103,19 @@ int main(int argc, char const *argv[]){
 
             }
 
-            timeTracker.push_back(TimeEvent("KNN PCA total", timeAcumulator));
-            timeTracker.push_back(TimeEvent("KNN PCA per image", timeAcumulator/imagesTest.centralized.size()));
+            timeTrackerPCA[KNN_TOTAL_TIME] = timeAcumulator;
+            timeTrackerPCA[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
 
             string knnOut = argv[2];
             knnOut += "KNN-PCA-Test";
+            vector<AwesomeStatistic> kMinusStatsPCA(kMin.size());
             for (int i = 0; i < kMin.size(); i++) {
-                getStats(knnValuesPCA[i], trueValuesPCA, knnOut, timeTracker, kMin[i], alpha, gamma, kMayus);
+                getStats(knnValuesPCA[i], trueValuesPCA, knnOut, timeTrackerPCA, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPCA[i]);
             }
-            
+
+            kMayusStatsPCA.push_back(kMinusStatsPCA);
+
             ///// end knn PCA /////
 
 
@@ -120,14 +129,14 @@ int main(int argc, char const *argv[]){
             tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
             tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
             high_resolution_clock::time_point timeTC_PLS_end = high_resolution_clock::now();
-            timeTracker.push_back(TimeEvent("TC PLS", duration_cast<milliseconds>( timeTC_PLS_end - timeTC_PLS_start ).count()));
+            timeTrackerPLS[TC_TIME] = (int)duration_cast<milliseconds>(timeTC_PLS_end - timeTC_PLS_start).count();
 
             timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
                 kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
-                timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
+                timeAcumulator += duration_cast<milliseconds>(timekNNEnded - timekNNStarted).count();
 
                 trueValuesPLS[i] = imagesTest.images[i].label;
                 for (int it = 0; it < labelRes.size(); it++) {
@@ -136,15 +145,18 @@ int main(int argc, char const *argv[]){
 
             }
 
-            timeTracker.push_back(TimeEvent("KNN PLS total", timeAcumulator));
-            timeTracker.push_back(TimeEvent("KNN PLS per image", timeAcumulator/imagesTest.centralized.size()));
+            timeTrackerPLS[KNN_TOTAL_TIME] = timeAcumulator;
+            timeTrackerPLS[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
             knnOut = argv[2];
             knnOut += "KNN-PLS-Test";
+            vector<AwesomeStatistic> kMinusStatsPLS(kMin.size());
             for (int i = 0; i < kMin.size(); i++) {
-                getStats(knnValuesPLS[i], trueValuesPLS, knnOut, timeTracker, kMin[i], alpha, gamma, kMayus);
+                getStats(knnValuesPLS[i], trueValuesPLS, knnOut, timeTrackerPLS, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPLS[i]);
             }
-            
+
+            kMayusStatsPLS.push_back(kMinusStatsPLS);
+
             ///// end knn PLS /////
 
 
