@@ -1,4 +1,4 @@
-//Compile: g++ -o tp main.cpp -std=c++11
+//Compile: g++ -o2 tp main.cpp -std=c++11
 //Run con tests provistos ./tp tests/test1.in .......
 #include "../../src/Algorithms.h"
 #include "../../src/Tests.h"

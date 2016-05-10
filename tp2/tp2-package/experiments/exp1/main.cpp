@@ -1,4 +1,4 @@
-//Compile: g++ -o tp main.cpp -std=c++11
+//Compile: g++ -O2 -o exp1 main.cpp -std=c++11
 //Run con tests provistos ./tp tests/test1.in .......
 #include "../../src/Algorithms.h"
 #include "../../src/Tests.h"
@@ -49,8 +49,8 @@ int main(int argc, char const *argv[]){
         timeTracker[DEFAULT_PROCESS_TIME] = (int)duration_cast<milliseconds>(timeDefaultProcessEnded - timeIterationStart).count();
 
         ///// knn /////
-
-        vector<int> kMin = {1, 2, 3, 5, 10, 25, 50, 100, 200}, labelRes;
+        vector<int> kMin(100), labelRes;
+        for (int i = 0; i < 100; i++) kMin[i] = i+1;
         vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
