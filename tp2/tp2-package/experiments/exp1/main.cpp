@@ -1,4 +1,4 @@
-//Compile: g++ -o tp main.cpp -std=c++11
+//Compile: g++ -O2 -o exp1 main.cpp -std=c++11
 //Run con tests provistos ./tp tests/test1.in .......
 #include "../../src/Algorithms.h"
 #include "../../src/Tests.h"
@@ -11,22 +11,16 @@
 // --- Input arguments ---
 //   -(i: input file)
 //   -(o: output file)
-//   -(a: alpha)
-//   -(g: gamma)
 
 using namespace chrono;
 
 int main(int argc, char const *argv[]){
-    if(argc != 5){
-        cout << "Parameters should be: (i: input file), (o: output file), (k: k minus), (a: alpha), (g: gamma)" << endl;
+    if(argc != 3){
+        cout << "Parameters should be: (i: input file), (o: output file)" << endl;
         return 0;
     }
 
     ifstream input(argv[1]);
-    ofstream output(argv[2]);
-
-    int alpha = stoi(argv[3]);
-    int gamma = stoi(argv[4]);
 
     string inFileDir, line;
     int kMayus;
@@ -35,55 +29,58 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
+    vector<vector<AwesomeStatistic>> kMayusStats;
+
     for (int iter = 0; iter < kMayus; ++iter){
-        vector<TimeEvent> timeTracker;
+        map<string, int> timeTracker;
         high_resolution_clock::time_point timeIterationStart = high_resolution_clock::now();
         //train or test input
         getline(input, line);
         stringstream lineStream(line);
         DigitImages imagesTrain, imagesTest;
-        Matrix eigenVectorsPCA(alpha, vector<double>(DEFAULT_IMAGE_SIZE));
-        Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
-        vector<double> eigenValuesPCA(alpha);
-        vector<double> eigenValuesPLSDA(gamma);
 
         populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
         imagesTrain.getMeans();
         imagesTrain.calculateCentralized();
-        imagesTrain.calculateCovariances();
-        imagesTrain.calculateMeansLabels();
         imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
         high_resolution_clock::time_point timeDefaultProcessEnded = high_resolution_clock::now();
 
-        timeTracker.push_back(TimeEvent("Default Process", duration_cast<milliseconds>( timeDefaultProcessEnded - timeIterationStart ).count()));
+        timeTracker[DEFAULT_PROCESS_TIME] = (int)duration_cast<milliseconds>(timeDefaultProcessEnded - timeIterationStart).count();
 
-        vector<int> knnValues(imagesTest.centralized.size());
+        ///// knn /////
+        vector<int> kMin(100), labelRes;
+        for (int i = 0; i < 100; i++) kMin[i] = i+1;
+        vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
-        /////
-
-        vector<int> kInstances = vector<int>({1, 10, 20});
-        for (int it = 0; it <= kInstances.size() ; it++) {
-            int kMinusIter = kInstances[it];
+        double timeAcumulator = 0;
+        for (int i = 0; i < imagesTest.centralized.size(); ++i){
             high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-            for (int i = 0; i < imagesTest.centralized.size(); ++i){
-                knnValues[i] = kNN(imagesTest.centralized[i], imagesTrain.centralized, kMinusIter, imagesTrain);
-                trueValues[i] = imagesTest.images[i].label;
-                // cout << "la imagen: " << i << " del kNN: " << knnValues[i] << " del label: " << trueValues[i] << endl;
-            }
+            kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
             high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
-            timeTracker.push_back(TimeEvent("KNN", duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count()));
-            string knnOut = argv[2];
-            knnOut += "KNNTest";
-            getStats(knnValues, trueValues, knnOut, timeTracker, kMinusIter, alpha, gamma, kMayus);
-            timeTracker.pop_back();
+            timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
+
+            trueValues[i] = imagesTest.images[i].label;
+            for (int it = 0; it < labelRes.size(); it++)
+                knnValues[it][i] = labelRes[it];
         }
 
-        /////
+        timeTracker[KNN_TOTAL_TIME] = timeAcumulator;
+        timeTracker[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
+        string knnOut = argv[2];
+        knnOut += + "KNNTest-(" + to_string(kMayus) + "-Partitions)";
+
+        vector<AwesomeStatistic> kMinusStats(kMin.size());
+        for (int i = 0; i < kMin.size(); i++)
+            getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus, iter, kMinusStats[i]);
+        ///// end knn /////
+        kMayusStats.push_back(kMinusStats);
     }
+    string analysisName = "KNN-(" + to_string(kMayus) + "-Partitions)";
+    processStatsAnalysis(kMayusStats, analysisName);
+
     input.close();
-    output.close();
     return 0;
 }

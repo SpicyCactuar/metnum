@@ -8,11 +8,33 @@ const int DEFAULT_IMAGE_SIDE_SIZE = 28;
 const int DEFAULT_IMAGE_SIZE = DEFAULT_IMAGE_SIDE_SIZE * DEFAULT_IMAGE_SIDE_SIZE;
 const int LABELS_QTY = 10;
 
+const string DEFAULT_PROCESS_TIME = "Default process time";
+const string KNN_TOTAL_TIME = "KNN total time";
+const string KNN_PER_IMAGE_TIME = "KNN per image time";
+const string PREPROCESS_DIMENSION_TIME = "Preprocess dimension time (PCA - PLS)";
+const string TC_TIME = "TC time";
+
 /** Class representing one manuscript digit image **/
 struct DigitImage {
     //faltaria poner label por defecto = -1
     int label;
     vector<double> pixels;
+};
+
+/** Class representing a stats Structure **/
+struct AwesomeStatistic {
+    double hitRate;
+    double precision;
+    double recall;
+    double f1Score;
+    vector<vector<int>> confusion;
+    int defaultProcessTime;
+    int kNNTotalTime;
+    double kNNPerImageTime;
+    int preprocessTime;
+    int tcTime;
+    int alpha;
+    int gamma;
 };
 
 /** Class representing a smart container of DigitImage(s) **/
