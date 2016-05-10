@@ -51,15 +51,14 @@ int main(int argc, char const *argv[]){
 
         //stores eigen vector and values with niter power method iterations
         PCA(imagesTrain.covariances, eigenVectorsPCA, eigenValuesPCA, alpha, niterPCA);
-        for (int i = 0; i < alpha; ++i){
-            output << scientific << sqrt(eigenValuesPCA[i]) << endl;
-            // output << scientific << eigenValues[i] << endl;
-        }
+        for (int i = 0; i < alpha; ++i)
+            output << scientific << eigenValuesPCA[i] << endl;
         PLSDA(imagesTrain, eigenVectorsPLSDA, eigenValuesPLSDA, gamma, niterPLSDA);
         for (int i = 0; i < gamma; ++i)
             output << scientific << eigenValuesPLSDA[i] << endl;
 
-        vector<TimeEvent> timeTracker;
+        map<string, int> timeTracker;
+        AwesomeStatistic stat;
         vector<int> knnValues(imagesTest.centralized.size());
         vector<int> trueValues(imagesTest.centralized.size());
         switch(stoi(method)){
@@ -72,7 +71,7 @@ int main(int argc, char const *argv[]){
                 }
                 string knnOut = argv[2];
                 knnOut += "KNN";
-                getStats(knnValues, trueValues, knnOut, timeTracker, kMinus, alpha, gamma, kMayus);
+                getStats(knnValues, trueValues, knnOut, timeTracker, kMinus, alpha, gamma, kMayus, iter, stat);
                 break;
             }
             case 1:{
@@ -87,7 +86,7 @@ int main(int argc, char const *argv[]){
                 }
                 string pcaOut = argv[2];
                 pcaOut += "PCA";
-                getStats(knnValues, trueValues, pcaOut, timeTracker, kMinus, alpha, gamma, kMayus);
+                getStats(knnValues, trueValues, pcaOut, timeTracker, kMinus, alpha, gamma, kMayus, iter, stat);
                 break;
             }
             case 2:{
@@ -102,7 +101,7 @@ int main(int argc, char const *argv[]){
                 }
                 string plsOut = argv[2];
                 plsOut += "PLS";
-                getStats(knnValues, trueValues, plsOut, timeTracker, kMinus, alpha, gamma, kMayus);
+                getStats(knnValues, trueValues, plsOut, timeTracker, kMinus, alpha, gamma, kMayus, iter, stat);
                 break;
             }
         }

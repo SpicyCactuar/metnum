@@ -21,7 +21,6 @@ int main(int argc, char const *argv[]){
     }
 
     ifstream input(argv[1]);
-    ofstream output(argv[2]);
 
     string inFileDir, line;
     int kMayus;
@@ -51,8 +50,7 @@ int main(int argc, char const *argv[]){
 
         ///// knn /////
 
-        vector<int> kMin = {1, 2}, labelRes;
-//        vector<int> kMin = {1, 2, 3, 5, 10, 25, 50, 100, 200}, labelRes;
+        vector<int> kMin = {1, 2, 3, 5, 10, 25, 50, 100, 200}, labelRes;
         vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
@@ -64,10 +62,8 @@ int main(int argc, char const *argv[]){
             timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
             trueValues[i] = imagesTest.images[i].label;
-            for (int it = 0; it < labelRes.size(); it++) {
+            for (int it = 0; it < labelRes.size(); it++)
                 knnValues[it][i] = labelRes[it];
-            }
-
         }
 
         timeTracker[KNN_TOTAL_TIME] = timeAcumulator;
@@ -77,19 +73,14 @@ int main(int argc, char const *argv[]){
         knnOut += + "KNNTest-(" + to_string(kMayus) + "-Partitions)";
 
         vector<AwesomeStatistic> kMinusStats(kMin.size());
-        for (int i = 0; i < kMin.size(); i++) {
+        for (int i = 0; i < kMin.size(); i++)
             getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus, iter, kMinusStats[i]);
-        }
-
         ///// end knn /////
-
         kMayusStats.push_back(kMinusStats);
     }
-
     string analysisName = "KNN-(" + to_string(kMayus) + "-Partitions)";
-    processStatsAnalysis(kMayusStats, 0, 0, analysisName);
+    processStatsAnalysis(kMayusStats, analysisName);
 
     input.close();
-    output.close();
     return 0;
 }

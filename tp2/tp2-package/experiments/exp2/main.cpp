@@ -1,12 +1,12 @@
 //Compile: g++ -o tp main.cpp -std=c++11
 //Run con tests provistos ./tp tests/test1.in .......
-#include "Algorithms.h"
-#include "Tests.h"
-#include "Types.h"
-#include "InputProcessor.h"
-#include "Print.h"
-#include "MatrixAlgorithms.h"
-#include "Stats.h"
+#include "../../src/Algorithms.h"
+#include "../../src/Tests.h"
+#include "../../src/Types.h"
+#include "../../src/InputProcessor.h"
+#include "../../src/Print.h"
+#include "../../src/MatrixAlgorithms.h"
+#include "../../src/Stats.h"
 
 // --- Input arguments ---
 //   -(i: input file)
@@ -21,7 +21,6 @@ int main(int argc, char const *argv[]){
     }
 
     ifstream input(argv[1]);
-    ofstream output(argv[2]);
 
     string inFileDir, line;
     int kMayus;
@@ -36,8 +35,7 @@ int main(int argc, char const *argv[]){
         //train or test input
         getline(input, line);
 
-        vector<int> alphaValues = {1, 2};
-//        vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
+        vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
         for (int alphaIt = 0; alphaIt < alphaValues.size(); alphaIt++) {
 
             stringstream lineStream(line);
@@ -97,30 +95,21 @@ int main(int argc, char const *argv[]){
                 timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
                 trueValuesPCA[i] = imagesTest.images[i].label;
-                for (int it = 0; it < labelRes.size(); it++) {
+                for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPCA[it][i] = labelRes[it];
-                }
-
             }
-
             timeTrackerPCA[KNN_TOTAL_TIME] = timeAcumulator;
             timeTrackerPCA[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
-
 
             string knnOut = argv[2];
             knnOut += "KNN-PCA-Test";
             vector<AwesomeStatistic> kMinusStatsPCA(kMin.size());
-            for (int i = 0; i < kMin.size(); i++) {
+            for (int i = 0; i < kMin.size(); i++)
                 getStats(knnValuesPCA[i], trueValuesPCA, knnOut, timeTrackerPCA, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPCA[i]);
-            }
-
+            ///// end knn PCA /////
             kMayusStatsPCA.push_back(kMinusStatsPCA);
 
-            ///// end knn PCA /////
-
-
             ///// knn PLS /////
-
             vector<vector<int> > knnValuesPLS(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPLS(imagesTest.centralized.size());
 
@@ -139,30 +128,27 @@ int main(int argc, char const *argv[]){
                 timeAcumulator += duration_cast<milliseconds>(timekNNEnded - timekNNStarted).count();
 
                 trueValuesPLS[i] = imagesTest.images[i].label;
-                for (int it = 0; it < labelRes.size(); it++) {
+                for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPLS[it][i] = labelRes[it];
-                }
-
             }
-
             timeTrackerPLS[KNN_TOTAL_TIME] = timeAcumulator;
             timeTrackerPLS[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
             knnOut = argv[2];
             knnOut += "KNN-PLS-Test";
             vector<AwesomeStatistic> kMinusStatsPLS(kMin.size());
-            for (int i = 0; i < kMin.size(); i++) {
+            for (int i = 0; i < kMin.size(); i++)
                 getStats(knnValuesPLS[i], trueValuesPLS, knnOut, timeTrackerPLS, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPLS[i]);
-            }
-
-            kMayusStatsPLS.push_back(kMinusStatsPLS);
-
             ///// end knn PLS /////
-
-
+            kMayusStatsPLS.push_back(kMinusStatsPLS);
         }
     }
+
+    string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)";
+    string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)";
+    processStatsAnalysis(kMayusStatsPCA, analysisNamePCA);
+    processStatsAnalysis(kMayusStatsPLS, analysisNamePLS);
+
     input.close();
-    output.close();
     return 0;
 }

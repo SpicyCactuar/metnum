@@ -15,14 +15,13 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
     output << "K total," << kMayus << endl;
     output << "K actual," << kActual << endl;
     output << "----,Results,----" << endl;
-    output << ", Precision, Recall" << endl;
 
     vector<int> truePositives(LABELS_QTY, 0);
     vector<int> falsePositives(LABELS_QTY, 0);
     vector<int> falseNegatives(LABELS_QTY, 0);
-    vector<vector<int>> confusion(LABELS_QTY, vector<int>(LABELS_QTY));
+    stats.confusion = vector<vector<int>>(LABELS_QTY, vector<int>(LABELS_QTY, 0));
     for (int i = 0; i < knnValues.size(); ++i){
-        confusion[trueValues[i]][knnValues[i]]++;
+        stats.confusion[trueValues[i]][knnValues[i]]++;
         if(knnValues[i] == trueValues[i])
             truePositives[knnValues[i]]++;
         else{
@@ -30,7 +29,6 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
             falseNegatives[trueValues[i]]++;
         }
     }
-    
     double sumHitRate = 0, sumPrecision = 0, sumRecall = 0;
     for (int i = 0; i < LABELS_QTY; ++i){
         double totalPrecision = truePositives[i] + falsePositives[i];
@@ -40,50 +38,38 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
         sumHitRate += truePositives[i];
         sumPrecision += precision;
         sumRecall += recall;
-        output << i << ", ";
-        output << precision << ", ";
-        output << recall << endl;
     }
-    double hitRate = sumHitRate / knnValues.size();
-    output << "HitRate, " << hitRate << endl;
-    double precision = sumPrecision / LABELS_QTY;
-    output << "Precision, " << precision << endl;
-    double recall = sumRecall / LABELS_QTY;
-    output << "Recall, " << recall << endl;
-    double f1Score = 2 * precision * recall / (precision + recall);
-    output << "F1Score, " << f1Score << endl;
+    stats.hitRate = sumHitRate / knnValues.size();
+    output << "HitRate, " << stats.hitRate << endl;
+    stats.precision = sumPrecision / LABELS_QTY;
+    output << "Precision, " << stats.precision << endl;
+    stats.recall = sumRecall / LABELS_QTY;
+    output << "Recall, " << stats.recall << endl;
+    stats.f1Score = 2 * stats.precision * stats.recall / (stats.precision + stats.recall);
+    output << "F1Score, " << stats.f1Score << endl;
 
     output << "----,Confusion,----" << endl;
-    output << ",Predicted" << endl;
-    output << "Actual,0,1,2,3,4,5,6,7,8,9" << endl;
+    output << "Actual\\Predicted,0,1,2,3,4,5,6,7,8,9" << endl;
     for (int i = 0; i < LABELS_QTY; i++) {
         output << i << ",";
-        for (int j = 0; j < LABELS_QTY; j++) {
-            output << confusion[i][j] << ",";
-        }
+        for (int j = 0; j < LABELS_QTY; j++)
+            output << stats.confusion[i][j] << ",";
         output << endl;
     }
 
     output << "----,Time Results,----" << endl;
-    for (auto it = timeTracker.begin(); it != timeTracker.end(); it++) {
+    for (auto it = timeTracker.begin(); it != timeTracker.end(); it++)
         output << it->first << ", " << it->second << endl;
-    }
     output << "----,----,----" << endl;
 
-
     ////// SET STATS
-
-    stats.hitRate = hitRate;
-    stats.precision = precision;
-    stats.recall = recall;
-    stats.f1Score = f1Score;
-    stats.confusion = confusion;
     stats.defaultProcessTime = timeTracker[DEFAULT_PROCESS_TIME];
     stats.kNNTotalTime = timeTracker[KNN_TOTAL_TIME];
     stats.kNNPerImageTime = timeTracker[KNN_PER_IMAGE_TIME];
     stats.preprocessTime = timeTracker[PREPROCESS_DIMENSION_TIME];
     stats.tcTime = timeTracker[TC_TIME];
-
+    stats.alpha = alpha;
+    stats.gamma = gamma;
 
     output.close();
 }
@@ -91,63 +77,46 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
 template <typename T>
 double getAverage(vector<T> vec) {
     double sum = 0;
-    for (int i = 0; i < vec.size(); i++) {
+    for (int i = 0; i < vec.size(); i++)
         sum += vec[i];
-    }
     return sum/vec.size();
 }
 
 template <typename T>
 double getSTDev(vector<T> vec) {
-    double sum = 0;
-    double avg = getAverage(vec);
-    for (int i = 0; i < vec.size(); i++) {
+    double sum = 0, avg = getAverage(vec);
+    for (int i = 0; i < vec.size(); i++)
         sum += pow(vec[i] - avg, 2);
-    }
     return sqrt(sum/vec.size());
 }
 
-void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, int alpha, int gamma, string algorithm) {
-
+void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string &algorithm) {
     //[K][k]
-
     string outputName = "Analysis-" + algorithm + ".csv";
     ofstream output(outputName);
 
-    double hitRateAvg, hitRateSTD;
-    double precisionAvg, precisionSTD;
-    double recallAvg, recallSTD;
-    double f1ScoreAvg, f1ScoreSTD;
-    vector<vector<int>> confusionSum(LABELS_QTY, vector<int>(LABELS_QTY, 0));
-    double defaultProcessTimeAvg, defaultProcessTimeSTD;
-    double kNNTotalTimeAvg, kNNTotalTimeSTD;
-    double kNNPerImageTimeAvg, kNNPerImageTimeSTD;
-    double preprocessTimeAvg, preprocessTimeSTD;
-    double tcTimeAvg, tcTimeSTD;
-
-    vector<double> vechitRate(kMayusStats.size());
-    vector<double> vecprecision(kMayusStats.size());
-    vector<double> vecrecall(kMayusStats.size());
-    vector<double> vecf1Score(kMayusStats.size());
-    vector<double> vecdefaultProcessTime(kMayusStats.size());
-    vector<double> veckNNTotalTime(kMayusStats.size());
-    vector<double> veckNNPerImageTime(kMayusStats.size());
-    vector<double> vecpreprocessTime(kMayusStats.size());
-    vector<double> vectcTime(kMayusStats.size());
+    vector<double> vecHitRate(kMayusStats.size());
+    vector<double> vecPrecision(kMayusStats.size());
+    vector<double> vecRecall(kMayusStats.size());
+    vector<double> vecF1Score(kMayusStats.size());
+    vector<double> vecDefaultProcessTime(kMayusStats.size());
+    vector<double> vecKNNTotalTime(kMayusStats.size());
+    vector<double> vecKNNPerImageTime(kMayusStats.size());
+    vector<double> vecPreprocessTime(kMayusStats.size());
+    vector<double> vecTCTime(kMayusStats.size());
 
     for (int kMinus = 0; kMinus < kMayusStats[0].size(); kMinus++) {
-
+        vector<vector<int>> confusionSum(LABELS_QTY, vector<int>(LABELS_QTY, 0));
         for (int kMayus = 0; kMayus < kMayusStats.size(); kMayus++) {
-
-            vechitRate[kMayus] = kMayusStats[kMayus][kMinus].hitRate;
-            vecprecision[kMayus] = kMayusStats[kMayus][kMinus].precision;
-            vecrecall[kMayus] = kMayusStats[kMayus][kMinus].recall;
-            vecf1Score[kMayus] = kMayusStats[kMayus][kMinus].f1Score;
-            vecdefaultProcessTime[kMayus] = kMayusStats[kMayus][kMinus].defaultProcessTime;
-            veckNNTotalTime[kMayus] = kMayusStats[kMayus][kMinus].kNNTotalTime;
-            veckNNPerImageTime[kMayus] = kMayusStats[kMayus][kMinus].kNNPerImageTime;
-            vecpreprocessTime[kMayus] = kMayusStats[kMayus][kMinus].preprocessTime;
-            vectcTime[kMayus] = kMayusStats[kMayus][kMinus].tcTime;
+            vecHitRate[kMayus] = kMayusStats[kMayus][kMinus].hitRate;
+            vecPrecision[kMayus] = kMayusStats[kMayus][kMinus].precision;
+            vecRecall[kMayus] = kMayusStats[kMayus][kMinus].recall;
+            vecF1Score[kMayus] = kMayusStats[kMayus][kMinus].f1Score;
+            vecDefaultProcessTime[kMayus] = kMayusStats[kMayus][kMinus].defaultProcessTime;
+            vecKNNTotalTime[kMayus] = kMayusStats[kMayus][kMinus].kNNTotalTime;
+            vecKNNPerImageTime[kMayus] = kMayusStats[kMayus][kMinus].kNNPerImageTime;
+            vecPreprocessTime[kMayus] = kMayusStats[kMayus][kMinus].preprocessTime;
+            vecTCTime[kMayus] = kMayusStats[kMayus][kMinus].tcTime;
             for (int i = 0; i < LABELS_QTY; ++i) {
                 for (int j = 0; j < LABELS_QTY; ++j) {
                     confusionSum[i][j] += kMayusStats[kMayus][kMinus].confusion[i][j];
@@ -155,65 +124,36 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, int alp
             }
         }
 
-        hitRateAvg = getAverage(vechitRate);
-        hitRateSTD = getSTDev(vechitRate);
-
-        precisionAvg = getAverage(vecprecision);
-        precisionSTD = getSTDev(vecprecision);
-
-        recallAvg = getAverage(vecrecall);
-        recallSTD = getSTDev(vecrecall);
-
-        f1ScoreAvg = getAverage(vecf1Score);
-        f1ScoreSTD = getSTDev(vecf1Score);
-
-        defaultProcessTimeAvg = getAverage(vecdefaultProcessTime);
-        defaultProcessTimeSTD = getSTDev(vecdefaultProcessTime);
-
-        kNNTotalTimeAvg = getAverage(veckNNTotalTime);
-        kNNTotalTimeSTD = getSTDev(veckNNTotalTime);
-
-        kNNPerImageTimeAvg = getAverage(veckNNPerImageTime);
-        kNNPerImageTimeSTD = getSTDev(veckNNPerImageTime);
-
-        preprocessTimeAvg = getAverage(vecpreprocessTime);
-        preprocessTimeSTD = getSTDev(vecpreprocessTime);
-
-        tcTimeAvg = getAverage(vectcTime);
-        tcTimeSTD = getSTDev(vectcTime);
-
-
-
         output << "k," << kMinus << endl;
-        output << "alpha," << alpha << endl;
-        output << "gamma," << gamma << endl;
+        output << "alpha," << kMayusStats[0][kMinus].alpha << endl;
+        output << "gamma," << kMayusStats[0][kMinus].gamma << endl;
 
-        output << "Hit Rate Avg," << hitRateAvg << endl;
-        output << "Hit Rate STD," << hitRateSTD << endl;
+        output << "Hit Rate Avg," << getAverage(vecHitRate) << endl;
+        output << "Hit Rate STD," << getSTDev(vecHitRate) << endl;
 
-        output << "Precision Avg," << precisionAvg << endl;
-        output << "Precision STD," << precisionSTD << endl;
+        output << "Precision Avg," << getAverage(vecPrecision) << endl;
+        output << "Precision STD," << getSTDev(vecPrecision) << endl;
 
-        output << "Recall Avg," << recallAvg << endl;
-        output << "Recall STD," << recallSTD << endl;
+        output << "Recall Avg," << getAverage(vecRecall) << endl;
+        output << "Recall STD," << getSTDev(vecRecall) << endl;
 
-        output << "F1 Score Avg," << f1ScoreAvg << endl;
-        output << "F1 Score STD," << f1ScoreSTD << endl;
+        output << "F1 Score Avg," << getAverage(vecF1Score) << endl;
+        output << "F1 Score STD," << getSTDev(vecF1Score) << endl;
 
-        output << "Default Process Time Avg," << defaultProcessTimeAvg << endl;
-        output << "Default Process Time STD," << defaultProcessTimeSTD << endl;
+        output << "Default Process Time Avg," << getAverage(vecDefaultProcessTime) << endl;
+        output << "Default Process Time STD," << getSTDev(vecDefaultProcessTime) << endl;
 
-        output << "KNN Total Time Avg," << kNNTotalTimeAvg << endl;
-        output << "KNN Total Time STD," << kNNTotalTimeSTD << endl;
+        output << "KNN Total Time Avg," << getAverage(vecKNNTotalTime) << endl;
+        output << "KNN Total Time STD," << getSTDev(vecKNNTotalTime) << endl;
 
-        output << "KNN Per Image Time Avg," << kNNPerImageTimeAvg << endl;
-        output << "KNN Per Image Time STD," << kNNPerImageTimeSTD << endl;
+        output << "KNN Per Image Time Avg," << getAverage(vecKNNPerImageTime) << endl;
+        output << "KNN Per Image Time STD," << getSTDev(vecKNNPerImageTime) << endl;
 
-        output << "Preprocess Dimension Time Avg," << preprocessTimeAvg << endl;
-        output << "Preprocess Dimension Time STD," << preprocessTimeSTD << endl;
+        output << "Preprocess Dimension Time Avg," << getAverage(vecPreprocessTime) << endl;
+        output << "Preprocess Dimension Time STD," << getSTDev(vecPreprocessTime) << endl;
 
-        output << "TC Time Avg," << tcTimeAvg << endl;
-        output << "TC Time STD," << tcTimeSTD << endl;
+        output << "TC Time Avg," << getAverage(vecTCTime) << endl;
+        output << "TC Time STD," << getSTDev(vecTCTime) << endl;
 
         output << "----,Confusion,----" << endl;
         output << "Actual\\Predicted,0,1,2,3,4,5,6,7,8,9" << endl;
@@ -225,12 +165,9 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, int alp
             }
             output << endl;
         }
-
         output << "----,-----,----" << endl;
         output << "----,-----,----" << endl;
-        
     }
-
     output.close();
 }
 
