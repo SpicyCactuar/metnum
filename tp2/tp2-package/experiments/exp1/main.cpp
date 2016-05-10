@@ -74,7 +74,8 @@ int main(int argc, char const *argv[]){
         timeTracker[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
         string knnOut = argv[2];
-        knnOut += "KNNTest";
+        knnOut += + "KNNTest-(" + to_string(kMayus) + "-Partitions)";
+
         vector<AwesomeStatistic> kMinusStats(kMin.size());
         for (int i = 0; i < kMin.size(); i++) {
             getStats(knnValues[i], trueValues, knnOut, timeTracker, kMin[i], 0, 0, kMayus, iter, kMinusStats[i]);
@@ -85,7 +86,8 @@ int main(int argc, char const *argv[]){
         kMayusStats.push_back(kMinusStats);
     }
 
-    processStatsAnalysis(kMayusStats, 0, 0, "KNN");
+    string analysisName = "KNN-(" + to_string(kMayus) + "-Partitions)";
+    processStatsAnalysis(kMayusStats, 0, 0, analysisName);
 
     input.close();
     output.close();
