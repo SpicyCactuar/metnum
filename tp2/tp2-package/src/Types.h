@@ -23,6 +23,7 @@ struct DigitImage {
 
 /** Class representing a stats Structure **/
 struct AwesomeStatistic {
+    int k;
     double hitRate;
     double precision;
     double recall;
