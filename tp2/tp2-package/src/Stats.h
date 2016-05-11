@@ -68,9 +68,6 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
     stats.kNNPerImageTime = timeTracker[KNN_PER_IMAGE_TIME];
     stats.preprocessTime = timeTracker[PREPROCESS_DIMENSION_TIME];
     stats.tcTime = timeTracker[TC_TIME];
-    stats.alpha = alpha;
-    stats.gamma = gamma;
-
     output.close();
 }
 
@@ -90,7 +87,7 @@ double getSTDev(vector<T> vec) {
     return sqrt(sum/vec.size());
 }
 
-void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string &algorithm) {
+void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string &algorithm, int alpha = 0) {
     //[K][k]
     string outputName = "Analysis-" + algorithm + ".csv";
     ofstream output(outputName);
@@ -125,8 +122,7 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string 
         }
 
         output << "k," << kMinus << endl;
-        output << "alpha," << kMayusStats[0][kMinus].alpha << endl;
-        output << "gamma," << kMayusStats[0][kMinus].gamma << endl;
+        output << "alpha," << alpha << endl;
 
         output << "Hit Rate Avg," << getAverage(vecHitRate) << endl;
         output << "Hit Rate STD," << getSTDev(vecHitRate) << endl;
@@ -170,6 +166,5 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string 
     }
     output.close();
 }
-
 
 #endif

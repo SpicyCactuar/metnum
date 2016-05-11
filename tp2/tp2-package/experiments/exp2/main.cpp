@@ -28,16 +28,15 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
-    vector<vector<AwesomeStatistic>> kMayusStatsPCA;
-    vector<vector<AwesomeStatistic>> kMayusStatsPLS;
+    vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
+    vector<vector<vector<AwesomeStatistic>>> alphakMayusStatsPCA(alphaValues.size());
+    vector<vector<vector<AwesomeStatistic>>> gammakMayusStatsPLS(alphaValues.size());
 
     for (int iter = 0; iter < kMayus; ++iter){
         //train or test input
         getline(input, line);
 
-        vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
         for (int alphaIt = 0; alphaIt < alphaValues.size(); alphaIt++) {
-
             stringstream lineStream(line);
 
             int alpha = alphaValues[alphaIt];
@@ -77,7 +76,7 @@ int main(int argc, char const *argv[]){
 
             ///// knn PCA /////
             vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
-            vector<vector<int> > knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
+            vector<vector<int>> knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPCA(imagesTest.centralized.size());
 
             high_resolution_clock::time_point timeTC_PCA_start = high_resolution_clock::now();
@@ -102,15 +101,15 @@ int main(int argc, char const *argv[]){
             timeTrackerPCA[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
             string knnOut = argv[2];
-            knnOut += "KNN-PCA-Test";
+            knnOut += + "KNN-PCA-Test-(" + to_string(kMayus) + "-Partitions)";
             vector<AwesomeStatistic> kMinusStatsPCA(kMin.size());
             for (int i = 0; i < kMin.size(); i++)
                 getStats(knnValuesPCA[i], trueValuesPCA, knnOut, timeTrackerPCA, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPCA[i]);
             ///// end knn PCA /////
-            kMayusStatsPCA.push_back(kMinusStatsPCA);
+            alphakMayusStatsPCA[alphaIt].push_back(kMinusStatsPCA);
 
             ///// knn PLS /////
-            vector<vector<int> > knnValuesPLS(kMin.size(), vector<int>(imagesTest.centralized.size()));
+            vector<vector<int>> knnValuesPLS(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPLS(imagesTest.centralized.size());
 
             high_resolution_clock::time_point timeTC_PLS_start = high_resolution_clock::now();
@@ -135,19 +134,20 @@ int main(int argc, char const *argv[]){
             timeTrackerPLS[KNN_PER_IMAGE_TIME] = timeAcumulator/imagesTest.centralized.size();
 
             knnOut = argv[2];
-            knnOut += "KNN-PLS-Test";
+            knnOut += + "KNN-PLS-Test-(" + to_string(kMayus) + "-Partitions)";
             vector<AwesomeStatistic> kMinusStatsPLS(kMin.size());
             for (int i = 0; i < kMin.size(); i++)
                 getStats(knnValuesPLS[i], trueValuesPLS, knnOut, timeTrackerPLS, kMin[i], alpha, gamma, kMayus, iter, kMinusStatsPLS[i]);
             ///// end knn PLS /////
-            kMayusStatsPLS.push_back(kMinusStatsPLS);
+            gammakMayusStatsPLS[alphaIt].push_back(kMinusStatsPLS);
+        }
+        for (int alphaIt = 0; alphaIt < alphaValues.size(); ++alphaIt){
+            string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)-alpha-" + to_string(alphaValues[alphaIt]);
+            string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)-gamma-" + to_string(alphaValues[alphaIt]);
+            processStatsAnalysis(alphakMayusStatsPCA[alphaIt], analysisNamePCA, alphaValues[alphaIt]);
+            processStatsAnalysis(gammakMayusStatsPLS[alphaIt], analysisNamePLS, alphaValues[alphaIt]);
         }
     }
-
-    string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)";
-    string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)";
-    processStatsAnalysis(kMayusStatsPCA, analysisNamePCA);
-    processStatsAnalysis(kMayusStatsPLS, analysisNamePLS);
 
     input.close();
     return 0;
