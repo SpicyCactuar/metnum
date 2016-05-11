@@ -39,8 +39,8 @@ int main(int argc, char const *argv[]){
         Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
         vector<double> eigenValuesPCA(alpha);
         vector<double> eigenValuesPLSDA(gamma);
-        int niterPCA = 1000;
-        int niterPLSDA = 1000;
+        int niterPCA = 2000;
+        int niterPLSDA = 2000;
 
         populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
         imagesTrain.getMeans();
