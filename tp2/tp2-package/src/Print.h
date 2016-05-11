@@ -15,4 +15,16 @@ void printMatrix(const Matrix& mat){
         printVector(mat[i]);
 }
 
+template<typename T>
+void printImage(const vector<T>& vec, ofstream &output){
+    for (int i = 0; i < DEFAULT_IMAGE_SIDE_SIZE; ++i){
+        for (int j = 0; j < DEFAULT_IMAGE_SIDE_SIZE; ++j){
+            output << (int)vec[i*DEFAULT_IMAGE_SIDE_SIZE+j];
+            if (j != DEFAULT_IMAGE_SIDE_SIZE - 1)
+                output << ",";
+        }
+        output << endl;
+    }
+}
+
 #endif
