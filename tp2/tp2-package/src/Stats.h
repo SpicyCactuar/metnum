@@ -68,6 +68,7 @@ void getStats(vector<int> &knnValues, vector<int> &trueValues, string &algorithm
     stats.kNNPerImageTime = timeTracker[KNN_PER_IMAGE_TIME];
     stats.preprocessTime = timeTracker[PREPROCESS_DIMENSION_TIME];
     stats.tcTime = timeTracker[TC_TIME];
+    stats.k = kMinus;
     output.close();
 }
 
@@ -121,7 +122,7 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string 
             }
         }
 
-        output << "k," << kMinus << endl;
+        output << "k," << kMayusStats[0][kMinus].k << endl;
         output << "alpha," << alpha << endl;
 
         output << "Hit Rate Avg," << getAverage(vecHitRate) << endl;
