@@ -1,39 +1,22 @@
-Ahora que definimos que algoritmos vamos a utilizar para reconocer d\'igitos manuscritos, procederemos a indicar como utilizaremos cada uno.
+El suelo est\'a labrado en cuestiones te\'oricas. En esta secci\'on nos avocaremos en explicar el papel que juega cada m\'etodo y, el proceso completo partiendo de las im\'agenes y concluyendo en su clasificaci\'on.
 
-\subsection{Roles de algoritmos utilizados}
+Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x^{i} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Como est\'an en escala de grises, adem\'as se cumple que $x^{(i)}_{j} \in \{0, ..., 255\}$, d\'onde $x^{(i)}_{j}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255. Adicionalmente, el conjunto $C = \{0, ..., 9\}$ es el conjunto de clases/\textit{labels}/\textit{tags}/d\'igitos, seg\'un como los denominemos en cada ocasi\'on particular.
 
-En primera instancia buscamos poder decidir a qu\'e d\'igito pertenece cada imagen. Para esto usamos el algoritmo clasificador \textbf{kNN} mencionado en la secci\'on anterior.
+\subsection{Metodolog\'ias de Clasificaci\'on}
 
-Una vez obtenido el conjunto K, clasificar es f\'acil, se cuentan las etiquetas de cada uno de los k $\in$ K puntos y la que m\'as se repita, se le asgina a \textit{p} \footnote{En caso de empate, nos quedamos con el d\'igito m\'as chico}.
+\subsubsection{Clasificaci\'on \textit{naive} con kNN}
 
-Como se mencion\'o en la secci\'on anterior, las im\'agenes tienen 784 pixels, es decir, cada punto a considerar tiene 784 componentes. Calcular la distancia de un punto de esta dimensi\'on, contra \textit{n} de la misma dimensi\'on, suena a mucho trabajo. Entonces cobran valor los algoritmos de \textbf{PCA} y \textbf{PLS-DA}.
+En una primera aproximaci\'on, \textbf{utilizamos el kNN como m\'etodo de clasificaci\'on a secas}, lo que es decidir a qu\'e d\'igito pertenece cada imagen del conjunto $Y$, del cu\'al \textit{no} conocemos su categorizaci\'on. Tomamos $y \in Y$ una tira que buscamos \textit{taggear}.
 
-Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo un pedazo del mismo (reducir las dimensiones a considerar al aplicar kNN), con un bajo costo de p\'erdida de informaci\'on.
+Recordar que, por c\'omo lo definimos en la \textit{secci\'on \ref{intro_knn}}, el algoritmo requer\'ia \textbf{una funci\'on de distancia $\mathbf{d}$}. Como modelamos con vectores, proponemos la \textbf{\textit{norma 2}}. En otras palabras, siendo $z$ y $x$ dos im\'agenes $d(z,x) = \vert\vert z - x \vert\vert_2^2 = (z - x)^{t}(z - x)$. Notar que en su forma de \textit{producto interno}, el c\'omputo no pierde precisi\'on por ser suma y multiplicaci\'on de n\'umeros entre $0$ y $255$. Adicionalmente, fue elegida por el nivel de precisi\'on que posee (en definitiva, compara una a una cada componente). 
 
-Para esto, se buscan los autovalores de determinadas matrices, y la matriz de cambio de base ser\'a la formada por los autovectores de m\'odulo 1 asociados a los mismos.
+En consecuencia de haber definido una $d$, \textbf{obtenemos el conjunto $\mathbf{K}$ con los \textit{$\mathbf{k}$ vecinos m\'as cercanos}}. Clasificar es f\'acil: se cuentan las etiquetas de cada uno de los $k \in K$ puntos y la que m\'as se repita, se le asgina a $y$ \footnote{En caso de empate, nos quedamos con el primero que hayamos encontrado que maximice la cantidad de apariencias}.
 
-Un primera necesidad entonces es calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}
+Desafortunadamente, \textbf{la simplicidad tiene su costo temporal en este caso}. Si consideramos $Z$, el conjunto del cu\'al conocemos su clasificaci\'on, con $n = \#(Z)$, y $m = \#(y)$, \textbf{la complejidad temporal del \textit{knn} es $\mathbf{\Theta(n \times m)}$} (el costo de armar $K$ es despreciable puesto que $k \leq n$). Las im\'agenes tienen $784$ pixels, es decir, cada punto a considerar tiene $784$ componentes. Calcular la distancia de un punto de esta dimensi\'on contra \textit{$n$} de la misma dimensi\'on suena a mucho trabajo y \textit{lo es}. Aqu\' es d\'onde cobran valor \textbf{PCA} y \textbf{PLS-DA}.
 
-\begin{algorithm}
-\begin{algorithmic}[1]
-\STATE {$v \leftarrow x_{0}$}
-\WHILE {No se cumpla la condici\'on de finalizaci\'on}
-\STATE {$v \leftarrow Bv$}
-\STATE {Normalizar $v$}
-\ENDWHILE
-\STATE {$\lambda \leftarrow v^{t}Bv$}
-\RETURN {$\lambda, v$}
-\end{algorithmic}
-\caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
-\end{algorithm}
+Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo una \textit{porci\'on}, la de mayor contenido de informaci\'on, de la misma. Aunque por s\'i solos, no son m\'etodos de categorizaci\'on. Por ende, \textbf{estar\'an involucrados como \textit{preprocesadores} de la informaci\'on a ser servida al \textit{knn}} (reducir las dimensiones a considerar previo a aplicar kNN).
 
-Este m\'etodo busca un autovector $\in \mathbb{R}^{m}$ de norma 2 igual a 1 aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\in \mathbb{R}$ de m\'odulo m\'aximo. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Otra es que tenga todos los autovalores reales \textcolor{red}{REVISAR} (analizaremos que esto sucede m\'as adelante).
-
-Resultar\'ia conveniente poder reutilizar este m\'etodo para conseguir todos los autovectores y autovalores, pero s\'olo podemos conseguir el de m\'odulo m\'aximo, entonces consideramos el proceso de deflaci\'on que consiste en generar un matriz $DEFL$ tal que los autovalores de $B$ sean los mismos que $B - DEFL$ excepto por el mayor que debe ser cero.
-
-Ahora podemos repetir el proceso y obtener una base ortonormal de autovectores de la matriz original, que servir\'a para hacer el cambio de base que busc\'abamos.
-
-\subsubsection{PCA}
+\subsubsection{An\'alisis de Componentes Principales + \textit{kNN}}
 
 Este algoritmo busca los primeros $\alpha$ autovalores y autovectores de la matriz de covarianzas $M_{x}$. Para esto aplica el M\'etodo de la Potencia y para la deflaci\'on, considera la matriz generada por $\lambda_{i}v_{i}v_{i}^{t}$ donde $\lambda_{i}$ es el autovalor obtenido en la iteraci\'on $i$ y $v_{i}$ es su autovector de norma 2 igual a 1 asociado.
 
@@ -43,7 +26,9 @@ $(B - \lambda_{1}v_{1}v_{1}^{t})v_{1} = Bv_{1} - \lambda_{1}v_{1}(v_{1}^{t}v_{1}
 
 $(B - \lambda_{1}v_{1}v_{1}^{t})v_{i} = Bv_{i} - \lambda_{1}v_{1}(v_{1}^{t}v_{i}) = \lambda_{i}v_{i}$
 
-\subsubsection{PLS-DA}
+\textcolor{red}{// TODO: Revisar y Terminar}
+
+\subsubsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales + \textit{kNN}}
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -68,6 +53,10 @@ La respuesta es que estos m\'etodos nos permiten tomar una fracci\'on de los dat
 
 Luego, cuando llega una imagen nueva $x^{*} \in \mathbb{R}^{m}$ para catalogar, definimos $\bar{x}^{*} = (x^{*} - \mu)/\sqrt{n-1}$, le aplicamos $tc(\bar{x}^{*}$ y la clasificamos de alguna manera, en nuestro caso, con kNN.
 
+\textcolor{red}{// TODO: Revisar y Terminar}
+
+\subsection{M\'etricas de calidad}
+
 Finalmente, se desarrollaron algunas m\'etricas para medir qu\'e tan buenas son las decisiones tomadas por el clasificador:
 
 \textbf{Precision:} Es una medida de cu\'antos aciertos relativos tiene un clasificador dentro de una clase particular. Es decir, dada una clase i, la precision de dicha clase es $tp_{i} / (tp_{i} + fp_{i})$.
@@ -82,4 +71,33 @@ En la anterior f\'ormula, $fn_{i}$ son los falsos negativos de la clase i. Es de
 
 Luego, el recall en el caso de un clasificador de muchas clases, se define como el promedio del recall para cada una de las clases.
 
-\textbf{F1-Score:} Dado que precision y recall son dos medidas importantes que no necesariamente tienen la misma calidad para un mismo clasificador, se define esta m\'etrica para medir un compromiso entre ambas. Se define como $2 * precision * recall / (precision + recall)$
+\textbf{F1-Score:} Dado que precision y recall son dos medidas importantes que no necesariamente tienen la misma calidad para un mismo clasificador, se define esta m\'etrica para medir un compromiso entre ambas. Se define como $2 * precision * recall / (precision + recall)$.
+
+\textcolor{red}{// TODO: Revisar y Terminar}
+
+\subsection{Algoritmos de Utilidad}
+
+\subsubsection{M\'etodo de la Potencia}\label{desarrollo_metodo-potencia}
+
+Por la necesidad de los procedimientos de calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}.
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\STATE {$v \leftarrow x_{0}$}
+\WHILE {No se cumpla la condici\'on de finalizaci\'on}
+\STATE {$v \leftarrow Bv$}
+\STATE {Normalizar $v$}
+\ENDWHILE
+\STATE {$\lambda \leftarrow v^{t}Bv$}
+\RETURN {$\lambda, v$}
+\end{algorithmic}
+\caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
+\end{algorithm}
+
+Este m\'etodo busca un autovector $\in \mathbb{R}^{m}$ de norma 2 igual a 1 aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\in \mathbb{R}$ de m\'odulo m\'aximo. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Otra es que tenga todos los autovalores reales \textcolor{red}{REVISAR} (analizaremos que esto sucede m\'as adelante).
+
+Resultar\'ia conveniente poder reutilizar este m\'etodo para conseguir todos los autovectores y autovalores, pero s\'olo podemos conseguir el de m\'odulo m\'aximo, entonces consideramos el proceso de deflaci\'on que consiste en generar un matriz $DEFL$ tal que los autovalores de $B$ sean los mismos que $B - DEFL$ excepto por el mayor que debe ser cero.
+
+Ahora podemos repetir el proceso y obtener una base ortonormal de autovectores de la matriz original, que servir\'a para hacer el cambio de base que busc\'abamos.
+
+\textcolor{red}{// TODO: Revisar y Terminar}
