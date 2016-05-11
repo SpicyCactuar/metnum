@@ -33,8 +33,6 @@ struct AwesomeStatistic {
     double kNNPerImageTime;
     int preprocessTime;
     int tcTime;
-    int alpha;
-    int gamma;
 };
 
 /** Class representing a smart container of DigitImage(s) **/

@@ -9,7 +9,7 @@
 
 void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labelRes, DigitImages &digitImagesTrain){
     // distance, index
-    vector<pair<double, int> > distances(train.size());
+    vector<pair<double, int>> distances(train.size());
     vector<int> labels(LABELS_QTY, 0);
     vector<double> diff(test.size());
     labelRes = vector<int>(ks.size());

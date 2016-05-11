@@ -1,7 +1,7 @@
 #ifndef MatrixAlgorithms_h
 #define MatrixAlgorithms_h
 
-using Matrix = vector<vector<double> >;
+using Matrix = vector<vector<double>>;
 
 void randomVectorInitialize(vector<double> &vec){
     for (int i = 0; i < vec.size(); ++i){

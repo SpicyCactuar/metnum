@@ -51,7 +51,7 @@ int main(int argc, char const *argv[]){
         ///// knn /////
         vector<int> kMin(100), labelRes;
         for (int i = 0; i < 100; i++) kMin[i] = i+1;
-        vector<vector<int> > knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
+        vector<vector<int>> knnValues(kMin.size(), vector<int>(imagesTest.centralized.size()));
         vector<int> trueValues(imagesTest.centralized.size());
 
         double timeAcumulator = 0;
