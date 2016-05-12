@@ -28,7 +28,8 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
-    vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
+    vector<int> alphaValues = {5};
+//    vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
     vector<vector<vector<AwesomeStatistic>>> alphakMayusStatsPCA(alphaValues.size());
     vector<vector<vector<AwesomeStatistic>>> gammakMayusStatsPLS(alphaValues.size());
 
@@ -75,7 +76,7 @@ int main(int argc, char const *argv[]){
             timeTrackerPLS[PREPROCESS_DIMENSION_TIME] = (int)duration_cast<milliseconds>(timePLSEnded - timePCAEnded).count();
 
             ///// knn PCA /////
-            vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
+            vector<int> kMin = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, labelRes;
             vector<vector<int>> knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPCA(imagesTest.centralized.size());
 
@@ -141,12 +142,13 @@ int main(int argc, char const *argv[]){
             ///// end knn PLS /////
             gammakMayusStatsPLS[alphaIt].push_back(kMinusStatsPLS);
         }
-        for (int alphaIt = 0; alphaIt < alphaValues.size(); ++alphaIt){
-            string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)-alpha-" + to_string(alphaValues[alphaIt]);
-            string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)-gamma-" + to_string(alphaValues[alphaIt]);
-            processStatsAnalysis(alphakMayusStatsPCA[alphaIt], analysisNamePCA, alphaValues[alphaIt]);
-            processStatsAnalysis(gammakMayusStatsPLS[alphaIt], analysisNamePLS, alphaValues[alphaIt]);
-        }
+    }
+
+    for (int alphaIt = 0; alphaIt < alphaValues.size(); ++alphaIt){
+        string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)-alpha-" + to_string(alphaValues[alphaIt]);
+        string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)-gamma-" + to_string(alphaValues[alphaIt]);
+        processStatsAnalysis(alphakMayusStatsPCA[alphaIt], analysisNamePCA, alphaValues[alphaIt]);
+        processStatsAnalysis(gammakMayusStatsPLS[alphaIt], analysisNamePLS, alphaValues[alphaIt]);
     }
 
     input.close();

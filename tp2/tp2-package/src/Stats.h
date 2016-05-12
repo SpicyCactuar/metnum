@@ -123,7 +123,7 @@ void processStatsAnalysis(vector<vector<AwesomeStatistic>> &kMayusStats, string 
         }
 
         output << "k," << kMayusStats[0][kMinus].k << endl;
-        output << "alpha," << alpha << endl;
+        output << "alpha/gamma," << alpha << endl;
 
         output << "Hit Rate Avg," << getAverage(vecHitRate) << endl;
         output << "Hit Rate STD," << getSTDev(vecHitRate) << endl;
