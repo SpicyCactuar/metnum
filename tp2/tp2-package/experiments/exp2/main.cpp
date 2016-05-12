@@ -89,11 +89,11 @@ int main(int argc, char const *argv[]){
             double timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain);
+                kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain.labels);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
                 timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
-                trueValuesPCA[i] = imagesTest.images[i].label;
+                trueValuesPCA[i] = imagesTest.labels[i];
                 for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPCA[it][i] = labelRes[it];
             }
@@ -122,11 +122,11 @@ int main(int argc, char const *argv[]){
             timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
+                kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain.labels);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
                 timeAcumulator += duration_cast<milliseconds>(timekNNEnded - timekNNStarted).count();
 
-                trueValuesPLS[i] = imagesTest.images[i].label;
+                trueValuesPLS[i] = imagesTest.labels[i];
                 for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPLS[it][i] = labelRes[it];
             }

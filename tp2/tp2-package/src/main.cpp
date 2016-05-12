@@ -65,9 +65,9 @@ int main(int argc, char const *argv[]){
             case 0:{
                 for (int i = 0; i < imagesTest.centralized.size(); ++i){
                     vector<int> kMin = {kMinus}, labelRes;
-                    kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+                    kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain.labels);
                     knnValues[i] = labelRes[0];
-                    trueValues[i] = imagesTest.images[i].label;
+                    trueValues[i] = imagesTest.labels[i];
                 }
                 string knnOut = argv[2];
                 knnOut += "KNN";
@@ -80,9 +80,9 @@ int main(int argc, char const *argv[]){
                 tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
                 for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
                     vector<int> kMin = {kMinus}, labelRes;
-                    kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain);
+                    kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain.labels);
                     knnValues[i] = labelRes[0];
-                    trueValues[i] = imagesTest.images[i].label;
+                    trueValues[i] = imagesTest.labels[i];
                 }
                 string pcaOut = argv[2];
                 pcaOut += "PCA";
@@ -95,9 +95,9 @@ int main(int argc, char const *argv[]){
                 tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
                 for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
                     vector<int> kMin = {kMinus}, labelRes;
-                    kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
+                    kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain.labels);
                     knnValues[i] = labelRes[0];
-                    trueValues[i] = imagesTest.images[i].label;
+                    trueValues[i] = imagesTest.labels[i];
                 }
                 string plsOut = argv[2];
                 plsOut += "PLS";

@@ -14,13 +14,6 @@ const string KNN_PER_IMAGE_TIME = "KNN per image time";
 const string PREPROCESS_DIMENSION_TIME = "Preprocess dimension time (PCA - PLS)";
 const string TC_TIME = "TC time";
 
-/** Class representing one manuscript digit image **/
-struct DigitImage {
-    //faltaria poner label por defecto = -1
-    int label;
-    vector<double> pixels;
-};
-
 /** Class representing a stats Structure **/
 struct AwesomeStatistic {
     int k;
@@ -40,7 +33,8 @@ struct AwesomeStatistic {
 struct DigitImages {
     vector<int> labels;
     vector<double> means, labelYMeans;
-    vector<DigitImage> images;
+    // vector<DigitImage> images;
+    Matrix images;
     Matrix centralized; // X
     Matrix centralizedPLSDA; // X
     Matrix covariances; // M = X^tX
@@ -74,7 +68,7 @@ struct DigitImages {
         centralized = Matrix(images.size(), vector<double>(DEFAULT_IMAGE_SIZE));
         for (int i = 0; i < images.size(); ++i)
             for (int j = 0; j < DEFAULT_IMAGE_SIZE; ++j)
-                centralized[i][j] = (images[i].pixels[j] - means[j]) / sqrt(samples - 1);
+                centralized[i][j] = (images[i][j] - means[j]) / sqrt(samples - 1);
     }
 
     // -------- Covariance --------
@@ -105,11 +99,11 @@ struct DigitImages {
 struct TC {
     Matrix transformation;
 
-    void init(Matrix &eigenVectors, Matrix &centralized){
-        transformation = Matrix(centralized.size(), vector<double>(eigenVectors.size()));
-        for (int i = 0; i < centralized.size(); ++i)
+    void init(Matrix &eigenVectors, Matrix &data){
+        transformation = Matrix(data.size(), vector<double>(eigenVectors.size()));
+        for (int i = 0; i < data.size(); ++i)
             for (int j = 0; j < eigenVectors.size(); ++j)
-                transformation[i][j] = dotProduct(eigenVectors[j], centralized[i]);
+                transformation[i][j] = dotProduct(eigenVectors[j], data[i]);
     }
 };
 
