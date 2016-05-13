@@ -23,7 +23,6 @@ int main(int argc, char const *argv[]){
     string inFileDir, line;
 
     input >> inFileDir;
-    // skip the rest of the first line
     getline(input, line);
 
     getline(input, line);

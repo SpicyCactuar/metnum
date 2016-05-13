@@ -23,7 +23,6 @@ int main(int argc, char const *argv[]){
     int alpha;
 
     input >> inFileDir >> alpha;
-    // skip the rest of the first line
     getline(input, line);
 
     getline(input, line);
@@ -58,15 +57,6 @@ int main(int argc, char const *argv[]){
         printImage(aux, output);
         output.close();
     }
-
-    // vector<double> aux(imagesTrain.centralized.size());
-    // productMatrixVector(imagesTrain.centralized, eigenVectors[0], aux);
-    // Matrix res(aux.size(), vector<double>(DEFAULT_IMAGE_SIZE));
-    // productColRow(aux, eigenVectors[0], res);
-
-    // for (int i = 0; i < res.size(); ++i)
-    //     for (int j = 0; j < DEFAULT_IMAGE_SIZE; ++j)
-    //         res[i][j] = res[i][j] * sqrt(imagesTrain.images.size() - 1) + imagesTrain.means[j];
 
     input.close();
     return 0;
