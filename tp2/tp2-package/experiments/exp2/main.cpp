@@ -28,9 +28,10 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
-    vector<int> alphaValues = {1, 2, 3, 10, 25, 50, 100, 200};
+    vector<int> alphaValues = {5, 10, 25, 50, 75, 100, 200, 300};
+    vector<int> gammaValues = {2, 4, 6, 8, 10, 12, 14, 16};
     vector<vector<vector<AwesomeStatistic>>> alphakMayusStatsPCA(alphaValues.size());
-    vector<vector<vector<AwesomeStatistic>>> gammakMayusStatsPLS(alphaValues.size());
+    vector<vector<vector<AwesomeStatistic>>> gammakMayusStatsPLS(gammaValues.size());
 
     for (int iter = 0; iter < kMayus; ++iter){
         //train or test input
@@ -40,7 +41,7 @@ int main(int argc, char const *argv[]){
             stringstream lineStream(line);
 
             int alpha = alphaValues[alphaIt];
-            int gamma = alphaValues[alphaIt];
+            int gamma = gammaValues[alphaIt];
 
             map<string, int> timeTrackerPCA;
             map<string, int> timeTrackerPLS;
@@ -51,8 +52,8 @@ int main(int argc, char const *argv[]){
             Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
             vector<double> eigenValuesPCA(alpha);
             vector<double> eigenValuesPLSDA(gamma);
-            int niterPCA = 1000;
-            int niterPLSDA = 1000;
+            int niterPCA = 1200;
+            int niterPLSDA = 1200;
 
             populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
             imagesTrain.getMeans();
@@ -75,7 +76,7 @@ int main(int argc, char const *argv[]){
             timeTrackerPLS[PREPROCESS_DIMENSION_TIME] = (int)duration_cast<milliseconds>(timePLSEnded - timePCAEnded).count();
 
             ///// knn PCA /////
-            vector<int> kMin = {1, 10, 25, 50, 100}, labelRes;
+            vector<int> kMin = {5, 10, 15, 20, 25, 50, 75, 100, 150, 200}, labelRes;
             vector<vector<int>> knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPCA(imagesTest.centralized.size());
 
@@ -84,16 +85,16 @@ int main(int argc, char const *argv[]){
             tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
             tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
             high_resolution_clock::time_point timeTC_PCA_end = high_resolution_clock::now();
-            timeTrackerPCA[TC_TIME] = (int)duration_cast<milliseconds>( timeTC_PCA_end - timeTC_PCA_start ).count();
+            timeTrackerPCA[TC_TIME] = (int)duration_cast<milliseconds>(timeTC_PCA_end - timeTC_PCA_start).count();
 
             double timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain);
+                kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain.labels);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
-                timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
+                timeAcumulator += duration_cast<milliseconds>(timekNNEnded - timekNNStarted).count();
 
-                trueValuesPCA[i] = imagesTest.images[i].label;
+                trueValuesPCA[i] = imagesTest.labels[i];
                 for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPCA[it][i] = labelRes[it];
             }
@@ -122,11 +123,11 @@ int main(int argc, char const *argv[]){
             timeAcumulator = 0;
             for (int i = 0; i < imagesTest.centralized.size(); ++i){
                 high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-                kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain);
+                kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain.labels);
                 high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
                 timeAcumulator += duration_cast<milliseconds>(timekNNEnded - timekNNStarted).count();
 
-                trueValuesPLS[i] = imagesTest.images[i].label;
+                trueValuesPLS[i] = imagesTest.labels[i];
                 for (int it = 0; it < labelRes.size(); it++)
                     knnValuesPLS[it][i] = labelRes[it];
             }
@@ -141,12 +142,13 @@ int main(int argc, char const *argv[]){
             ///// end knn PLS /////
             gammakMayusStatsPLS[alphaIt].push_back(kMinusStatsPLS);
         }
-        for (int alphaIt = 0; alphaIt < alphaValues.size(); ++alphaIt){
-            string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)-alpha-" + to_string(alphaValues[alphaIt]);
-            string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)-gamma-" + to_string(alphaValues[alphaIt]);
-            processStatsAnalysis(alphakMayusStatsPCA[alphaIt], analysisNamePCA, alphaValues[alphaIt]);
-            processStatsAnalysis(gammakMayusStatsPLS[alphaIt], analysisNamePLS, alphaValues[alphaIt]);
-        }
+    }
+
+    for (int alphaIt = 0; alphaIt < alphaValues.size(); ++alphaIt){
+        string analysisNamePCA = "PCA-(" + to_string(kMayus) + "-Partitions)-alpha-" + to_string(alphaValues[alphaIt]);
+        string analysisNamePLS = "PLS-(" + to_string(kMayus) + "-Partitions)-gamma-" + to_string(gammaValues[alphaIt]);
+        processStatsAnalysis(alphakMayusStatsPCA[alphaIt], analysisNamePCA, alphaValues[alphaIt]);
+        processStatsAnalysis(gammakMayusStatsPLS[alphaIt], analysisNamePLS, gammaValues[alphaIt]);
     }
 
     input.close();

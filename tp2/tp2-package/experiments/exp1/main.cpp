@@ -57,11 +57,11 @@ int main(int argc, char const *argv[]){
         double timeAcumulator = 0;
         for (int i = 0; i < imagesTest.centralized.size(); ++i){
             high_resolution_clock::time_point timekNNStarted = high_resolution_clock::now();
-            kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain);
+            kNN(imagesTest.centralized[i], imagesTrain.centralized, kMin, labelRes, imagesTrain.labels);
             high_resolution_clock::time_point timekNNEnded = high_resolution_clock::now();
             timeAcumulator += duration_cast<milliseconds>( timekNNEnded - timekNNStarted ).count();
 
-            trueValues[i] = imagesTest.images[i].label;
+            trueValues[i] = imagesTest.labels[i];
             for (int it = 0; it < labelRes.size(); it++)
                 knnValues[it][i] = labelRes[it];
         }

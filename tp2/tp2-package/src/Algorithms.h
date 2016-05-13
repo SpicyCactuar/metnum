@@ -7,7 +7,7 @@
 #include "Equalty.h"
 #include "MatrixAlgorithms.h"
 
-void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labelRes, DigitImages &digitImagesTrain){
+void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labelRes, vector<int> &realLabels){
     // distance, index
     vector<pair<double, int>> distances(train.size());
     vector<int> labels(LABELS_QTY, 0);
@@ -21,7 +21,7 @@ void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labe
     sort(distances.begin(), distances.end());
     for (int iter = 0; iter < ks.size(); ++iter){
         for (int i = 0; i < ks[iter]; ++i)
-            labels[digitImagesTrain.images[distances[i].second].label]++;
+            labels[realLabels[distances[i].second]]++;
         int max = labels[0], label = 0;
         // TODO: extract to function
         for (int i = 1; i < labels.size(); ++i){

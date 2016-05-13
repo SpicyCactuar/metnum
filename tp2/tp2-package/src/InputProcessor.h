@@ -3,13 +3,12 @@
 
 #include "Types.h"
 
-void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istream &input) {
+void populateDigitImageWithExtras(DigitImages &images, istream &input) {
     /* Label */
     string label, pixelStr;
     getline(input, label, ',');
     int l = stoi(label);
     images.labels.push_back(l);
-    image.label = l;
     //PLSDA purposes
     vector<double> labelY(LABELS_QTY, -1);
     labelY[l] = 1;
@@ -19,12 +18,16 @@ void populateDigitImageWithExtras(DigitImages &images, DigitImage &image, istrea
 
     /* Pixel fetching and mean sum */
     int i = 0;
+    vector<double> image(DEFAULT_IMAGE_SIZE);
     while(getline(input, pixelStr, ',')){
         int pixel = stoi(pixelStr);
-        image.pixels[i] = pixel;
+        image[i] = pixel;
         images.means[i] += pixel;
         i++;
     }
+    images.images.push_back(image);
+    images.centralized.push_back(image);
+    images.centralizedPLSDA.push_back(image);
 }
 
 void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, string &inFileDir, istream &inputStream) {
@@ -45,20 +48,10 @@ void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, stri
         getline(inputStream, isTrain, ' ');
         stringstream lineStream(line);
         /* Particular Digit Image Population */
-        DigitImage image;
-        if(isTrain == "1"){
-            image.pixels = vector<double>(DEFAULT_IMAGE_SIZE);
-            populateDigitImageWithExtras(imagesTrain, image, lineStream);
-            imagesTrain.centralized.push_back(image.pixels);
-            imagesTrain.centralizedPLSDA.push_back(image.pixels);
-            imagesTrain.images.push_back(image);
-        } else{
-            image.pixels = vector<double>(DEFAULT_IMAGE_SIZE);
-            populateDigitImageWithExtras(imagesTest, image, lineStream);
-            imagesTest.images.push_back(image);
-            imagesTest.centralized.push_back(image.pixels);
-            imagesTest.centralizedPLSDA.push_back(image.pixels);
-        }
+        if(isTrain == "1")
+            populateDigitImageWithExtras(imagesTrain, lineStream);
+        else
+            populateDigitImageWithExtras(imagesTest, lineStream);
     }
     input.close();
 }
