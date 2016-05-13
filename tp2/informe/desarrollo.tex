@@ -16,18 +16,34 @@ Desafortunadamente, \textbf{la simplicidad tiene su costo temporal en este caso}
 
 Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo una \textit{porci\'on}, la de mayor contenido de informaci\'on, de la misma. Aunque por s\'i solos, no son m\'etodos de categorizaci\'on. Por ende, \textbf{estar\'an involucrados como \textit{preprocesadores} de la informaci\'on a ser servida al \textit{knn}} (reducir las dimensiones a considerar previo a aplicar kNN).
 
-\subsubsection{An\'alisis de Componentes Principales + \textit{kNN}}
+\subsubsection{Reducci\'on de dimensi\'on \textit{no} supervisada con \textit{PCA}}
 
 Siguiendo la l\'inea de \textbf{PCA} (\ref{intro_PCA}), buscamos $P$ conformado por las \textit{\textbf{Componentes Principales}} que son los autovectores de $M_{X}$. Inmediatamente surge una imposici\'on en costo de c\'omputo muy elevada: Dado que $M_{X} \in \mathbb{R}^{784 \times 784}$ es sim\'etrica, posee \textit{rango completo} de autovectores. Calcular los $784$ autovectores es pesado, y ,a\'un provisto de ellos, multiplicar \textit{todas} las im\'agenes contra la matriz generada tambi\'en lo es. Esto es bloqueante, lo que busc\'abamos era \textit{reducir} el problema en dimensi\'on para alivianar el costo de c\'omputo.
 
 Provisto de $\alpha \in \mathbb{N}$, y $n_{iter} \in \mathbb{N}$, buscamos generar la transformaci\'on $P \in R^{\alpha \times 784}$ tal que contenga $\alpha$ \textbf{\textit{Componentes Principales}} como filas.
-Como dichas componentes son los autovectores, buscamos $\alpha$ autovalores y autovectores de la matriz de covarianzas $M_{X}$. Pero al tomar un n\'umero menor de componentes, se pierde informaci\'on. Por eso mismo, decidimos \textbf{buscar las que maximicen la varianza}, ya son las que m\'as informaci\'on poseen. \textcolor{red}{// TODO: Explicar por qu\'e}. Para esto aplica el \textbf{M\'etodo de la Potencia} (explicado en \ref{desarrollo_metodo-potencia}), utilizando el $n_{iter}$ provisto, combinado con \textbf{Deflaci\'on} (desarrollado en \ref{desarrollo_deflacion}). Repetimos $\alpha$ veces un paso $i$, con $B^0 = M_{X}$, de: obtener $\lambda_{i}$, el $i$-\'esimo autovalor ordenas por m\'odulo, asociado a $v_{i}$, calcular $B^{i + 1} = B^{i} - \lambda_{i}v_{i}v_{i}^{t}$ y comenzar el paso $i+1$.
+Como dichas componentes son los autovectores, buscamos $\alpha$ autovalores y autovectores de la matriz de covarianzas $M_{X}$. Pero al tomar un n\'umero menor de componentes, se pierde informaci\'on. Por eso mismo, decidimos \textbf{buscar las que maximicen la varianza}, ya son las que m\'as informaci\'on poseen. Recordando el fundamento del m\'etodo planteado en la secci\'on anterior, buscabamos los autovectores de $M_{X}$ dado que la diagonalizaban. Al estar diagonalizada, los autovalores son los elementos de la diagonal, que a su vez son las varianzas de las variables en \textit{nuevo espacio de datos}. Obtener los de mayor m\'odulo nos aporta la mayor cantidad de informaci\'on posible. Para esto aplica el \textbf{M\'etodo de la Potencia} (explicado en \ref{desarrollo_metodo-potencia}), iterando tantas veces como el $n_{iter}$ provisto, combinado con \textbf{Deflaci\'on} (desarrollado en \ref{desarrollo_deflacion}). Repetimos $\alpha$ veces un paso $i$, con $B^0 = M_{X}$, de: obtener $\lambda_{i}$, el $i$-\'esimo autovalor ordenas por m\'odulo, asociado a $v_{i}$, calcular $B^{i + 1} = B^{i} - \lambda_{i}v_{i}v_{i}^{t}$ y comenzar el paso $i+1$.
 
-Con lo cu\'al nos quedamos con una matriz $P$ que posee, por filas, los $\alpha$ autovectores de $M_{X}$ que mayor informaci\'on almacenan. El siguiente paso es aplicar el \textit{cambio de base} a cada muestra $z \in Z$ y a $y$: $Py = \hat{y} \in \mathbb{R}^{\alpha}$ y $\hat{z} = Pz \in \mathbb{R}^{\alpha}$, obteniendo sus correspondientes \textit{\textbf{Transformaciones Caracter\'isticas}}.
+Antes de continuar, los algoritmos de generaci\'on de autovectores tienen condiciones sobre los cu\'ales funcionan.
 
-Lo \'unico restante es utilizar \textit{knn} con lo constru\'ido hasta ac\'a, reduciendo efectivamente su complejidad temporal a $\mathbf{\Theta(l \times \alpha)}$. Adem\'as, dado que siempre trabajamos sobre el mismo \textit{set} de datos, se pueden conservar los resultados obtenidos en \textit{PCA}. Uno puede re-usarlos para todo $y \in Y$, obteniendo una complejidad final de $\Theta(s \times l \times \alpha)$ en contraposici\'on a $\Theta(s \times l \times m)$ que corresponde a la complejidad del procedimiento con $knn$ a secas.
+Para el caso de m\'etodo de la potencia:
 
-\subsubsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales + \textit{kNN}}
+\begin{itemize}
+\item \textcolor{red}{// TODO: Agregar}
+\item Como $M_{X}$ es sim\'etrica, tiene todos los autovalores reales.
+\end{itemize}
+
+Los requerimientos de deflaci\'on se cumplen dado que:
+
+\begin{itemize}
+\item Al ser $M_{X}$ sim\'etrica, sus autovectores generan una \textbf{base ortonormal}.
+\end{itemize}
+
+Con lo cu\'al nos quedamos con una matriz $P$ que posee, por filas, los $\alpha$ autovectores de $M_{X}$ que mayor informaci\'on almacenan. El siguiente paso es aplicar el \textit{cambio de base} a cada muestra $z \in Z$ y a $y$: $Py = \hat{y} \in \mathbb{R}^{\alpha}$ y $\hat{z} = Pz \in \mathbb{R}^{\alpha}$, obteniendo sus correspondientes \textit{\textbf{Transformaciones Caracter\'isticas}}. A dicha transformaci\'on la denominamos $\mathbf{tc_{PCA}}$.
+
+\newpage
+\subsubsection{Reducci\'on de dimensi\'on supervisada con \textit{PLS-DA}}
+
+Presentamos un \textit{pseudo-c\'odigo} del procedimiento para luego explicar las decisiones involucradas y las condiciones correspondientes que se deben dar para su correctitud: \\
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -44,41 +60,51 @@ Lo \'unico restante es utilizar \textit{knn} con lo constru\'ido hasta ac\'a, re
 \caption{PLS($X, Y, \gamma$)}
 \end{algorithm}
 
-El pseudoc\'odigo anterior recibe X la matriz de imagenes centralizadas e Y un vector con las etiquetas correspondientes. Con esos par\'ametros, el algoritmo se llama PLS, para agregarle DA, basta con tomar la Y como una matriz que centraliza, como a X, a una matriz que tiene un 1 en la posici\'on $(i, j)$ si la imagen $i$ tiene etiqueta $j-1$ \footnote{Indexando desde 1} o -1 en caso contrario.
+El algoritmo recibe $X \in R^{n \times 784}$, la matriz de imagenes centralizadas por la media, e $Y$ un vector que \textit{mapea} cada posici\'on con la etiqueta de la im\'agen que se encuentra en la susodicha posici\'on en $X$. Dadas estas construcciones, buscamos ir obteniendo iterativamente los \textbf{autovectores dominantes} $v_{i}$ (autovectores cuyos autovalores sean dominantes en el paso $i$) sobre la matriz $M_{i}$. Notemos que $M_{i}$ es sim\'etrica en todos los pasos: siendo $X_{i}$, $Y_{i}$ las matrices iniciales en el paso $i$, vemos que $M_{i}^{t} = (X^{t}YY^{t}X)^{t} = (Y^{t}X)^{t}(X^{t}Y)^{t} = X^{t}(Y^{t})^{t}Y^{t}(X^{t})^{t} = X^{t}YY^{t}X = M_{i}$. Como, por lo desarrollado en \ref{intro_plsda}, requerimos $w_{i}$ autovector dominante, utilizamos el \textbf{M\'etodo de la Potencia} (\ref{desarrollo_metodo-potencia}) para extraerlo. El vector resultado se encuentra normalizado, por ende podemos evitar el paso de normalizaci\'on siguiente a su obtenci\'on.
 
-Ahora que tenemos estos dos algoritmos, nos preguntamos de qu\'e nos sirven si seguimos teniendo que aplicar kNN sobre puntos de dimensiones muy grandes.
+Lo siguiente es: en base a $w_{i}$, $X_{i}$ e $Y_{i}$, calcular $t_{i}$, como fue mencionado en\ref{intro_plsda}, como $Xw_{i}$ para realizar el c\'omputo de $X_{i+1}$ e $Y_{i+1}$. \textcolor{red}{// TODO: Mencionar un poco m\'as el fundamento te\'orico que los sustenta.}
 
-La respuesta es que estos m\'etodos nos permiten tomar una fracci\'on de los datos, es decir, los primeros $\alpha$ autovectores \footnote{Reducci\'on de la dimensi\'on: $\bar{V} = [v_{1} v_{2} ... v_{\alpha}]$} obtenidos por PCA o los primeros $\gamma$ extra\'idos en PLS-DA. Estos forman lo que se denomina una \textbf{Transformaci\'on Caracter\'istica} \footnote{Aplicar el cambio de base a cada muestra $x^{(i)}$, definimos $tc(x^{(i)} = \bar{V}^{t}x^{(i)} = (v_{1}^{t}x^{(1)}, ..., v_{\alpha}^{t}x^{(1)})$}.
+Las $\gamma$ repeticiones de estos calculos nos otorga $w_{1}$, ..., $w_{\gamma}$ y los utilizamos para obtener la \textbf{Transformaci\'on Caracter\'istica} de una im\'agen $x_{i}$ como $\mathbf{tc_{PLS}(x_{i})} = (w_{1}^{t}x_{i}, ..., w_{\gamma}x_{i}) \in R_{\gamma}$.
 
-Luego, cuando llega una imagen nueva $x^{*} \in \mathbb{R}^{m}$ para catalogar, definimos $\bar{x}^{*} = (x^{*} - \mu)/\sqrt{n-1}$, le aplicamos $tc(\bar{x}^{*}$ y la clasificamos de alguna manera, en nuestro caso, con kNN.
+Con esos par\'ametros, el algoritmo se llama PLS, para agregarle DA, basta con tomar la $Y$ como una matriz que centraliza, como a $X$, a una matriz que tiene un 1 en la posici\'on $(i, j)$ si la imagen $i$ tiene etiqueta $j-1$ \footnote{Indexando desde 1} o $-1$ en caso contrario. \textcolor{red}{// TODO: Desarrollar m\'as la idea de por qu\'e es ``DA''.}
 
 \textcolor{red}{// TODO: Revisar y Terminar}
 
-\subsection{M\'etricas de calidad}
+\subsubsection{Clasificaci\'on inteligente: \textit{Transformaci\'on} + \textit{kNN}}
+
+Tanto \textit{PCA} como \textit{PLS-DA} nos facilitan una \textit{transformaci\'on caracter\'istica} que reduce la dimensi\'on de las im\'agenes. Pero \textbf{por s\'i mismos no son \textit{clasificadores}}. Que la dimensi\'on de las im\'agenes se encuentre reducida, abre la posibilidad de utilizar el \textit{kNN} y que su ejecuci\'on se complete en tiempos razonables.
+
+Por lo tanto, \textbf{el algoritmo completo de clasificaci\'on}, sobre una im\'agen particular $y \in Y$ a clasificar, se compone de tomar una $\mathbf{tc_{m}}$, la transformaci\'on caracter\'istica de \textit{PCA} o \textit{PLS-DA}, obtener $tc_{m}(y)$ y $tc_{m}(z_{i})$, con $z_{i} \in Z$, y finalmente utilizar el criterio de clasificaci\'on provisto por \textit{kNN}.
+
+\subsection{Estrategias de medici\'on}
+
+\subsubsection{Evaluaci\'on robusta con \textit{K-cross fold validation}}
+
+\textcolor{red}{// TODO: Fill}
+
+\subsubsection{M\'etricas de calidad}
 
 Finalmente, se desarrollaron algunas m\'etricas para medir qu\'e tan buenas son las decisiones tomadas por el clasificador:
 
-\textbf{Precision:} Es una medida de cu\'antos aciertos relativos tiene un clasificador dentro de una clase particular. Es decir, dada una clase i, la precision de dicha clase es $tp_{i} / (tp_{i} + fp_{i})$.
+* \underline{\textbf{Precision:}} Es una \textbf{medida de cu\'antos aciertos relativos tiene un clasificador dentro de una clase particular}. Es decir, dada una clase $i$, la precision de dicha clase es $tp_{i} / (tp_{i} + fp_{i})$.
 
-En la anterior f\'ormula, $tp_{i}$ son los verdaderos positivos de la clase i. Es decir, muestras que realmente pertenec\'ian a la clase $i$ y fueron exitosamente identificadas como tales. En contraposici\'on, $fp_{i}$ son los falsos positivos de la clase $i$. Son aquellas muestras que fueron identificadas como pertenecientes a la clase $i$ cuando realmente no lo eran.
+En la anterior f\'ormula, $tp_{i}$ son los \textit{verdaderos positivos} de la clase $i$. Es decir, muestras que realmente pertenec\'ian a la clase $i$ y fueron exitosamente identificadas como tales. En contraposici\'on, $fp_{i}$ son los \textit{falsos positivos} de la clase $i$. Son aquellas muestras que fueron identificadas como pertenecientes a la clase $i$ cuando realmente no lo eran.
 
-Luego, la precision en el caso de un clasificador de muchas clases, se define como el promedio de las precision para cada una de las clases.
+Luego, la \textit{precision} en el caso de un clasificador de muchas clases, se define como \textbf{el promedio de las precision para cada una de las clases}. \\
 
-\textbf{Recall:} Es una medida de que tan bueno es un clasificador para, dada una clase particular, identificar correctamente a los pertenecientes a esa clase. Es decir, dada una clase i, el recall de dicha clase es $tp_{i} / (tp_{i} + fn_{i})$.
+* \underline{\textbf{Recall:}} Es una \textbf{medida de que tan bueno es un clasificador para, dada una clase particular, identificar correctamente a los pertenecientes a esa clase}. Dada una clase $i$, el recall de dicha clase es $tp_{i} / (tp_{i} + fn_{i})$.
 
-En la anterior f\'ormula, $fn_{i}$ son los falsos negativos de la clase i. Es decir, muestras que pertenec\'ian a la clase $i$ pero que fueron identificadas con otra clase.
+En la anterior f\'ormula, $fn_{i}$ son los \textit{falsos negativos} de la clase $i$. Es decir, muestras que pertenec\'ian a la clase $i$ pero que fueron identificadas con otra clase.
 
-Luego, el recall en el caso de un clasificador de muchas clases, se define como el promedio del recall para cada una de las clases.
+Luego, el \textit{recall} en el caso de un clasificador de muchas clases, se define como \textbf{el promedio del recall para cada una de las clases}. \\
 
-\textbf{F1-Score:} Dado que precision y recall son dos medidas importantes que no necesariamente tienen la misma calidad para un mismo clasificador, se define esta m\'etrica para medir un compromiso entre ambas. Se define como $2 * precision * recall / (precision + recall)$.
-
-\textcolor{red}{// TODO: Revisar y Terminar}
+* \underline{\textbf{F1-Score:}} Dado que precision y recall son dos medidas importantes que no necesariamente tienen la misma calidad para un mismo clasificador, se define esta m\'etrica para \textbf{medir un compromiso entre ambas}. Se define como $2 * precision * recall / (precision + recall)$.
 
 \subsection{Algoritmos de Utilidad}
 
 \subsubsection{M\'etodo de la Potencia}\label{desarrollo_metodo-potencia}
 
-Por la necesidad de los procedimientos de calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}.
+Por la necesidad de los procedimientos de calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}. Sea $B^{n \times n}$ la matriz de entrada.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -93,22 +119,16 @@ Por la necesidad de los procedimientos de calcular autovalores y autovectores. P
 \caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
 \end{algorithm}
 
-Este m\'etodo busca un autovector $\in \mathbb{R}^{m}$ de norma 2 igual a 1 aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\in \mathbb{R}$ de m\'odulo m\'aximo. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Otra es que tenga todos los autovalores reales \textcolor{red}{REVISAR} (analizaremos que esto sucede m\'as adelante).
-
-Resultar\'ia conveniente poder reutilizar este m\'etodo para conseguir todos los autovectores y autovalores, pero s\'olo podemos conseguir el de m\'odulo m\'aximo, entonces consideramos el proceso de deflaci\'on que consiste en generar un matriz $DEFL$ tal que los autovalores de $B$ sean los mismos que $B - DEFL$ excepto por el mayor que debe ser cero.
-
-Ahora podemos repetir el proceso y obtener una base ortonormal de autovectores de la matriz original, que servir\'a para hacer el cambio de base que busc\'abamos.
-
-\textcolor{red}{// TODO: Revisar y Terminar}
+Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert v \vert\vert_{2} = 1$ aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\lambda_{1} \in \mathbb{R}$ de manera que $\lambda_{1} > \lambda_{i}$ autovalor con $i \neq 1$. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. La otra condici\'on es que $B$ tenga todos los autovalores reales. Veremos como ambas condiciones se cumplen para las matrices a las cu\'ales son aplicadas.
 
 \subsubsection{Deflaci\'on}\label{desarrollo_deflacion}
 
 Este algoritmo soslayar\'a un esquema iterativo en el cu\'al uno puede obtener autovalores y autovectores.
 
-Sea $B \in R^{n \times n}$ una matriz que posee autovalores distintos $\lambda_{1}, ..., \lambda_{n}$ con autovectores $v_{1}, ..., v_{n}$ asociados tales que $\vert \lambda_{1} \vert > ... > \vert \lambda_{n} \vert$, en otras palabras poder ordenarlos por m\'odulo. Veamos entonces que: \\
+Sea $B \in R^{n \times n}$ una matriz que posee autovalores distintos $\lambda_{1}, ..., \lambda_{n}$ con autovectores $v_{1}, ..., v_{n}$ asociados tales que $\vert \lambda_{1} \vert > ... > \vert \lambda_{n} \vert$, en otras palabras poder ordenarlos por m\'odulo. Adem\'as se pide que los autovectores generen una base ortonormal. \textcolor{red}{// TODO: Ver por qu\'e no hace falta que los autovalores no sean distinos} Veamos entonces que: \\
 
 $(B - \lambda_{1}v_{1}v_{1}^{t})v_{1} = Bv_{1} - \lambda_{1}v_{1}(v_{1}^{t}v_{1}) = \lambda_{1}v_{1} - \lambda_{1}v_{1} = 0v_{1}$
 
 $(B - \lambda_{1}v_{1}v_{1}^{t})v_{i} = Bv_{i} - \lambda_{1}v_{1}(v_{1}^{t}v_{i}) = \lambda_{i}v_{i}$ \\
 
-Por lo tanto, la matriz $B - \lambda_{1}v_{1}v_{1}^{t}$ posee autovalores $0, \lambda_{2}, ..., \lambda_{n}$ asociados a $v_{1}, ..., v_{n}$ de tal forma que puedo repetir el proceso obteniendo $\lambda_{2}$ y $v_{2}$.
+Por lo tanto, la matriz $B - \lambda_{1}v_{1}v_{1}^{t}$ posee autovalores $0, \lambda_{2}, ..., \lambda_{n}$ asociados a $v_{1}, ..., v_{n}$ de tal forma que puedo repetir el proceso obteniendo $\lambda_{2}$ y $v_{2}$. Este algoritmo se acopla muy bien con el M\'etodo de la potencia puesto que el susodicho extrae el autovalor dominante y su correspondiente autovector, con lo cu\'al es perfecto para una combinaci\'on de ambos.
