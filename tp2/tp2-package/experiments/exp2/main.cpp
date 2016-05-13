@@ -76,7 +76,7 @@ int main(int argc, char const *argv[]){
             timeTrackerPLS[PREPROCESS_DIMENSION_TIME] = (int)duration_cast<milliseconds>(timePLSEnded - timePCAEnded).count();
 
             ///// knn PCA /////
-            vector<int> kMin = {5, 10, 15, 20, 25, 50, 75, 100, 150, 200}, labelRes;
+            vector<int> kMin = {1, 2, 3, 4, 5, 10, 15, 20, 25, 50, 75, 100, 150, 200}, labelRes;
             vector<vector<int>> knnValuesPCA(kMin.size(), vector<int>(imagesTest.centralized.size()));
             vector<int> trueValuesPCA(imagesTest.centralized.size());
 
