@@ -28,11 +28,8 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
-    vector<int> alphaValues = {1,2,3};
-    vector<int> gammaValues = {1,2,3};
-
-//    vector<int> alphaValues = {5, 10, 25, 50, 75, 100, 200, 300};
-//    vector<int> gammaValues = {2, 4, 6, 8, 10, 12, 14, 16};
+    vector<int> alphaValues = {5, 10, 25, 50, 75, 100, 200, 300};
+    vector<int> gammaValues = {2, 4, 6, 8, 10, 12, 14, 16};
     vector<vector<vector<AwesomeStatistic>>> alphakMayusStatsPCA(alphaValues.size());
     vector<vector<vector<AwesomeStatistic>>> gammakMayusStatsPLS(gammaValues.size());
 
