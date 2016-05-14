@@ -1,20 +1,20 @@
 El suelo est\'a labrado en cuestiones te\'oricas. En esta secci\'on nos avocaremos en explicar el papel que juega cada m\'etodo y, el proceso completo partiendo de las im\'agenes y concluyendo en su clasificaci\'on.
 
-Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x^{(i)} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Al conjunto de im\'agenes lo denominamos $I$. Como est\'an en escala de grises, adem\'as se cumple que $x^{(i)}_{j} \in \{0, ..., 255\}$, d\'onde $x^{(i)}_{j}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255. Adicionalmente, el conjunto $C = \{0, ..., 9\}$ es el conjunto de clases/\textit{labels}/\textit{tags}/d\'igitos, seg\'un como los denominemos en cada ocasi\'on particular. Finalmente, por ahora, vamos a considerar una partici\'on de $I = Z \cup Y$, d\'onde $Z$ e $Y$ son dijuntos y los mismos tienen las particularidades destacadas en intro_consideraciones.
+Vamos a considerar las im\'agenes, siendo $n \in \mathbb{N}$ la cantidad, como $x^{(i)} \in \mathbb{R}^{m}$ con $m = 28 \times 28 = 784$ y $i \in \{1, ..., n\}$. Al conjunto de im\'agenes lo denominamos $I$. Como est\'an en escala de grises, adem\'as se cumple que $x^{(i)}_{j} \in \{0, ..., 255\}$, d\'onde $x^{(i)}_{j}$ es el $j$-esimo elemento de $x_{i}$, $\forall j \in \{1, ..., 784\}$. En t\'erminos coloquiales, una \textit{tira} de 784 valores que est\'an en el rango de 0 a 255. Adicionalmente, el conjunto $C = \{0, ..., 9\}$ es el conjunto de clases/\textit{labels}/\textit{tags}/d\'igitos, seg\'un como los denominemos en cada ocasi\'on particular. Finalmente, por ahora, vamos a considerar una partici\'on de $I = A \cup B$, d\'onde $A$ e $B$ son dijuntos y los mismos tienen las particularidades destacadas en \ref{intro_consideraciones}.
 
 \subsection{Metodolog\'ias de Clasificaci\'on}
 
 \subsubsection{Clasificaci\'on \textit{naive} con kNN}
 
-En una primera aproximaci\'on, \textbf{utilizamos el kNN como m\'etodo de clasificaci\'on a secas}, lo que es decidir a qu\'e d\'igito pertenece cada imagen del conjunto $Y$. Tomamos $y \in Y$ una tira que buscamos \textit{taggear}.
+En una primera aproximaci\'on, \textbf{utilizamos el kNN como m\'etodo de clasificaci\'on a secas}, lo que es decidir a qu\'e d\'igito pertenece cada imagen del conjunto $A$. Tomamos $a \in A$ una tira que buscamos \textit{taggear}.
 
 Recordar que, por c\'omo lo definimos en la \textit{secci\'on \ref{intro_knn}}, el algoritmo requer\'ia \textbf{una funci\'on de distancia $\mathbf{d}$}. Como modelamos con vectores, proponemos la \textbf{\textit{norma 2}}. En otras palabras, siendo $z$ y $x$ dos im\'agenes $d(z,x) = \vert\vert z - x \vert\vert_2^2 = (z - x)^{t}(z - x)$. Notar que en su forma de \textit{producto interno}, el c\'omputo no pierde precisi\'on por ser suma y multiplicaci\'on de n\'umeros entre $0$ y $255$. Adicionalmente, fue elegida por el nivel de precisi\'on que posee (en definitiva, compara una a una cada componente). 
 
-En consecuencia de haber definido una $d$, \textbf{obtenemos el conjunto $\mathbf{K}$ con los \textit{$\mathbf{k}$ vecinos m\'as cercanos}}. Clasificar es f\'acil: se cuentan las etiquetas de cada uno de los $k \in K$ puntos y la que m\'as se repita, se le asigna a $y$ \footnote{En caso de empate, nos quedamos con el primero que hayamos encontrado que maximice la cantidad de apariciones}.
+En consecuencia de haber definido una $d$, \textbf{obtenemos el conjunto de \textit{$\mathbf{k}$ vecinos m\'as cercanos}}. Clasificar es f\'acil: se cuentan las etiquetas de cada uno de los $k$ vecinos y la que m\'as se repita, se le asigna a $a$ \footnote{En caso de empate, nos quedamos con el primero que hayamos encontrado que maximice la cantidad de apariciones}.
 
-Desafortunadamente, \textbf{la simplicidad tiene su costo temporal en este caso}. Si consideramos $Z$, el conjunto del cu\'al conocemos su clasificaci\'on, con $l = \#(Z)$, y $s = \#(Y)$, \textbf{la complejidad temporal del \textit{knn} es $\mathbf{\Theta(l \times m)}$} (el costo de armar $K$ es despreciable puesto que $k \leq l$). Las im\'agenes tienen $784$ pixels, es decir, cada punto a considerar tiene $784$ componentes. Calcular la distancia de un punto de esta dimensi\'on contra \textit{$l$} de la misma dimensi\'on suena a mucho trabajo y \textit{lo es}. Aqu\'i es d\'onde cobran valor \textbf{PCA} y \textbf{PLS-DA}.
+Desafortunadamente, \textbf{la simplicidad tiene su costo temporal en este caso}. Las im\'agenes tienen $784$ pixels, es decir, cada punto a considerar tiene $784$ componentes. Calcular la distancia de un punto de esta dimensi\'on contra \textit{$\vert B \vert$} (el tamaño de $B$) de la misma dimensi\'on suena a mucho trabajo y \textit{lo es}. Aqu\'i es d\'onde cobran valor \textbf{PCA} y \textbf{PLS-DA}.
 
-Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo una \textit{porci\'on}, la de mayor contenido de informaci\'on, de la misma. Aunque por s\'i solos, no son m\'etodos de categorizaci\'on. Por ende, \textbf{estar\'an involucrados como \textit{preprocesadores} de la informaci\'on a ser servida al \textit{knn}} (reducir las dimensiones a considerar previo a aplicar kNN).
+Ambos tienen la misma idea, obtener una matriz que realice un cambio de base tal que permita quedarnos con s\'olo una \textit{porci\'on}, la de mayor contenido de informaci\'on, de la misma. Aunque por s\'i solos, no son m\'etodos de categorizaci\'on. Por ende, \textbf{estar\'an involucrados como \textit{preprocesadores} de la informaci\'on a ser servida al \textit{kNN}} (reducir las dimensiones a considerar previo a aplicar \textit{kNN}).
 
 \subsubsection{Reducci\'on de dimensi\'on \textit{no} supervisada con \textit{PCA}}
 
@@ -40,8 +40,7 @@ Los requerimientos de deflaci\'on se cumplen dado que:
 
 Con lo cu\'al nos quedamos con una matriz $P$ que posee, por filas, los $\alpha$ autovectores de $M_{X}$ que mayor informaci\'on almacenan. El siguiente paso es aplicar el \textit{cambio de base} a cada muestra $z \in Z$ y a $y$: $Py = \hat{y} \in \mathbb{R}^{\alpha}$ y $\hat{z} = Pz \in \mathbb{R}^{\alpha}$, obteniendo sus correspondientes \textit{\textbf{Transformaciones Caracter\'isticas}}. A dicha transformaci\'on la denominamos $\mathbf{tc_{PCA}}$.
 
-\newpage
-\subsubsection{Reducci\'on de dimensi\'on supervisada con \textit{PLS-DA}}
+\subsubsection{Reducci\'on de dimensi\'on supervisada con \textit{PLS-DA}} \label{desarrollo_PLSDA}
 
 Presentamos un \textit{pseudo-c\'odigo} del procedimiento para luego explicar las decisiones involucradas y las condiciones correspondientes que se deben dar para su correctitud: \\
 
@@ -60,15 +59,11 @@ Presentamos un \textit{pseudo-c\'odigo} del procedimiento para luego explicar la
 \caption{PLS($X, Y, \gamma$)}
 \end{algorithm}
 
-El algoritmo recibe $X \in R^{n \times 784}$, la matriz de imagenes centralizadas por la media, e $Y$ un vector que \textit{mapea} cada posici\'on con la etiqueta de la im\'agen que se encuentra en la susodicha posici\'on en $X$. Dadas estas construcciones, buscamos ir obteniendo iterativamente los \textbf{autovectores dominantes} $v_{i}$ (autovectores cuyos autovalores sean dominantes en el paso $i$) sobre la matriz $M_{i}$. Notemos que $M_{i}$ es sim\'etrica en todos los pasos: siendo $X_{i}$, $Y_{i}$ las matrices iniciales en el paso $i$, vemos que $M_{i}^{t} = (X^{t}YY^{t}X)^{t} = (Y^{t}X)^{t}(X^{t}Y)^{t} = X^{t}(Y^{t})^{t}Y^{t}(X^{t})^{t} = X^{t}YY^{t}X = M_{i}$. Como, por lo desarrollado en \ref{intro_plsda}, requerimos $w_{i}$ autovector dominante, utilizamos el \textbf{M\'etodo de la Potencia} (\ref{desarrollo_metodo-potencia}) para extraerlo. El vector resultado se encuentra normalizado, por ende podemos evitar el paso de normalizaci\'on siguiente a su obtenci\'on.
-
-Lo siguiente es: en base a $w_{i}$, $X_{i}$ e $Y_{i}$, calcular $t_{i}$, como fue mencionado en\ref{intro_plsda}, como $Xw_{i}$ para realizar el c\'omputo de $X_{i+1}$ e $Y_{i+1}$. \textcolor{red}{// TODO: Mencionar un poco m\'as el fundamento te\'orico que los sustenta.}
+El algoritmo recibe $X \in R^{n \times 784}$, la matriz de imagenes centralizadas por la media, e $Y$ un vector que \textit{mapea} cada posici\'on con la etiqueta de la im\'agen que se encuentra en la susodicha posici\'on en $X$. Dadas estas construcciones, buscamos ir obteniendo iterativamente los \textbf{autovectores dominantes} $w_{i}$ (autovectores cuyos autovalores sean dominantes en el paso $i$) sobre la matriz $M_{i}$. Notemos que $M_{i}$ es sim\'etrica en todos los pasos: siendo $X = X_{i}$, $Y = Y_{i}$ las matrices iniciales en el paso $i$, vemos que $M_{i}^{t} = (X^{t}YY^{t}X)^{t} = (Y^{t}X)^{t}(X^{t}Y)^{t} = X^{t}(Y^{t})^{t}Y^{t}(X^{t})^{t} = X^{t}YY^{t}X = M_{i}$. Como, por lo desarrollado en \ref{intro_PLSDA}, requerimos $w_{i}$ autovector dominante, utilizamos el \textbf{M\'etodo de la Potencia} (\ref{desarrollo_metodo-potencia}) para extraerlo. El vector resultado se encuentra normalizado, por ende podemos evitar el paso de normalizaci\'on siguiente a su obtenci\'on. Para finalizar la iteraci\'on, en base a $w_{i}$, $X_{i}$ e $Y_{i}$, calcular $t_{i}$ como $Xw_{i}$ para realizar el c\'omputo de $X_{i+1}$ e $Y_{i+1}$.
 
 Las $\gamma$ repeticiones de estos calculos nos otorga $w_{1}$, ..., $w_{\gamma}$ y los utilizamos para obtener la \textbf{Transformaci\'on Caracter\'istica} de una im\'agen $x_{i}$ como $\mathbf{tc_{PLS}(x_{i})} = (w_{1}^{t}x_{i}, ..., w_{\gamma}x_{i}) \in R_{\gamma}$.
 
-Con esos par\'ametros, el algoritmo se llama PLS, para agregarle DA, basta con tomar la $Y$ como una matriz que centraliza, como a $X$, a una matriz que tiene un 1 en la posici\'on $(i, j)$ si la imagen $i$ tiene etiqueta $j-1$ \footnote{Indexando desde 1} o $-1$ en caso contrario. \textcolor{red}{// TODO: Desarrollar m\'as la idea de por qu\'e es ``DA''.}
-
-\textcolor{red}{// TODO: Revisar y Terminar}
+\textbf{Con este planteo, tenemos un PLS tracicional}. \textbf{La extensi\'on a PLS-DA la hacemos tomando la $\mathbf{Y}$ como una matriz que centraliza}, como a $X$, \textbf{a una matriz que tiene un $1$ en la posici\'on $(i, j)$ si la imagen $i$ tiene etiqueta $j$\footnote{Indexando desde 1} o $(-1)$ en caso contrario}.
 
 \subsubsection{Clasificaci\'on inteligente: \textit{Transformaci\'on} + \textit{kNN}}
 
@@ -104,7 +99,7 @@ Luego, el \textit{recall} en el caso de un clasificador de muchas clases, se def
 
 \subsubsection{M\'etodo de la Potencia}\label{desarrollo_metodo-potencia}
 
-Por la necesidad de los procedimientos de calcular autovalores y autovectores. Para esto utilizamos el \textbf{M\'etodo de la Potencia}. Sea $B^{n \times n}$ la matriz de entrada.
+Tenemos una necesidad de encontrar \textit{autovalores} con sus \textit{autovectores asociados}. Para esto utilizamos el \textbf{M\'etodo de la Potencia}. Sea $B^{n \times n}$ la matriz de entrada.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
