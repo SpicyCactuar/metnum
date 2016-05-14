@@ -42,7 +42,7 @@ Tanto \textit{PCA} y \textit{PLS-DA} tienen como pilar realizar un \textit{cambi
 
 Nos abstraemos del modelo y consideramos $x_{i}$, $i = 1, ..., m$, como $m$ variables aleatorias, y $x^{j} \in \mathbb{R}^m$, $j = 1, ..., n$, como $n$ muestras de las mismas. Adem\'as, $\mu = (x^{(1)} + ... + x^{(n)}) / n \in \mathbb{R}^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x^{(1)}_{i} + ... + x^{(n)}_{i}) / n$ es el promedio de la variable aleatoria $i$ y con la cu\'al podemos reescribir $\mu$ como $\mu = (\mu_{1}, ..., \mu_{n})$.
 
-Planteamos la transformaci\'on sobre la matriz $X$, la cu\'al cuenta con $n$ filas de la forma $(x^{(i)} - \mu)^t$, $i = 1, ..., n$. Esta la matriz de datos efectivamente centra la media de las variables en $0$, lo cu\'al es simple (y se lo dejamos al lector) de verificar realizando el c\'alculo de la media sobre cada columna de $X$. Adem\'as, facilita los pasos aritm\'eticos y algebr\'aicos que se deben llevar a cabo en los m\'etodos.
+Planteamos la transformaci\'on sobre la matriz $X$, la cu\'al cuenta con $n$ filas de la forma $(x^{(i)} - \mu)^t$, $i = 1, ..., n$. Esta es la matriz de datos que efectivamente centra la media de las variables en $0$, lo cu\'al es simple (y se lo dejamos al lector) de verificar realizando el c\'alculo de la media sobre cada columna de $X$. Adem\'as, facilita los pasos aritm\'eticos y algebr\'aicos que se deben llevar a cabo en los m\'etodos.
 
 La transformaci\'on la caracterizaremos como $P$ y la buscamos tal que $\hat{X}^{t} = PX^{t}$, donde $\hat{X}^{t}$ \textit{vive} en un universo de mayor conveniencia para el an\'alisis. Adicionalmente, queremos que $P$ sea ortogonal por el comportamiento que posee de no alterar el largo de los vectores a los que multiplica, para que no modifique el comportamiento de los datos.
 
@@ -64,7 +64,7 @@ D\'onde $v = (1, ..., 1) \in \mathbb{R}^{n}$. \\
 
 Por lo tanto,
 
-$M_{X}^{(j,k)} = \frac{1}{n - 1}fila_{j}(X^t)col_{k}(X) = (x_{j} - \mu_{j}v)^{t}(x_{k} - \mu_{k}v) / (n - 1) = \sum\limits_{i = 1}^{n}(x^{(i)}_{j} - \mu_{j})(x^{(i)}_{k} - \mu_{k}) / (n - 1) = \sigma_{x_{j}x_{k}}$\footnote{No es la varianza \textit{te\'orica}, sino un \textit{estimador insesgado} de la misma. Dado que no an\'alisamos las variables aleatorias en t\'erminos te\'oricos sino m\'as bien en muestras, consideramos que es lo suficientemente preciso}.
+$M_{X}^{(j,k)} = \frac{1}{n - 1}fila_{j}(X^t)col_{k}(X) = (x_{j} - \mu_{j}v)^{t}(x_{k} - \mu_{k}v) / (n - 1) = \sum\limits_{i = 1}^{n}(x^{(i)}_{j} - \mu_{j})(x^{(i)}_{k} - \mu_{k}) / (n - 1) = \sigma_{x_{j}x_{k}}$\footnote{No es la varianza \textit{te\'orica}, sino un \textit{estimador insesgado} de la misma. Dado que no analizamos las variables aleatorias en t\'erminos te\'oricos sino m\'as bien en muestras, consideramos que es lo suficientemente preciso}.
 
 Observamos adem\'as que $\sigma_{jj} = \sum\limits_{i = 1}^{n}(x_{j}^{(i)} - \mu_{j})^{2} / (n - 1) = \sigma_{j}^{2}$. Dejamos en manos del lector verificar que $M_{X}^{(j,k)} = M_{X}^{(k,j)}$. Con lo cu\'al obtuvimos una matriz que contiene a las varianzas de las variables en la diagonal y las covarianzas en el resto de las posiciones, y que es sim\'etrica. Esta \'ultima observaci\'on va a ser fundamental para los pr\'oximos pasos del procedimiento. \\
 
