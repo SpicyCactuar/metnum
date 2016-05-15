@@ -35,9 +35,11 @@ int main(int argc, char const *argv[]){
     populateDigitImages(imagesTrain, imagesTest, inFileDir, lineStream);
     imagesTrain.getMeans();
     imagesTrain.calculateCentralized();
-    imagesTrain.calculateCovariances();
+    // imagesTrain.calculateCovariances();
+    imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
-    PCA(imagesTrain.covariances, eigenVectors, eigenValues, alpha, niter);
+    // PCA(imagesTrain.covariances, eigenVectors, eigenValues, alpha, niter);
+    PLSDA(imagesTrain, eigenVectors, eigenValues, alpha, niter);
 
     vector<double> aux(DEFAULT_IMAGE_SIZE);
     for (int k = 0; k < eigenVectors.size(); ++k){

@@ -24,27 +24,27 @@ Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'er
 
 \subsection{k Vecinos M\'as Cercanos \textit{(kNN)}}\label{intro_knn}
 
-Un primer \textit{approach} planteado es el de \textit{\textbf{k-Nearest-Neighbours}}. Como modelos tenemos: $C$ un conjunto de clases, $Y = \{y_{1}, ..., y_{n}\}$ y $Z = \{z_{1}, ..., z_{n}\}$, $y_{i}$, $z_{i} \in \mathbb{R}^m$, dos conjuntos de elementos que pueden ser clasificados o \textit{taggeados} como elementos de $C$ con la particularidad de que conocemos la clasificaci\'on de elementos del conjunto $Z$. Por lo tanto, el problema va a ser \textit{taggear} el conjunto $Y$ en base a los de $Z$. El algoritmo es simple:
+Un primer \textit{approach} planteado es el de \textit{\textbf{k-Nearest-Neighbours}}. Como modelos tenemos: $C$ un conjunto de clases, $A = \{a_{1}, ..., a_{n}\}$ y $B = \{b_{1}, ..., b{n}\}$, $a_{i}$, $za{i} \in \mathbb{R}^m$, dos conjuntos de elementos que pueden ser clasificados o \textit{taggeados} como elementos de $C$ con la particularidad de que conocemos la clasificaci\'on de elementos del conjunto $B$. Por lo tanto, el problema va a ser \textit{taggear} el conjunto $A$ en base a los de $B$. El algoritmo es simple:
 
-Consideramos $y \in Y$, y una funci\'on $d : Y \times Z \mapsto \mathbb{R}_{> 0}$ que denominaremos \textbf{funci\'on de distancia}. Esta funci\'on toma un elemento de $Y$ y otro de $Z$, y devuelve un valor que \textit{resume} las diferencias entre un par\'ametro y el restante a un valor. Utilizaremos la misma para calcular las ``distancias'' de $y$ contra todos los elementos $z \in Z$, quedandonos s\'olo con los $k$ de menor valor. Estos ser\'an los que m\'as se \textit{parezcan} a $y$, llamamos a este conjunto $K$.
+Consideramos $a \in A$, y una funci\'on $d : A \times B \mapsto \mathbb{R}_{> 0}$ que denominaremos \textbf{funci\'on de distancia}. Esta funci\'on toma un elemento de $A$ y otro de $B$, y devuelve un valor que \textit{resume} las diferencias entre un par\'ametro y el restante a un valor. Utilizaremos la misma para calcular las ``distancias'' de $a$ contra todos los elementos $b \in Z$, quedandonos s\'olo con los $k$ de menor valor. Estos ser\'an los que m\'as se \textit{parezcan} a $a$.
 
-Una vez realizado esto, sea $f : C \times Z' \subset Z \mapsto \mathbb{N}$ una funci\'on que nos devuelve la cantidad de veces que se encuentra un \textit{tag} dentro de un sub-conjunto de $Z$, tomamos $c = argmax_{c \in C} f(c, K)$. De esta forma, ``asignamos'' la clase $c$ a $y$.
+Una vez realizado esto, sea $f : C \times B' \subset B \mapsto \mathbb{N}$ una funci\'on que nos devuelve la cantidad de veces que se encuentra un \textit{tag} dentro de un sub-conjunto de $B$, tomamos $c = argmax_{c \in C} f(c, K)$. De esta forma, ``asignamos'' la clase $c$ a $b$.
 
 Este algoritmo efectivamente realiza una \textbf{clasificaci\'on supervisada}, aprendiendo de una base de ``entrenamiento'' para categorizar los elementos restantes.
 
-De todas formas, lo simple del algoritmo tiene su contraparte en la variable tiempo de ejecuci\'on. Uno debe aplicar $d$ sobre todos los elementos de $Z$, con lo cu\'al si el conjunto es grande, dependemos de la complejidad temporal la funci\'on de distancia. La clave de este procedimiento es elegir una funci\'on que resuma las diferencias entre elementos m\'as precisamente, minimizando el computo, lo cu\'al no es una tarea f\'acil ya que, en general, funciones de distancia livianas representan menor calidad de resultados.
+De todas formas, lo simple del algoritmo tiene su contraparte en la variable tiempo de ejecuci\'on. Uno debe aplicar $d$ sobre todos los elementos de $B$, con lo cu\'al si el conjunto es grande, dependemos de la complejidad temporal la funci\'on de distancia. La clave de este procedimiento es elegir una funci\'on que resuma las diferencias entre elementos m\'as precisamente, minimizando el computo, lo cu\'al no es una tarea f\'acil ya que, en general, funciones de distancia livianas representan menor calidad de resultados.
 
 En respuesta a esa problem\'atica, planteamos 2 m\'etodos denominados \textbf{An\'alisis por Componentes Principales} (\textbf{PCA}, por sus siglas en ingl\'es) y \textbf{An\'alisis Discriminante por Cuadrados M\'inimos Parciales} (\textbf{PLS-DA}). Conceptualmente, consisten en ponderar la informaci\'on para decidir qu\'e \textit{variables} almacenan m\'as informaci\'on, y usarlas para reducir el an\'alisis a ese conjunto de variables de manera tal que se mejore dram\'aticamente el tiempo de c\'omputo.
 
 \subsection{Consideraciones previas a \textit{PCA} y \textit{PLS-DA}}\label{intro_consideraciones}
 
-Tanto \textit{PCA} y \textit{PLS-DA} tienen como pilar realizar un \textit{cambio de base} conveniente. En cada m\'etodo var\'ia \textit{cu\'al} se busca. 
+\textbf{Tanto \textit{PCA} y \textit{PLS-DA} tienen como pilar realizar un \textit{cambio de base} conveniente. En cada m\'etodo var\'ia \textit{cu\'al} se busca}.
 
 Nos abstraemos del modelo y consideramos $x_{i}$, $i = 1, ..., m$, como $m$ variables aleatorias, y $x^{j} \in \mathbb{R}^m$, $j = 1, ..., n$, como $n$ muestras de las mismas. Adem\'as, $\mu = (x^{(1)} + ... + x^{(n)}) / n \in \mathbb{R}^{m}$ la media entre las mismas. Notar que $\mu_{i} = (x^{(1)}_{i} + ... + x^{(n)}_{i}) / n$ es el promedio de la variable aleatoria $i$ y con la cu\'al podemos reescribir $\mu$ como $\mu = (\mu_{1}, ..., \mu_{n})$.
 
 Planteamos la transformaci\'on sobre la matriz $X$, la cu\'al cuenta con $n$ filas de la forma $(x^{(i)} - \mu)^t$, $i = 1, ..., n$. Esta es la matriz de datos que efectivamente centra la media de las variables en $0$, lo cu\'al es simple (y se lo dejamos al lector) de verificar realizando el c\'alculo de la media sobre cada columna de $X$. Adem\'as, facilita los pasos aritm\'eticos y algebr\'aicos que se deben llevar a cabo en los m\'etodos.
 
-La transformaci\'on la caracterizaremos como $P$ y la buscamos tal que $\hat{X}^{t} = PX^{t}$, donde $\hat{X}^{t}$ \textit{vive} en un universo de mayor conveniencia para el an\'alisis. Adicionalmente, queremos que $P$ sea ortogonal por el comportamiento que posee de no alterar el largo de los vectores a los que multiplica, para que no modifique el comportamiento de los datos.
+La transformaci\'on la caracterizaremos como $P$ y la buscamos tal que $\hat{X}^{t} = PX^{t}$, donde $\hat{X}^{t}$ \textit{vive} en un \textbf{universo de mayor conveniencia para el an\'alisis}. Adicionalmente, queremos que $P$ sea ortogonal por el comportamiento que posee de no alterar el largo de los vectores a los que multiplica, para que no modifique el comportamiento de los datos.
 
 \subsection{An\'alisis por Componentes Principales (\textit{PCA})} \label{intro_PCA}
 
@@ -76,8 +76,27 @@ Sabiendo que $M_{X}$ es sim\'etrica sabemos que \textbf{existen $\mathbf{V}$ ort
 
 Por lo tanto, la transformaci\'on propuesta es $P = V^{t}$. Como comentario final adicional, agregamos que este resultado se distancia completamente del concepto de clases o categor\'ias mencionado en la secci\'on anterior, por ende por s\'i mismo es un m\'etodo \textbf{\textit{no supervisado}}.
 
-\subsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}\label{intro_plsda}
+\subsection{An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit{PLS-DA})}\label{intro_PLSDA}
 
 En contraposici\'on a \textit{PCA}, el siguiente m\'etodo es \textbf{supervisado}. Lo que le brinda esa distinci\'on es que \textbf{utiliza las clases (o etiquetas)}.
 
-\textbf{\textcolor{red}{// TODO: Fill}}
+Si bien el m\'etodo se denominda \textit{PLS-DA}, el fundamento se encuentra en \textbf{PLS regression} (Regresi\'on por Cuadrados M\'inimos) al cu\'al luego se le aplica el criterio que forma el m\'etodo final. El \textit{PLS} tradicional corresponde a un modelo \textit{binario} de clasificaci\'on, cada muestra se encuentra o no en una clase determinada. \textbf{La extensi\'on \textit{discriminante} permite un an\'alisis multi-categ\'orico como el planteado en este trabajo}. M\'as all\'a de esto, primero desarrollaremos el m\'etodo tradicional.
+
+Siendo $X$ tal como fue definida en \textit{PCA}, definimos $Y$ como un vector que posee para cada posici\'on $i$ la informaci\'on sobre a \textit{que} clase o \textit{tag} pertenece la im\'agen $i$, d\'onde el \'indice se corresponde con la imagen $i$ en $X$. \textbf{La transformaci\'on busca maximizar las covarianzas entre las variables y las etiquetas en el \textit{nuevo espacio}}. Este criterio va a permitir \textbf{extraer la informaci\'on relevante que relacione muestra con clase}. La obtendremos a partir del siguiente planteo: \\
+
+$\Bigg\{
+\begin{array}{@{}ll@{}}
+	X = TR + E \\
+	Y = UQ + F
+\end{array}$ \\
+
+Este desglose se puede pensar como: $T$ nos \textit{transporta} al nuevo universo de los datos, $R$ lo revierte, y finalmente, como se puede sufrir p\'erdida de informaci\'on, sumamos $E$ de tal forma de mantener la consistencia. Una construcci\'on an\'aloga se puede hacer para $Y$. S\'olo nos incumbe poder hacer \textit{el viaje de ida} para luego extraer informaci\'on en ese \textit{espacio alterno}, por lo tanto nos concentraremos exclusivamente en $T$ y $U$.
+
+Si $t$ y $u$ son vectores de las \textit{matrices de transformaci\'on} $T$ y $U$, respectivamente, quiero maximizar su covarianza, para lo que utilizaremos el siguiente resultado: \\
+
+
+$Cov(t, u)^{2} = Cov(Xw, Yc)^{2} = max_{\vert \vert r \vert \vert = \vert \vert s \vert \vert = 1} Cov(Xr, Ys)$ \\
+
+Como $t$ y $u$ \textit{viven} en el nuevo espacio de datos, los podemos pensar como $Xw$ y $Yc$. Utilizando esta cadena de igualdades, se puede ver\footnote{La demostraci\'on fue dada en clase.} que el \textbf{$\mathbf{w}$ que cumple esto es el autovector dominante de $\mathbf{X^{t}YY^{t}X}$}. Con este razonamiento, se puede plantear un esquema iterativo (que est\'a expl\'icito en \ref{desarrollo_PLSDA}) de manera tal de extraer tantos vectores $w$ como se pida para obtener $P$ (la matriz de cambio de base de $X$) formada por los susodichos.
+
+Finalmente, como queremos poder trabajar con variables \textit{multi-categ\'oricas} como son las de este trabajo (en otras palabras, pasar de \textit{PLS} a \textit{PLS-DA}), \textbf{redefinimos $\mathbf{Y}$ de tal manera que cada columna posea informaci\'on sobre cada \textit{clase}}.

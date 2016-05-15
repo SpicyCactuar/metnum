@@ -1,7 +1,7 @@
 Obligatorios
 ============
 
-* Tests que contemplen cómo afecta el tamaño de las imágenes en el tiempo de ejecución
+* Tests que contemplen cómo afecta el tamaño de las imágenes en el tiempo de ejecución (DONE)
 
 * Tests que contemplen cómo afecta el cambio de los parámetros en la cálidad del resultado:
 	- k, la cantidad de vecinos del kNN
