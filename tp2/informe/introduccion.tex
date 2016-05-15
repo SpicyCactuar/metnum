@@ -24,7 +24,7 @@ Ahora ahondaremos en los fundamentos te\'oricos de los \textit{m\'etodos num\'er
 
 \subsection{k Vecinos M\'as Cercanos \textit{(kNN)}}\label{intro_knn}
 
-Un primer \textit{approach} planteado es el de \textit{\textbf{k-Nearest-Neighbours}}. Como modelos tenemos: $C$ un conjunto de clases, $A = \{a_{1}, ..., a_{n}\}$ y $B = \{b_{1}, ..., b{n}\}$, $a_{i}$, $za{i} \in \mathbb{R}^m$, dos conjuntos de elementos que pueden ser clasificados o \textit{taggeados} como elementos de $C$ con la particularidad de que conocemos la clasificaci\'on de elementos del conjunto $B$. Por lo tanto, el problema va a ser \textit{taggear} el conjunto $A$ en base a los de $B$. El algoritmo es simple:
+Un primer \textit{approach} planteado es el de \textit{\textbf{k-Nearest-Neighbours}}. Como modelos tenemos: $C$ un conjunto de clases, $A = \{a_{1}, ..., a_{n}\}$ y $B = \{b_{1}, ..., b{n}\}$, $a_{i}$, $b{i} \in \mathbb{R}^m$, dos conjuntos de elementos que pueden ser clasificados o \textit{taggeados} como elementos de $C$ con la particularidad de que conocemos la clasificaci\'on de elementos del conjunto $B$. Por lo tanto, el problema va a ser \textit{taggear} el conjunto $A$ en base a los de $B$. El algoritmo es simple:
 
 Consideramos $a \in A$, y una funci\'on $d : A \times B \mapsto \mathbb{R}_{> 0}$ que denominaremos \textbf{funci\'on de distancia}. Esta funci\'on toma un elemento de $A$ y otro de $B$, y devuelve un valor que \textit{resume} las diferencias entre un par\'ametro y el restante a un valor. Utilizaremos la misma para calcular las ``distancias'' de $a$ contra todos los elementos $b \in Z$, quedandonos s\'olo con los $k$ de menor valor. Estos ser\'an los que m\'as se \textit{parezcan} a $a$.
 
@@ -97,6 +97,6 @@ Si $t$ y $u$ son vectores de las \textit{matrices de transformaci\'on} $T$ y $U$
 
 $Cov(t, u)^{2} = Cov(Xw, Yc)^{2} = max_{\vert \vert r \vert \vert = \vert \vert s \vert \vert = 1} Cov(Xr, Ys)$ \\
 
-Como $t$ y $u$ \textit{viven} en el nuevo espacio de datos, los podemos pensar como $Xw$ y $Yc$. Utilizando esta cadena de igualdades, se puede ver\footnote{La demostraci\'on fue dada en clase.} que el \textbf{$\mathbf{w}$ que cumple esto es el autovector dominante de $\mathbf{X^{t}YY^{t}X}$}. Con este razonamiento, se puede plantear un esquema iterativo (que est\'a expl\'icito en \ref{desarrollo_PLSDA}) de manera tal de extraer tantos vectores $w$ como se pida para obtener $P$ (la matriz de cambio de base de $X$) formada por los susodichos.
+Como $t$ y $u$ \textit{viven} en el nuevo espacio de datos, los podemos pensar como $Xw$ y $Yc$. Utilizando esta cadena de igualdades, se puede ver que el \textbf{$\mathbf{w}$ que cumple esto es el autovector dominante de $\mathbf{X^{t}YY^{t}X}$}. Con este razonamiento, se puede plantear un esquema iterativo (que est\'a expl\'icito en \ref{desarrollo_PLSDA}) de manera tal de extraer tantos vectores $w$ como se pida para obtener $P$ (la matriz de cambio de base de $X$) formada por los susodichos.
 
 Finalmente, como queremos poder trabajar con variables \textit{multi-categ\'oricas} como son las de este trabajo (en otras palabras, pasar de \textit{PLS} a \textit{PLS-DA}), \textbf{redefinimos $\mathbf{Y}$ de tal manera que cada columna posea informaci\'on sobre cada \textit{clase}}.
