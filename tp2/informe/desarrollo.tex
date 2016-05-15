@@ -75,7 +75,13 @@ Por lo tanto, \textbf{el algoritmo completo de clasificaci\'on}, sobre una im\'a
 
 \subsubsection{Evaluaci\'on robusta con \textit{K-fold cross validation}}
 
-\textcolor{red}{// TODO: Fill}
+Una caracter\'istica de la resoluci\'on planteada en este trabajo es el hecho de que categorizamos un conjunto de im\'agenes en base a otro del cu\'al si conocemos su clasificaci\'on, los conjuntos $A$ y $B$ (introducidos en \ref{desarrollo_PLSDA}). \textit{A priori}, uno aplica los algoritmos en base a \textit{una} partici\'on. Hacer esto correlaciona fuertemente los resultados a los conjuntos de entrada. Para ello decidimos implementar una t\'ecnica llamada \textbf{\textit{$\mathbf{\mathit{K}}$-fold cross validation}}. A grandes rasgos, esta metodolog\'ia propone \textbf{\textit{generar m\'ultiples particiones}} y ejecutar las rutinas sobre ellos. De esa forma, la elecci\'on de partici\'on queda desacoplada del resultado y se puede hacer un an\'alisis m\'as objetivo de los datos obtenidos como resultado.
+
+Decimos que las im\'agenes de $A$ son las de \textbf{\textit{test}} y las contenidas en $B$ las de \textit{\textbf{train}}. Si bien planteamos que no conoc\'amos los \textit{tags} de las im\'agenes de test, a fines pr\'acticos en realidad los \textit{ignoramos}. Esto nos permite tomar las im\'agenes de \textit{test} y \textit{train} de un mismo conjunto $I$, del cu\'al conocemos la clasificaci\'on de sus elementos. Para armar dichos conjuntos el criterio es el siguiente: seg\'un un par\'ametro $K \in \mathbb{N}_{> 0}$, que indica el n\'umero de particiones distintas a generar, se toma $\mathbf{\frac{1}{K}}$ \textbf{partes} de $I$ como \textit{test} y el resto las consideramos de \textit{train}. Por ejemplo, con $K = 10$ extraemos el $10$ \% y se lo otorgamos a $A$, y el restante $90$ \% corresponde a $B$, con $K = 5$ la misma idea pero con $20$ \% de \textit{test} y el restante como \textit{train}.
+
+Con las particiones obtenidas, uno experimenta sobre cada una de ellas y observa la calidad de los mismos individual y/o colectivamente.
+
+La particularidad de la t\'ecnica es que trabaja sobre una \textit{misma} base de datos. Por esa raz\'on, \textbf{hay una imposici\'on de responsabilidad fuerte para con la base ya que una poco representativa, demasiado pequeña o con baja uniformidad de los datos puede condicionar la experimentaci\'on}. Se decidi\'o tomar como $I$ \textbf{los d\'igitos manuscritos de la famosa \textit{MNIST database}}\footnote{La cu\'al se puede en \href{https://www.kaggle.com/c/digit-recognizer/data}{\textit{\textcolor{blue}{obtener gratuitamente}}}}.
 
 \subsubsection{M\'etricas de calidad}
 
