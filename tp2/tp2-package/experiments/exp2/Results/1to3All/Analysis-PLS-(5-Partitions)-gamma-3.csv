@@ -1,0 +1,476 @@
+k,1
+alpha/gamma,3
+Hit Rate Avg,0.582929
+Hit Rate STD,0.0018001
+Precision Avg,0.576443
+Precision STD,0.00230128
+Recall Avg,0.576272
+Recall STD,0.00280287
+F1 Score Avg,0.576357
+F1 Score STD,0.00248901
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3207,1,107,92,26,334,70,7,254,34,
+1,0,4286,83,40,29,26,34,60,101,25,
+2,107,79,2049,208,146,214,986,25,331,32,
+3,94,40,191,2539,29,692,34,61,591,80,
+4,22,21,135,36,2357,36,101,234,53,1077,
+5,334,38,217,680,49,1339,70,143,814,111,
+6,60,29,1037,33,117,73,2626,8,139,15,
+7,8,65,26,76,248,161,10,2776,141,890,
+8,267,103,357,585,62,809,122,144,1499,115,
+9,43,24,36,80,1037,119,10,911,123,1805,
+----,-----,----
+----,-----,----
+k,2
+alpha/gamma,3
+Hit Rate Avg,0.582929
+Hit Rate STD,0.0018001
+Precision Avg,0.576443
+Precision STD,0.00230128
+Recall Avg,0.576272
+Recall STD,0.00280287
+F1 Score Avg,0.576357
+F1 Score STD,0.00248901
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3207,1,107,92,26,334,70,7,254,34,
+1,0,4286,83,40,29,26,34,60,101,25,
+2,107,79,2049,208,146,214,986,25,331,32,
+3,94,40,191,2539,29,692,34,61,591,80,
+4,22,21,135,36,2357,36,101,234,53,1077,
+5,334,38,217,680,49,1339,70,143,814,111,
+6,60,29,1037,33,117,73,2626,8,139,15,
+7,8,65,26,76,248,161,10,2776,141,890,
+8,267,103,357,585,62,809,122,144,1499,115,
+9,43,24,36,80,1037,119,10,911,123,1805,
+----,-----,----
+----,-----,----
+k,3
+alpha/gamma,3
+Hit Rate Avg,0.60119
+Hit Rate STD,0.00140658
+Precision Avg,0.587103
+Precision STD,0.00253211
+Recall Avg,0.59387
+Recall STD,0.00198307
+F1 Score Avg,0.590466
+F1 Score STD,0.00217841
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3449,0,82,90,24,252,45,7,162,21,
+1,0,4406,65,38,14,23,28,24,67,19,
+2,120,91,2347,186,143,197,783,21,264,25,
+3,107,44,203,2774,33,566,28,64,478,54,
+4,24,23,160,36,2655,33,83,218,46,794,
+5,394,43,231,788,50,1331,63,148,661,86,
+6,76,34,1238,30,119,64,2461,5,103,7,
+7,8,76,27,75,275,175,10,3023,122,610,
+8,306,116,396,655,71,852,108,142,1328,89,
+9,53,28,35,85,1281,124,8,995,103,1476,
+----,-----,----
+----,-----,----
+k,4
+alpha/gamma,3
+Hit Rate Avg,0.616048
+Hit Rate STD,0.00229042
+Precision Avg,0.603534
+Precision STD,0.0027712
+Recall Avg,0.60911
+Recall STD,0.00232971
+F1 Score Avg,0.606308
+F1 Score STD,0.00248916
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3455,0,77,66,24,263,49,7,169,22,
+1,0,4418,55,31,10,31,27,23,70,19,
+2,118,76,2263,172,149,195,886,18,277,23,
+3,94,37,164,2776,35,598,25,54,519,49,
+4,18,22,132,23,2624,32,84,196,45,896,
+5,353,42,206,726,52,1409,61,145,726,75,
+6,70,32,1070,27,101,54,2670,5,102,6,
+7,5,76,21,59,242,158,11,3034,113,682,
+8,287,103,340,582,66,816,105,128,1538,98,
+9,51,24,23,63,1170,108,7,962,93,1687,
+----,-----,----
+----,-----,----
+k,5
+alpha/gamma,3
+Hit Rate Avg,0.627167
+Hit Rate STD,0.00127642
+Precision Avg,0.616006
+Precision STD,0.00239844
+Recall Avg,0.620474
+Recall STD,0.002106
+F1 Score Avg,0.618232
+F1 Score STD,0.00218738
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3476,0,74,57,24,273,45,5,166,12,
+1,0,4431,44,29,5,36,27,26,70,16,
+2,117,70,2215,155,157,185,960,17,281,20,
+3,79,32,151,2774,34,608,26,50,551,46,
+4,16,23,120,17,2591,33,91,162,38,981,
+5,343,43,188,678,52,1460,59,139,765,68,
+6,76,33,982,15,87,48,2800,3,90,3,
+7,6,76,18,48,218,143,10,3029,106,747,
+8,272,98,302,535,62,784,98,124,1698,90,
+9,49,24,25,61,1083,95,6,891,87,1867,
+----,-----,----
+----,-----,----
+k,10
+alpha/gamma,3
+Hit Rate Avg,0.642643
+Hit Rate STD,0.000599508
+Precision Avg,0.632401
+Precision STD,0.00190278
+Recall Avg,0.636161
+Recall STD,0.00207433
+F1 Score Avg,0.634275
+F1 Score STD,0.00188737
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3521,0,59,49,27,269,40,4,156,7,
+1,0,4449,41,29,3,33,26,19,70,14,
+2,115,64,2246,150,156,167,951,15,290,23,
+3,77,29,130,2826,31,580,20,54,565,39,
+4,13,25,91,8,2657,28,91,159,37,963,
+5,334,42,150,614,52,1538,52,135,817,61,
+6,76,33,951,10,85,44,2845,1,90,2,
+7,4,82,12,30,206,127,7,3111,120,702,
+8,272,96,254,485,56,766,82,122,1842,88,
+9,45,22,16,50,1026,100,4,885,84,1956,
+----,-----,----
+----,-----,----
+k,15
+alpha/gamma,3
+Hit Rate Avg,0.652976
+Hit Rate STD,0.00163577
+Precision Avg,0.643329
+Precision STD,0.00259038
+Recall Avg,0.64667
+Recall STD,0.00227192
+F1 Score Avg,0.644994
+F1 Score STD,0.0023211
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3558,0,55,42,28,249,33,4,157,6,
+1,0,4464,40,28,3,34,18,18,64,15,
+2,110,67,2279,142,159,154,924,16,300,26,
+3,75,28,127,2846,27,561,15,53,582,37,
+4,11,25,75,5,2741,27,86,150,34,918,
+5,327,43,144,576,46,1576,49,131,840,63,
+6,73,32,949,7,85,42,2851,0,96,2,
+7,4,84,11,25,189,116,7,3169,120,676,
+8,265,93,232,445,53,739,75,118,1956,87,
+9,47,22,14,41,997,104,3,891,84,1985,
+----,-----,----
+----,-----,----
+k,20
+alpha/gamma,3
+Hit Rate Avg,0.658333
+Hit Rate STD,0.00159719
+Precision Avg,0.649007
+Precision STD,0.00320246
+Recall Avg,0.652088
+Recall STD,0.00261919
+F1 Score Avg,0.650543
+F1 Score STD,0.00283872
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3576,0,55,39,26,241,30,4,157,4,
+1,0,4477,39,28,2,31,17,18,60,12,
+2,113,64,2297,140,163,138,917,16,307,22,
+3,70,32,120,2849,26,555,13,48,599,39,
+4,9,27,67,2,2751,27,84,146,28,931,
+5,331,43,135,549,47,1583,52,129,867,59,
+6,69,32,941,5,83,37,2863,0,105,2,
+7,4,92,8,20,182,109,7,3204,117,658,
+8,264,89,218,416,53,708,65,124,2049,77,
+9,47,22,14,41,965,103,3,910,82,2001,
+----,-----,----
+----,-----,----
+k,25
+alpha/gamma,3
+Hit Rate Avg,0.661762
+Hit Rate STD,0.000798241
+Precision Avg,0.652635
+Precision STD,0.00187251
+Recall Avg,0.655501
+Recall STD,0.00222342
+F1 Score Avg,0.654064
+F1 Score STD,0.00194828
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3590,0,53,35,27,240,30,2,152,3,
+1,0,4486,41,28,0,27,16,15,60,11,
+2,113,63,2293,133,162,135,924,16,317,21,
+3,67,32,113,2852,25,568,10,50,595,39,
+4,9,28,60,1,2764,31,81,141,27,930,
+5,338,41,129,530,45,1586,49,128,888,61,
+6,71,33,922,4,88,39,2874,0,105,1,
+7,4,92,8,15,175,106,8,3227,115,651,
+8,265,89,216,394,52,688,60,123,2106,70,
+9,46,25,12,40,939,99,4,927,80,2016,
+----,-----,----
+----,-----,----
+k,50
+alpha/gamma,3
+Hit Rate Avg,0.666429
+Hit Rate STD,0.00172845
+Precision Avg,0.65756
+Precision STD,0.00235135
+Recall Avg,0.660204
+Recall STD,0.00198088
+F1 Score Avg,0.658879
+F1 Score STD,0.00209633
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3608,0,55,34,26,234,29,2,142,2,
+1,0,4489,41,28,0,27,16,11,61,11,
+2,109,67,2325,128,161,134,888,15,330,20,
+3,66,33,112,2860,24,547,10,52,610,37,
+4,8,29,56,0,2792,29,79,134,24,921,
+5,331,44,143,512,42,1571,37,130,923,62,
+6,75,35,903,2,89,27,2893,0,112,1,
+7,4,95,6,13,181,96,7,3251,123,625,
+8,265,89,208,372,54,631,54,111,2209,70,
+9,47,27,10,37,953,100,4,941,77,1992,
+----,-----,----
+----,-----,----
+k,75
+alpha/gamma,3
+Hit Rate Avg,0.668643
+Hit Rate STD,0.00302915
+Precision Avg,0.659983
+Precision STD,0.00345585
+Recall Avg,0.662376
+Recall STD,0.00303409
+F1 Score Avg,0.661177
+F1 Score STD,0.00321139
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3609,0,54,32,26,235,28,1,144,3,
+1,0,4496,40,26,0,22,15,12,64,9,
+2,111,73,2318,123,168,127,882,18,346,11,
+3,68,37,108,2860,25,536,9,54,618,36,
+4,9,31,53,0,2797,28,81,136,25,912,
+5,331,42,142,499,39,1547,35,127,973,60,
+6,74,36,886,3,86,25,2909,0,117,1,
+7,6,96,5,13,172,95,7,3280,120,607,
+8,270,93,206,349,53,605,48,101,2265,73,
+9,48,30,8,36,929,90,5,957,83,2002,
+----,-----,----
+----,-----,----
+k,100
+alpha/gamma,3
+Hit Rate Avg,0.670357
+Hit Rate STD,0.002751
+Precision Avg,0.661765
+Precision STD,0.00281563
+Recall Avg,0.664008
+Recall STD,0.0027753
+F1 Score Avg,0.662884
+F1 Score STD,0.00275868
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3607,0,53,30,28,240,28,1,144,1,
+1,0,4501,40,26,0,19,15,11,66,6,
+2,113,73,2329,122,170,129,871,18,343,9,
+3,70,39,106,2861,28,520,10,55,629,33,
+4,9,31,53,0,2800,24,82,133,25,915,
+5,332,44,141,499,41,1531,32,133,990,52,
+6,74,37,868,2,90,23,2924,0,119,0,
+7,8,100,5,12,169,92,7,3300,121,587,
+8,264,94,209,335,50,590,43,104,2299,75,
+9,49,32,8,38,924,80,5,959,90,2003,
+----,-----,----
+----,-----,----
+k,150
+alpha/gamma,3
+Hit Rate Avg,0.671881
+Hit Rate STD,0.00266348
+Precision Avg,0.663286
+Precision STD,0.00234485
+Recall Avg,0.665526
+Recall STD,0.00240061
+F1 Score Avg,0.664404
+F1 Score STD,0.00232708
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3620,0,56,27,28,238,26,0,135,2,
+1,0,4503,35,25,0,19,17,12,67,6,
+2,112,78,2341,124,171,123,852,17,351,8,
+3,71,41,104,2867,28,506,10,57,635,32,
+4,9,32,55,0,2794,23,82,131,23,923,
+5,327,48,142,495,41,1531,29,140,993,49,
+6,74,37,863,2,87,23,2929,0,122,0,
+7,10,105,5,11,167,89,7,3319,121,567,
+8,266,99,200,332,51,558,44,109,2330,74,
+9,50,35,8,34,920,77,5,980,94,1985,
+----,-----,----
+----,-----,----
+k,200
+alpha/gamma,3
+Hit Rate Avg,0.673262
+Hit Rate STD,0.00246472
+Precision Avg,0.664736
+Precision STD,0.00186991
+Recall Avg,0.666965
+Recall STD,0.00196171
+F1 Score Avg,0.665849
+F1 Score STD,0.00186326
+Default Process Time Avg,139038
+Default Process Time STD,37298.2
+KNN Total Time Avg,16802
+KNN Total Time STD,1.67332
+KNN Per Image Time Avg,2
+KNN Per Image Time STD,0
+Preprocess Dimension Time Avg,13083.6
+Preprocess Dimension Time STD,2468.78
+TC Time Avg,92.2
+TC Time STD,1.83303
+----,Confusion,----
+Actual\Predicted,0,1,2,3,4,5,6,7,8,9
+0,3624,0,53,28,28,236,25,0,137,1,
+1,0,4509,32,26,0,17,17,13,65,5,
+2,113,83,2336,122,173,122,849,16,355,8,
+3,72,44,102,2859,28,509,9,54,640,34,
+4,9,37,54,0,2806,21,87,130,22,906,
+5,324,48,137,486,43,1546,30,135,998,48,
+6,77,36,848,2,87,25,2941,0,121,0,
+7,11,110,6,11,160,88,7,3333,116,559,
+8,262,103,198,320,53,543,42,110,2355,77,
+9,52,36,9,31,923,77,5,994,93,1968,
+----,-----,----
+----,-----,----
