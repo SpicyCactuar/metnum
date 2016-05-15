@@ -1,10 +1,10 @@
 El uso de los m\'etodos de PCA y PLS-DA se funda en reducir la dimensi\'on de los datos a clasificar. La idea es capturar la mayor cantidad de informaci\'on, dejando de lado las componentes que en determinado momento dejen de ofrecernos datos relevantes.
 
-Para esto proponemos el siguiente m\'etodo: Tomamos toda la base de entrenamiento, dejando vac\'ia la base de test, y calculamos los 784 autovalores para ambos m\'etodos. Sea $\lambda_{PCA}$ la suma de los autovalores obtenidos por PCA y $\lambda_{PLS-DA}$ la suma de los obtenidos por PLS-DA.
+Para esto proponemos el siguiente m\'etodo: Tomamos toda la base de entrenamiento, dejando vac\'ia la base de \textit{test}, y calculamos los 784 autovalores para ambos m\'etodos. Sea $\lambda_{PCA}$ la suma de los autovalores obtenidos por PCA y $\lambda_{PLS-DA}$ la suma de los obtenidos por PLS-DA.
 
-En el caso de PCA, como siempre calculamos los autovalores de la matriz de covarianzas, se cumple que la suma de los autovalores es igual a la suma de las varianzas, es decir, a la suma de la diagonal de la matriz de covarianzas. \textcolor{red}{BUSCAR DEMO O DEJAR ASI}. Entonces podemos decir que $\lambda_{PCA}^{i} / \lambda_{PCA}$ representa el porcentaje de varianza que absorbe el autovalor $i$-\'esimo.
+En el caso de PCA, como siempre calculamos los autovalores de la matriz de covarianzas, se cumple que la suma de los autovalores es igual a la suma de las varianzas, es decir, a traza de la matriz de covarianzas. Entonces podemos decir que $\lambda_{PCA}^{i} / \lambda_{PCA}$ representa el porcentaje de varianza que absorbe el $i$-\'esimo autovalor.
 
-Si acumulamos las varianzas que absorbe cada vector, se genera el gr\'afico \ref{accum_var_PCA}
+Si acumulamos las varianzas que absorbe cada vector, se genera el siguiente gr\'afico:
 
 \begin{figure}[h!]
   \begin{center}
@@ -16,7 +16,7 @@ Si acumulamos las varianzas que absorbe cada vector, se genera el gr\'afico \ref
 
 Puede verse que el primer autovector se lleva el 10\% de la varianza, el segundo casi un 7\%. Pero es m\'as interesante cuando se llega a tomar 50 autovalores, en esta caso, ya se tom\'o cerca de 83\% de la informaci\'on. Con lo cual, podr\'iamos pensar los dem\'as autovalores no son tan significativos \footnote{El 90\% se alcanza con 86 autovalores. El 99\% con 330}.
 
-Para el caso de PLS-DA, no se calculan los autovalores de la misma matriz en cada paso, haciendo que el an\'alisis anterior no sea del todo directo. Notemos que el autovalor obtenido en cada paso, si bien es de una matriz diferente, tiene la idea de maximimar las varianzas y minimizar las covarianzas de la uni\'on entre las im\'agenes y sus etiquetas. Entonces decidimos aplicar el mismo procedimiento, obteniendo el gr\'afico \ref{accum_var_PLSDA}
+Para el caso de PLS-DA, no se calculan los autovalores de la misma matriz en cada paso, haciendo que el an\'alisis anterior no sea del todo directo. Notemos que el autovalor obtenido en cada paso, si bien es de una matriz diferente, tiene la idea de maximimar las varianzas y minimizar las covarianzas de la uni\'on entre las im\'agenes y sus etiquetas. Entonces decidimos aplicar el mismo procedimiento, obteniendo estos resultados:
 
 \newpage
 
