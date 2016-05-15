@@ -28,8 +28,8 @@ int main(int argc, char const *argv[]){
     // skip the rest of the first line
     getline(input, line);
 
-    vector<int> alphaValues = {5, 25, 75, 200};
-    vector<int> gammaValues = {2, 6, 10, 14};
+    vector<int> alphaValues = {10, 50, 100, 300};
+    vector<int> gammaValues = {4, 8, 12, 16};
 
 //    vector<int> alphaValues = {5, 10, 25, 50, 75, 100, 200, 300};
 //    vector<int> gammaValues = {2, 4, 6, 8, 10, 12, 14, 16};
