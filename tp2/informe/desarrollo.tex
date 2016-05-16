@@ -105,13 +105,20 @@ Tenemos una necesidad de encontrar \textit{autovalores} con sus \textit{autovect
 \caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
 \end{algorithm}
 
-Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert v \vert\vert_{2} = 1$ aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\lambda_{1} \in \mathbb{R}$ de manera que $\lambda_{1} > \lambda_{i}$ autovalor con $i \neq 1$. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. La otra condici\'on es que $B$ tenga todos los autovalores reales. Veremos como ambas condiciones se cumplen para las matrices a las cu\'ales son aplicadas.
+Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert v \vert\vert_{2} = 1$ aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\lambda_{1} \in \mathbb{R}$ de manera que $\lambda_{1} > \lambda_{i}$ autovalor con $i \neq 1$.
+Las condiciones de convergencia son las siguientes:
+
+\begin{itemize}
+\item \textcolor{red}{// TODO: Poner condiciones}
+\end{itemize}
+
+Notar que para dimensiones grandes, la probabilidad de elegir un vector no adecuado inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Las matrices a las que se les aplica el m\'etodo, en este trabajo, no cumplen con \textit{todas las precondiciones}. De todas formas, en la pr\'actica, para matrices de tamaño grande y para un n\'umero elevado de extracciones, los autovalores son distintos, pero este es un argumento emp\'irico. Utilizamos este algoritmo teniendo en mente las circunstancias.
 
 \subsubsection{Deflaci\'on}\label{desarrollo_deflacion}
 
 Este algoritmo soslayar\'a un esquema iterativo en el cu\'al uno puede obtener autovalores y autovectores.
 
-Sea $B \in R^{n \times n}$ una matriz que posee autovalores distintos $\lambda_{1}, ..., \lambda_{n}$ con autovectores $v_{1}, ..., v_{n}$ asociados tales que $\vert \lambda_{1} \vert > ... > \vert \lambda_{n} \vert$, en otras palabras poder ordenarlos por m\'odulo. Adem\'as se pide que los autovectores generen una base ortonormal. \textcolor{red}{// TODO: Ver por qu\'e no hace falta que los autovalores no sean distinos} Veamos entonces que: \\
+Sea $B \in R^{n \times n}$ una matriz que posee autovalores distintos $\lambda_{1}, ..., \lambda_{n}$ con autovectores $v_{1}, ..., v_{n}$ asociados tales que $\vert \lambda_{1} \vert > ... > \vert \lambda_{n} \vert$, en otras palabras poder ordenarlos por m\'odulo. Adem\'as se pide que los autovectores generen una base ortonormal. En la pr\'actica, no es necesario que todas las desigualdades sean estrictas. Veamos entonces que: \\
 
 $(B - \lambda_{1}v_{1}v_{1}^{t})v_{1} = Bv_{1} - \lambda_{1}v_{1}(v_{1}^{t}v_{1}) = \lambda_{1}v_{1} - \lambda_{1}v_{1} = 0v_{1}$
 
