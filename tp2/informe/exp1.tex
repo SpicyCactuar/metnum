@@ -26,6 +26,8 @@ Debemos aclarar también que el costo temporal de variar la cantidad de vecinos 
 
 Analizamos la calidad de KNN (con K = 5) calculando su Hit Rate, Precision, Recall y F1 score. Se pueden observar los resultados en el siguiente gráfico.
 
+\newpage
+
 \begin{figure}[h!]
   \begin{center}
 	\includegraphics[scale=0.7]{exp1/KNN-5p-Scores.png}
@@ -41,6 +43,8 @@ Una de las primeras cosas que se pueden observar es que la calidad de los result
 Por otro lado también se puede ver que, a partir de k = 5, al aumentar la cantidad de vecinos la calidad de los resultados disminuye. Esto se debe probablemente a que considerar más imágenes comienza a agregar ruido a la medición. Al considerar más vecinos que cada vez se empiezan a parecer menos, es posible que se incorporen un conjunto cada vez mayor de imágenes que pertenecen a otra clase. Así mismo podemos ver que desde 1 vecino hasta 5 la información que aporta agregar más vecinos es valiosa y ayuda mejorar la clasificación.\\
 
 Analizando el hit rate más detalladamente obtenemos el siguiente gráfico donde podemos observar su desvío estándar.
+
+\newpage
 
 \begin{figure}[h!]
   \begin{center}
@@ -81,6 +85,8 @@ Todo este análisis realizado para K = 5 lo hicimos también para K = 10.
 
 En el siguiente gráfico podemos observar que las medidas de calidad son similares al anterior caso y k = 5 sigue siendo el máximo.\\
 
+\newpage
+
 \begin{figure}[h!]
   \begin{center}
 	\includegraphics[scale=0.7]{exp1/KNN-10p-Scores.png}
@@ -103,7 +109,7 @@ Por último comparamos el hit rate entre los 2 conjuntos de particiones y observ
 
 \begin{figure}[h!]
   \begin{center}
-	\includegraphics[scale=0.7]{exp1/KNN-Train-Set-Size.png}
+	\includegraphics[scale=0.6]{exp1/KNN-Train-Set-Size.png}
 	\caption{KNN Hit Rate (10 partitions)}
 %	\label{accum_var_PCA}
   \end{center}
