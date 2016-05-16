@@ -18,8 +18,9 @@
 \contentsline {subsubsection}{\numberline {2.3.2}Deflaci\'on}{9}{subsubsection.2.3.2}
 \contentsline {section}{\numberline {3}Resultados y discusi\'on}{10}{section.3}
 \contentsline {subsection}{\numberline {3.1}Analisis Previo: Alfa y Gama}{10}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}An\IeC {\'a}lisis de KNN}{11}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Costo temporal}{11}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2}An\IeC {\'a}lisis de KNN}{12}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Costo temporal}{12}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Calidad del algoritmo}{12}{subsubsection.3.2.2}
-\contentsline {section}{\numberline {4}Conclusiones}{15}{section.4}
-\contentsline {section}{\numberline {5}Referencias}{16}{section.5}
+\contentsline {subsection}{\numberline {3.3}El nuevo espacio}{16}{subsection.3.3}
+\contentsline {section}{\numberline {4}Conclusiones}{18}{section.4}
+\contentsline {section}{\numberline {5}Referencias}{19}{section.5}
