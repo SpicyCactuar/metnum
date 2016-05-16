@@ -23,21 +23,6 @@ Siguiendo la l\'inea de \textbf{PCA} (\ref{intro_PCA}), buscamos $P$ conformado 
 Provisto de $\alpha \in \mathbb{N}$, y $n_{iter} \in \mathbb{N}$, buscamos generar la transformaci\'on $P \in R^{\alpha \times 784}$ tal que contenga $\alpha$ \textbf{\textit{Componentes Principales}} como filas.
 Como dichas componentes son los autovectores, buscamos $\alpha$ autovalores y autovectores de la matriz de covarianzas $M_{X}$. Pero al tomar un n\'umero menor de componentes, se pierde informaci\'on. Por eso mismo, decidimos \textbf{buscar las que maximicen la varianza}, son las que m\'as informaci\'on poseen en el espacio de informaci\'on transformado. Recordando el fundamento del m\'etodo planteado en la secci\'on anterior, buscabamos los autovectores de $M_{X}$ dado que la diagonalizaban. Al estar diagonalizada, los autovalores son los elementos de la diagonal, que a su vez son las varianzas de las variables en \textit{nuevo espacio de datos}. Obtener los de mayor m\'odulo nos aporta la mayor cantidad de informaci\'on posible. Para esto aplica el \textbf{M\'etodo de la Potencia} (explicado en \ref{desarrollo_metodo-potencia}), iterando tantas veces como el $n_{iter}$ provisto, combinado con \textbf{Deflaci\'on} (desarrollado en \ref{desarrollo_deflacion}). Repetimos $\alpha$ veces un paso $i$, con $B^0 = M_{X}$, de: obtener $\lambda_{i}$, el $i$-\'esimo autovalor ordenas por m\'odulo, asociado a $v_{i}$, calcular $B^{i + 1} = B^{i} - \lambda_{i}v_{i}v_{i}^{t}$ y comenzar el paso $i+1$.
 
-Antes de continuar, los algoritmos de generaci\'on de autovectores tienen condiciones sobre los cu\'ales funcionan.
-
-Para el caso de m\'etodo de la potencia:
-
-\begin{itemize}
-\item \textcolor{red}{// TODO: Agregar}
-\item Como $M_{X}$ es sim\'etrica, tiene todos los autovalores reales.
-\end{itemize}
-
-Los requerimientos de deflaci\'on se cumplen dado que:
-
-\begin{itemize}
-\item Al ser $M_{X}$ sim\'etrica, sus autovectores generan una \textbf{base ortonormal}.
-\end{itemize}
-
 Con lo cu\'al nos quedamos con una matriz $P$ que posee, por filas, los $\alpha$ autovectores de $M_{X}$ que mayor informaci\'on almacenan. El siguiente paso es aplicar el \textit{cambio de base} a cada muestra $z \in Z$ y a $y$: $Py = \hat{y} \in \mathbb{R}^{\alpha}$ y $\hat{z} = Pz \in \mathbb{R}^{\alpha}$, obteniendo sus correspondientes \textit{\textbf{Transformaciones Caracter\'isticas}}. A dicha transformaci\'on la denominamos $\mathbf{tc_{PCA}}$.
 
 \subsubsection{Reducci\'on de dimensi\'on supervisada con \textit{PLS-DA}} \label{desarrollo_PLSDA}
@@ -75,15 +60,15 @@ Por lo tanto, \textbf{el algoritmo completo de clasificaci\'on}, sobre una im\'a
 
 \subsubsection{Evaluaci\'on robusta con \textit{K-fold cross validation}}
 
-Una caracter\'istica de la resoluci\'on planteada en este trabajo es el hecho de que categorizamos un conjunto de im\'agenes en base a otro del cu\'al si conocemos su clasificaci\'on, los conjuntos $A$ y $B$ (introducidos en \ref{desarrollo_PLSDA}). \textit{A priori}, uno aplica los algoritmos en base a \textit{una} partici\'on. Hacer esto correlaciona fuertemente los resultados a los conjuntos de entrada. Para ello decidimos implementar una t\'ecnica llamada \textbf{\textit{$\mathbf{\mathit{K}}$-fold cross validation}}. A grandes rasgos, esta metodolog\'ia propone \textbf{\textit{generar m\'ultiples particiones}} y ejecutar las rutinas sobre ellos. De esa forma, la elecci\'on de partici\'on queda desacoplada del resultado y se puede hacer un an\'alisis m\'as objetivo de los datos obtenidos como resultado.
+El objetivo de este trabajo es decidir una clasificaci\'on para un conjunto de entrada cuya categorizaci\'on no es conocida. Dicho esto, es imposible medir la efectividad de los algoritmos planteados si no podemos determinar que la clasificaci\'on sea precisa. Por ende, decidimos partir en dos una base de entrada $I$ cuya clasificaci\'on es conocida, para generar los conjuntos $A$ y $B$ (introducidos en \ref{desarrollo_PLSDA}). Decimos que las im\'agenes de $A$ son las de \textbf{\textit{test}} y las contenidas en $B$ las de \textit{\textbf{train}}. Como ventaja,  esta decisi\'on nos permite generar una transformaci\'on en base a las im\'agenes de \textit{train}, correr los algoritmos clasificando las de \textit{test} y comparar las resultados con las etiquetas reales paraobtener m\'etricas de calidad (\ref{desarrollo_metricas}). Por otro lado, esta metodolog\'ia correlaciona fuertemente los resultados a los conjuntos de entrada. Para ello decidimos implementar una t\'ecnica llamada \textbf{\textit{$\mathbf{\mathit{K}}$-fold cross validation}}. A grandes rasgos, esta metodolog\'ia propone \textbf{\textit{generar m\'ultiples particiones}} y ejecutar las rutinas sobre ellos. De esa forma, la elecci\'on de partici\'on queda desacoplada del resultado y se puede hacer un an\'alisis m\'as objetivo de los datos obtenidos como resultado.
 
-Decimos que las im\'agenes de $A$ son las de \textbf{\textit{test}} y las contenidas en $B$ las de \textit{\textbf{train}}. Si bien planteamos que no conoc\'amos los \textit{tags} de las im\'agenes de test, a fines pr\'acticos en realidad los \textit{ignoramos}. Esto nos permite tomar las im\'agenes de \textit{test} y \textit{train} de un mismo conjunto $I$, del cu\'al conocemos la clasificaci\'on de sus elementos. Para armar dichos conjuntos el criterio es el siguiente: seg\'un un par\'ametro $K \in \mathbb{N}_{> 0}$, que indica el n\'umero de particiones distintas a generar, se toma $\mathbf{\frac{1}{K}}$ \textbf{partes} de $I$ como \textit{test} y el resto las consideramos de \textit{train}. Por ejemplo, con $K = 10$ extraemos el $10$ \% y se lo otorgamos a $A$, y el restante $90$ \% corresponde a $B$, con $K = 5$ la misma idea pero con $20$ \% de \textit{test} y el restante como \textit{train}.
+Para armar los conjuntos el criterio es el siguiente: seg\'un un par\'ametro $K \in \mathbb{N}_{> 0}$, que indica el n\'umero de particiones distintas a generar, se toma $\mathbf{\frac{1}{K}}$ \textbf{partes} de $I$ como \textit{test} y el resto las consideramos de \textit{train}. Por ejemplo, con $K = 10$ extraemos el $10$ \% y se lo otorgamos a $A$, y el restante $90$ \% corresponde a $B$, con $K = 5$ la misma idea pero con $20$ \% de \textit{test} y el restante como \textit{train}.
 
 Con las particiones obtenidas, uno experimenta sobre cada una de ellas y observa la calidad de los mismos individual y/o colectivamente.
 
 La particularidad de la t\'ecnica es que trabaja sobre una \textit{misma} base de datos. Por esa raz\'on, \textbf{hay una imposici\'on de responsabilidad fuerte para con la base ya que una poco representativa, demasiado pequeña o con baja uniformidad de los datos puede condicionar la experimentaci\'on}. Se decidi\'o tomar como $I$ \textbf{los d\'igitos manuscritos de la famosa \textit{MNIST database}}\footnote{La cu\'al se puede en \href{https://www.kaggle.com/c/digit-recognizer/data}{\textit{\textcolor{blue}{obtener gratuitamente}}}}.
 
-\subsubsection{M\'etricas de calidad}
+\subsubsection{M\'etricas de calidad}\label{desarrollo_metricas}
 
 Finalmente, se desarrollaron algunas m\'etricas para medir qu\'e tan buenas son las decisiones tomadas por el clasificador: \\
 
