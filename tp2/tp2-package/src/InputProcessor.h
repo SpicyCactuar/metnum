@@ -56,4 +56,46 @@ void populateDigitImages(DigitImages &imagesTrain, DigitImages &imagesTest, stri
     input.close();
 }
 
+void populateDigitImageWithoutExtras(DigitImages &images, istream &input) {
+    string pixelStr;
+    int i = 0;
+    vector<double> image(DEFAULT_IMAGE_SIZE);
+    while(getline(input, pixelStr, ',')){
+        int pixel = stoi(pixelStr);
+        image[i] = pixel;
+        images.means[i] += pixel;
+        i++;
+    }
+    images.centralized.push_back(image);
+}
+
+void populateKaggle(DigitImages &imagesTrain, DigitImages &imagesTest, string &inFileDir) {
+    /* DigitImages sizes initialization */
+    imagesTrain.init();
+    imagesTest.init();
+
+    /* Input file fetching */
+    string nameTrainFile = inFileDir + "train.csv";
+    string nameTestFile = inFileDir + "test.csv";
+    ifstream inputTrain(nameTrainFile);
+    ifstream inputTest(nameTestFile);
+
+    // First line is not needed, skip it
+    string lineTrain, lineTest;
+    getline(inputTrain, lineTrain);
+    getline(inputTest, lineTest);
+
+    /* Digit Images  population */
+    while(getline(inputTrain, lineTrain)){
+        stringstream lineStream(lineTrain);
+        populateDigitImageWithExtras(imagesTrain, lineStream);
+    }
+    while(getline(inputTest, lineTest)){
+        stringstream lineStream(lineTest);
+        populateDigitImageWithoutExtras(imagesTest, lineStream);
+    }
+    inputTrain.close();
+    inputTest.close();
+}
+
 #endif
