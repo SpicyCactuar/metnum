@@ -10,7 +10,6 @@
 void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labelRes, vector<int> &realLabels){
     // distance, index
     vector<pair<double, int>> distances(train.size());
-    vector<int> labels(LABELS_QTY, 0);
     vector<double> diff(test.size());
     labelRes = vector<int>(ks.size());
     for (int i = 0; i < train.size(); ++i){
@@ -20,6 +19,7 @@ void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labe
     }
     sort(distances.begin(), distances.end());
     for (int iter = 0; iter < ks.size(); ++iter){
+        vector<int> labels(LABELS_QTY, 0);
         for (int i = 0; i < ks[iter]; ++i)
             labels[realLabels[distances[i].second]]++;
         int max = labels[0], label = 0;
@@ -31,7 +31,6 @@ void kNN(vector<double> &test, Matrix &train, vector<int> &ks, vector<int> &labe
             }
         }
         labelRes[iter] = label;
-        // in case of draw, lower digit wins
     }
 }
 
