@@ -66,7 +66,7 @@ void populateDigitImageWithoutExtras(DigitImages &images, istream &input) {
         images.means[i] += pixel;
         i++;
     }
-    images.centralized.push_back(image);
+    images.images.push_back(image);
 }
 
 void populateKaggle(DigitImages &imagesTrain, DigitImages &imagesTest, string &inFileDir) {
@@ -78,18 +78,16 @@ void populateKaggle(DigitImages &imagesTrain, DigitImages &imagesTest, string &i
     string nameTrainFile = inFileDir + "train.csv";
     string nameTestFile = inFileDir + "test.csv";
     ifstream inputTrain(nameTrainFile);
-    ifstream inputTest(nameTestFile);
 
-    // First line is not needed, skip it
     string lineTrain, lineTest;
     getline(inputTrain, lineTrain);
-    getline(inputTest, lineTest);
-
-    /* Digit Images  population */
     while(getline(inputTrain, lineTrain)){
         stringstream lineStream(lineTrain);
         populateDigitImageWithExtras(imagesTrain, lineStream);
     }
+
+    ifstream inputTest(nameTestFile);
+    getline(inputTest, lineTest);
     while(getline(inputTest, lineTest)){
         stringstream lineStream(lineTest);
         populateDigitImageWithoutExtras(imagesTest, lineStream);

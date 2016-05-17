@@ -21,7 +21,7 @@ int main(int argc, char const *argv[]){
 
     ifstream input(argv[1]);
     string method = argv[3];
-    
+
     if(method != "3"){
         ofstream output(argv[2]);
         string inFileDir, line;
@@ -115,6 +115,12 @@ int main(int argc, char const *argv[]){
 
         input >> inFileDir >> alpha >> gamma >> kPCA >> kPLSDA;
 
+        string outPCA = argv[2], outPLSDA = argv[2];
+        outPCA += "PCA.out";
+        outPLSDA += "PLSDA.out";
+        ofstream outputPCA(outPCA);
+        ofstream outputPLSDA(outPLSDA);
+
         DigitImages imagesTrain, imagesTest;
         Matrix eigenVectorsPCA(alpha, vector<double>(DEFAULT_IMAGE_SIZE));
         Matrix eigenVectorsPLSDA(gamma, vector<double>(DEFAULT_IMAGE_SIZE));
@@ -130,30 +136,26 @@ int main(int argc, char const *argv[]){
         imagesTrain.calculateMeansLabels();
         imagesTest.calculateCentralizedTest(imagesTrain.means, (int)imagesTrain.images.size());
 
-        PCA(imagesTrain.covariances, eigenVectorsPCA, eigenValuesPCA, alpha, niterPCA);
-        PLSDA(imagesTrain, eigenVectorsPLSDA, eigenValuesPLSDA, gamma, niterPLSDA);
         TC tcTrainPCA, tcTestPCA, tcTrainPLSDA, tcTestPLSDA;
+        PCA(imagesTrain.covariances, eigenVectorsPCA, eigenValuesPCA, alpha, niterPCA);
         tcTrainPCA.init(eigenVectorsPCA, imagesTrain.centralized);
         tcTestPCA.init(eigenVectorsPCA, imagesTest.centralized);
-        tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
-        tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
-        string outPCA = argv[2];
-        outPCA += "PCA.out";
-        ofstream outputPCA(outPCA);
+        outputPCA << "ImageId,"<< "Label"<< endl;
         for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
             vector<int> kMin = {kPCA}, labelRes;
             kNN(tcTestPCA.transformation[i], tcTrainPCA.transformation, kMin, labelRes, imagesTrain.labels);
-            outputPCA << labelRes[0] << endl;
+            outputPCA << i+1 <<","<< labelRes[0] << endl;
         }
-        outputPCA.close();
-        string outPLSDA = argv[2];
-        outPLSDA += "PLS-DA.out";
-        ofstream outputPLSDA(outPLSDA);
+        PLSDA(imagesTrain, eigenVectorsPLSDA, eigenValuesPLSDA, gamma, niterPLSDA);
+        tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
+        tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
+        outputPLSDA << "ImageId,"<< "Label"<< endl;
         for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
             vector<int> kMin = {kPLSDA}, labelRes;
             kNN(tcTestPLSDA.transformation[i], tcTrainPLSDA.transformation, kMin, labelRes, imagesTrain.labels);
-            outputPLSDA << labelRes[0] << endl;
+            outputPLSDA << i+1 <<","<< labelRes[0] << endl;
         }
+        outputPCA.close();
         outputPLSDA.close();
     }
     input.close();
