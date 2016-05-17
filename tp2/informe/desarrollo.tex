@@ -109,7 +109,8 @@ Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert
 Las condiciones de convergencia son las siguientes:
 
 \begin{itemize}
-\item \textcolor{red}{// TODO: Poner condiciones}
+\item Los $\lambda_{1}$, ..., $\lambda_{n}$ $\in \mathbb{R}$ autovalores de $B$ deben cumplir que $\lambda _{1} > \lambda_{2} \geq ... \geq \lambda_{n}$.
+\item Debe poseer $\{v_{1}, ..., v_{n}\}$ autovectores, con $v_{i}$ asociado a $\lambda_{i}$ con $1 \leq i \leq n$, que forman una base ortonormal. De esta forma $v_{1}$ se denomina \textit{autovector dominante}.\item El vector inicial $x_{0}$ debe verificar que $v_{1}x_{0}^{t} \neq 0$, en otras palabras no ser ortogonal al autovector dominante.
 \end{itemize}
 
 Notar que para dimensiones grandes, la probabilidad de elegir un vector no adecuado inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. Las matrices a las que se les aplica el m\'etodo, en este trabajo, no cumplen con \textit{todas las precondiciones}. De todas formas, en la pr\'actica, para matrices de tamaño grande y para un n\'umero elevado de extracciones, los autovalores son distintos, pero este es un argumento emp\'irico. Utilizamos este algoritmo teniendo en mente las circunstancias.
