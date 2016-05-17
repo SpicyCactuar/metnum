@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  16 MAY 2016 21:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.23)  17 MAY 2016 00:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -544,7 +544,7 @@ LaTeX Info: Redefining \nameref on input line 49.
 \@outlinefile=\write4
 \openout4 = `informe.out'.
 
- <imagenes/logodc.jpg, id=120, 215.6055pt x 83.5923pt>
+ <imagenes/logodc.jpg, id=124, 215.6055pt x 83.5923pt>
 File: imagenes/logodc.jpg Graphic file (type jpg)
  <use imagenes/logodc.jpg>
 Package pdftex.def Info: imagenes/logodc.jpg used on input line 61.
@@ -556,7 +556,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 61.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) <imagenes/logouba.jpg, id=121, 225.4824pt x 231.7458pt>
+) <imagenes/logouba.jpg, id=125, 225.4824pt x 231.7458pt>
 File: imagenes/logouba.jpg Graphic file (type jpg)
  <use imagenes/logouba.jpg>
 Package pdftex.def Info: imagenes/logouba.jpg used on input line 61.
@@ -625,10 +625,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--11
 ) (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp2/informe/.texpadtmp/informe.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
-)
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 31.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 31.
+ [2])
 \tf@toc=\write5
 \openout5 = `informe.toc'.
 
+LaTeX Info: Redefining \. on input line 71.
+LaTeX Info: Redefining \% on input line 71.
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 71.
 Package babel Info: Redefining spanish shorthand >>
@@ -653,7 +679,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 71.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 71.
- [2]
+ [3]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 75.
 Package babel Info: Redefining spanish shorthand >>
@@ -705,7 +731,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 39.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 39.
- [3]
+ [4]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 39.
 Package babel Info: Redefining spanish shorthand >>
@@ -751,7 +777,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--64
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
 
  []
 
@@ -781,7 +812,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 76.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 76.
-[4]
+[5]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 79.
 Package babel Info: Redefining spanish shorthand >>
@@ -841,7 +872,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 77.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 77.
- [5]
+ [6]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 78.
 Package babel Info: Redefining spanish shorthand >>
@@ -917,7 +948,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 25.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 25.
- [6]
+ [7]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 28.
 Package babel Info: Redefining spanish shorthand >>
@@ -1004,7 +1035,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 64.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 64.
- [7]
+ [8]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 71.
 Package babel Info: Redefining spanish shorthand >>
@@ -1082,7 +1113,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 106.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 106.
-[8]
+[9]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 117.
 Package babel Info: Redefining spanish shorthand >>
@@ -1132,7 +1163,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 80.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 80.
- [9]
+ [10]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 81.
 Package babel Info: Redefining spanish shorthand >>
@@ -1158,7 +1189,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1.
- (./alpha-gamma.tex <exp4/PCA-percentage.png, id=247, 455.45157pt x 255.95625pt>
+ (./alpha-gamma.tex <exp4/PCA-percentage.png, id=256, 455.45157pt x 255.95625pt>
 File: exp4/PCA-percentage.png Graphic file (type png)
  <use exp4/PCA-percentage.png>
 Package pdftex.def Info: exp4/PCA-percentage.png used on input line 12.
@@ -1189,7 +1220,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 22.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 22.
- [10 <./exp4/PCA-percentage.png (PNG copy)>] <exp4/PLSDA-percentage.png, id=255, 455.45157pt x 255.95625pt>
+ [11 <./exp4/PCA-percentage.png (PNG copy)>] <exp4/PLSDA-percentage.png, id=264, 455.45157pt x 255.95625pt>
 File: exp4/PLSDA-percentage.png Graphic file (type png)
  <use exp4/PLSDA-percentage.png>
 Package pdftex.def Info: exp4/PLSDA-percentage.png used on input line 26.
@@ -1221,7 +1252,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 4.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 4.
- [11 <./exp4/PLSDA-percentage.png (PNG copy)>]
+ [12 <./exp4/PLSDA-percentage.png (PNG copy)>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 5.
 Package babel Info: Redefining spanish shorthand >>
@@ -1234,32 +1265,32 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 5.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 5.
- (./new-space.tex <exp3/PCA-1.png, id=261, 28.105pt x 28.105pt>
+ (./new-space.tex <exp3/PCA-1.png, id=270, 28.105pt x 28.105pt>
 File: exp3/PCA-1.png Graphic file (type png)
  <use exp3/PCA-1.png>
 Package pdftex.def Info: exp3/PCA-1.png used on input line 12.
 (pdftex.def)             Requested size: 112.41968pt x 112.41968pt.
- <exp3/PLS-1.png, id=262, 28.105pt x 28.105pt>
+ <exp3/PLS-1.png, id=271, 28.105pt x 28.105pt>
 File: exp3/PLS-1.png Graphic file (type png)
  <use exp3/PLS-1.png>
 Package pdftex.def Info: exp3/PLS-1.png used on input line 13.
 (pdftex.def)             Requested size: 112.41968pt x 112.41968pt.
- <exp3/PCA-2.png, id=263, 28.105pt x 28.105pt>
+ <exp3/PCA-2.png, id=272, 28.105pt x 28.105pt>
 File: exp3/PCA-2.png Graphic file (type png)
  <use exp3/PCA-2.png>
 Package pdftex.def Info: exp3/PCA-2.png used on input line 16.
 (pdftex.def)             Requested size: 112.41968pt x 112.41968pt.
- <exp3/PLS-2.png, id=264, 28.105pt x 28.105pt>
+ <exp3/PLS-2.png, id=273, 28.105pt x 28.105pt>
 File: exp3/PLS-2.png Graphic file (type png)
  <use exp3/PLS-2.png>
 Package pdftex.def Info: exp3/PLS-2.png used on input line 17.
 (pdftex.def)             Requested size: 112.41968pt x 112.41968pt.
- <exp3/PCA-3.png, id=265, 28.105pt x 28.105pt>
+ <exp3/PCA-3.png, id=274, 28.105pt x 28.105pt>
 File: exp3/PCA-3.png Graphic file (type png)
  <use exp3/PCA-3.png>
 Package pdftex.def Info: exp3/PCA-3.png used on input line 20.
 (pdftex.def)             Requested size: 112.41968pt x 112.41968pt.
- <exp3/PLS-3.png, id=266, 28.105pt x 28.105pt>
+ <exp3/PLS-3.png, id=275, 28.105pt x 28.105pt>
 File: exp3/PLS-3.png Graphic file (type png)
  <use exp3/PLS-3.png>
 Package pdftex.def Info: exp3/PLS-3.png used on input line 21.
@@ -1298,7 +1329,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 83.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 83.
-[12 <./exp3/PCA-1.png (PNG copy)> <./exp3/PLS-1.png (PNG copy)> <./exp3/PCA-2.png (PNG copy)> <./exp3/PLS-2.png (PNG copy)> <./exp3/PCA-3.png (PNG copy)> <./exp3/PLS-3.png (PNG copy)>] <exp5/PCA-1-0vs1.png, id=280, 481.8pt x 481.8pt>
+[13 <./exp3/PCA-1.png (PNG copy)> <./exp3/PLS-1.png (PNG copy)> <./exp3/PCA-2.png (PNG copy)> <./exp3/PLS-2.png (PNG copy)> <./exp3/PCA-3.png (PNG copy)> <./exp3/PLS-3.png (PNG copy)>] <exp5/PCA-1-0vs1.png, id=290, 481.8pt x 481.8pt>
 File: exp5/PCA-1-0vs1.png Graphic file (type png)
  <use exp5/PCA-1-0vs1.png>
 Package pdftex.def Info: exp5/PCA-1-0vs1.png used on input line 91.
@@ -1329,7 +1360,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 96.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 96.
- [13 <./exp5/PCA-1-0vs1.png (PNG copy)>] <exp5/PLS-1-0vs1.png, id=291, 481.8pt x 481.8pt>
+ [14 <./exp5/PCA-1-0vs1.png (PNG copy)>] <exp5/PLS-1-0vs1.png, id=301, 481.8pt x 481.8pt>
 File: exp5/PLS-1-0vs1.png Graphic file (type png)
  <use exp5/PLS-1-0vs1.png>
 Package pdftex.def Info: exp5/PLS-1-0vs1.png used on input line 100.
@@ -1365,7 +1396,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 111.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 111.
-[14 <./exp5/PLS-1-0vs1.png (PNG copy)>]
+[15 <./exp5/PLS-1-0vs1.png (PNG copy)>]
 LaTeX Info: Redefining \. on input line 177.
 LaTeX Info: Redefining \% on input line 177.
 Package babel Info: Redefining spanish shorthand <<
@@ -1392,7 +1423,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 177.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 177.
- [15] <exp5/PCA-2-1vs4vs7vs9.png, id=306, 481.8pt x 481.8pt>
+ [16] <exp5/PCA-2-1vs4vs7vs9.png, id=315, 481.8pt x 481.8pt>
 File: exp5/PCA-2-1vs4vs7vs9.png Graphic file (type png)
  <use exp5/PCA-2-1vs4vs7vs9.png>
 Package pdftex.def Info: exp5/PCA-2-1vs4vs7vs9.png used on input line 181.
@@ -1423,12 +1454,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 192.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 192.
- [16 <./exp5/PCA-2-1vs4vs7vs9.png (PNG copy)>] <exp5/PLS-2-1vs4vs7vs9.png, id=314, 481.8pt x 481.8pt>
+ [17 <./exp5/PCA-2-1vs4vs7vs9.png (PNG copy)>] <exp5/PLS-2-1vs4vs7vs9.png, id=323, 481.8pt x 481.8pt>
 File: exp5/PLS-2-1vs4vs7vs9.png Graphic file (type png)
  <use exp5/PLS-2-1vs4vs7vs9.png>
 Package pdftex.def Info: exp5/PLS-2-1vs4vs7vs9.png used on input line 196.
 (pdftex.def)             Requested size: 385.4405pt x 385.4405pt.
- <exp5/AllVsAll/Referencias.png, id=316, 593.21625pt x 236.885pt>
+ <exp5/AllVsAll/Referencias.png, id=325, 593.21625pt x 236.885pt>
 File: exp5/AllVsAll/Referencias.png Graphic file (type png)
  <use exp5/AllVsAll/Referencias.png>
 Package pdftex.def Info: exp5/AllVsAll/Referencias.png used on input line 209.
@@ -1459,7 +1490,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 215.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 215.
- [17 <./exp5/PLS-2-1vs4vs7vs9.png (PNG copy)> <./exp5/AllVsAll/Referencias.png>] <exp5/AllVsAll/PCA-23.png, id=324, 593.21625pt x 571.13374pt>
+ [18 <./exp5/PLS-2-1vs4vs7vs9.png (PNG copy)> <./exp5/AllVsAll/Referencias.png>] <exp5/AllVsAll/PCA-23.png, id=333, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PCA-23.png Graphic file (type png)
  <use exp5/AllVsAll/PCA-23.png>
 Package pdftex.def Info: exp5/AllVsAll/PCA-23.png used on input line 219.
@@ -1469,7 +1500,7 @@ Overfull \hbox (21.66025pt too wide) in paragraph at lines 218--221
 [][] 
  []
 
-<exp5/AllVsAll/PCA-123.png, id=325, 593.21625pt x 571.13374pt>
+<exp5/AllVsAll/PCA-123.png, id=334, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PCA-123.png Graphic file (type png)
  <use exp5/AllVsAll/PCA-123.png>
 Package pdftex.def Info: exp5/AllVsAll/PCA-123.png used on input line 224.
@@ -1484,7 +1515,7 @@ Overfull \hbox (2.11pt too wide) in paragraph at lines 217--227
 []$[]$ $[]$ 
  []
 
-<exp5/AllVsAll/PCA-13.png, id=326, 590.205pt x 574.145pt>
+<exp5/AllVsAll/PCA-13.png, id=335, 590.205pt x 574.145pt>
 File: exp5/AllVsAll/PCA-13.png Graphic file (type png)
  <use exp5/AllVsAll/PCA-13.png>
 Package pdftex.def Info: exp5/AllVsAll/PCA-13.png used on input line 231.
@@ -1494,7 +1525,7 @@ Overfull \hbox (20.45576pt too wide) in paragraph at lines 230--233
 [][] 
  []
 
-<exp5/AllVsAll/PCA-12.png, id=327, 590.205pt x 574.145pt>
+<exp5/AllVsAll/PCA-12.png, id=336, 590.205pt x 574.145pt>
 File: exp5/AllVsAll/PCA-12.png Graphic file (type png)
  <use exp5/AllVsAll/PCA-12.png>
 Package pdftex.def Info: exp5/AllVsAll/PCA-12.png used on input line 236.
@@ -1535,7 +1566,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 241.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 241.
-[18 <./exp5/AllVsAll/PCA-23.png (PNG copy)> <./exp5/AllVsAll/PCA-123.png> <./exp5/AllVsAll/PCA-13.png (PNG copy)> <./exp5/AllVsAll/PCA-12.png (PNG copy)>] <exp5/AllVsAll/PLS-23.png, id=335, 593.21625pt x 571.13374pt>
+[19 <./exp5/AllVsAll/PCA-23.png (PNG copy)> <./exp5/AllVsAll/PCA-123.png> <./exp5/AllVsAll/PCA-13.png (PNG copy)> <./exp5/AllVsAll/PCA-12.png (PNG copy)>] <exp5/AllVsAll/PLS-23.png, id=345, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PLS-23.png Graphic file (type png)
  <use exp5/AllVsAll/PLS-23.png>
 Package pdftex.def Info: exp5/AllVsAll/PLS-23.png used on input line 246.
@@ -1545,7 +1576,7 @@ Overfull \hbox (21.66025pt too wide) in paragraph at lines 245--248
 [][] 
  []
 
-<exp5/AllVsAll/PLS-123.png, id=336, 593.21625pt x 571.13374pt>
+<exp5/AllVsAll/PLS-123.png, id=346, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PLS-123.png Graphic file (type png)
  <use exp5/AllVsAll/PLS-123.png>
 Package pdftex.def Info: exp5/AllVsAll/PLS-123.png used on input line 251.
@@ -1560,7 +1591,7 @@ Overfull \hbox (2.11pt too wide) in paragraph at lines 244--254
 []$[]$ $[]$ 
  []
 
-<exp5/AllVsAll/PLS-13.png, id=337, 593.21625pt x 571.13374pt>
+<exp5/AllVsAll/PLS-13.png, id=347, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PLS-13.png Graphic file (type png)
  <use exp5/AllVsAll/PLS-13.png>
 Package pdftex.def Info: exp5/AllVsAll/PLS-13.png used on input line 258.
@@ -1570,7 +1601,7 @@ Overfull \hbox (21.66025pt too wide) in paragraph at lines 257--260
 [][] 
  []
 
-<exp5/AllVsAll/PLS-12.png, id=338, 593.21625pt x 571.13374pt>
+<exp5/AllVsAll/PLS-12.png, id=348, 593.21625pt x 571.13374pt>
 File: exp5/AllVsAll/PLS-12.png Graphic file (type png)
  <use exp5/AllVsAll/PLS-12.png>
 Package pdftex.def Info: exp5/AllVsAll/PLS-12.png used on input line 263.
@@ -1612,7 +1643,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 8.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 8.
- [19 <./exp5/AllVsAll/PLS-23.png (PNG copy)> <./exp5/AllVsAll/PLS-123.png> <./exp5/AllVsAll/PLS-13.png (PNG copy)> <./exp5/AllVsAll/PLS-12.png (PNG copy)>]
+ [20 <./exp5/AllVsAll/PLS-23.png (PNG copy)> <./exp5/AllVsAll/PLS-123.png> <./exp5/AllVsAll/PLS-13.png (PNG copy)> <./exp5/AllVsAll/PLS-12.png (PNG copy)>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 9.
 Package babel Info: Redefining spanish shorthand >>
@@ -1638,7 +1669,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1.
- <exp1/KNN-Image-Process-Duration.png, id=347, 461.725pt x 180.675pt>
+ <exp1/KNN-Image-Process-Duration.png, id=356, 461.725pt x 180.675pt>
 File: exp1/KNN-Image-Process-Duration.png Graphic file (type png)
  <use exp1/KNN-Image-Process-Duration.png>
 Package pdftex.def Info: exp1/KNN-Image-Process-Duration.png used on input line 12.
@@ -1681,7 +1712,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 29.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 29.
- [20 <./exp1/KNN-Image-Process-Duration.png>] <exp1/KNN-5p-Scores.png, id=355, 508.90125pt x 410.53375pt>
+ [21 <./exp1/KNN-Image-Process-Duration.png>] <exp1/KNN-5p-Scores.png, id=364, 508.90125pt x 410.53375pt>
 File: exp1/KNN-5p-Scores.png Graphic file (type png)
  <use exp1/KNN-5p-Scores.png>
 Package pdftex.def Info: exp1/KNN-5p-Scores.png used on input line 33.
@@ -1722,12 +1753,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 47.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 47.
-[21 <./exp1/KNN-5p-Scores.png>] <exp1/KNN-5p-Hit-Rate.png, id=362, 511.9125pt x 398.48875pt>
+[22 <./exp1/KNN-5p-Scores.png>] <exp1/KNN-5p-Hit-Rate.png, id=371, 511.9125pt x 398.48875pt>
 File: exp1/KNN-5p-Hit-Rate.png Graphic file (type png)
  <use exp1/KNN-5p-Hit-Rate.png>
 Package pdftex.def Info: exp1/KNN-5p-Hit-Rate.png used on input line 51.
 (pdftex.def)             Requested size: 358.3363pt x 278.94022pt.
- <exp1/KNN-5p-Hit-Rate-stdev.png, id=363, 719.68875pt x 408.52625pt>
+ <exp1/KNN-5p-Hit-Rate-stdev.png, id=372, 719.68875pt x 408.52625pt>
 File: exp1/KNN-5p-Hit-Rate-stdev.png Graphic file (type png)
  <use exp1/KNN-5p-Hit-Rate-stdev.png>
 Package pdftex.def Info: exp1/KNN-5p-Hit-Rate-stdev.png used on input line 62.
@@ -1737,7 +1768,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
-<exp1/KNN-5p-Confusion.png, id=364, 448.67625pt x 354.32375pt>
+<exp1/KNN-5p-Confusion.png, id=373, 448.67625pt x 354.32375pt>
 File: exp1/KNN-5p-Confusion.png Graphic file (type png)
  <use exp1/KNN-5p-Confusion.png>
 Package pdftex.def Info: exp1/KNN-5p-Confusion.png used on input line 75.
@@ -1768,7 +1799,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 79.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 79.
- [22 <./exp1/KNN-5p-Hit-Rate.png> <./exp1/KNN-5p-Hit-Rate-stdev.png>]
+ [23 <./exp1/KNN-5p-Hit-Rate.png> <./exp1/KNN-5p-Hit-Rate-stdev.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
@@ -1804,7 +1835,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 88.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 88.
-[23 <./exp1/KNN-5p-Confusion.png>] <exp1/KNN-10p-Scores.png, id=379, 501.875pt x 394.47375pt>
+[24 <./exp1/KNN-5p-Confusion.png>] <exp1/KNN-10p-Scores.png, id=388, 501.875pt x 394.47375pt>
 File: exp1/KNN-10p-Scores.png Graphic file (type png)
  <use exp1/KNN-10p-Scores.png>
 Package pdftex.def Info: exp1/KNN-10p-Scores.png used on input line 92.
@@ -1814,7 +1845,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
-<exp1/KNN-Hit-Rate-stdev.png, id=380, 510.90875pt x 388.45125pt>
+<exp1/KNN-Hit-Rate-stdev.png, id=389, 510.90875pt x 388.45125pt>
 File: exp1/KNN-Hit-Rate-stdev.png Graphic file (type png)
  <use exp1/KNN-Hit-Rate-stdev.png>
 Package pdftex.def Info: exp1/KNN-Hit-Rate-stdev.png used on input line 102.
@@ -1850,7 +1881,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 109.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 109.
-[24 <./exp1/KNN-10p-Scores.png> <./exp1/KNN-Hit-Rate-stdev.png>] <exp1/KNN-Train-Set-Size.png, id=389, 672.5125pt x 515.9275pt>
+[25 <./exp1/KNN-10p-Scores.png> <./exp1/KNN-Hit-Rate-stdev.png>] <exp1/KNN-Train-Set-Size.png, id=399, 672.5125pt x 515.9275pt>
 File: exp1/KNN-Train-Set-Size.png Graphic file (type png)
  <use exp1/KNN-Train-Set-Size.png>
 Package pdftex.def Info: exp1/KNN-Train-Set-Size.png used on input line 112.
@@ -1882,7 +1913,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 12.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 12.
- [25 <./exp1/KNN-Train-Set-Size.png>]
+ [26 <./exp1/KNN-Train-Set-Size.png>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 13.
 Package babel Info: Redefining spanish shorthand >>
@@ -1920,7 +1951,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 5.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 5.
- <exp2/PCA-Process-Time.png, id=397, 508.90125pt x 411.5375pt>
+ <exp2/PCA-Process-Time.png, id=406, 508.90125pt x 411.5375pt>
 File: exp2/PCA-Process-Time.png Graphic file (type png)
  <use exp2/PCA-Process-Time.png>
 Package pdftex.def Info: exp2/PCA-Process-Time.png used on input line 13.
@@ -1951,17 +1982,17 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 21.
- [26 <./exp2/PCA-Process-Time.png>] <exp2/PCA-Match-Time.png, id=405, 537.00626pt x 410.53375pt>
+ [27 <./exp2/PCA-Process-Time.png>] <exp2/PCA-Match-Time.png, id=414, 537.00626pt x 410.53375pt>
 File: exp2/PCA-Match-Time.png Graphic file (type png)
  <use exp2/PCA-Match-Time.png>
 Package pdftex.def Info: exp2/PCA-Match-Time.png used on input line 24.
 (pdftex.def)             Requested size: 375.90181pt x 287.37166pt.
- <exp2/PCA-HitRate-1.png, id=406, 735.74875pt x 518.93875pt>
+ <exp2/PCA-HitRate-1.png, id=415, 735.74875pt x 518.93875pt>
 File: exp2/PCA-HitRate-1.png Graphic file (type png)
  <use exp2/PCA-HitRate-1.png>
 Package pdftex.def Info: exp2/PCA-HitRate-1.png used on input line 39.
 (pdftex.def)             Requested size: 220.72632pt x 155.68282pt.
- <exp2/PCA-HitRate-2.png, id=407, 729.72626pt x 533.995pt>
+ <exp2/PCA-HitRate-2.png, id=416, 729.72626pt x 533.995pt>
 File: exp2/PCA-HitRate-2.png Graphic file (type png)
  <use exp2/PCA-HitRate-2.png>
 Package pdftex.def Info: exp2/PCA-HitRate-2.png used on input line 40.
@@ -1971,7 +2002,7 @@ Overfull \hbox (8.40181pt too wide) in paragraph at lines 38--42
  [] 
  []
 
-<exp2/PCA-HitRate-3.png, id=408, 747.79375pt x 521.95pt>
+<exp2/PCA-HitRate-3.png, id=417, 747.79375pt x 521.95pt>
 File: exp2/PCA-HitRate-3.png Graphic file (type png)
  <use exp2/PCA-HitRate-3.png>
 Package pdftex.def Info: exp2/PCA-HitRate-3.png used on input line 48.
@@ -2006,7 +2037,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 57.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 57.
-[27 <./exp2/PCA-Match-Time.png> <./exp2/PCA-HitRate-1.png> <./exp2/PCA-HitRate-2.png>]
+[28 <./exp2/PCA-Match-Time.png> <./exp2/PCA-HitRate-1.png> <./exp2/PCA-HitRate-2.png>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 62.
 Package babel Info: Redefining spanish shorthand >>
@@ -2019,7 +2050,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 62.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 62.
- <exp2/PLS-Process-Time.png, id=419, 558.085pt x 429.605pt>
+ <exp2/PLS-Process-Time.png, id=428, 558.085pt x 429.605pt>
 File: exp2/PLS-Process-Time.png Graphic file (type png)
  <use exp2/PLS-Process-Time.png>
 Package pdftex.def Info: exp2/PLS-Process-Time.png used on input line 70.
@@ -2028,16 +2059,135 @@ Package pdftex.def Info: exp2/PLS-Process-Time.png used on input line 70.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<exp2/PLS-Match-Time.png, id=420, 545.03625pt x 437.635pt>
+<exp2/PLS-Match-Time.png, id=429, 558.085pt x 436.63126pt>
 File: exp2/PLS-Match-Time.png Graphic file (type png)
  <use exp2/PLS-Match-Time.png>
 Package pdftex.def Info: exp2/PLS-Match-Time.png used on input line 80.
-(pdftex.def)             Requested size: 381.52278pt x 306.3424pt.
+(pdftex.def)             Requested size: 390.65685pt x 305.63979pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-))
+LaTeX Info: Redefining \. on input line 87.
+LaTeX Info: Redefining \% on input line 87.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 87.
+[29 <./exp2/PCA-HitRate-3.png>]
+
+LaTeX Warning: Text page 30 contains only floats.
+
+LaTeX Info: Redefining \. on input line 87.
+LaTeX Info: Redefining \% on input line 87.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 87.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 87.
+[30 <./exp2/PLS-Process-Time.png> <./exp2/PLS-Match-Time.png>] <exp2/PLS-HitRate-2.png, id=445, 713.66624pt x 519.9425pt>
+File: exp2/PLS-HitRate-2.png Graphic file (type png)
+ <use exp2/PLS-HitRate-2.png>
+Package pdftex.def Info: exp2/PLS-HitRate-2.png used on input line 95.
+(pdftex.def)             Requested size: 214.10152pt x 155.98395pt.
+ <exp2/PLS-HitRate-3.png, id=446, 716.6775pt x 530.98375pt>
+File: exp2/PLS-HitRate-3.png Graphic file (type png)
+ <use exp2/PLS-HitRate-3.png>
+Package pdftex.def Info: exp2/PLS-HitRate-3.png used on input line 96.
+(pdftex.def)             Requested size: 215.00491pt x 159.29634pt.
+ <exp2/PLS-HitRate-1.png, id=447, 732.7375pt x 526.96875pt>
+File: exp2/PLS-HitRate-1.png Graphic file (type png)
+ <use exp2/PLS-HitRate-1.png>
+Package pdftex.def Info: exp2/PLS-HitRate-1.png used on input line 104.
+(pdftex.def)             Requested size: 366.36786pt x 263.48372pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 114.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 114.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 114.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 114.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 114.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 114.
+ <exp2/PCA-10-partitions.png, id=448, 748.7975pt x 522.95375pt>
+File: exp2/PCA-10-partitions.png Graphic file (type png)
+ <use exp2/PCA-10-partitions.png>
+Package pdftex.def Info: exp2/PCA-10-partitions.png used on input line 121.
+(pdftex.def)             Requested size: 224.64098pt x 156.88733pt.
+ <exp2/PLS-10-partitions.png, id=449, 671.50874pt x 511.9125pt>
+File: exp2/PLS-10-partitions.png Graphic file (type png)
+ <use exp2/PLS-10-partitions.png>
+Package pdftex.def Info: exp2/PLS-10-partitions.png used on input line 122.
+(pdftex.def)             Requested size: 201.45418pt x 153.57494pt.
+LaTeX Info: Redefining \. on input line 126.
+LaTeX Info: Redefining \% on input line 126.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 126.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 126.
+ [31 <./exp2/PLS-HitRate-2.png> <./exp2/PLS-HitRate-3.png> <./exp2/PLS-HitRate-1.png>]))
 LaTeX Info: Redefining \. on input line 83.
 LaTeX Info: Redefining \% on input line 83.
 Package babel Info: Redefining spanish shorthand <<
@@ -2064,37 +2214,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 83.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 83.
- [28 <./exp2/PCA-HitRate-3.png>]
-
-LaTeX Warning: Text page 29 contains only floats.
-
-LaTeX Info: Redefining \. on input line 83.
-LaTeX Info: Redefining \% on input line 83.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 83.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 83.
-[29 <./exp2/PLS-Process-Time.png> <./exp2/PLS-Match-Time.png>]
+ [32 <./exp2/PCA-10-partitions.png> <./exp2/PLS-10-partitions.png>]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 84.
 Package babel Info: Redefining spanish shorthand >>
@@ -2134,7 +2254,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 86.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 86.
- [30]
+ [33]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 87.
 Package babel Info: Redefining spanish shorthand >>
@@ -2147,7 +2267,12 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 87.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 87.
- (./referencias.tex)
+ (./referencias.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--2
+
+ []
+
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 116.
 LaTeX Info: Redefining \. on input line 116.
 LaTeX Info: Redefining \% on input line 116.
@@ -2175,7 +2300,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 116.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 116.
- [31]
+ [34]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 116.
  (/Users/lucascortes/Documents/UBA/Metodos/metnum/tp2/informe/.texpadtmp/informe.aux
 LaTeX Info: Redefining \. on input line 24.
@@ -2192,18 +2317,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 116.
  ) 
 Here is how much of TeX's memory you used:
- 8704 strings out of 493117
- 130283 string characters out of 6135433
- 229011 words of memory out of 5000000
- 11811 multiletter control sequences out of 15000+600000
+ 8738 strings out of 493117
+ 131064 string characters out of 6135433
+ 229013 words of memory out of 5000000
+ 11832 multiletter control sequences out of 15000+600000
  43939 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,43p,1406b,605s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,43p,1406b,647s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp2/informe/.texpadtmp/informe.pdf (31 pages, 2738772 bytes).
+Output written on /Users/lucascortes/Documents/UBA/Metodos/metnum/tp2/informe/.texpadtmp/informe.pdf (34 pages, 3110662 bytes).
 PDF statistics:
- 551 PDF objects out of 1000 (max. 8388607)
- 433 compressed objects within 5 object streams
- 123 named destinations out of 1000 (max. 500000)
- 423 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 583 PDF objects out of 1000 (max. 8388607)
+ 452 compressed objects within 5 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 456 words of extra memory for PDF output out of 10000 (max. 10000000)
 

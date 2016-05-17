@@ -83,12 +83,50 @@ En esta imagen se puede apreciar también cierta linealidad en el costo temporal
   \end{center}
 \end{figure}
 
-Por otro lado en esta imagen se puede ver que el tiempo de clasificación de una nueva imagen tiene un comportamiento bastante estacionario. Se ve que entre gamma 6 y 12 el costo temporal aumenta rápidamente.
+Por otro lado en esta imagen se puede ver que el tiempo de clasificación de una nueva imagen tiene un comportamiento bastante estacionario. Se ve que entre gamma 6 y 8 el costo temporal aumenta rápidamente y luego se mantiene.
+\newpage
+\subsubsection*{Calidad del algoritmo}
+
+Para analizar la calidad de utilizar PLS-DA para reducir la dimensión de KNN tomamos el mismo rango de valores de $gamma$ y $k$ y analizamos su hit rate obteniendo los siguientes gráficos.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{c c}
+	\includegraphics[scale=0.3]{exp2/PLS-HitRate-2.png} &
+	\includegraphics[scale=0.3]{exp2/PLS-HitRate-3.png}\\
+\end{tabular}
+\end{center}
+\caption{Hit Rate para valores de $gamma$ y $k$}
+\end{table}
+
+\begin{figure}[h!]
+  \begin{center}
+	\includegraphics[scale=0.5]{exp2/PLS-HitRate-1.png}
+	\caption{PLS-DA data set training}
+%	\label{accum_var_PCA}
+  \end{center}
+\end{figure}
+
+Como se puede observar en el primer gráfico, el comportamiento según k es bastante similar: primero aumenta y después comienza a descender, obteniendo un máximo en $k = 10$. 
+Respecto al valor de gamma, a diferencia del caso anterior la curva es estrictamente creciente. Aumentar gamma siempre aporta información útil al algoritmo para ayudarlo a clasificar, por eso es más difícil establecer un criterio de parada. De todos modos, dado que cada vez crece más lento, vemos que con el $k$ elegido, con $gamma = 14$ obtenemos un hit rate de 0.96. Se podría aumentar más el valor de gamma, pero los incrementos son cada vez menores y el compromiso de tiempo es cada vez mayor.
 
 
+\subsubsection{Cross Folding}
 
+Por último realizamos una comparación de estos datos con nuestra partición de K = 10.
 
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{c c}
+	\includegraphics[scale=0.3]{exp2/PCA-10-partitions.png} &
+	\includegraphics[scale=0.3]{exp2/PLS-10-partitions.png}\\
+\end{tabular}
+\end{center}
+\caption{Hit Rate para valores de $gamma$ y $k$}
+\end{table}
 
+La primera imagen mide el hit rate para PCA con alpha y k, mientras que la segunda lo mide para PLS con gamma y k. Se ve fácilmente que la forma de los planos es muy similar a la que los algoritmos tenían para $K = 5$. En particular el punto máximo para PCA sigue estando en $alpha = 50$ y $k = 4$ mientras que PLS mantiene su comportamiento creciente en $k = 10$.
+Por otro lado, al igual que pasaba con KNN puro, utilizar 10 particiones nos da un ligero mejor hit rate ya que su base de entrenamiento es mayor.
 
 
 
