@@ -1,0 +1,26 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\'on Te\'orica}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}k Vecinos M\'as Cercanos \textit {(kNN)}}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Consideraciones previas a \textit {PCA} y \textit {PLS-DA}}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}An\'alisis por Componentes Principales (\textit {PCA})}{4}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}An\'alisis Discriminante por Cuadrados M\'inimos Parciales (\textit {PLS-DA})}{5}{subsection.1.4}
+\contentsline {section}{\numberline {2}Desarrollo}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Metodolog\'ias de Clasificaci\'on}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Clasificaci\'on \textit {naive} con kNN}{6}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Reducci\'on de dimensi\'on \textit {no} supervisada con \textit {PCA}}{6}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Reducci\'on de dimensi\'on supervisada con \textit {PLS-DA}}{7}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}Clasificaci\'on inteligente: \textit {Transformaci\'on} + \textit {kNN}}{8}{subsubsection.2.1.4}
+\contentsline {subsection}{\numberline {2.2}Estrategias de medici\'on}{8}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Evaluaci\'on robusta con \textit {K-fold cross validation}}{8}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}M\'etricas de calidad}{8}{subsubsection.2.2.2}
+\contentsline {subsection}{\numberline {2.3}Algoritmos de Utilidad}{9}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}M\'etodo de la Potencia}{9}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Deflaci\'on}{9}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Resultados y discusi\'on}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Analisis Previo: Alfa y Gama}{10}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}An\IeC {\'a}lisis de KNN}{12}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Costo temporal}{12}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Calidad del algoritmo}{12}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}El nuevo espacio}{16}{subsection.3.3}
+\contentsline {section}{\numberline {4}Conclusiones}{18}{section.4}
+\contentsline {section}{\numberline {5}Referencias}{19}{section.5}
