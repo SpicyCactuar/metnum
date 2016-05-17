@@ -29,7 +29,7 @@ Para el caso de m\'etodo de la potencia:
 
 \begin{itemize}
 \item \textcolor{red}{// TODO: Agregar}
-\item Como $M_{X}$ es sim\'etrica, tiene todos los autovalores reales.
+\item Como $M_{X}$ es sim\'etrica, tiene todos los autovalores reales \textbf{[3]}.
 \end{itemize}
 
 Los requerimientos de deflaci\'on se cumplen dado que:
@@ -120,7 +120,7 @@ Tenemos una necesidad de encontrar \textit{autovalores} con sus \textit{autovect
 \caption{M\'etodo de la Potencia($B, x_{0}$, condici\'on de finalizaci\'on)}
 \end{algorithm}
 
-Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert v \vert\vert_{2} = 1$ aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\lambda_{1} \in \mathbb{R}$ de manera que $\lambda_{1} > \lambda_{i}$ autovalor con $i \neq 1$. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. La otra condici\'on es que $B$ tenga todos los autovalores reales. Veremos como ambas condiciones se cumplen para las matrices a las cu\'ales son aplicadas.
+Este m\'etodo busca un autovector $v_{1} \in \mathbb{R}^{m}$ tal que $\vert\vert v \vert\vert_{2} = 1$ aproximando el pasado como par\'ametro iterativamente, con la particularidad de que se corresponde con el autovalor $\lambda_{1} \in \mathbb{R}$ de manera que $\lambda_{1} > \lambda_{2} \geq ... \geq \lambda_{n}$ autovalor con $i \neq 1$. Una condici\'on para que converja a este vector es \textcolor{red}{TODO}, notar que para dimensiones grandes, la probabilidad de elegir un vector inicial al azar es pr\'acticamente nula, de modo que el $x_{0}$ es elegido en forma aleatoria. La otra condici\'on es que $B$ tenga todos los autovalores reales. Veremos como ambas condiciones se cumplen para las matrices a las cu\'ales son aplicadas.
 
 \subsubsection{Deflaci\'on}\label{desarrollo_deflacion}
 
