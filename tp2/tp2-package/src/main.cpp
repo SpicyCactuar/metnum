@@ -20,10 +20,10 @@ int main(int argc, char const *argv[]){
     }
 
     ifstream input(argv[1]);
-    ofstream output(argv[2]);
     string method = argv[3];
     
     if(method != "3"){
+        ofstream output(argv[2]);
         string inFileDir, line;
         int kMinus, alpha, gamma, kMayus;
 
@@ -107,6 +107,7 @@ int main(int argc, char const *argv[]){
                 }
             }
         }
+        output.close();
     }
     else{
         string inFileDir, line;
@@ -137,7 +138,7 @@ int main(int argc, char const *argv[]){
         tcTrainPLSDA.init(eigenVectorsPLSDA, imagesTrain.centralized);
         tcTestPLSDA.init(eigenVectorsPLSDA, imagesTest.centralized);
         string outPCA = argv[2];
-        outPCA += "PCA";
+        outPCA += "PCA.out";
         ofstream outputPCA(outPCA);
         for (int i = 0; i < tcTestPCA.transformation.size(); ++i){
             vector<int> kMin = {kPCA}, labelRes;
@@ -146,7 +147,7 @@ int main(int argc, char const *argv[]){
         }
         outputPCA.close();
         string outPLSDA = argv[2];
-        outPLSDA += "PLS-DA";
+        outPLSDA += "PLS-DA.out";
         ofstream outputPLSDA(outPLSDA);
         for (int i = 0; i < tcTestPLSDA.transformation.size(); ++i){
             vector<int> kMin = {kPLSDA}, labelRes;
@@ -156,6 +157,5 @@ int main(int argc, char const *argv[]){
         outputPLSDA.close();
     }
     input.close();
-    output.close();
     return 0;
 }
