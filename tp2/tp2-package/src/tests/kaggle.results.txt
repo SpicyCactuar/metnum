@@ -5,6 +5,4 @@ alpha 85 k 4 0.97243
 
 gamma 16 k 10 0.95971
 gamma 18 k 10 0.96186
-gamma 20 k 10 0.96271
-gamma 25 k 10 0.96757
 gamma 50 k 10 0.97143

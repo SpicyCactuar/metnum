@@ -65,6 +65,10 @@ En el último gráfico tenemos una vista más general de ambos parámetros. Aqu�
 
 Al igual que para PCA, nos centramos en analizar valores de gamma únicamente para determinar un rango adecuado de valores a considerar. Las siguientes imágenes muestran los resultados obtenidos.
 
+En esta imagen se puede apreciar también cierta linealidad en el costo temporal del entrenamiento de PLS. Vemos incluso que el desvío estándar es bastante pequeño entre las particiones así que el gráfico es bastante representativo.
+
+\newpage
+
 \begin{figure}[h!]
   \begin{center}
 	\includegraphics[scale=0.7]{exp2/PLS-Process-Time.png}
@@ -73,7 +77,9 @@ Al igual que para PCA, nos centramos en analizar valores de gamma únicamente pa
   \end{center}
 \end{figure}
 
-En esta imagen se puede apreciar también cierta linealidad en el costo temporal del entrenamiento de PLS. Vemos incluso que el desvío estándar es bastante pequeño entre las particiones así que el gráfico es bastante representativo.
+Por otro lado en esta imagen se puede ver que el tiempo de clasificación de una nueva imagen tiene un comportamiento bastante estacionario. Se ve que entre gamma 6 y 8 el costo temporal aumenta rápidamente y luego se mantiene.
+
+\newpage
 
 \begin{figure}[h!]
   \begin{center}
@@ -83,8 +89,6 @@ En esta imagen se puede apreciar también cierta linealidad en el costo temporal
   \end{center}
 \end{figure}
 
-Por otro lado en esta imagen se puede ver que el tiempo de clasificación de una nueva imagen tiene un comportamiento bastante estacionario. Se ve que entre gamma 6 y 8 el costo temporal aumenta rápidamente y luego se mantiene.
-\newpage
 \subsubsection*{Calidad del algoritmo}
 
 Para analizar la calidad de utilizar PLS-DA para reducir la dimensión de KNN tomamos el mismo rango de valores de $gamma$ y $k$ y analizamos su hit rate obteniendo los siguientes gráficos.
@@ -99,6 +103,8 @@ Para analizar la calidad de utilizar PLS-DA para reducir la dimensión de KNN to
 \caption{Hit Rate para valores de $gamma$ y $k$}
 \end{table}
 
+\newpage
+
 \begin{figure}[h!]
   \begin{center}
 	\includegraphics[scale=0.5]{exp2/PLS-HitRate-1.png}
@@ -111,7 +117,7 @@ Como se puede observar en el primer gráfico, el comportamiento según k es bast
 Respecto al valor de gamma, a diferencia del caso anterior la curva es estrictamente creciente. Aumentar gamma siempre aporta información útil al algoritmo para ayudarlo a clasificar, por eso es más difícil establecer un criterio de parada. De todos modos, dado que cada vez crece más lento, vemos que con el $k$ elegido, con $gamma = 14$ obtenemos un hit rate de 0.96. Se podría aumentar más el valor de gamma, pero los incrementos son cada vez menores y el compromiso de tiempo es cada vez mayor.
 
 
-\subsubsection{Cross Folding}
+\subsubsection{Cross Validation}
 
 Por último realizamos una comparación de estos datos con nuestra partición de K = 10.
 
