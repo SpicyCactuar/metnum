@@ -1,0 +1,8 @@
+kaggle results
+alpha 50 k 4 0.97214
+alpha 75 k 4 0.97300
+alpha 85 k 4 0.97243
+
+gamma 16 k 10 0.95971
+gamma 18 k 10 0.96186
+gamma 50 k 10 0.97143

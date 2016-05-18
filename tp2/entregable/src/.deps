@@ -1,0 +1,22 @@
+{
+    ".deps_version": 2, 
+    "g++ -O2 -c ./main.cpp -o ./main.o -std=c++11": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Algorithms.h": "input-c85a92b6399c7d2cbf82d6daf5d21495", 
+        "Equalty.h": "input-b3b07635bb31694ccc6ce993f29aec03", 
+        "Imports.h": "input-6cd4bc8b34d5eaba4155b0d4c61ca253", 
+        "InputProcessor.h": "input-b00086689ba1b7c7f9deab87c6fd50cc", 
+        "MatrixAlgorithms.h": "input-48fcc9c274bfa82781a21f99e1ec56b6", 
+        "Print.h": "input-62040cd72cd2958f2350174130e998ba", 
+        "Stats.h": "input-d96f263220d1eeedf83f6b848ec8f36c", 
+        "Tests.h": "input-b79312f7efe69a7a70cb9e30113437d9", 
+        "Types.h": "input-6567e16b75e614bc61d687c271988ab2", 
+        "main.cpp": "input-a9342c6a643d438eb9996f1a33ee4d8b", 
+        "main.o": "output-65db9eecfdbb78e3ece18a8c4fd79f26"
+    }, 
+    "g++ -o ./tp ./main.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "main.o": "input-65db9eecfdbb78e3ece18a8c4fd79f26", 
+        "tp": "output-a1cf84623f6be58e8842ef5793f8316b"
+    }
+}
