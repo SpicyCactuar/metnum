@@ -1,4 +1,6 @@
-Aqu\'i pondremos algunos resultados interesantes.
+Aqu\'i pondremos algunos resultados/planteos interesantes.
+
+\subsection{Veredicto de \textit{Kaggle}}
 
 El primero fue que corrimos nuestros algoritmos para los valores ``\'optimos'' que obtuvimos de nuestro an\'alisis, utilizando la base de train completa para entrenar, y luego etiquetamos las im\'agenes provistas en la competencia de Kaggle como test.
 
@@ -31,8 +33,11 @@ El mayor valor obtenido fue con el m\'etodo PCA con alpha = 75 y k = 4.
 
 PLS-DA corrido con gammas m\'as grandes, aumentan el Hit Rate, pero el tiempo de c\'omputo es abismalmente mayor.
 
-Luego, calculamos el promedio de cada d\'igito de la base de train completa, que nos muestra que el dataset es bastante parejo.
+\subsection{Alternativa de clasificaci\'on: \textit{Promedio} de im\'agenes}
 
+Una idea que surgi\'o en pleno trabajo fue: ``¿Habr\'a alguna manera que sea simult\'aneamente simple y efectiva de clasificar?'' Con esta pregunta en mente, calculamos el promedio de cada d\'igito de la base de \textit{train} completa y observamos los resultados: \\
+
+\newpage
 \begin{table}[h!]
 \begin{tabular}{|c|c|c|c|}
 	\hline
@@ -58,4 +63,13 @@ Luego, calculamos el promedio de cada d\'igito de la base de train completa, que
 \end{tabular}
 \end{table}
 
+Esto nos dice algunas cosas: \\
+
+Primero que todo, que la base de entrenamiento sobre la cu\'al trabajamos es abarcativa. El hecho de, a partir de haber calculado los promedios sobre la misma, hayamos obtenido im\'agenes que tienen gran similitud con potenciales n\'umeros manuscritos lo respalda.
+
+Otra observaci\'on/conjetura que nos surgi\'o es que, probablemente, este conjunto de im\'agenes podr\'ia ser utilizado para realizar un algoritmo clasificador m\'as simple que conste de calcular la \textit{distancia} una im\'agen a clasificar contra este conjunto particular, y \textit{taggear} en base a la que se encuentre mas cercana. Este procedimiento, en comparaci\'on a los m\'etodos postulados en el trabajo, es de una simpleza notablemente mayor. De ser efectivo este algoritmo, su simpleza podr\'ia ser \'util en contextos d\'onde no se tenga f\'acil acceso a algoritmos como \textit{PCA} o \textit{PLS-DA}, como competencias, lenguages de programaci\'on poco maduros o con poca orientaci\'on cient\'fica, etc.
+
+De todas formas, la pregunta planteada no fue del todo respondida puesto que no tenemos datos que la fundamenten. Queda pendiente obtener m\'etricas de calidad en base a este planteo y llegar a una conclusi\'on en base a los resultados.
+
+De ser efectivo, esto podr\'ia disparar otras potenciales preguntas como: ``¿Lo ser\'a tambi\'en en otros problemas de clasificaci\'on con datos \textit{menos} acotados como clasificaci\'on de caras?'', ``¿Se podr\'a \textit{simular} la caligraf\'ia de una persona a partir de los \textit{promedios} de sus s\'imbolos lexicogr\'aficos manuscritos?'', ``¿De qu\'e depende su efectividad?''. Queda para el interesado experimentar con estos disparadores.
 
