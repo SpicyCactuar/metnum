@@ -36,9 +36,14 @@ Analizamos la calidad de KNN (con K = 5) calculando su Hit Rate, Precision, Reca
   \end{center}
 \end{figure}
 
-Una de las primeras cosas que se pueden observar es que la calidad de los resultados es extremadamente buena. El hit rate promedio para el mejor k es 0.97.
+Una de las primeras cosas que se pueden observar es que la calidad de los resultados es extremadamente buena. El hit rate promedio para el mejor k es 0.97. Es notable el valor y la similitud entre los resultados de las distintas m\'etricas. Ese rasgo denota una \textit{matriz de confusi\'on} subyacente que es saludable. Dicho fen\'omeno se debe a que: 
 
-\textcolor{red}{Explicar Precision, Recall y F1}\\
+\begin{itemize}
+\item Por una parte, la \textit{precision} nos indica cu\'antos \textit{aciertos reales} hubo dentro de los \textit{predichos}. (ej: porcentaje de 8's predichos correctamente dentro de todos los clasificados como 8)
+\item Por la otra, \textit{recall} otorga el porcentaje de \textit{aciertos} dentro de todos los elementos pertenecientes a una clase. (ej: porcentaje 8's predichos dentros de todos los 8's reales)
+\end{itemize}
+
+Al haber obtenido buenos y similares resultados en las susodichas m\'etricas, se habilita un an\'alisis m\'as objetivo del \textit{hit-rate} puesto que suele aplanar s\'intomas negativos ya que es meramente ``adivinados sobre totales''. Esta relaci\'on entre ambas m\'etricas es resumida en el \textit{F1-Score} y  natural que sus valores sean elevados ya que es una relaci\'on entre ambos. Es cierto que hay una preponderancia de \textit{precision} por sobre \textit{recall}, con lo cu\'al uno estar\'ia tentado a decir que es mayormente contundente dentro de sus propias predicciones que en lo que en realidad ocurre. Esta afirmaci\'on es emp\'iricamente cierta, pero de todas formas la diferencia de $\sim$0.005 que presentan no creemos que es suficiente como para ser concluyentes.
 
 Por otro lado también se puede ver que, a partir de k = 5, al aumentar la cantidad de vecinos la calidad de los resultados disminuye. Esto se debe probablemente a que considerar más imágenes comienza a agregar ruido a la medición. Al considerar más vecinos que cada vez se empiezan a parecer menos, es posible que se incorporen un conjunto cada vez mayor de imágenes que pertenecen a otra clase. Así mismo podemos ver que desde 1 vecino hasta 5 la información que aporta agregar más vecinos es valiosa y ayuda mejorar la clasificación.\\
 
@@ -78,8 +83,7 @@ Una vez determinado que k = 5 optimiza la calidad de KNN y además no compromete
   \end{center}
 \end{figure}
 
-Esta matriz de confusión es la suma de las matrices de confusión de cada una de las 5 particiones del test. Nos muestra claramente en su diagonal las clasificaciones acertadas y en el resto de las posiciones las que no clasificó correctamente. Vemos que los números fuera de la diagonal en general son bajos y que los más altos en general son casos que justifican cierto error. Por ejemplo, hubo setenta y un $2$ que clasificó como $7$ y a su vez hubo cuarenta y seis $7$ que clasificó como $2$. También vemos cierta confusión entre el 4 y 9, 8 y 5, etc.\\ 
-
+Esta matriz de confusión es la suma de las matrices de confusión de cada una de las 5 particiones del test. Nos muestra claramente en su diagonal las clasificaciones acertadas y en el resto de las posiciones las que no clasificó correctamente. Vemos que los números fuera de la diagonal en general son bajos y que los más altos en general son casos que justifican cierto error. Por ejemplo, hubo setenta y un $2$ que clasificó como $7$ y a su vez hubo cuarenta y seis $7$ que clasificó como $2$. También vemos cierta confusión entre el 4 y 9, 8 y 5, etc. Se puede ver claramente como la matriz de confusi\'on se condice con los datos plasmados en el gr\'afico de las m\'etricas. Esto corrobora que de la diferencia entre \textit{precision} y \textit{recall} no denotaba una inclinaci\'on relevante por una o la otra, por ejemplo, con los d\'igitos 1 y 2: la \textit{precision} para la clase 1 es notoriamente menor que para 2, y lo contrario ocurre con \textit{recall}. El resto tiene mayor equitatividad entre ambas m\'etricas si uno observa con detenimiento. \\ 
 
 Todo este análisis realizado para K = 5 lo hicimos también para K = 10. 
 
@@ -95,7 +99,7 @@ En el siguiente gráfico podemos observar que las medidas de calidad son similar
   \end{center}
 \end{figure}
 
-Comparando los desvíos estándar se puede ver que con 10 particiones el desvío es bastante superior al caso anterior. Esto probablemente se deba a que al haber más particiones de tamaño más pequeño, los casos que la base de entrenamiento no sabe reconocer no estén tan uniformemente distribuidos en esos 10 conjuntos.\\ 
+Comparando los desvíos estándar se puede ver que con 10 particiones el desvío es bastante superior al caso anterior. Esto probablemente se deba a que al haber más particiones de tamaño más pequeño, los casos que la base de entrenamiento no sabe reconocer no estén tan uniformemente distribuidos en esos 10 conjuntos. Un an\'alisis \textit{cuasi} id\'entico de comparaci\'on de m\'etricas hecho con K = 5 puede aplicar para este caso tambi\'en. Lo remarcable es el nivel de consistencia que se mantiene entre los 2 experimentos, lo cu\'al es un argumento a favor en la calidad de las metodolog\'ias de medici\'on planteadas. \\ 
 
 \begin{figure}[h!]
   \begin{center}

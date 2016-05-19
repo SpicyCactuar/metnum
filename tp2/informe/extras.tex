@@ -1,0 +1,61 @@
+Aqu\'i pondremos algunos resultados interesantes.
+
+El primero fue que corrimos nuestros algoritmos para los valores ``\'optimos'' que obtuvimos de nuestro an\'alisis, utilizando la base de train completa para entrenar, y luego etiquetamos las im\'agenes provistas en la competencia de Kaggle como test.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	M\'etodo & \#Autovalores & \#Vecinos & Hit-Rate \\
+	\hline
+	PCA & 50 & 4 & 0.97214 \\
+	\hline
+	PLS-DA & 16 & 10 & 0.95971 \\
+	\hline
+	PCA & 75 & 4 & 0.97300 \\
+	\hline
+	PLS-DA & 18 & 10 & 0.96186 \\
+	\hline
+	PCA & 85 & 4 & 0.97243 \\
+	\hline
+	PLS-DA & 50 & 10 & 0.97143 \\
+	\hline
+\end{tabular}
+\end{center}
+\caption{Corridas en Kaggle}
+\end{table}
+
+Hab\'iamos obtenido como \'optimos en relaci\'on $Tiempo-Hit Rate$ los primeros dos valores de la tabla. Pero dado que la competencia la gana el mayor Hit Rate, decidimos realizar una corrida con los par\'ametros de las siguientes entradas de la tabla anterior.
+
+El mayor valor obtenido fue con el m\'etodo PCA con alpha = 75 y k = 4.
+
+PLS-DA corrido con gammas m\'as grandes, aumentan el Hit Rate, pero el tiempo de c\'omputo es abismalmente mayor.
+
+Luego, calculamos el promedio de cada d\'igito de la base de train completa, que nos muestra que el dataset es bastante parejo.
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\includegraphics[scale=4.0]{exp6/digit0} &
+	\includegraphics[scale=4.0]{exp6/digit1} &
+	\includegraphics[scale=4.0]{exp6/digit2} &
+	\includegraphics[scale=4.0]{exp6/digit3} \\
+	\hline
+\end{tabular}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\includegraphics[scale=4.0]{exp6/digit4} &
+	\includegraphics[scale=4.0]{exp6/digit5} &
+	\includegraphics[scale=4.0]{exp6/digit6} &
+	\includegraphics[scale=4.0]{exp6/digit7} \\
+	\hline
+\end{tabular}
+\begin{tabular}{|c|c|}
+	\hline
+	\includegraphics[scale=4.0]{exp6/digit8} &
+	\includegraphics[scale=4.0]{exp6/digit9} \\
+	\hline
+\end{tabular}
+\end{table}
+
+
