@@ -9,7 +9,7 @@
 #### Status TPs:
 
 * TP 1 - Aprobado
-* TP 2 - En Curso
-* TP 3 - No iniciado
+* TP 2 - Aprobado
+* TP 3 - En Curso
 
 ![MATRICES](https://i.imgflip.com/1130qm.jpg)

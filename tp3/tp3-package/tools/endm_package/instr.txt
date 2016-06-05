@@ -1,0 +1,54 @@
+% This file contains instructions for using the ENDM macro package
+% ----------------------------------------------------------------
+%
+% Version: 1.01
+% Date:    8 November 2004
+%
+% Copyright (C) 2004. All rights reserved.
+%
+% IMPORTANT NOTICE:
+%
+% You are NOT ALLOWED to change this file. You may however copy this file
+% to a file with a different name and then change the copy.
+%
+% You are NOT ALLOWED to distribute this file alone. You are NOT ALLOWED
+% to take money for the distribution or use of this file (or a changed
+% version) except for a nominal charge for copying etc.
+%
+% You are allowed to distribute this file under the condition that it is
+% distributed together with all the files mentioned in "README.FIRST".
+%
+% If you receive only some of these files from someone, complain!
+
+
+This file contains the basic instructions for using the ENDM macro
+package. The files should work with LaTeX 2e and pdfLaTeX.
+
+After retrieving all the necessary files from the ENDM package you
+should proceed as follows:
+
+(1)	Place the .sty and .cls files in the directory where LaTeX looks
+	for input files. This can be the directory containing the source
+	file for your paper.
+
+(2)	Read the file "instraut.pdf". This file describes the generic
+	files "elsart.sty" and "elsart12.sty", upon which the endm files
+	are based.
+
+(3)     Read the file "template.pdf" which describes how the ENDM style
+	files differ from the generic Elsevier article styles. This file
+	has been derived from the sample LaTeX file "template.tex" which
+	serves as a template for creating your own paper. You can simply
+	replace relevant material in "template.tex" with your own data
+	to prepare your paper for the proceedings.
+
+(4)	If you run into any problems, please contact the guest editor(s)
+	of your proceedings
+
+(5)     When you have finished your paper, please send a copy of your
+	source files together with any macro files you need to the guest
+	editor(s) of your proceedings.
+
+
+Vadim Lozin		Remco de Boer
+Managing Editor		Publishing Editor

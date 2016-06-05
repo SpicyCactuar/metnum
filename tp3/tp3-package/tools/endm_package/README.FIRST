@@ -1,0 +1,92 @@
+% This file is part of the ENDM LaTeX package
+% -------------------------------------------
+%
+% Version: 1.01
+% Date:    8 November 2004
+%
+% Copyright (C) 2004. All rights reserved.
+%
+% IMPORTANT NOTICE:
+%
+% You are NOT ALLOWED to change this file. You may however copy this file
+% to a file with a different name and then change the copy.
+%
+% You are NOT ALLOWED to distribute this file alone. You are NOT ALLOWED
+% to take money for the distribution or use of this file (or a changed
+% version) except for a nominal charge for copying etc.
+%
+% You are allowed to distribute this file under the condition that it is
+% distributed together with all the files mentioned below.
+%
+% If you receive only some of these files from someone, complain!
+
+
+This README file is part of the generic ENDM LaTeX package. You need the
+new standard LaTeX 2e if you want to utilize this package to typeset LaTex
+to suit the formatting requirements of ENDM. The older version of LaTeX,
+version 2.09 of 14 January 1992 or later, is no longer supported.
+
+
+The files in this package are based on Elsevier's "elsart.sty" package
+and the documentation for that package can be found in the file
+"instraut.pdf". The files "instr.txt" and "template.pdf" contain
+instructions for using the adapted ENDM style package.
+
+
+Please note that ENDM volumes are published on ScienceDirect, Elsevier's
+main platform for online publication. For indexing reasons, authors are
+therefore required to include key words in their article. An example of
+how to do this can be found in the sample file "template.tex" that is part
+of the generic ENDM package. Authors must use this sample file as a
+template for preparing their paper.
+
+
+Publication on ScienceDirect also requires authors of all ENDM papers to
+sign a simple copyright transfer form. Elsevier will contact authors when
+the volume in which their paper will appear is ready for publication and
+will ask them to fill in this form. Please note that the publication of
+an abstract or extended abstract in ENDM will NOT restrict the author(s)
+from publishing a full-length article on the same topic and with the same
+title in another journal (possibly with another publisher).
+
+
+To publish a paper on ScienceDirect, only pdf-files are required. Note
+that the use of postscript files is no longer supported. Instructions on
+how to create pdf-files can be found in the sample file "template.pdf".
+While one can use 'pdfLaTeX' to prepare a suitable pdf-file, this approach
+does have drawbacks if eps-files are used for graphics. The same problem
+occurs if Paul Gastin's gastex package is used to prepare diagrams. If
+this is the case, it is usually simpler to use 'LaTeX 2e', followed by
+'dvips', and then 'ps2pdf' to prepare the pdf-file. More details on this
+can be found in the file "template.pdf".
+
+
+In any case, it is advised to carefully read the file "template.pdf" before
+preparing your own files. This is because several requirements are imposed
+when using pdf-files. In particular, one must use LaTeX 2e to succeed.
+
+
+After downloading the generic ENDM style package, you should have the
+following files:
+
+readme.first	The file that you are reading now.
+
+instr.txt	A plain text file containing instructions on how to set
+		things up.
+
+instraut.pdf	A booklet containing instructions on how to prepare a file
+		suitable for processing by Elsevier. This was the
+		instruction manual to use with Elsevier's earlier version
+		of its own LaTeX style package, but it provides some
+		useful hints for the ENDM package as well.
+
+endm.cls	The main document style file for LaTeX 2e. This file must
+		be copied to the directory where all other .sty files are
+		kept.
+
+endmmacro.sty   An additional macro style file for the ENDM package.
+
+template.tex	A sample LaTeX file containing instructions on how to use
+		the ENDM style package. This file also serves as a template
+		for preparing your paper. The output file template.pdf is
+		also included.
