@@ -1,0 +1,38 @@
+load_library <- function(){
+  library(RSQLite)
+  library(DBI)
+  library(ggplot2)
+}
+load_library()
+from_db <- function(sql) {
+  dbGetQuery(ontime, sql)
+}
+ontime <- dbConnect(RSQLite::SQLite(), dbname = "ontime.sqlite3")
+
+y1987 <- from_db("select * from ontime1987 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1988 <- from_db("select * from ontime1988 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1989 <- from_db("select * from ontime1989 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1990 <- from_db("select * from ontime1990 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1991 <- from_db("select * from ontime1991 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1992 <- from_db("select * from ontime1992 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1993 <- from_db("select * from ontime1993 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1994 <- from_db("select * from ontime1994 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1995 <- from_db("select * from ontime1995 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1996 <- from_db("select * from ontime1996 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1997 <- from_db("select * from ontime1997 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1998 <- from_db("select * from ontime1998 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y1999 <- from_db("select * from ontime1999 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2000 <- from_db("select * from ontime2000 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2001 <- from_db("select * from ontime2001 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2002 <- from_db("select * from ontime2002 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2003 <- from_db("select * from ontime2003 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2004 <- from_db("select * from ontime2004 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2005 <- from_db("select * from ontime2005 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2006 <- from_db("select * from ontime2006 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2007 <- from_db("select * from ontime2007 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+y2008 <- from_db("select * from ontime2008 where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+years <- list(y1987, y1988, y1989, y1990, y1991, y1992, y1993, y1994, y1995, y1996, y1997, y1998, y1999, y2000, y2001, y2002, y2003, y2004, y2005, y2006, y2007, y2008)
+names(years) = c("1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008")
+
+from_new_york <- from_db("select * from ontime where origin = 'ALB' or origin = 'BGM' or origin = 'BUF' or origin = 'ELM' or origin = 'ISP' or origin = 'ITH' or origin = 'JFK' or origin = 'LGA' or origin = 'SWF'or origin = 'ROC' or origin = 'SYR' or origin = 'HPN'")
+to_new_york <- from_db("select * from ontime where dest = 'ALB' or dest = 'BGM' or dest = 'BUF' or dest = 'ELM' or dest = 'ISP' or dest = 'ITH' or dest = 'JFK' or dest = 'LGA' or dest = 'SWF'or dest = 'ROC' or dest = 'SYR' or dest = 'HPN'")
