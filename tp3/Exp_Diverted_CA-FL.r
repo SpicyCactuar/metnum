@@ -158,42 +158,24 @@ plot((1:12), avg_FL_2008, xlab = '2008', xaxt = 'n', yaxt = 'n', ylim = c(0,0.00
 Axis(side=1, at = 1:12, labels = meses)
 
 # Levantar el input de los archivos
-avg_CA_2000 <- read.csv("outputR/avg_CA_2000.in", header = FALSE)
-avg_FL_2000 <- read.csv("outputR/avg_FL_2000.in", header = FALSE)
-avg_CA_2001 <- read.csv("outputR/avg_CA_2001.in", header = FALSE)
-avg_FL_2001 <- read.csv("outputR/avg_FL_2001.in", header = FALSE)
-avg_CA_2002 <- read.csv("outputR/avg_CA_2002.in", header = FALSE)
-avg_FL_2002 <- read.csv("outputR/avg_FL_2002.in", header = FALSE)
-avg_CA_2003 <- read.csv("outputR/avg_CA_2003.in", header = FALSE)
-avg_FL_2003 <- read.csv("outputR/avg_FL_2003.in", header = FALSE)
-avg_CA_2004 <- read.csv("outputR/avg_CA_2004.in", header = FALSE)
-avg_FL_2004 <- read.csv("outputR/avg_FL_2004.in", header = FALSE)
-avg_CA_2005 <- read.csv("outputR/avg_CA_2005.in", header = FALSE)
-avg_FL_2005 <- read.csv("outputR/avg_FL_2005.in", header = FALSE)
-avg_CA_2006 <- read.csv("outputR/avg_CA_2006.in", header = FALSE)
-avg_FL_2006 <- read.csv("outputR/avg_FL_2006.in", header = FALSE)
-avg_CA_2007 <- read.csv("outputR/avg_CA_2007.in", header = FALSE)
-avg_FL_2007 <- read.csv("outputR/avg_FL_2007.in", header = FALSE)
-avg_CA_2008 <- read.csv("outputR/avg_CA_2008.in", header = FALSE)
-avg_FL_2008 <- read.csv("outputR/avg_FL_2008.in", header = FALSE)
-avg_CA_2000 <- avg_CA_2000$V1
-avg_FL_2000 <- avg_FL_2000$V1
-avg_CA_2001 <- avg_CA_2001$V1
-avg_FL_2001 <- avg_FL_2001$V1
-avg_CA_2002 <- avg_CA_2002$V1
-avg_FL_2002 <- avg_FL_2002$V1
-avg_CA_2003 <- avg_CA_2003$V1
-avg_FL_2003 <- avg_FL_2003$V1
-avg_CA_2004 <- avg_CA_2004$V1
-avg_FL_2004 <- avg_FL_2004$V1
-avg_CA_2005 <- avg_CA_2005$V1
-avg_FL_2005 <- avg_FL_2005$V1
-avg_CA_2006 <- avg_CA_2006$V1
-avg_FL_2006 <- avg_FL_2006$V1
-avg_CA_2007 <- avg_CA_2007$V1
-avg_FL_2007 <- avg_FL_2007$V1
-avg_CA_2008 <- avg_CA_2008$V1
-avg_FL_2008 <- avg_FL_2008$V1
+avg_CA_2000 <- read.csv("outputR/avg_CA_2000.in", header = FALSE)$V1
+avg_FL_2000 <- read.csv("outputR/avg_FL_2000.in", header = FALSE)$V1
+avg_CA_2001 <- read.csv("outputR/avg_CA_2001.in", header = FALSE)$V1
+avg_FL_2001 <- read.csv("outputR/avg_FL_2001.in", header = FALSE)$V1
+avg_CA_2002 <- read.csv("outputR/avg_CA_2002.in", header = FALSE)$V1
+avg_FL_2002 <- read.csv("outputR/avg_FL_2002.in", header = FALSE)$V1
+avg_CA_2003 <- read.csv("outputR/avg_CA_2003.in", header = FALSE)$V1
+avg_FL_2003 <- read.csv("outputR/avg_FL_2003.in", header = FALSE)$V1
+avg_CA_2004 <- read.csv("outputR/avg_CA_2004.in", header = FALSE)$V1
+avg_FL_2004 <- read.csv("outputR/avg_FL_2004.in", header = FALSE)$V1
+avg_CA_2005 <- read.csv("outputR/avg_CA_2005.in", header = FALSE)$V1
+avg_FL_2005 <- read.csv("outputR/avg_FL_2005.in", header = FALSE)$V1
+avg_CA_2006 <- read.csv("outputR/avg_CA_2006.in", header = FALSE)$V1
+avg_FL_2006 <- read.csv("outputR/avg_FL_2006.in", header = FALSE)$V1
+avg_CA_2007 <- read.csv("outputR/avg_CA_2007.in", header = FALSE)$V1
+avg_FL_2007 <- read.csv("outputR/avg_FL_2007.in", header = FALSE)$V1
+avg_CA_2008 <- read.csv("outputR/avg_CA_2008.in", header = FALSE)$V1
+avg_FL_2008 <- read.csv("outputR/avg_FL_2008.in", header = FALSE)$V1
 
 # Escribir en archivos
 write(avg_CA_2000, "outputR/avg_CA_2000.in", ncolumns = 1)
