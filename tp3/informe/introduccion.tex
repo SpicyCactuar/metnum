@@ -1,0 +1,16 @@
+Imag\'inemos un fen\'omeno sobre el cu\'al se quisiera poder ``predecir'' su comportamiento en base a aspectos o propiedades del mismo. Como ejemplos pueden ser: las ventas de un(os) producto(s) particular(es), el movimiento de una part\'icula o hasta la reacci\'on de la gente. \textit{A priori}, parecen problem\'aticas dif\'iciles de modelar a la perfecci\'on, y probablemente lo sean. Por eso se suelen plantear modelos predictivos que no son exactos y se los trata de ajustar lo m\'as posible, en otras palabras achicar el error lo m\'as posible.
+
+Una metodolog\'ia es la de \textbf{\textit{cuadrados m\'inimos}}. Denominamos a los datos como pares $(x_i, y_i)$, $i = 1, ..., m \in \Nat$, en base a los cuales planteamos \textbf{familia de funciones $\mathbf{F}$} tal que $F = \{\alpha_1\phi_1 + ... + \alpha_n\phi_n : \alpha_1, ..., \alpha_n\}$, $n \in \Nat$, donde los $\phi_i$ son funciones que aceptan a los $x_j$ tales que $Im(\phi_i) \in \Real$. Los $\phi_i$ est\'an fijos y lo que buscamos son los coeficientes que los acompa\~nan. Por lo tanto, buscamos \textbf{una funci\'on en la familia $\mathbf{F}$} hallando los coeficientes tales que se alcance $\min_{\alpha_1, ..., \alpha_n \in \Real} \sum_{i = 1}^{m} (\alpha_1\phi_1(x_i) + ... + \alpha_n\phi_n(x_i) - y_i)^{2}$. Esta \'ultima expresi\'on se denomina el \textbf{criterio de cuadrados m\'inimos}.
+
+Tal y como est\'a planteado, encontrar una soluci\'on parece rebuscado e inclusive no est\'a claro que exista. Se puede ver que \textcolor{red}{//TODO: Insertar referencia} la expresi\'on se puede transformar en $\min_{\vec{\alpha}}||A\vec{\alpha} - b||$, donde:
+
+\begin{itemize}
+\item $A \in \Real^{m \times n}$, con $fila_i(A)^{t} = (\alpha_1(x_i) \, ... \, \alpha_n(x_i))$.
+\item $\vec{\alpha} \in \Real^{n}$, con $\vec{\alpha}^{t} = (\alpha_1 \, ... \, \alpha_n)$.
+\item $b \in \Real^{m}$, con $b^{t} = (y_1 \, ... \, y_m)$.
+\end{itemize}
+
+Este enfoque permite ver \textcolor{red}{//TODO: Insertar referencia} que siempre existe un vector de coeficientes tal que se realiza el m\'inimo del criterio. Hay distintas aristas por las cuales uno podr\'ia hallar una soluci\'on, las mismas se pueden consultar en \textbf{An\'alisis N\'umerico - Burden \& Faires}.
+
+Retomando lo que corresponde netamente a este trabajo, los fen\'omenos a analizar son \textit{delays}/cancelaciones/desv\'ios en vuelos de avi\'on. Trabajamos sobre informaci\'on de vuelos realizados entre los a\~nos 1987 a 2008 desde y hacia los Estados Unidos\footnote{La cu\'al puede ser \href{http://stat-computing.org/dataexpo/2009/the-data.html}{obtenida gratuitamente}}. Nuestro objetivo va a ser construir \textbf{modelos predictivos}, utilizados \textit{cuadrados m\'inimos}, sobre aspectos de los vuelos y poder extraer informaci\'on en consecuencia.
+
