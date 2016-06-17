@@ -12,36 +12,91 @@ from_db("select max(distance), min(distance) from ontime where year = '2000' or 
 
 ranges <- c('0', '501', '1001', '1501', '2001', '2501', '3001', '3501', '4001', '4501')
 
-layout(matrix(c(1,4,7,2,5,8,3,6,9),3))
+#layout(matrix(c(1,4,7,2,5,8,3,6,9),3))
+layout(matrix(c(1,3,2,4),2))
 par(mar = c(4,2,1,1), col = "black")
 
-plot((1:length(data_2000)), data_2000, ylim = c(0, 0.025), xlab = '2000', xaxt = 'n')
-lines((1:length(data_2000)), data_2000, ylim = c(0, 0.025), xlab = '2000', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2001)), data_2001, ylim = c(0, 0.025), xlab = '2001', xaxt = 'n')
-lines((1:length(data_2001)), data_2001, ylim = c(0, 0.025), xlab = '2001', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2002)), data_2002, ylim = c(0, 0.025), xlab = '2002', xaxt = 'n')
-lines((1:length(data_2002)), data_2002, ylim = c(0, 0.025), xlab = '2002', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2003)), data_2003, ylim = c(0, 0.025), xlab = '2003', xaxt = 'n')
-lines((1:length(data_2003)), data_2003, ylim = c(0, 0.025), xlab = '2003', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2004)), data_2004, ylim = c(0, 0.025), xlab = '2004', xaxt = 'n')
-lines((1:length(data_2004)), data_2004, ylim = c(0, 0.025), xlab = '2004', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2005)), data_2005, ylim = c(0, 0.025), xlab = '2005', xaxt = 'n')
-lines((1:length(data_2005)), data_2005, ylim = c(0, 0.025), xlab = '2005', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2006)), data_2006, ylim = c(0, 0.025), xlab = '2006', xaxt = 'n')
-lines((1:length(data_2006)), data_2006, ylim = c(0, 0.025), xlab = '2006', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2007)), data_2007, ylim = c(0, 0.025), xlab = '2007', xaxt = 'n')
-lines((1:length(data_2007)), data_2007, ylim = c(0, 0.025), xlab = '2007', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
-plot((1:length(data_2008)), data_2008, ylim = c(0, 0.025), xlab = '2008', xaxt = 'n')
-lines((1:length(data_2008)), data_2008, ylim = c(0, 0.025), xlab = '2008', xaxt = 'n')
-Axis(side=1, at = 1:length(ranges), labels = ranges)
+A <- matrix(nrow = 30, ncol = 2)
+for (i in (0:dim(A)[1] - 1)) {
+  A[i+1,1] <- (i %% 10) + 1
+  A[i+1,2] <- 1
+}
+res <- (solve(t(A)%*%A))%*%t(A)%*%c(data_2005, data_2006, data_2007)
+new_res <- rep(0,10)
+for (i in (1:length(new_res))) {
+  new_res[i] <- res[1]*i + res[2]
+}
+mean_squared_error <- norm(A %*% res - data_2008, "2")
+
+B <- matrix(nrow = 30, ncol = 3)
+for (i in (0:dim(B)[1] - 1)) {
+  B[i+1,1] <- (i %% 10) + 1
+  B[i+1,2] <- 1
+  B[i+1,3] <- ((i %% 10) + 1)^2
+}
+Bres <- (solve(t(B)%*%B))%*%t(B)%*%c(data_2005, data_2006, data_2007)
+Bnew_res <- rep(0,10)
+for (i in (1:length(Bnew_res))) {
+  Bnew_res[i] <- Bres[1]*i + Bres[2] + Bres[3]*i*i
+}
+Bmean_squared_error <- norm(B %*% Bres - data_2008, "2")
+
+C <- matrix(nrow = 30, ncol = 3)
+for (i in (0:dim(C)[1] - 1)) {
+  C[i+1,1] <- exp(1)^(-(((i %% 10) + 1)-7)^2/(2*(0.25))^2)
+  C[i+1,2] <- i
+  C[i+1,3] <- 1
+}
+Cres <- (solve(t(C)%*%C))%*%t(C)%*%c(data_2005, data_2006, data_2007)
+Cnew_res <- rep(0,10)
+for (i in (1:length(Cnew_res))) {
+  Cnew_res[i] <- Cres[1]*exp(1)^(-(i-7)^2/(2*(0.25))^2) + Cres[2]*i + Cres[3]
+}
+Cmean_squared_error <- norm(C %*% Cres - data_2008, "2")
+Cmean_squared_error
+plotAll()
+
+plotAll <- function(){
+  plot((1:length(data_2000)), data_2000, ylim = c(0, 0.025), xlab = '2000', xaxt = 'n')
+  lines((1:length(data_2000)), data_2000, ylim = c(0, 0.025), xlab = '2000', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  plot((1:length(data_2001)), data_2001, ylim = c(0, 0.025), xlab = '2001', xaxt = 'n')
+  lines((1:length(data_2001)), data_2001, ylim = c(0, 0.025), xlab = '2001', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  plot((1:length(data_2002)), data_2002, ylim = c(0, 0.025), xlab = '2002', xaxt = 'n')
+  lines((1:length(data_2002)), data_2002, ylim = c(0, 0.025), xlab = '2002', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  plot((1:length(data_2003)), data_2003, ylim = c(0, 0.025), xlab = '2003', xaxt = 'n')
+  lines((1:length(data_2003)), data_2003, ylim = c(0, 0.025), xlab = '2003', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  plot((1:length(data_2004)), data_2004, ylim = c(0, 0.025), xlab = '2004', xaxt = 'n')
+  lines((1:length(data_2004)), data_2004, ylim = c(0, 0.025), xlab = '2004', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  plot((1:length(data_2005)), data_2005, ylim = c(0, 0.025), xlab = '2005', xaxt = 'n')
+  lines((1:length(data_2005)), data_2005, ylim = c(0, 0.025), xlab = '2005', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  par(col = "red")
+  lines((1:10), Cnew_res, ylim = c(0,0.025))
+  par(col = "black")
+  plot((1:length(data_2006)), data_2006, ylim = c(0, 0.025), xlab = '2006', xaxt = 'n')
+  lines((1:length(data_2006)), data_2006, ylim = c(0, 0.025), xlab = '2006', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  par(col = "red")
+  lines((1:10), Cnew_res, ylim = c(0,0.025))
+  par(col = "black")
+  plot((1:length(data_2007)), data_2007, ylim = c(0, 0.025), xlab = '2007', xaxt = 'n')
+  lines((1:length(data_2007)), data_2007, ylim = c(0, 0.025), xlab = '2007', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  par(col = "red")
+  lines((1:10), Cnew_res, ylim = c(0,0.025))
+  par(col = "black")
+  plot((1:length(data_2008)), data_2008, ylim = c(0, 0.025), xlab = '2008', xaxt = 'n')
+  lines((1:length(data_2008)), data_2008, ylim = c(0, 0.025), xlab = '2008', xaxt = 'n')
+  Axis(side=1, at = 1:length(ranges), labels = ranges)
+  par(col = "red")
+  text((1:10), Cnew_res, ylim = c(0,0.025))
+  par(col = "black")
+}
 
 data_2000 <- read.csv("outputR/data_2000.in", header = FALSE)$V1
 data_2001 <- read.csv("outputR/data_2001.in", header = FALSE)$V1
