@@ -10,7 +10,7 @@ ontime <- dbConnect(RSQLite::SQLite(), dbname = "ontime.sqlite3")
 
 from_db("select max(distance), min(distance) from ontime where year = '2000' or year = '2001' or year = '2002' or year = '2003' or year = '2004' or year = '2005' or year = '2006' or year = '2007' or year = '2008'")
 
-ranges <- c('0', '6', '11', '16', '21', '26', '31', '36', '41', '46')
+ranges <- c('0', '501', '1001', '1501', '2001', '2501', '3001', '3501', '4001', '4501')
 
 layout(matrix(c(1,4,7,2,5,8,3,6,9),3))
 par(mar = c(4,2,1,1), col = "black")
@@ -102,10 +102,6 @@ group by year")
 
 data_4001_4500 <- from_db("select count(*) as Count, year
 from ontime where (distance BETWEEN 4001 and 4500) and (year = '2000' or year = '2001' or year = '2002' or year = '2003' or year = '2004' or year = '2005' or year = '2006' or year = '2007' or year = '2008')
-group by year")
-
-data_4501_5000 <- from_db("select count(*) as Count, year
-from ontime where (distance BETWEEN 4501 and 5000) and (year = '2000' or year = '2001' or year = '2002' or year = '2003' or year = '2004' or year = '2005' or year = '2006' or year = '2007' or year = '2008')
 group by year")
 
 data_4501_5000 <- from_db("select count(*) as Count, year
@@ -243,3 +239,34 @@ data_2008 <- c(data_diverted_0_500$Count[data_diverted_0_500$Year == '2008'] / d
                data_diverted_3501_4000$Count[data_diverted_3501_4000$Year == '2008'] / data_3501_4000$Count[data_3501_4000$Year == '2008'],
                data_diverted_4001_4500$Count[data_diverted_4001_4500$Year == '2008'] / data_4001_4500$Count[data_4001_4500$Year == '2008'],
                data_diverted_4501_5000$Count[data_diverted_4501_5000$Year == '2008'] / data_4501_5000$Count[data_4501_5000$Year == '2008'])
+
+
+data_0_500 <- from_db("select count(*) as Count
+                      from ontime2006 where (distance BETWEEN 0 and 500)")
+
+data_501_1000 <- from_db("select count(*) as Count
+                         from ontime2006 where (distance BETWEEN 501 and 1000)")
+
+data_1001_1500 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 1001 and 1500)")
+
+data_1501_2000 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 1501 and 2000)")
+
+data_2001_2500 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 2001 and 2500)")
+
+data_2501_3000 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 2501 and 3000)")
+
+data_3001_3500 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 3001 and 3500)")
+
+data_3501_4000 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 3501 and 4000)")
+
+data_4001_4500 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 4001 and 4500)")
+
+data_4501_5000 <- from_db("select count(*) as Count
+                          from ontime2006 where (distance BETWEEN 4501 and 5000)")
