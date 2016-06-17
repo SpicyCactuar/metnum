@@ -53,8 +53,6 @@ for (i in (1:length(Cnew_res))) {
   Cnew_res[i] <- Cres[1]*exp(1)^(-(i-7)^2/(2*(0.25))^2) + Cres[2]*i + Cres[3]
 }
 Cmean_squared_error <- norm(C %*% Cres - data_2008, "2")
-Cmean_squared_error
-plotAll()
 
 plotAll <- function(){
   # plot((1:length(data_2000)), data_2000, ylim = c(0, 0.025), xlab = '2000', xaxt = 'n')
