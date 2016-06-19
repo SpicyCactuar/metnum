@@ -62,7 +62,7 @@ Imag\'inemos un fen\'omeno sobre el cu\'al se quisiera poder ``predecir'' su com
 
 Una metodolog\'ia es la de \textbf{\textit{cuadrados m\'inimos}}. Denominamos a los datos como pares $(x_i, y_i)$, $i = 1, ..., m \in \Nat$, en base a los cuales planteamos \textbf{familia de funciones $\mathbf{F}$} tal que $F = \{\alpha_1\phi_1 + ... + \alpha_n\phi_n : \alpha_1, ..., \alpha_n\}$, $n \in \Nat$, donde los $\phi_i$ son funciones que aceptan a los $x_j$ tales que $Im(\phi_i) \in \Real$. Los $\phi_i$ est\'an fijos y lo que buscamos son los coeficientes que los acompa\~nan. Por lo tanto, buscamos \textbf{una funci\'on en la familia $\mathbf{F}$} hallando los coeficientes tales que se alcance $\min_{\alpha_1, ..., \alpha_n \in \Real} \sum_{i = 1}^{m} (\alpha_1\phi_1(x_i) + ... + \alpha_n\phi_n(x_i) - y_i)^{2}$. Esta \'ultima expresi\'on se denomina el \textbf{criterio de cuadrados m\'inimos}.
 
-Tal y como est\'a planteado, encontrar una soluci\'on parece rebuscado e inclusive no est\'a claro que exista. Se puede ver que \textcolor{red}{//TODO: Insertar referencia} la expresi\'on se puede transformar en $\min_{\vec{\alpha}}||A\vec{\alpha} - b||$, donde:
+Tal y como est\'a planteado, encontrar una soluci\'on parece rebuscado e inclusive no est\'a claro que exista. Se puede ver que la expresi\'on se puede transformar en $\min_{\vec{\alpha}}||A\vec{\alpha} - b||$ \cite{db}, donde:
 
 \begin{itemize}
 \item $A \in \Real^{m \times n}$, con $fila_i(A)^{t} = (\alpha_1(x_i) \, ... \, \alpha_n(x_i))$.
@@ -70,9 +70,9 @@ Tal y como est\'a planteado, encontrar una soluci\'on parece rebuscado e inclusi
 \item $b \in \Real^{m}$, con $b^{t} = (y_1 \, ... \, y_m)$.
 \end{itemize}
 
-Este enfoque permite ver \textcolor{red}{//TODO: Insertar referencia} que siempre existe un vector de coeficientes tal que se realiza el m\'inimo del criterio. Hay distintas aristas por las cuales uno podr\'ia hallar una soluci\'on, las mismas se pueden consultar en \textbf{An\'alisis N\'umerico - Burden \& Faires}.
+Este enfoque permite ver que siempre existe un vector de coeficientes tal que se realiza el m\'inimo del criterio \cite{db}.
 
-Retomando lo que corresponde netamente a este trabajo, los fen\'omenos a analizar son \textit{delays}/cancelaciones/desv\'ios en vuelos de avi\'on. Trabajamos sobre informaci\'on de vuelos realizados entre los a\~nos 1987 a 2008 desde y hacia los Estados Unidos\footnote{La cu\'al puede ser \href{http://stat-computing.org/dataexpo/2009/the-data.html}{obtenida gratuitamente}}. Nuestro objetivo va a ser construir \textbf{modelos predictivos}, utilizados \textit{cuadrados m\'inimos}, sobre aspectos de los vuelos y poder extraer informaci\'on en consecuencia.
+Retomando lo que corresponde netamente a este trabajo, los fen\'omenos a analizar son \textit{delays}/cancelaciones/desv\'ios en vuelos de avi\'on. Trabajamos sobre informaci\'on de vuelos realizados entre los a\~nos 1987 a 2008 desde y hacia los Estados Unidos \cite{statComp}. Nuestro objetivo va a ser construir \textbf{modelos predictivos}, utilizados \textit{cuadrados m\'inimos}, sobre aspectos de los vuelos y poder extraer informaci\'on en consecuencia.
 
 \section{Desarrollo}
 
@@ -150,8 +150,8 @@ Se puede observar la curva en el siguiente gr\'afico:
   \begin{center}
 	\includegraphics[scale=0.4]{img/plot_FL_2003-2005.png}
 	\caption{Diverted arrivals - Florida}
+	\label{divertedArrivalsFlorida}
   \end{center}
-  \label{divertedArrivalsFlorida}
 \end{figure}
 
 Una raz\'on que puede ser atribu\'ida a este fen\'omeno es el hecho de que la temporada de huracanes coincide con los meses donde se presentan los picos (el verano del hemisferio norte). Con lo cu\'al, tiene sentido que se presente un mayor porcentaje de desv\'ios para sortear estas condiciones clim\'aticas adversas. Quisimos crear una familia de funciones parecida a las que ten\'iamos pero que considerase esa particularidad.
@@ -196,7 +196,6 @@ Primero calculamos la cantidad de vuelos que hay para cada segmento y vimos que 
 Luego quisimos averiguar qu\'e aeropuertos eran los que m\'as desv\'ios tuvieron en el segmento del pico y los resultados son llamativos: de 47 vuelos desviados, 43 pertenecen a 2 trayectos en particular, los que vuelan entre DEN y HNL, y los que vuelan entre IAH y ANC.
 Por lo tanto este pico se debe exclusivamente a caracter\'isticas de estos 2 vuelos. Puede ser un tema clim\'atico de la ruta que utilizan, o de la administraci\'on interna de los aeropuertos con esos vuelos. Sea cual sea el motivo, es responsabilidad de muy pocos y se manifiesta en el gr\'afico de ese modo debido a la poca cantidad de vuelos de tanta distancia.
 
-
 Luego nos proponemos a aproximar funciones que representen la curva de desv\'ios utilizando cuadrados m\'inimos. Para esto nos propusimos un set de ecuaciones que fueron mejorando paulatinamente el error cuadr\'atico medio.
 Primero utilizamos una ecuaci\'on lineal, de la forma $F_1 = \alpha_1*x + \alpha_2$ y obtuvimos que $ECM(F_1) = 0.001351388$. 
 
@@ -212,12 +211,11 @@ Pudimos apreciar el poder que provee la herramienta Cuadrados M\'inimos Lineales
 
 En lo relevante a los ejes de estudio, fue claro que la ocurrencia de desv\'ios en viajes a\'ereos \textbf{efectivamente presenta una relaci\'on con la distancia entre origen y destino}, y temporal con \textbf{la \'epoca del a\~no}. M\'as a\'un, pudimos plantear modelos que, como poco, \textit{\textbf{muestran tendencias}} en el porcentaje de desv\'ios en funci\'on de los aspectos mencionados. Los aeropuertos, provistos de esta informaci\'on, pueden realizar un an\'alisis con mayor profundidad en los detalles t\'ecnicos, administrativos y/o relevantes a la organizaci\'on de los vuelos para poder generar cronogramas que tengan en cuenta estas tendencias para reducir su caudal.
 
-\section{Referencias}
+\begin{thebibliography}{10}\label{bibliography}
 
-%\begin{thebibliography}{10}\label{bibliography}
+\bibitem{db} G. Dahlquist and A. Bjorck, \emph{Numerical methods}, Prentice-Hall. (1974), 167--171.
 
-%\bibitem{cy} Civin, P., and B. Yood, \emph{Involutions on Banach algebras}, Pacific J. Math. \textbf{9} (1959), 415--436.
-
-%\end{thebibliography}
+\bibitem{statComp} http://stat-computing.org/dataexpo/2009/the-data.html
+\end{thebibliography}
 
 \end{document}
