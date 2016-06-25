@@ -10,6 +10,6 @@
 
 * TP 1 - Aprobado
 * TP 2 - Aprobado
-* TP 3 - En Curso
+* TP 3 - A presentar!
 
 ![MATRICES](https://i.imgflip.com/1130qm.jpg)
