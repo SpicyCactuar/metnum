@@ -10,6 +10,8 @@
 
 * TP 1 - Aprobado
 * TP 2 - Aprobado
-* TP 3 - A presentar!
+* TP 3 - Aprobado
+
+NO' VIMO' EN DISNEY!
 
 ![MATRICES](https://i.imgflip.com/1130qm.jpg)
